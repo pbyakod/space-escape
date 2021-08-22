@@ -30,8 +30,8 @@ export default function App() {
   };
   return (
     <>
+    <Background/>
     <BrowserRouter>
-    {/* <Background/> */}
       <Switch>
         <Route component={Home} path="/" exact>
           {/* {token !== "" ? <Home /> : <Auth setAuth={setAuth} />} */}
