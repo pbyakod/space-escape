@@ -23,12 +23,18 @@ button {
 }
 
 .containerSmall {
+  display: flex;
+  flex-direction: row;
   height: fit-content;
   width: fit-content;
   background-color: rgb(31, 32, 47);
 }
 
-.main {
+.title {
+  text-align: center;
+}
+
+.background {
   position: relative;
   height: 100vh;
   width: 100vw;

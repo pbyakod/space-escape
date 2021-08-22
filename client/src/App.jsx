@@ -1,4 +1,5 @@
 import { BrowserRouter, Route, Switch } from "react-router-dom";
+import "./App.scss";
 
 import Home from "./components/Home";
 import Auth from "./components/Auth";
@@ -19,44 +20,48 @@ import Background from "./components/Background";
 
 export default function App() {
   //use token to authorize user
-  const [token, setToken] = useState("");
+  const [token, setToken] = [];
+  //const [token, setToken] = useState("");
   const setAuth = (token) => {
     console.log(token);
-    //updates state
     setToken(token); // set token from server into state.
     alert(JSON.stringify(token));
 
   };
   return (
     <>
+    <BrowserRouter>
+    {/* <Background/> */}
       <Switch>
-        <Route exact path="">
-          {token !== "" ? <Home /> : <Auth setAuth={setAuth} />}
+        <Route component={Home} path="/" exact>
+          {/* {token !== "" ? <Home /> : <Auth setAuth={setAuth} />} */}
         </Route>
-        <Route path="about">
-          <About />
+        <Route component={Auth} path="/auth">
         </Route>
-        <Route path="rules"></Route>
-        <Route path="createCharacter">
-        {token !== "" ? <CreateCharacter /> : <Auth setAuth={setAuth} />}
+        <Route component={About} path="/about">
         </Route>
-        <Route path="story">
-        {token !== "" ? <Story /> : <Auth setAuth={setAuth} />}
+        <Route component={Rules} path="/rules"></Route>
+        <Route component={CreateCharacter} path="createCharacter">
+        {/* {token !== "" ? <CreateCharacter /> : <Auth setAuth={setAuth} />} */}
         </Route>
-        <Route path="obstacle">
-        {token !== "" ? <Obstacle /> : <Auth setAuth={setAuth} />}
+        <Route component={Story} path="/story">
+        {/* {token !== "" ? <Story /> : <Auth setAuth={setAuth} />} */}
         </Route>
-        <Route path="result">
-        {token !== "" ? <Result /> : <Auth setAuth={setAuth} />}
+        <Route component={Obstacle} path="/obstacle">
+        {/* {token !== "" ? <Obstacle /> : <Auth setAuth={setAuth} />} */}
         </Route>
-        <Route path="score">
-        {token !== "" ? <Score /> : <Auth setAuth={setAuth} />}
+        <Route component={Result} path="/result">
+        {/* {token !== "" ? <Result /> : <Auth setAuth={setAuth} />} */}
         </Route>
-        <Route path="leaderBoard">
-        {token !== "" ? <LeaderBoard /> : <Auth setAuth={setAuth} />}
+        <Route component={Score} path="score">
+        {/* {token !== "" ? <Score /> : <Auth setAuth={setAuth} />} */}
+        </Route>
+        <Route component={LeaderBoard} path="leaderBoard">
+        {/* {token !== "" ? <LeaderBoard /> : <Auth setAuth={setAuth} />} */}
         </Route>
         
       </Switch>
+      </BrowserRouter>
     </>
   );
 }

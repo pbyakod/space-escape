@@ -14,14 +14,14 @@ export default function main() {
   }
 
   return (
-    <div className = "main">
+    <div className = "background">
       <section className="stars">
         {stars.map((star, id) =><div key={id}></div>)}
       </section>
       {/* <section className="shootingStars">
         {shootingStars.map((shootingStar, id) =><div key={id}></div>)}
       </section> */}
-      <Home/>
+  
       
     </div>
   )
