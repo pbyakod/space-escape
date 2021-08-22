@@ -1,9 +1,3 @@
-import './App.css';
-
-export default function App() {
-  return (<></>);
-}
-
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 import Home from "./components/Home";
@@ -43,12 +37,24 @@ export default function App() {
           <About />
         </Route>
         <Route path="rules"></Route>
-        <Route path="createcharacter"></Route>
-        <Route path="story"></Route>
-        <Route path="obstacle"></Route>
-        <Route path="result"></Route>
-        <Route path="score"></Route>
-        <Route path="leaderboard"></Route>
+        <Route path="createCharacter">
+        {token !== "" ? <CreateCharacter /> : <Auth setAuth={setAuth} />}
+        </Route>
+        <Route path="story">
+        {token !== "" ? <Story /> : <Auth setAuth={setAuth} />}
+        </Route>
+        <Route path="obstacle">
+        {token !== "" ? <Obstacle /> : <Auth setAuth={setAuth} />}
+        </Route>
+        <Route path="result">
+        {token !== "" ? <Result /> : <Auth setAuth={setAuth} />}
+        </Route>
+        <Route path="score">
+        {token !== "" ? <Score /> : <Auth setAuth={setAuth} />}
+        </Route>
+        <Route path="leaderBoard">
+        {token !== "" ? <LeaderBoard /> : <Auth setAuth={setAuth} />}
+        </Route>
         
       </Switch>
     </>
