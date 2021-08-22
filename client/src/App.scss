@@ -18,18 +18,23 @@ button {
   height: fit-content;
   width: fit-content;
   margin: auto;
-  margin-top:100px;
   background-color: rgb(31, 32, 47);
 }
 
 .containerSmall {
+  display: flex;
+  flex-direction: row;
   height: fit-content;
   width: fit-content;
   background-color: rgb(31, 32, 47);
 }
 
-.main {
-  position: relative;
+.title {
+  text-align: center;
+}
+
+.background {
+  position: absolute;
   height: 100vh;
   width: 100vw;
   background-color: #130036;

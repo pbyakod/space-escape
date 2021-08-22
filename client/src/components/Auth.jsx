@@ -22,28 +22,31 @@ export default function auth({setAuth}) {
   return (
     <div>
     
-      <section>
-        <h1>Auth Page</h1>
-        <h2>Sign In</h2>
+      <section className="containerLarge">
+        <h1 className="title">Auth Page</h1>
+        <article className="containerSmall">
+          <div className="">
+        <h2 className="title">Sign In</h2>
         <p>username</p>
         <input type="text" id='username'/>
         <p>password</p>
         <input type="text" id='password'/>
         <button onClick={auth}>submit</button>
-      </section>
-      
-      <section>
-        <h2>Sign Up</h2>
+        </div>
+        <div className="">
+        <h2 className="title">Sign Up</h2>
         <p>username</p>
         <input type="text"/>
         <p>password</p>
         <input type="text" />
         <button>submit</button>
-      </section>
+        </div>
+        </article>
 
       <Link to="" exact>
       <button>back</button>
       </Link>
+      </section>
     </div>
   );
 }
