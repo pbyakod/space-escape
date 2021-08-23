@@ -30,13 +30,23 @@ CharProto.init(
     gold: {
 			type: DataTypes.INTEGER,
 			allowNull: false
+		},
+
+		game_id: {
+			type: DataTypes.INTEGER,
+			references: {
+				model: 'Game',
+				key: 'id',
+				unique: false
+			}
 		}
 	},
 	{
 		sequelize,
-		modelName: 'char_proto',
+		timestamps: false,
 		freezeTableName: true,
-		underscored: true
+		underscored: true,
+		modelName: 'char_proto'
 	}
 );
 
