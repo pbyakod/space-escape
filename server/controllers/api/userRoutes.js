@@ -33,11 +33,12 @@ router.post('/login', async (req,res) => {
 				req.session.username = user.username;
 				console.log(req.session)
 			})
+			res.status(200).json(user);
 		} else {
 			console.log('Invalid username or password');
+			res.status(400).end();
 		}
 
-		res.status(200).json(user);
 	} catch(err) {
 		console.log(err)
 	}
