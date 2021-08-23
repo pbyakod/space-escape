@@ -14,11 +14,11 @@ Game.belongsTo(User, {
 });
 
 CharProto.hasMany(Game, {
-	foreignKey: 'char_proto_id',
+	foreignKey: 'char_id',
 })
 
 Game.belongsTo(CharProto, {
-  foreignKey: 'char_proto_id',
+  foreignKey: 'char_id',
 	onDelete: 'SET NULL'
 });
 

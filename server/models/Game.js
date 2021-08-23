@@ -30,7 +30,7 @@ Game.init(
 			}
 		},
 
-		char_proto_id: {
+		char_id: {
 			type: DataTypes.INTEGER,
 			references: {
 				model: 'CharProto',
@@ -49,7 +49,7 @@ Game.init(
 			allowNull: false
 		},
 
-    currency: {
+    gold: {
 			type: DataTypes.INTEGER,
 			allowNull: false
 		},
