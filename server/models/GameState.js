@@ -1,9 +1,9 @@
 const {Model, DataTypes} = require('sequelize');
 const sequelize = require('../config/connection');
 
-class Game extends Model {};
+class GameState extends Model {};
 
-Game.init(
+GameState.init(
 	{
 		id: {
 			type: DataTypes.INTEGER,
@@ -12,27 +12,41 @@ Game.init(
 			primaryKey: true
 		},
 
-		user_id: {
+		health: {
 			type: DataTypes.INTEGER,
 			allowNull: false
 		},
 
-		char_proto_id: {
+		ship: {
 			type: DataTypes.INTEGER,
 			allowNull: false
 		},
 
-    game_state_id: {
+    currency: {
 			type: DataTypes.INTEGER,
+			allowNull: false
+		},
+
+    location_id: {
+			type: DataTypes.INTEGER,
+			allowNull: false,
+			references: {
+				model: 'location',
+				key: 'id'
+			}
+		},
+
+    inProgress: {
+			type: DataTypes.BOOLEAN,
 			allowNull: false
 		}
 	},
 	{
 		sequelize,
-		modelName: 'game',
+		modelName: 'game_state',
 		freezeTableName: true,
 		underscored: true
 	}
 );
 
-module.exports = Game;
+module.exports = GameState;

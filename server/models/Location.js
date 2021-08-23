@@ -19,7 +19,10 @@ Location.init(
 
     encounter_id: {
 			type: DataTypes.INTEGER,
-			allowNull: false
+			references: {
+				model: 'encounter',
+				key: 'id'
+			}
 		}
 	},
 	{
