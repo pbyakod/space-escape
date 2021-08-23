@@ -7,6 +7,7 @@ const scoreRoutes = require('./scoreRoutes');
 const storyRoutes = require('./storyRoutes');
 const userRoutes = require('./userRoutes');
 const gameRoutes = require('./gameRoutes');
+const charProtoRoutes = require('./charProtoRoutes');
 
 
 router.use('/gameState', gameStateRoutes);
@@ -17,5 +18,6 @@ router.use('/score', scoreRoutes);
 router.use('/story', storyRoutes);
 router.use('/game', gameRoutes);
 router.use('/user', userRoutes);
+router.use('/charProto', charProtoRoutes);
 
 module.exports = router;
