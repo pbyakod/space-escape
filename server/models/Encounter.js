@@ -29,6 +29,7 @@ Encounter.init(
 	},
 	{
 		sequelize,
+		timestamps: false,
 		modelName: 'encounter',
 		freezeTableName: true,
 		underscored: true
