@@ -1,3 +1,0 @@
-DROP DATABASE IF EXISTS spaceEsc_db;
-CREATE DATABASE spaceEsc_db;
-
