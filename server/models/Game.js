@@ -16,31 +16,17 @@ Game.init(
 			type: DataTypes.INTEGER,
 			references: {
 				model: 'user',
-				key: 'id'
-			}
-		},
-
-		char_proto_id: {
-			type: DataTypes.INTEGER,
-			references: {
-				model: 'char_proto',
-				key: 'id'
-			}
-		},
-
-    game_state_id: {
-			type: DataTypes.INTEGER,
-			references: {
-				model: 'game_state',
-				key: 'id'
+				key: 'id',
+				unique: false
 			}
 		}
 	},
 	{
 		sequelize,
-		modelName: 'game',
+		timestamps: false,
 		freezeTableName: true,
-		underscored: true
+		underscored: true,
+		modelName: 'game'
 	}
 );
 
