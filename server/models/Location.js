@@ -15,14 +15,6 @@ Location.init(
 		name: {
 			type: DataTypes.STRING,
 			allowNull: false
-		},
-
-    encounter_id: {
-			type: DataTypes.INTEGER,
-			references: {
-				model: 'encounter',
-				key: 'id'
-			}
 		}
 	},
 	{
