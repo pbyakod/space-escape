@@ -1,22 +1,18 @@
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import "./App.scss";
 
-import Home from "./components/Home";
-import Auth from "./components/Auth";
-import Rules from "./components/Rules";
-import About from "./components/About";
-import CreateCharacter from "./components/CreateCharacter";
-import Story from "./components/Story";
-import Obstacle from "./components/Obstacle";
-import MiniGame from "./components/MiniGame";
-import Result from "./components/Result";
-import Score from "./components/Score";
-import LeaderBoard from "./components/LeaderBoard";
-import Background from "./components/Background";
-// import NavBar from "./components/navBar/NavBar";
-//import ContainerLarge from "./components/containerLarge/ContainerLarge";
-// import ContainerSmall from "./components/containerSmall/ContainerSmall";
-// import ContainerImage from "./components/containerImage/ContainerImage";
+import Home from "./components/pages/Home";
+import Auth from "./components/pages/Auth";
+import Rules from "./components/pages/Rules";
+import About from "./components/pages/About";
+import CreateCharacter from "./components/pages/CreateCharacter";
+import Story from "./components/pages/Story";
+import Obstacle from "./components/pages/Obstacle";
+import MiniGame from "./components/pages/MiniGame";
+import Result from "./components/pages/Result";
+import Score from "./components/pages/Score";
+import LeaderBoard from "./components/pages/LeaderBoard";
+import Background from "./components/background/Background";
 
 export default function App() {
   //use token to authorize user

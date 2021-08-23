@@ -1,0 +1,60 @@
+
+.stars div {
+  @for $i from 0 through 70 {
+    @for $j from 0 through 40 {
+      @if random(3) %3 == 0 {
+        &:nth-child(#{$i * 40 + $j}) {
+          position: absolute;
+          height: 1px;
+          width: 1px;
+          background-color: white;
+          border: 2px solid #fdfdfd;
+          border-radius: 50%;
+          top: #{$i * 1}rem;
+          @if $i % 2 == 0 {
+            left: #{$j * 3 - 1.5}rem;
+          } @else {
+            left: #{$j * 3}rem;
+          }
+          animation: animateStar (random(11) + 4) + s linear infinite;
+
+          @if random(5) %5 == 0 {
+            &::before,
+            &::after {
+              content: "";
+              position: absolute;
+              background-color: #fbc143;
+            }
+            &::before {
+              top: -4px;
+              left: 0;
+              width: 2px;
+              height: 10px;
+            }
+            &::after {
+              top: 0;
+              left: -4px;
+              width: 10px;
+              height: 2px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @keyframes animateStar {
+    0% {
+      transform: scale(0);
+      opacity: 0;
+    }
+    50% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(0);
+      opacity: 0;
+    }
+  }
+}

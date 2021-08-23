@@ -1,4 +1,4 @@
-import CharProtoStats from "../CharProtoStats"
+import CharProtoStats from "../charProto/CharProto"
 import { Link } from "react-router-dom"
 
 export default function CreateCharacter() {

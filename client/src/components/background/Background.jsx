@@ -1,6 +1,4 @@
-import "../App.scss"
-import Home from "./Home"
-
+import "./background.scss"
 
 export default function main() {
   let stars = []
