@@ -1,6 +1,6 @@
 const {GameState} = require('../models');
 
-const games = [
+const gamesState = [
 	{
 		health:100,
 		ship:200,
@@ -45,6 +45,6 @@ const games = [
 	},
 ];
 
-const seed = () => GameState.bulkCreate(games);
+const seed = () => GameState.bulkCreate(gamesState);
 
 module.exports = {seed};
