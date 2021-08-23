@@ -1,5 +1,4 @@
 const router = require('express').Router();
-const gameStateRoutes = require('./gameStateRoutes');
 const leaderBoardRoutes = require('./leaderBoardRoutes');
 const obstacleRoutes = require('./obstacleRoutes');
 const resultRoutes = require('./resultRoutes');
@@ -10,7 +9,6 @@ const gameRoutes = require('./gameRoutes');
 const charProtoRoutes = require('./charProtoRoutes');
 
 
-router.use('/gameState', gameStateRoutes);
 router.use('/leaderBoard', leaderBoardRoutes);
 router.use('/obstacle', obstacleRoutes);
 router.use('/result', resultRoutes);
