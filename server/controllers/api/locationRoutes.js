@@ -1,10 +1,10 @@
 const router = require('express').Router();
-const { Encounter } = require('../../models');
+const { Location } = require('../../models');
 
 router.get('/', (req,res) => {
 	try {
-		const encounter = await Encounter.findAndCountAll();
-		res.json({ encounter });
+		const location = await Location.findAndCountAll();
+		res.json({ location });
 	} catch(err) {
 		res.json({ err });
 	}
