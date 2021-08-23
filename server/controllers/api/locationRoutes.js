@@ -10,4 +10,17 @@ router.get('/', (req,res) => {
 	}
 })
 
+router.get('/:id', async (req, res) => {
+	try {
+	  const locationID = await Location.findByPk(req.params.id, {
+		include: [{
+		  model: Location
+		}]
+	  });
+	  res.json({ locationID });
+	} catch(err) {
+	  res.json({ err });
+	}
+})
+
 module.exports = router;
