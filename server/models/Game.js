@@ -15,32 +15,56 @@ Game.init(
 		user_id: {
 			type: DataTypes.INTEGER,
 			references: {
-				model: 'user',
-				key: 'id'
+				model: 'User',
+				key: 'id',
+				unique: false
 			}
 		},
 
-		char_proto_id: {
+		location_id: {
 			type: DataTypes.INTEGER,
 			references: {
-				model: 'char_proto',
-				key: 'id'
+				model: 'Location',
+				key: 'id',
+				unique: false
 			}
 		},
 
-    game_state_id: {
+		char_id: {
 			type: DataTypes.INTEGER,
 			references: {
-				model: 'game_state',
-				key: 'id'
+				model: 'CharProto',
+				key: 'id',
+				unique: false
 			}
+		},
+
+		health: {
+			type: DataTypes.INTEGER,
+			allowNull: false
+		},
+
+		ship: {
+			type: DataTypes.INTEGER,
+			allowNull: false
+		},
+
+    gold: {
+			type: DataTypes.INTEGER,
+			allowNull: false
+		},
+
+		inProgress: {
+			type: DataTypes.BOOLEAN,
+			allowNull: false
 		}
 	},
 	{
 		sequelize,
-		modelName: 'game',
+		timestamps: false,
 		freezeTableName: true,
-		underscored: true
+		underscored: true,
+		modelName: 'game'
 	}
 );
 

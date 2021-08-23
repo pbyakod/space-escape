@@ -14,12 +14,16 @@ User.init(
 
 		username: {
 			type: DataTypes.STRING,
-			allowNull: false
+			allowNull: false,
+			unique: true
 		},
 
     password: {
 			type: DataTypes.STRING,
-			allowNull: false
+			allowNull: false,
+			validate: {
+				is: /^[A-Za-z]\w{6,14}$/
+      },
 		}
 	},
 	{

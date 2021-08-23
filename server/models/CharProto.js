@@ -34,9 +34,10 @@ CharProto.init(
 	},
 	{
 		sequelize,
-		modelName: 'char_proto',
+		timestamps: false,
 		freezeTableName: true,
-		underscored: true
+		underscored: true,
+		modelName: 'char_proto'
 	}
 );
 

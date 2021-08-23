@@ -1,48 +1,42 @@
 const User = require('./User');
 const Game = require('./Game');
 const CharProto = require('./CharProto');
-const GameState = require('./GameState');
 const Location = require('./Location');
 const Encounter = require('./Encounter');
 
 User.hasMany(Game, {
 	foreignKey: 'user_id',
-	onDelete: 'CASCADE',
 });
 
 Game.belongsTo(User, {
-  foreignKey: 'user_id'
+  foreignKey: 'user_id',
+	onDelete: 'CASCADE',
 });
 
-Game.hasMany(CharProto, {
-  foreignKey: 'char_proto_id',
-	constraints: false
+CharProto.hasMany(Game, {
+	foreignKey: 'char_id',
+})
+
+Game.belongsTo(CharProto, {
+  foreignKey: 'char_id',
+	onDelete: 'SET NULL'
 });
 
-// CharProto.belongsTo(Game, {
-// 	foreignKey: 'char_proto_id',
-// })
+Location.hasMany(Game, {
+	foreignKey: 'location_id',
+})
 
-Game.hasOne(GameState, {
-  foreignKey: 'game_state_id',
-	constraints: false
-});
-
-// GameState.belongsTo(Game, {
-// 	foreignKey: 'game_state_id',
-//   onDelete: 'CASCADE',
-// 	constraints: false
-// });
-
-GameState.hasOne(Location, {
+Game.belongsTo(Location, {
   foreignKey: 'location_id',
-	constraints: false
+	onDelete: 'SET NULL'
 });
-
 
 Location.hasOne(Encounter, {
-  foreignKey: 'encounter_id',
-	constraints: false
+  foreignKey: 'location_id'
 });
 
-module.exports = { User, Game, CharProto, GameState, Location, Encounter};
+Encounter.belongsTo(Location, {
+  foreignKey: 'location_id'
+});
+
+module.exports = { User, Game, CharProto, Location, Encounter};

@@ -25,10 +25,20 @@ Encounter.init(
     option2: {
 			type: DataTypes.STRING,
 			allowNull: false
-		}
+		},
+
+		location_id: {
+			type: DataTypes.INTEGER,
+			references: {
+				model: 'Location',
+				key: 'id',
+				unique: true
+			}
+		},
 	},
 	{
 		sequelize,
+		timestamps: false,
 		modelName: 'encounter',
 		freezeTableName: true,
 		underscored: true
