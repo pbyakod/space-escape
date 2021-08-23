@@ -10,4 +10,17 @@ router.get('/', (req,res) => {
 	}
 })
 
+router.get('/:id', async (req, res) => {
+	try {
+	  const encounterID = await Encounter.findByPk(req.params.id, {
+		include: [{
+		  model: Encounter
+		}]
+	  });
+	  res.json({ encounterID });
+	} catch(err) {
+	  res.json({ err });
+	}
+})
+
 module.exports = router;
