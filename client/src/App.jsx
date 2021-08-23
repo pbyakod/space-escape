@@ -36,17 +36,23 @@ export default function App() {
         <Route component={Home} path="/" exact>
           {/* {token !== "" ? <Home /> : <Auth setAuth={setAuth} />} */}
         </Route>
+
         <Route component={Auth} path="/auth">
         </Route>
+
         <Route component={About} path="/about">
         </Route>
+
         <Route component={Rules} path="/rules"></Route>
+
         <Route component={CreateCharacter} path="createCharacter">
         {/* {token !== "" ? <CreateCharacter /> : <Auth setAuth={setAuth} />} */}
         </Route>
+
         <Route component={Story} path="/story">
         {/* {token !== "" ? <Story /> : <Auth setAuth={setAuth} />} */}
         </Route>
+        
         <Route component={Obstacle} path="/obstacle">
         {/* {token !== "" ? <Obstacle /> : <Auth setAuth={setAuth} />} */}
         </Route>
