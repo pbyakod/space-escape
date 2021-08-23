@@ -45,7 +45,7 @@ export default function App() {
 
         <Route component={Rules} path="/rules"></Route>
 
-        <Route component={CreateCharacter} path="createCharacter">
+        <Route component={CreateCharacter} path="/createCharacter">
         {/* {token !== "" ? <CreateCharacter /> : <Auth setAuth={setAuth} />} */}
         </Route>
 
@@ -59,10 +59,10 @@ export default function App() {
         <Route component={Result} path="/result">
         {/* {token !== "" ? <Result /> : <Auth setAuth={setAuth} />} */}
         </Route>
-        <Route component={Score} path="score">
+        <Route component={Score} path="/score">
         {/* {token !== "" ? <Score /> : <Auth setAuth={setAuth} />} */}
         </Route>
-        <Route component={LeaderBoard} path="leaderBoard">
+        <Route component={LeaderBoard} path="/leaderBoard">
         {/* {token !== "" ? <LeaderBoard /> : <Auth setAuth={setAuth} />} */}
         </Route>
         
