@@ -8,6 +8,7 @@ const userRoutes = require('./userRoutes');
 const gameRoutes = require('./gameRoutes');
 const charProtoRoutes = require('./charProtoRoutes');
 
+
 router.use('/leaderBoard', leaderBoardRoutes);
 router.use('/obstacle', obstacleRoutes);
 router.use('/result', resultRoutes);

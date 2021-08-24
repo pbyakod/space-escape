@@ -37,7 +37,7 @@ CharProto.init(
 		timestamps: false,
 		freezeTableName: true,
 		underscored: true,
-		modelName: 'char_proto'
+		modelName: 'CharProto'
 	}
 );
 
