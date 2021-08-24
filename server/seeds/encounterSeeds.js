@@ -44,13 +44,13 @@ const encounter = [
       'Warning! Someone is being attacked by space monsters, what should we do?',
     option1: 'Help them (minigame)',
     option2: 'Ignore them (0 0 -100)',
-    location_id: 2,
+    location_id: 7,
   },
   {
     message: 'Warning! a fleet of aliens are attacking, what should we do?',
     option1: 'Fight back (minigame)',
     option2: 'Run away (0 -100 -100)',
-    location_id: 1,
+    location_id: 8,
   },
 ];
 

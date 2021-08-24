@@ -8,8 +8,8 @@ const sequelize = require('../config/connection');
 async function seedDB() {
   await sequelize.sync({force: true});
   await charProto.seed();
+	await location.seed();
   await encounter.seed();
-  await location.seed();
   await user.seed();
   await game.seed();
 }
