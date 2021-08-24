@@ -19,6 +19,12 @@ const locations = [
   {
     name: "p6",
   },
+	{
+		name: "p7"
+	},
+	{
+		name: "p8"
+	}
 ];
 
 const seed = () => Location.bulkCreate(locations);
