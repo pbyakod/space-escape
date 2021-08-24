@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const { CharProto } = require("../../models");
-const withAuth = require('../../utils/auth');
+const withAuth = require("../../utils/auth");
 
 router.get("/", withAuth, async (req, res) => {
   try {
@@ -11,19 +11,19 @@ router.get("/", withAuth, async (req, res) => {
   }
 });
 
-router.post('/create', withAuth, async (req, res) => {
-	if (!req.body.name || !req.body.health || !req.body.ship || !req.body.gold) {
-		res.status(400).end();
-	}
+router.post("/create", withAuth, async (req, res) => {
+  if (!req.body.name || !req.body.health || !req.body.ship || !req.body.gold) {
+    res.status(400).end();
+  }
 
-	try {
-		const character = await CharProto.create(req.body);
+  try {
+    const character = await CharProto.create(req.body);
 
-		res.status(200).json(character);	
-	} catch(err) {
-		console.log(err)
-		res.status(500).json(err)
-	}
+    res.status(200).json(character);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
 });
 
 module.exports = router;

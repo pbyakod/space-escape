@@ -1,4 +1,4 @@
-const {Location} = require('../models');
+const { Location } = require("../models");
 
 const locations = [
   {
@@ -19,14 +19,14 @@ const locations = [
   {
     name: "p6",
   },
-	{
-		name: "p7"
-	},
-	{
-		name: "p8"
-	}
+  {
+    name: "p7",
+  },
+  {
+    name: "p8",
+  },
 ];
 
 const seed = () => Location.bulkCreate(locations);
 
-module.exports = {seed};
+module.exports = { seed };
