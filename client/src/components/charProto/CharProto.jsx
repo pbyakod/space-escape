@@ -1,6 +1,6 @@
 export default function CharProtoStats() {
     
-    fetch("/api/charProto")
+    fetch("/api/gameState")
     .then ((data) => {
          console.log(data)
     })
