@@ -19,7 +19,7 @@ Location.init(
 	},
 	{
 		sequelize,
-		modelName: 'location',
+		modelName: 'Location',
 		freezeTableName: true,
 		underscored: true
 	}
