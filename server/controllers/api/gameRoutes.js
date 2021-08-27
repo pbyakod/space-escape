@@ -4,26 +4,26 @@ const withAuth = require('../../utils/auth');
 
 // GET all games associated to user with user_id
 router.get('/:user_id', async (req, res) => {
-	if (!req.params.user_id) {
-		res.status(400).end();
-	}
+  if (!req.params.user_id) {
+    res.status(400).end();
+  }
 
-	try {
-		const games = await Game.findAll({
-			where:{
-				user_id: req.params.user_id
-			}
-		});
+  try {
+    const games = await Game.findAll({
+      where:{
+        user_id: req.params.user_id
+      }
+    });
 
-		if (!games) {
-			res.status(404).end();
-		}
+    if (!games) {
+      res.status(404).end();
+    }
 
-		res.status(200).json(games);
-	} catch(err) {
-		res.status(500).end();
-	}
-})
+    res.status(200).json(games);
+  } catch(err) {
+    res.status(500).end();
+  }
+});
 
 // CREATE a new game
 router.post('/', withAuth, async (req, res) => {
