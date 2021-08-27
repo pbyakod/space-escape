@@ -1,0 +1,55 @@
+@import url(//db.onlinewebfonts.com/c/53652da17589a6e21c5657d8a29f06b4?family=JoystixW00-Monospace);
+
+* {
+    font-family: "JoystixW00-Monospace";
+}
+
+.container {
+    position: absolute;
+    width: 550px;
+    height: fit-content;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    padding: 20px;
+    text-align: center;
+}
+
+.container-wrapper {
+    display: flex;
+    flex-direction: row;
+}
+
+.card-background {
+    background-color: #445a72;
+    border: 2px solid #b2c7de;
+    margin: 0 15px;
+    padding: 20px;
+}
+
+.card-items {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+p {
+    text-align: justify;
+}
+
+button {
+    border: none;
+    border-radius: 10px;
+    color: white;
+    padding: 15px 30px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+}
+
+button:hover {
+    background-color: #4CAF50;
+    cursor: pointer;
+}
