@@ -6,7 +6,7 @@
 
 .container {
     position: absolute;
-    width: 550px;
+    width: 700px;
     height: fit-content;
     top: 0;
     bottom: 0;
@@ -24,9 +24,9 @@
 
 .card-background {
     background-color: #445a72;
-    border: 5px solid #b2c7de;
+    border: 7px solid #b2c7de;
     margin: 0 15px;
-    padding: 20px;
+    padding: 60px;
 }
 
 .card-items {
@@ -41,21 +41,4 @@ input {
 
 p {
     text-align: justify;
-}
-
-.authBtn {
-    border: none;
-    border-radius: 10px;
-    color: white;
-    padding: 15px 30px;
-    text-align: justify;
-    width: 100%;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 15px;
-}
-
-.authBtn:hover {
-    background-color: #4CAF50;
-    cursor: pointer;
 }

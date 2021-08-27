@@ -4,7 +4,7 @@
     font-family: "JoystixW00-Monospace";
 }
 
-.containerLarge1 {
+.container-1 {
     background-color: #445a72;
     position: absolute;
     width: 500px;
@@ -14,35 +14,35 @@
     left: 0;
     right: 0;
     margin: auto;
-    padding: 20px;
-    border: 5px solid #b2c7de;
+    padding: 60px;
+    border: 7px solid #b2c7de;
     text-align: center;
 }
 
-.containerTitle {
+.container-title {
     font-size: xx-large;
     margin-bottom: 20px;
 }
 
-.containerList {
+.container-list{
     display: flex;
     flex-direction: column;
 }
 
-.containerLink:hover {
+.game-links:hover {
     background-color: #450aa8;
     border-radius: 10px;
     cursor: pointer;
     padding: 10px;
 }
 
-.containerLink {
+.game-links {
     margin-top: 10px;
     margin-bottom: 10px;
     padding: 10px;
 }
 
-.containerLarge2 {
+.container-2 {
     display: none;
 }
 
@@ -51,7 +51,7 @@ button {
     border-radius: 10px;
     color: white;
     padding: 15px 30px;
-    text-align: justify;
+    text-align: center;
     width: 100%;
     text-decoration: none;
     display: inline-block;
