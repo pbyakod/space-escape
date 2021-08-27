@@ -21,75 +21,52 @@ export default function auth({setAuth}) {
     }
   return (
     <div>
-      {/* <section className="containerLarge">
-        <article className="containerSmall">
-          <div className="flex-child">
-            <h2 className="title">Sign In</h2>
-            <p>username</p>
-            <input type="text" id='username'/>
-            <p>password</p>
-            <input type="text" id='password'/>
-            <button onClick={auth}>submit</button>
-          </div>
-          <div className="flex-child">
-            <h2 className="title">Sign Up</h2>
-            <p>username</p>
-            <input type="text"/>
-            <p>password</p>
-            <input type="text" />
-            <button>submit</button>
-            </div>
-        </article>
-        <Link to="" exact>
-          <button>back</button>
-        </Link>
-      </section> */}
-      <div className="container">
-        <div className="container-wrapper">
-          <div className="card-background">
-            <div className="card-items">
-              <h2 className="title">Sign In</h2>
-            </div>
-            <div className="card-items">
-              <p>username</p>
-              <input type="text" id='username'/>
-            </div>
-            <div className="card-items">
-                <p>password</p>
-                <input type="text" id='password'/>
-            </div>
-            <div className="card-items">
-              <button onClick={auth}>submit</button>
-            </div>
-            <div className="card-items">
-              <Link to="" exact>
-                <button>back</button>
-              </Link>
-            </div>
-          </div>
-          <div className="card-background">
-            <div className="card-items">
-              <h2 className="title">Sign Up</h2>
-            </div>
-            <div className="card-items">
-              <p>username</p>
-              <input type="text" id='username'/>
-            </div>
-            <div className="card-items">
-                <p>password</p>
-              <input type="text" id='password'/>
-            </div>
-            <div className="card-items">
-              <button onClick={auth}>submit</button>
-            </div>
-            <div className="card-items">
-              <Link to="" exact>
-                <button>back</button>
-              </Link>
-            </div>
-          </div>
-        </div>
-      </div>
+      	<div className="container">
+        	<div className="container-wrapper">
+          		<div className="card-background">
+            		<div className="card-items">
+              		<h2 className="title">Sign In</h2>
+            	</div>
+            	<div className="card-items">
+              		<p>username</p>
+              		<input type="text" id='username'/>
+            	</div>
+            	<div className="card-items">
+                	<p>password</p>
+                	<input type="text" id='password'/>
+            	</div>
+            	<div className="card-items">
+              		<button onClick={auth}>submit</button>
+            	</div>
+            	<div className="card-items">
+              		<Link to="" exact>
+                		<button>back</button>
+              		</Link>
+            	</div>
+          	</div>
+          		<div className="card-background">
+            		<div className="card-items">
+              			<h2 className="title">Sign Up</h2>
+            		</div>
+            		<div className="card-items">
+              			<p>username</p>
+              			<input type="text" id='username'/>
+            		</div>
+            		<div className="card-items">
+                		<p>password</p>
+              			<input type="text" id='password'/>
+            		</div>
+            		<div className="card-items">
+              			<button onClick={auth}>submit</button>
+            		</div>
+            		<div className="card-items">
+              			<Link to="" exact>
+                			<button>back</button>
+              			</Link>
+            		</div>
+          		</div>
+        	</div>
+    	</div>
     </div>
   );
 }

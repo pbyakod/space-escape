@@ -1,0 +1,25 @@
+@import url(//db.onlinewebfonts.com/c/53652da17589a6e21c5657d8a29f06b4?family=JoystixW00-Monospace);
+
+* {
+    font-family: "JoystixW00-Monospace";
+}
+
+.container {
+    background-color: #445a72;
+    position: absolute;
+    width: 500px;
+    height: fit-content;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    padding: 20px;
+    border: 2px solid #b2c7de;
+    text-align: center;
+}
+
+.author {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
