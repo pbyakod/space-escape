@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User, Game, Location, CharProto, Encounter } = require('../../models');
+const { User, Game, Location, CharProto } = require('../../models');
 const withAuth = require('../../utils/auth');
 
 // GET all games associated to user with user_id
@@ -26,15 +26,15 @@ router.get('/:user_id', async (req, res) => {
 });
 
 // CREATE a new game
-router.post('/', withAuth, async (req, res) => {
+router.post('/', async (req, res) => {
   try {
     const dbGameData = await Game.create({
-      user_id: req.session.userId,
       inProgress: true,
       ...req.body
     });
     res.status(200).json(dbGameData);
   } catch (err) {
+    console.log(err);
     res.status(500).json(err);
   }
 });
