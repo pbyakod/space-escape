@@ -4,10 +4,11 @@
     font-family: "JoystixW00-Monospace";
 }
 
-.about-container {
+.rulesContainer {
     background-color: #445a72;
+    border: 2px solid #b2c7de;
     position: absolute;
-    width: 500px;
+    width: 550px;
     height: fit-content;
     top: 0;
     bottom: 0;
@@ -15,11 +16,5 @@
     right: 0;
     margin: auto;
     padding: 20px;
-    border: 2px solid #b2c7de;
     text-align: center;
-}
-
-.author {
-    margin-top: 20px;
-    margin-bottom: 20px;
 }

@@ -7,7 +7,7 @@ import "../../styling/about.scss"
 export default function About() {
   	return (
     	<div>
-			<div className="container">
+			<div className="about-container">
 				<h1>About Authors Page</h1>
       			<section className="author">
         			{authors.map((author, index) => <Author key={`${index}`} author={author} />)}

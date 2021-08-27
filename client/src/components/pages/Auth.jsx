@@ -36,11 +36,11 @@ export default function auth({setAuth}) {
                 	<input type="text" id='password'/>
             	</div>
             	<div className="card-items">
-              		<button onClick={auth}>submit</button>
+              		<button class="authBtn" onClick={auth}>submit</button>
             	</div>
             	<div className="card-items">
               		<Link to="" exact>
-                		<button>back</button>
+                		<button class="authBtn">back</button>
               		</Link>
             	</div>
           	</div>
@@ -57,11 +57,11 @@ export default function auth({setAuth}) {
               			<input type="text" id='password'/>
             		</div>
             		<div className="card-items">
-              			<button onClick={auth}>submit</button>
+              			<button class="authBtn" onClick={auth}>submit</button>
             		</div>
             		<div className="card-items">
               			<Link to="" exact>
-                			<button>back</button>
+                			<button class="authBtn">back</button>
               			</Link>
             		</div>
           		</div>

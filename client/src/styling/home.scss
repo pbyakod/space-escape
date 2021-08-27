@@ -15,7 +15,7 @@
     right: 0;
     margin: auto;
     padding: 20px;
-    border: 2px solid #b2c7de;
+    border: 5px solid #b2c7de;
     text-align: center;
 }
 
@@ -31,6 +31,7 @@
 
 .containerLink:hover {
     background-color: #450aa8;
+    border-radius: 10px;
     cursor: pointer;
     padding: 10px;
 }
@@ -43,4 +44,21 @@
 
 .containerLarge2 {
     display: none;
+}
+
+button {
+    border: none;
+    border-radius: 10px;
+    color: white;
+    padding: 15px 30px;
+    text-align: justify;
+    width: 100%;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+}
+
+button:hover {
+    background-color: #4CAF50;
+    cursor: pointer;
 }
