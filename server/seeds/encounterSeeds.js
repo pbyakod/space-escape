@@ -8,6 +8,12 @@ const encounter = [
     location_id: 1,
   },
   {
+    message: 'Warning! we have detected incoming asteroids, what should we do?',
+    option1: 'Go through (minigame)',
+    option2: 'Go around (0 0 -100)',
+    location_id: 1,
+  },
+  {
     message: 'Nice to Meet you! want to check out the shop?',
     option1: 'Check out the shop',
     option2: 'Leave',
