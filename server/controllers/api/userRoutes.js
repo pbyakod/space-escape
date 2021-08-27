@@ -52,7 +52,8 @@ router.post("/", async (req, res) => {
       req.session.loggedIn = true;
       req.session.userId = dbUserData.get({ plain: true }).id;
 
-      res.status(200).json(dbUserData);
+			const {id, username, createdAt} = dbUserData;
+      res.status(200).json({id, username, createdAt});
     });
   } catch (err) {
     console.log(err);
@@ -73,7 +74,7 @@ router.post("/login", async (req, res) => {
       },
     });
 
-    if (!user) {
+    if (!dbUserData) {
       res.status(404).json({ message: "Cannot find user" });
     }
 
@@ -83,6 +84,8 @@ router.post("/login", async (req, res) => {
     if (!validPassword) {
       res.status(400).json({ message: "Invalid username or password" });
     }
+		const {id, username} = dbUserData;
+
     req.session.save(() => {
       req.session.loggedIn = true;
       req.session.username = dbUserData.get({ plain: true }).username;
@@ -90,7 +93,7 @@ router.post("/login", async (req, res) => {
       console.log(req.session);
       res
         .status(200)
-        .json({ user: dbUserData, message: "You are now logged in!" });
+        .json({ user: {id, username}, message: "You are now logged in!" });
     });
   } catch (err) {
     console.log(err), res.status(500).json(err);
