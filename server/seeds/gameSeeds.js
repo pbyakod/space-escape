@@ -10,6 +10,15 @@ const games = [
     location_id:1,
     inProgress:true
   },
+	{
+    user_id: 1,
+    char_id: 3,
+    health:100,
+    ship:200,
+    gold: 300,
+    location_id:4,
+    inProgress:true
+  },
   {
     user_id: 2,
     char_id: 2,
