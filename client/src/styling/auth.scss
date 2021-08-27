@@ -1,12 +1,15 @@
-@import url(//db.onlinewebfonts.com/c/53652da17589a6e21c5657d8a29f06b4?family=JoystixW00-Monospace);
+input {
+    padding: 10px;
+    margin-top: 5px;
+}
 
-* {
-    font-family: "JoystixW00-Monospace";
+p {
+    text-align: justify;
 }
 
 .container {
-    position: absolute;
-    width: 700px;
+    position: fixed;
+    width: 850px;
     height: fit-content;
     top: 0;
     bottom: 0;
@@ -25,6 +28,7 @@
 .card-background {
     background-color: #445a72;
     border: 7px solid #b2c7de;
+    opacity: 90%;
     margin: 0 15px;
     padding: 60px;
 }
@@ -32,13 +36,4 @@
 .card-items {
     margin-top: 20px;
     margin-bottom: 20px;
-}
-
-input {
-    padding: 10px;
-    margin-top: 5px;
-}
-
-p {
-    text-align: justify;
 }

@@ -25,15 +25,15 @@ export default function auth({setAuth}) {
         	<div className="container-wrapper">
           		<div className="card-background">
             		<div className="card-items">
-              		<h2 className="title">Sign In</h2>
+              		<h2 className="title">Sign In</h2><br></br>
             	</div>
             	<div className="card-items">
-              		<p>username</p>
-              		<input type="text" id='username'/>
+              		<p>Username</p>
+              		<input type="text" id='username' placeholder="Enter Username"/>
             	</div>
             	<div className="card-items">
-                	<p>password</p>
-                	<input type="text" id='password'/>
+                	<p>Password</p>
+                	<input type="text" id='password' placeholder="Enter Password"/>
             	</div>
             	<div className="card-items">
               		<button class="authBtn" onClick={auth}>submit</button>
@@ -46,15 +46,15 @@ export default function auth({setAuth}) {
           	</div>
           		<div className="card-background">
             		<div className="card-items">
-              			<h2 className="title">Sign Up</h2>
+              			<h2 className="title">Sign Up</h2><br></br>
             		</div>
             		<div className="card-items">
-              			<p>username</p>
-              			<input type="text" id='username'/>
+              			<p>Username</p>
+              			<input type="text" id='username' placeholder="Create Username"/>
             		</div>
             		<div className="card-items">
-                		<p>password</p>
-              			<input type="text" id='password'/>
+                		<p>Password</p>
+              			<input type="text" id='password' placeholder="Create Username"/>
             		</div>
             		<div className="card-items">
               			<button class="authBtn" onClick={auth}>submit</button>

@@ -1,11 +1,29 @@
-@import url(//db.onlinewebfonts.com/c/53652da17589a6e21c5657d8a29f06b4?family=JoystixW00-Monospace);
+@import url('http://fonts.cdnfonts.com/css/joystix');
 
 * {
-    font-family: "JoystixW00-Monospace";
+    font-family: 'Joystix', sans-serif;
+}
+
+button {
+    border: none;
+    border-radius: 10px;
+    color: white;
+    padding: 15px 30px;
+    text-align: center;
+    width: 100%;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+}
+
+button:hover {
+    background-color: #4CAF50;
+    cursor: pointer;
 }
 
 .container-1 {
     background-color: #445a72;
+    opacity: 90%;
     position: absolute;
     width: 500px;
     height: fit-content;
@@ -14,7 +32,7 @@
     left: 0;
     right: 0;
     margin: auto;
-    padding: 60px;
+    padding: 80px;
     border: 7px solid #b2c7de;
     text-align: center;
 }
@@ -33,32 +51,15 @@
     background-color: #450aa8;
     border-radius: 10px;
     cursor: pointer;
-    padding: 10px;
+    padding: 15px;
 }
 
 .game-links {
     margin-top: 10px;
     margin-bottom: 10px;
-    padding: 10px;
+    padding: 15px;
 }
 
 .container-2 {
     display: none;
-}
-
-button {
-    border: none;
-    border-radius: 10px;
-    color: white;
-    padding: 15px 30px;
-    text-align: center;
-    width: 100%;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 15px;
-}
-
-button:hover {
-    background-color: #4CAF50;
-    cursor: pointer;
 }

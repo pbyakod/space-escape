@@ -8,7 +8,7 @@ export default function About() {
   	return (
     	<div>
 			<div className="about-container">
-				<h1>About Authors Page</h1>
+				<h1 className="about-title">About Authors</h1>
       			<section className="author">
         			{authors.map((author, index) => <Author key={`${index}`} author={author} />)}
       			</section>

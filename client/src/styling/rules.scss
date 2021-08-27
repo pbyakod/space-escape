@@ -1,11 +1,6 @@
-@import url(//db.onlinewebfonts.com/c/53652da17589a6e21c5657d8a29f06b4?family=JoystixW00-Monospace);
-
-* {
-    font-family: "JoystixW00-Monospace";
-}
-
 .rulesContainer {
     background-color: #445a72;
+    opacity: 90%;
     border: 7px solid #b2c7de;
     position: absolute;
     width: 550px;
@@ -15,6 +10,6 @@
     left: 0;
     right: 0;
     margin: auto;
-    padding: 60px;
+    padding: 80px;
     text-align: center;
 }
