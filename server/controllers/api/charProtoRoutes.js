@@ -1,17 +1,17 @@
-const router = require("express").Router();
-const { CharProto } = require("../../models");
-const withAuth = require("../../utils/auth");
+const router = require('express').Router();
+const { CharProto } = require('../../models');
+const withAuth = require('../../utils/auth');
 
-router.get("/", withAuth, async (req, res) => {
+router.get('/', async (req, res) => {
   try {
     const charProto = await CharProto.findAll();
-    res.json({ charProto });
+    res.json(charProto);
   } catch (err) {
     res.json({ err });
   }
 });
 
-router.post("/create", withAuth, async (req, res) => {
+router.post('/create', withAuth, async (req, res) => {
   if (!req.body.name || !req.body.health || !req.body.ship || !req.body.gold) {
     res.status(400).end();
   }

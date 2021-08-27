@@ -1,12 +1,12 @@
-const { User, Game, CharProto, Location } = require("../../models");
-const router = require("express").Router();
+const { User, Game, CharProto, Location } = require('../../models');
+const router = require('express').Router();
 
 // GET user info
-router.get("/", async (req, res) => {
+router.get('/', async (req, res) => {
   try {
     // Find the logged in user based on the session ID
     const dbUserData = await User.findByPk(req.session.userId, {
-      attributes: { exclude: ["password"] },
+      attributes: { exclude: ['password'] },
     });
     res.status(200).json(dbUserData);
   } catch (err) {
@@ -16,11 +16,11 @@ router.get("/", async (req, res) => {
 });
 
 // GET user info with related games info
-router.get("/details", async (req, res) => {
+router.get('/details', async (req, res) => {
   try {
     // Find the logged in user based on the session ID
     const dbUserData = await User.findByPk(req.session.userId, {
-      attributes: { exclude: ["password"] },
+      attributes: { exclude: ['password'] },
       include: [
         {
           model: Game,
@@ -44,7 +44,7 @@ router.get("/details", async (req, res) => {
 });
 
 // CREATE a new user
-router.post("/", async (req, res) => {
+router.post('/', async (req, res) => {
   try {
     const dbUserData = await User.create(req.body);
 
@@ -52,7 +52,8 @@ router.post("/", async (req, res) => {
       req.session.loggedIn = true;
       req.session.userId = dbUserData.get({ plain: true }).id;
 
-      res.status(200).json(dbUserData);
+      const {id, username, createdAt} = dbUserData;
+      res.status(200).json({id, username, createdAt});
     });
   } catch (err) {
     console.log(err);
@@ -61,7 +62,7 @@ router.post("/", async (req, res) => {
 });
 
 // login to an existing account
-router.post("/login", async (req, res) => {
+router.post('/login', async (req, res) => {
   if (!req.body) {
     res.status(400).end();
   }
@@ -73,16 +74,18 @@ router.post("/login", async (req, res) => {
       },
     });
 
-    if (!user) {
-      res.status(404).json({ message: "Cannot find user" });
+    if (!dbUserData) {
+      res.status(404).json({ message: 'Cannot find user' });
     }
 
     // const isValidPass = await bcrypt.compare(req.body.password, user.password);
     const validPassword = await dbUserData.checkPassword(req.body.password);
 
     if (!validPassword) {
-      res.status(400).json({ message: "Invalid username or password" });
+      res.status(400).json({ message: 'Invalid username or password' });
     }
+    const {id, username} = dbUserData;
+
     req.session.save(() => {
       req.session.loggedIn = true;
       req.session.username = dbUserData.get({ plain: true }).username;
@@ -90,7 +93,7 @@ router.post("/login", async (req, res) => {
       console.log(req.session);
       res
         .status(200)
-        .json({ user: dbUserData, message: "You are now logged in!" });
+        .json({ user: {id, username}, message: 'You are now logged in!' });
     });
   } catch (err) {
     console.log(err), res.status(500).json(err);
@@ -98,7 +101,7 @@ router.post("/login", async (req, res) => {
 });
 
 // logout the current account and destroy the session
-router.post("/logout", (req, res) => {
+router.post('/logout', (req, res) => {
   if (req.session.loggedIn) {
     req.session.destroy(() => {
       res.status(204).end();

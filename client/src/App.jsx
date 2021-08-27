@@ -14,6 +14,7 @@ import Score from "./components/pages/Score";
 import LeaderBoard from "./components/pages/LeaderBoard";
 import Background from "./components/background/Background";
 
+
 export default function App() {
   //use token to authorize user
   const [token, setToken] = [];

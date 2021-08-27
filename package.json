@@ -8,6 +8,7 @@
     "client": "npm start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },
+
   "repository": {
     "type": "git",
     "url": "git+https://github.com/pbyakod/space-escape.git"

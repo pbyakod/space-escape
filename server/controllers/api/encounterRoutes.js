@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { Encounter } = require("../../models");
+const { Encounter, Location } = require("../../models");
 
 router.get("/", async (req, res) => {
   try {
@@ -10,9 +10,23 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.get("/:id", async (req, res) => {
+router.get("/:location_id", async (req, res) => {
+  if (!req.params.location_id) {
+    res.status(400).end();
+  }
   try {
-    const encounter = await Encounter.findByPk(req.params.id);
+    const encounter = await Encounter.findAll({
+      include: {
+        model: Location,
+        where: {
+          id: req.params.location_id
+        }
+      }
+    });
+
+    if (!encounter) {
+      res.status(404).end();
+    }
     res.json(encounter);
   } catch (err) {
     res.json(err);
