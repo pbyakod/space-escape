@@ -1,6 +1,9 @@
+// importing Joystix Monospace font
+@import url('http://fonts.cdnfonts.com/css/joystix');
+
 // common styling for every element
 * {
-  font-family: "Poppins", sans-serif;
+  font-family: 'Joystix', sans-serif;
   color: white;
   margin: 0;
   text-decoration: none;
@@ -31,5 +34,4 @@
   margin: auto;
   padding: 5rem;
   border: 0.438rem solid #b2c7de;
-  text-align: center;
 }

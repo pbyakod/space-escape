@@ -1,24 +1,41 @@
 import { Link } from "react-router-dom";
+import "../pages/home.scss";
 
 export default function home() {
   return (
     <div className="homepage">
       <section className="main-container">
-        <h1>Home Page</h1>
-        <section className="container-content">
-          <Link to="auth">Sign in / Sign up</Link>
-          <Link to="rules">How to Play</Link>
-          <Link to="about">About the Authors</Link>
+        <h1 className="main-title">Space Escape</h1>
+        {/* the content that displays in the main container when site is loaded */}
+        <section className="initial-content">
+          <div className="game-links">
+            <Link to="auth">Sign in / Sign up</Link>
+            </div>
+          <div className="game-links">
+            <Link to="rules">How to Play</Link>
+            </div>
+          <div className="game-links">
+            <Link to="about">About the Authors</Link>
+          </div>
         </section>
-      </section>
-
-      <section className="containerLarge">
-        <h1>Home Page</h1>
-        <Link to="story">Continue Game</Link>
-        <Link to="createCharacter">New Game</Link>
-        <Link to="leaderBoard">High Scores</Link>
-        <Link to="rules">How to Play</Link>
-        <Link to="about">About the Authors</Link>
+        {/* content that displays on home page if user is already logged in */}
+        <section className="loggedin-content">
+          <div className="game-links">
+            <Link to="story">Continue Game</Link>
+          </div>
+          <div className="game-links">
+            <Link to="createCharacter">New Game</Link>
+          </div>
+          <div className="game-links">
+            <Link to="leaderBoard">High Scores</Link>
+          </div>
+          <div className="game-links">
+            <Link to="rules">How to Play</Link>
+          </div>
+          <div className="game-links">
+            <Link to="about">About the Authors</Link>
+          </div>
+        </section>
       </section>
     </div>
   );

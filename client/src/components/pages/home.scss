@@ -1,0 +1,29 @@
+// aligning the main title to the top-center of the box
+.main-title {
+    text-align: center;
+    font-size: 3.125rem;
+}
+
+// styling for the initial container content
+.initial-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 3rem;
+}
+
+// spacing out the links and adding hover effect to them
+.initial-content .game-links {
+    margin: 1.25rem;
+    padding: 1.25rem;
+    &:hover {
+        background-color: #450aa8;
+        cursor: pointer;
+    }
+}
+
+// styling for the logged in container content
+.loggedin-content {
+    display: none;
+}
