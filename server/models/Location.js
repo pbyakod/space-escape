@@ -15,7 +15,43 @@ Location.init(
 		name: {
 			type: DataTypes.STRING,
 			allowNull: false
-		}
+		},
+
+		people: {
+			type: DataTypes.STRING,
+			allowNull: true
+		},
+
+		population: {
+			type: DataTypes.INTEGER,
+			allowNull: true
+		},
+
+		currency: {
+			type: DataTypes.STRING,
+			allowNull: true
+		},
+
+		leader: {
+			type: DataTypes.STRING,
+			allowNull: true
+		}, 
+
+		tradable: {
+			type: DataTypes.STRING,
+			allowNull: true
+		}, 
+
+		abundance: {
+			type: DataTypes.STRING,
+			allowNull: true
+		},
+
+		fact: {
+			type: DataTypes.STRING,
+			allowNull: true
+		}, 
+
 	},
 	{
 		sequelize,
