@@ -4,6 +4,7 @@ import "../pages/home.scss";
 export default function home() {
   return (
     <div className="homepage">
+      {/* main container from App.scss */}
       <section className="main-container">
         <h1 className="main-title">Space Escape</h1>
         {/* the content that displays in the main container when site is loaded */}

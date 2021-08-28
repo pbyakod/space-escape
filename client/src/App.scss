@@ -4,9 +4,21 @@
 // common styling for every element
 * {
   font-family: 'Joystix', sans-serif;
-  color: white;
+  color: #ffffff;
   margin: 0;
   text-decoration: none;
+}
+
+// common styling for every button
+button {
+  width: 100%;
+  text-decoration: none;
+  background-color: #111125;
+  padding: 0.5rem;
+  border: none;
+  &:hover {
+      cursor: pointer;
+  }
 }
 
 // displaying the starry background
