@@ -19,37 +19,37 @@ Location.init(
 
 		people: {
 			type: DataTypes.STRING,
-			allowNull: false
+			allowNull: true
 		},
 
 		population: {
 			type: DataTypes.INTEGER,
-			allowNull: false
+			allowNull: true
 		},
 
 		currency: {
 			type: DataTypes.STRING,
-			allowNull: false
+			allowNull: true
 		},
 
 		leader: {
 			type: DataTypes.STRING,
-			allowNull: false
+			allowNull: true
 		}, 
 
 		tradable: {
 			type: DataTypes.STRING,
-			allowNull: false
+			allowNull: true
 		}, 
 
 		abundance: {
 			type: DataTypes.STRING,
-			allowNull: false
+			allowNull: true
 		},
 
 		fact: {
 			type: DataTypes.STRING,
-			allowNull: false
+			allowNull: true
 		}, 
 
 	},
