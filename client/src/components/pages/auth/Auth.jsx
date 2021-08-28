@@ -1,7 +1,7 @@
 // import { useState, useEffect } from "react"
 // import ContainerSmall from "./ContainerSmall"
 import { Link } from "react-router-dom"
-import "../pages/auth.scss"
+import "../auth/auth.scss"
 export default function auth({setAuth}) {
   //e.target to handle form
       //client side check username and password

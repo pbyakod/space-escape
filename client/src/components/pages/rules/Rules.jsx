@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import "../pages/rules.scss"
+import "../rules/rules.scss"
 
 export default function Rules() {
   return (
