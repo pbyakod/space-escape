@@ -1,10 +1,10 @@
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import "./App.scss";
 
-import Home from "./components/pages/Home";
-import Auth from "./components/pages/Auth";
-import Rules from "./components/pages/Rules";
-import About from "./components/pages/About";
+import Home from "./components/pages/home/Home";
+import Auth from "./components/pages/auth/Auth";
+import Rules from "./components/pages/rules/Rules";
+import About from "./components/pages/about/About";
 import CreateCharacter from "./components/pages/CreateCharacter";
 import Story from "./components/pages/Story";
 import Obstacle from "./components/pages/Obstacle";
