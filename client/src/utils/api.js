@@ -52,12 +52,13 @@ function loggedIn() {
 }
 // Fetch request for logging in a user. Returns a promise containing
 // object with a user object ({id, name, health, ship, gold} = user)
-// and a message with value string
+// and a message with value string. The response should also contain a 
+// token which is stored in localstorage along with user info.
 //
 // inputs:
 // 		body (object): {username, password}
 // outputs:
-// 		response (promise): promise({user, message})
+// 		response.data (promise): promise({user, message, token})
 async function login(body) {
   UserBodyError(body);
 	try {
@@ -78,12 +79,13 @@ async function login(body) {
 }
 
 // Fetch request for signing up a user. Returns a promise
-// containing an object for the newly created user ({id, name, health, ship, gold} = user)
+// containing an object for the newly created user ({id, name, health, ship, gold} = user).
+// The response should also contain a token which is stored in localstorage along with user info.
 //
 // inputs:
 // 		body (object): {username, password}
 // outputs:
-// 		response (promise): promise({dbUserData})
+// 		response.data (promise): promise({id, username, createdAt, token})
 async function signUp(body) {
   UserBodyError(body);
 	try {
@@ -93,6 +95,11 @@ async function signUp(body) {
 		return err.response;
 	}
 }
+
+// function logout() {
+// 	localStorage.removeItem('user');
+// 	window.location.assign('/');
+// }
 
 // Fetch request for signing up a user. Returns a promise
 // containing an object for the newly created user ({id, name, health, ship, gold} = user)
@@ -113,6 +120,12 @@ async function getUserGames(userId) {
 	}
 }
 
+// GET request for all available characters for a user to pick from
+// 
+// inputs:
+// 		N/A
+// outputs:
+// 		response.data (promise): promise([{id, name, health, ship, gold}])
 async function getCharPrototypes() {
 	try {
 		const response = await axios.get("/api/charProto", createRequestHeader());
@@ -122,6 +135,14 @@ async function getCharPrototypes() {
 	}
 }
 
+
+// POST request to create a new game given the user_id, character the user chose, and the first location_id
+//
+// inputs:
+// 		user_id (Number): Specifier for user
+// 		body (object): {char_id, health, ship, gold, location_id}
+// outputs:
+// 		response.data (promise): promise({id, inProgress, user_id, char_id, health, ship, gold})
 async function createGame(user_id, body) {
 	if (!user_id || !body.char_id || !body.health || !body.ship || !body.gold || !body.location_id) {
 		console.log(user_id, body)
@@ -135,7 +156,12 @@ async function createGame(user_id, body) {
 	}
 }
 
-
+// GET request to get all encounters associated with a single location
+//
+// inputs:
+// 		location_id (Number)
+// outputs:
+// 		response.data (promise): Array of encounters as a promise; promise([{id, message, option1, option2, location_id, Location{id, name, createdAt, updatedAt}}, {...}...]])
 async function getEncounter(location_id) {
 	if (!location_id) {
 		throw new Error("Must pass location id");

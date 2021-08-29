@@ -1,0 +1,31 @@
+// making the sign in and sign up texts display in a row
+.auth-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+// spacing the sign in and sign up containers away from eachother
+.auth-content {
+    margin-left: 5rem;
+    margin-right: 5rem;
+}
+
+// adding space between each item
+.auth-item {
+    margin-bottom: 2.5rem;
+    & input {
+        padding: 0.438rem;
+    }
+} 
+
+// hover effect once user is at the submit button
+.submit-btn:hover {
+    background-color: #00ff00;
+}
+
+// hover effect once user is at the back button
+.back-btn:hover {
+    background-color: #ff0000;
+}
