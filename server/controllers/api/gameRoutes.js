@@ -1,6 +1,8 @@
 const router = require('express').Router();
 const { User, Game, Location, CharProto } = require('../../models');
-const withAuth = require('../../utils/auth');
+const { withAuth } = require('../../utils/auth');
+
+router.use(withAuth);
 
 // GET all games associated to user with user_id
 router.get('/:user_id', async (req, res) => {
@@ -65,7 +67,7 @@ router.get('/:id', async (req, res) => {
 });
 
 // UPDATE an existing game with id === req.params.id
-router.put('/:id', withAuth, async (req, res) => {
+router.put('/:id', async (req, res) => {
   try {
     let dbGameData = await Game.findByPk(req.params.id);
     if (!dbGameData) {
@@ -96,7 +98,7 @@ router.put('/:id', withAuth, async (req, res) => {
 });
 
 // DELETE an existing game with id === req.params.id
-router.delete('/:id', withAuth, async (req, res) => {
+router.delete('/:id', async (req, res) => {
   try {
     let dbGameData = await Game.findByPk(req.params.id);
     if (!dbGameData) {

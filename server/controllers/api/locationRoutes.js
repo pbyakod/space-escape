@@ -1,5 +1,8 @@
 const router = require("express").Router();
 const { Location, Encounter } = require("../../models");
+const { withAuth } = require("../../utils/auth");
+
+router.use(withAuth);
 
 router.get("/", async (req, res) => {
   try {
