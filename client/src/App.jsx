@@ -13,7 +13,12 @@ import Result from "./components/pages/Result";
 import Score from "./components/pages/Score";
 import LeaderBoard from "./components/pages/LeaderBoard";
 import Background from "./components/background/Background";
+import api from './utils/api';
 
+// const body = {username: 'user100', password: 'password100'};
+
+// api.login(body).then(data => console.log(data)).catch(err => console.log(err));
+// console.log(api.loggedIn())
 
 export default function App() {
   //use token to authorize user

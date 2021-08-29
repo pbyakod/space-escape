@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const { User, Game, Location, CharProto } = require('../../models');
-const withAuth = require('../../utils/auth');
+const { withAuth } = require('../../utils/auth');
 
 // GET all games associated to user with user_id
 router.get('/:user_id', async (req, res) => {
