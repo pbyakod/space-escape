@@ -10,7 +10,8 @@ body {
 .pre-game {
   position: relative;
   font-size: 60px;
-  color:rgb(244, 244, 244);
+  color:rgb(236, 8, 8);
+  font-weight: 900;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -22,4 +23,6 @@ body {
 .pre-game span{
   position: absolute;
   text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.4em;
 }
