@@ -42,10 +42,10 @@ anime.timeline({loop: false})
     opacity: 0,
     duration: animations.durationOut,
     delay: animations.delay,
-    complete: astroidsTitle,
+    complete: asteroidsTitle,
   })
 
 
-function astroidsTitle() {
-  document.location.replace('./AstroidsHome.html');
+function asteroidsTitle() {
+  document.location.replace('./AsteroidsHome.html');
 }
