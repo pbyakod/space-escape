@@ -1,6 +1,6 @@
 const router = require('express').Router();
-const astroidRoutes = require('./astroidRoutes');
+const asteroidRoutes = require('./asteroidRoutes');
 
-router.use('/', astroidRoutes);
+router.use('/', asteroidRoutes);
 
 module.exports = router;
