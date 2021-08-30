@@ -6,8 +6,17 @@ function getTokenHeader() {
   return token ? `Bearer ${token}` : '';
 }
 
+function createRequestHeader() {
+  const tokenHeader = getTokenHeader();
+  return {headers: {authorization: tokenHeader}};
+}
+
 function getToken() {
-  return JSON.parse(localStorage.getItem('user')).token;
+  if (localStorage.getItem('user')) {
+    return JSON.parse(localStorage.getItem('user')).token;
+  } else {
+    return null
+  }
 }
 
 function UserBodyError(body) {
@@ -24,18 +33,21 @@ function UserBodyError(body) {
 // ouputs:
 // 		(Boolean)
 function loggedIn() {
-  try {
-    const token = getToken();
-    const decodedToken = decode(token);
+  const token = getToken();
+  if (!token) {
+    console.log('Not logged in');
+    return false;
+  }
 
-    if (decodedToken.exp < Date.now()/1000) {
-      localStorage.removeItem('user');
-      return false;
-    } else {
-      return true;
-    }
-  } catch(err) {
-    throw err
+  const decodedToken = decode(token);
+
+  if (decodedToken.exp < Date.now()/1000) {
+    localStorage.removeItem('user');
+    console.log('Not logged in');
+    return false;
+  } else {
+    console.log('Logged in')
+    return true;
   }
 }
 // Fetch request for logging in a user. Returns a promise containing
@@ -54,6 +66,7 @@ async function login(body) {
 
     if (response.statusText === 'OK') {
       console.log('response good', response.data);
+    
       localStorage.setItem('user', JSON.stringify(response.data));
     } else {
       return {};
@@ -61,7 +74,7 @@ async function login(body) {
 
     return response.data 
   } catch(err) {
-    throw err;
+    console.log(err)
   }
 }
 
@@ -77,17 +90,9 @@ async function signUp(body) {
   UserBodyError(body);
   try {
     const response = await axios.post("/api/user", body);
-
-    if (response.statusText === 'OK') {
-      console.log('response ok', response.data);
-      localStorage.setItem('user', JSON.stringify(response.data));
-    } else {
-      return {};
-    }
-
     return response.data;
   } catch(err) {
-    throw err;
+    return err.response;
   }
 }
 
@@ -107,8 +112,12 @@ async function getUserGames(userId) {
   if (typeof userId !== "number") {
     throw new Error("Input must be a Number type");
   }
-  const response = await axios.get(`/api/game/${userId}`);
-  return response.data;
+  try {
+    const response = await axios.get(`/api/game/${userId}`, createRequestHeader());
+    return response.data;
+  } catch(err) {
+    return err.response;
+  }
 }
 
 // GET request for all available characters for a user to pick from
@@ -118,8 +127,12 @@ async function getUserGames(userId) {
 // outputs:
 // 		response.data (promise): promise([{id, name, health, ship, gold}])
 async function getCharPrototypes() {
-  const response = await axios.get("/api/charProto");
-  return response.data; 
+  try {
+    const response = await axios.get("/api/charProto", createRequestHeader());
+    return response.data; 
+  } catch(err) {
+    return err.response;
+  }
 }
 
 
@@ -135,8 +148,12 @@ async function createGame(user_id, body) {
     console.log(user_id, body)
     throw new Error("Arguments require user_id, char_id, location_id, health, ship, and gold");
   }
-  const response = await axios.post('/api/game', {user_id, ...body});
-  return response.data;
+  try {
+    const response = await axios.post('/api/game', {user_id, ...body}, createRequestHeader());
+    return response.data;
+  } catch(err) {
+    return err.response;
+  }
 }
 
 // GET request to get all encounters associated with a single location
@@ -149,8 +166,12 @@ async function getEncounter(location_id) {
   if (!location_id) {
     throw new Error("Must pass location id");
   }
-  const response = await axios.get(`/api/encounter/${location_id}`);
-  return response.data;
+  try {
+    const response = await axios.get(`/api/encounter/${location_id}`, createRequestHeader());
+    return response.data;
+  } catch(err) {
+    return err.response;
+  }
 }
 
 const apiCalls = {
@@ -161,7 +182,6 @@ const apiCalls = {
   createGame,
   getEncounter,
   loggedIn
-
 }; 
 
 export default apiCalls; 

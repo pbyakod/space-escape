@@ -2,6 +2,8 @@ const router = require('express').Router();
 const { CharProto } = require('../../models');
 const { withAuth } = require('../../utils/auth');
 
+router.use(withAuth);
+
 router.get('/', async (req, res) => {
   try {
     const charProto = await CharProto.findAll();

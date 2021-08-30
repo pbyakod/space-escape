@@ -1,6 +1,6 @@
-const { User, Game, CharProto, Location } = require("../../models");
-const { signToken } = require("../../utils/auth");
-const router = require("express").Router();
+const { User, Game, CharProto, Location } = require('../../models');
+const { signToken } = require('../../utils/auth');
+const router = require('express').Router();
 
 // GET user info
 router.get("/", async (req, res) => {
@@ -55,7 +55,9 @@ router.post("/", async (req, res) => {
       req.session.loggedIn = true;
       req.session.userId = dbUserData.get({ plain: true }).id;
 
-      res.status(200).json({ id, username, createdAt, token });
+      const {id, username, createdAt} = dbUserData;
+			const token = signToken({id, username})
+      res.status(200).json({id, username, createdAt, token});
     });
   } catch (err) {
     console.log(err);
@@ -86,8 +88,8 @@ router.post("/login", async (req, res) => {
     if (!validPassword) {
       res.status(400).json({ message: "Invalid username or password" });
     }
-    const { id, username } = dbUserData;
-    const token = signToken({ id, username });
+    const {id, username} = dbUserData;
+		const token = signToken({id, username});
 
     req.session.save(() => {
       req.session.loggedIn = true;
