@@ -21,12 +21,12 @@ function animateStocks() {
     easing: 'linear',
     duration: 2000,
     delay: anime.stagger(10),
-    complete: astroidsStart,
+    complete: astroidsPrepare,
   })
 }
 
-function astroidsStart() {
-  document.location.replace('./AstroidsStart.html');
+function astroidsPrepare() {
+  document.location.replace('./AstroidsPrepare.html');
 }
 
 animateStocks()

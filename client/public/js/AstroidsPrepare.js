@@ -10,13 +10,13 @@ let animations = {
 
 anime.timeline({loop: false})
   .add({
-    targets: '.pre-game .one',
+    targets: '.prepare .one',
     opacity: animations.opacityIn,
     scale: animations.scaleIn,
     duration: animations.durationIn
   })
   .add({
-    targets: '.pre-game .one',
+    targets: '.prepare .one',
     opacity: 0,
     scale: animations.scaleOut,
     duration: animations.durationOut,
@@ -24,13 +24,13 @@ anime.timeline({loop: false})
     delay: animations.delay
   })
   .add({
-    targets: '.pre-game .two',
+    targets: '.prepare .two',
     opacity: animations.opacityIn,
     scale: animations.scaleIn,
     duration: animations.durationIn
   })
   .add({
-    targets: '.pre-game .two',
+    targets: '.prepare .two',
     opacity: 0,
     scale: animations.scaleOut,
     duration: animations.durationOut,
@@ -38,7 +38,7 @@ anime.timeline({loop: false})
     delay: animations.delay
   })
   .add({
-    targets: '.pre-game',
+    targets: '.prepare',
     opacity: 0,
     duration: animations.durationOut,
     delay: animations.delay,
@@ -47,5 +47,5 @@ anime.timeline({loop: false})
 
 
 function astroidsTitle() {
-  document.location.replace('./AstroidsTitle.html');
+  document.location.replace('./AstroidsHome.html');
 }
