@@ -3,7 +3,7 @@ const router = require('express').Router();
 
 router.get('/home', async (req, res) => {
   try {
-    res.sendFile('/AstroidsTitle.html');
+    res.sendFile('/AsteroidsTitle.html');
   } catch (err) {
     res.status(500).json(err);
   }
@@ -11,7 +11,7 @@ router.get('/home', async (req, res) => {
 
 router.post('/start', async (req, res) => {
   try {
-    res.sendFile('/AstroidsStart.html');
+    res.sendFile('/AsteroidsStart.html');
   } catch (err) {
     res.status(500).json(err);
   }
