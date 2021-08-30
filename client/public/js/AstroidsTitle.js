@@ -9,10 +9,10 @@ function animateStocks() {
   anime({
     targets: '.stock',
     translateX: function() {
-      return anime.random(-700, 700);
+      return anime.random(-1500, 1500);
     },
     translateY: function() {
-      return anime.random(-700, 700);
+      return anime.random(-1500, 1500);
     },
     scale: function() {
       return anime.random(1, 2);
@@ -25,9 +25,8 @@ function animateStocks() {
   })
 }
 
-// animateStocks()
-
-
 function astroidsStart() {
-  document.location.replace('/astroids/start');
+  document.location.replace('./AstroidsStart.html');
 }
+
+animateStocks()

@@ -1,6 +1,7 @@
 const router = require('express').Router();
+// const { withAuth } = require('../../utils/auth');
 
-router.get('/home', withAuth, async (req, res) => {
+router.get('/home', async (req, res) => {
   try {
     res.sendFile('/AstroidsTitle.html');
   } catch (err) {
@@ -8,7 +9,7 @@ router.get('/home', withAuth, async (req, res) => {
   }
 });
 
-router.post('/start', withAuth, async (req, res) => {
+router.post('/start', async (req, res) => {
   try {
     res.sendFile('/AstroidsStart.html');
   } catch (err) {
