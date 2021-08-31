@@ -1,5 +1,9 @@
 const FPS = 30; // frames per sec
 const FRICTION = 0.7; // friction coefficient of space (0 = no friction, 1 = lots of friction)
+const ROIDS_NUM = 3; // ship height in pixels
+const ROIDS_SIZE = 100; // starting size of asteroids in pixels per sec
+const ROIDS_SPD = 50; // max starting speed of asteroids in pixels per sec
+const ROIDS_VERT = 10; // average number of vertices on each asteroid
 const SHIP_SIZE = 30; // ship height in pixels
 const SHIP_THRUST = 5; // accelerate of the ship in pixels per sec 
 const TURN_SPEED = 360; // turn speed in degrees per sec
@@ -19,6 +23,10 @@ const ship = {
   }
 }
 
+// set up asteroids
+let roids = [];
+createAsteroidBelt();
+
 // set up the event handlers
 document.addEventListener("keydown", keyDown);
 document.addEventListener("keyup", keyUp);
@@ -26,6 +34,28 @@ document.addEventListener("keyup", keyUp);
 // set up the game loop
 
 setInterval(update, 1000 / FPS);
+
+function createAsteroidBelt() {
+  roids = [];
+  for (let i = 0; i < ROIDS_NUM; i++) {
+    let x = Math.floor(Math.random() * canv.width);
+    let y = Math.floor(Math.random() * canv.height);
+    roids.push(newAsteroid(x, y));
+  }
+}
+
+function newAsteroid(x, y) {
+  const roid = {
+    x, 
+    y,
+    xv: Math.random() * ROIDS_SPD / FPS * (Math.random() < 0.5 ? 1 : -1),
+    yv: Math.random() * ROIDS_SPD / FPS * (Math.random() < 0.5 ? 1 : -1),
+    r: ROIDS_SIZE / 2,
+    a: Math.random() * Math.PI * 2,
+    vert: Math.floor(Math.random() * (ROIDS_VERT + 1) + ROIDS_VERT / 2)
+  }
+  return roid;
+}
 
 function keyDown(e) {
   switch(e.keyCode) {
@@ -113,6 +143,35 @@ function update() {
   );
   ctx.closePath();
   ctx.stroke();
+
+  // draw the asteroids
+  ctx.strokeStyle = "slategrey";
+  ctx.lineWidth = SHIP_SIZE / 20;
+  for (var i = 0; i < roids.length; i++) {
+    const { x, y, r, a, vert } = roids[i];
+
+    // draw a path
+    ctx.beginPath();
+    ctx.moveTo(
+      x + r * Math.cos(a),
+      y + r * Math.sin(a)
+    );
+
+    // draw the polygen
+    for (let j = 0; j < vert; j++) {
+      ctx.lineTo(
+        x + r * Math.cos(a + j * Math.PI * 2 / vert),
+        y + r * Math.sin(a + j * Math.PI * 2 / vert),
+      )
+    }
+    ctx.closePath();
+    ctx.stroke();
+    // draw the
+
+
+  }
+
+
   // rotate ship
   ship.a += ship.rot;
 
