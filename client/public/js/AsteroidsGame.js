@@ -1,5 +1,7 @@
 const FPS = 30; // frames per sec
 const FRICTION = 0.7; // friction coefficient of space (0 = no friction, 1 = lots of friction)
+const LASER_MAX = 10; // maximum number of lasers on screen at once
+const LASER_SPD = 500; // speed of lasers in pixels per sec
 const ROIDS_JAG = .4; // jaggedness of the asteroids (0 = none, 1 = lots)
 const ROIDS_NUM = 7; // ship height in pixels
 const ROIDS_SIZE = 100; // starting size of asteroids in pixels per sec
@@ -38,6 +40,8 @@ function newShip() {
     a: 90 / 180 * Math.PI,
     blinkTime: Math.ceil(SHIP_BLINK_DUR * FPS),
     blinkNum: Math.ceil(SHIP_INV_DUR / SHIP_BLINK_DUR),
+    canShoot: true,
+    lasers: [],
     rot: 0,
     thrusting: false,
     thrust: {
@@ -97,6 +101,9 @@ function newAsteroid(x, y) {
 
 function keyDown(e) {
   switch(e.keyCode) {
+    case 32 : // space bar (shoot the laser)
+      shootLaser();
+      break;
     case 37 : // left arrow (rotate ship left)
       ship.rot = TURN_SPEED / 180 * Math.PI / FPS;
       break;
@@ -113,6 +120,9 @@ function keyDown(e) {
 
 function keyUp(e) {
   switch(e.keyCode) {
+    case 32 : // space bar (allow shooting again)
+      ship.canShoot = true;;
+      break;
     case 37 : // left arrow (stop rotating left)
       ship.rot = 0;
       break;
@@ -125,6 +135,20 @@ function keyUp(e) {
     default :
 
   }
+}
+
+function shootLaser() {
+  // create the laser object
+  if (ship.canShoot && ship.lasers.length < LASER_MAX) {
+    ship.lasers.push({ // from the nose of the ship
+      x: ship.x + 4 / 3 * ship.r * Math.cos(ship.a),
+      y: ship.y - 4 / 3 * ship.r * Math.sin(ship.a),
+      xv: LASER_SPD * Math.cos(ship.a) / FPS,
+      yv: LASER_SPD * Math.sin(ship.a) / FPS
+    })
+  }
+  // prevent further shooting
+  ship.canShoot = false;
 }
 
 function update() {
@@ -146,15 +170,15 @@ function update() {
       ctx.strokeStyle = "yellow";
       ctx.lineWidth = SHIP_SIZE / 10;
       ctx.beginPath();
-      ctx.moveTo(  // nose of the ship
+      ctx.moveTo(  // 
         ship.x - ship.r * (2 / 3 * Math.cos(ship.a) + 0.5 * Math.sin(ship.a)),
         ship.y + ship.r * (2 / 3 * Math.sin(ship.a) - 0.5 * Math.cos(ship.a))
       );
-      ctx.lineTo(   // rear left
+      ctx.lineTo(   // 
         ship.x - ship.r * 6 / 3 * Math.cos(ship.a), 
         ship.y + ship.r * 6 / 3 * Math.sin(ship.a)
       );
-      ctx.lineTo(   // rear right
+      ctx.lineTo(   // 
         ship.x - ship.r * (2 / 3 * Math.cos(ship.a) - 0.5 * Math.sin(ship.a)),
         ship.y + ship.r * (2 / 3 * Math.sin(ship.a) + 0.5 * Math.cos(ship.a))
       );
@@ -325,5 +349,13 @@ function update() {
   if (SHOW_CENTRE_DOT) {
     ctx.fillStyle = "red";
     ctx.fillRect(ship.x - 1, ship.y - 1, 2, 2)
+  }
+
+  // draw the lasers
+  for (let i = 0; i < ship.lasers.length; i++) {
+    ctx.fillStyle = 'salmon';
+    ctx.beginPath();
+    ctx.arc(ship.lasers[i].x, ship.lasers[i].y, SHIP_SIZE / 15, 0, Math.PI * 2, false);
+    ctx.fill();
   }
 }
