@@ -1,7 +1,7 @@
 const FPS = 30; // frames per sec
 const FRICTION = 0.7; // friction coefficient of space (0 = no friction, 1 = lots of friction)
 const ROIDS_JAG = .4; // jaggedness of the asteroids (0 = none, 1 = lots)
-const ROIDS_NUM = 30; // ship height in pixels
+const ROIDS_NUM = 7; // ship height in pixels
 const ROIDS_SIZE = 100; // starting size of asteroids in pixels per sec
 const ROIDS_SPD = 50; // max starting speed of asteroids in pixels per sec
 const ROIDS_VERT = 10; // average number of vertices on each asteroid
@@ -181,8 +181,17 @@ function update() {
     }
     ctx.closePath();
     ctx.stroke();
-    // draw the
+    
+    // move the asteroid
+    roids[i].x += roids[i].xv;
+    roids[i].y += roids[i].yv;
 
+    // handle edge of screen
+    if (roids[i].x < 0 - roids[i].r) {
+      roids[i].x = canv.width + roids[i].r;
+    } else if (roids[i].x > canv.width + roids[i].r) {
+      roids[i].y = 0 - roids[i].r;
+    }
 
   }
 
