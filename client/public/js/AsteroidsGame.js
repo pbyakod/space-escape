@@ -1,5 +1,6 @@
 const FPS = 30; // frames per sec
 const FRICTION = 0.7; // friction coefficient of space (0 = no friction, 1 = lots of friction)
+const LASER_DIST = 0.2; // maximum distance laser can travel as fraction of screen width
 const LASER_MAX = 10; // maximum number of lasers on screen at once
 const LASER_SPD = 500; // speed of lasers in pixels per sec
 const ROIDS_JAG = .4; // jaggedness of the asteroids (0 = none, 1 = lots)
@@ -144,7 +145,8 @@ function shootLaser() {
       x: ship.x + 4 / 3 * ship.r * Math.cos(ship.a),
       y: ship.y - 4 / 3 * ship.r * Math.sin(ship.a),
       xv: LASER_SPD * Math.cos(ship.a) / FPS,
-      yv: LASER_SPD * Math.sin(ship.a) / FPS
+      yv: -LASER_SPD * Math.sin(ship.a) / FPS,
+      dist: 0
     })
   }
   // prevent further shooting
@@ -342,6 +344,34 @@ function update() {
       roids[i].y = canv.height + roids[i].r;
     } else if (roids[i].y > canv.height + roids[i].r) {
       roids[i].y = 0 - roids[i].r;
+    }
+  }
+
+  // move the lasers
+  for (let i = ship.lasers.length - 1; i >= 0 ; i--) {
+    // check distance travelled
+    if (ship.lasers[i].dist > LASER_DIST * canv.width) {
+      ship.lasers.splice(i, 1);
+      continue;
+    }
+
+    // move the laser
+    ship.lasers[i].x += ship.lasers[i].xv;
+    ship.lasers[i].y += ship.lasers[i].yv;
+
+    // calculate the distance travelled
+    ship.lasers[i].dist += Math.sqrt(Math.pow(ship.lasers[i].xv, 2) + Math.pow(ship.lasers[i].yv, 2));
+
+    // handle the edge of screen
+    if (ship.lasers[i].x < 0) {
+      ship.lasers[i].x = canv.width;
+    } else if (ship.lasers[i].x > canv.width) {
+      ship.lasers[i].x = 0;
+    }
+    if (ship.lasers[i].y < 0) {
+      ship.lasers[i].y = canv.height;
+    } else if (ship.lasers[i].y > canv.height) {
+      ship.lasers[i].y = 0;
     }
   }
   
