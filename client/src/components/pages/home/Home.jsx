@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import apiCalls from "../../../utils/api";
 import "../home/home.scss";
 
 export default function home() {
@@ -8,7 +9,7 @@ export default function home() {
       <section className="main-container">
         <h1 className="main-title">Space Escape</h1>
         {/* the content that displays in the main container when site is loaded */}
-        <section className="initial-content">
+        <section className={!apiCalls.loggedIn() ? "initial-content" : "loggedin-content"}>
           <div className="game-links">
             <Link to="auth">Sign in / Sign up</Link>
             </div>
@@ -20,7 +21,7 @@ export default function home() {
           </div>
         </section>
         {/* content that displays on home page if user is already logged in */}
-        <section className="loggedin-content">
+        <section className={apiCalls.loggedIn() ? "initial-content" : "loggedin-content"}>
           <div className="game-links">
             <Link to="story">Continue Game</Link>
           </div>

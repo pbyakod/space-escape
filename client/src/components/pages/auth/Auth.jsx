@@ -1,24 +1,66 @@
-// import { useState, useEffect } from "react"
+import { useState } from "react"
 // import ContainerSmall from "./ContainerSmall"
 import { Link } from "react-router-dom"
 import "../auth/auth.scss"
-export default function auth({setAuth}) {
+import api from "../../../utils/api"
+
+export default function Auth({setAuth}) {
   //e.target to handle form
       //client side check username and password
       //conditional get or put request
       //provide response
       //redirect
-    const auth = ()=>{
-        // const login ={
-        //   username: document.getElementById("username").value,
-        //   password: document.getElementById("password").value
-        // }
 
-        // fetch ("/server/auth", auth).then ((resp)=>{
-        //   setAuth (resp.token)
-        // });
-        
+  function Input() {
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    return {
+      username,
+      setUsername,
+      password,
+      setPassword
+      }
+  }
+  const login = Input();
+  const signUp = Input();
+
+  function getInputMethod(input, name) {
+    if (name === 'username') return input.setUsername;
+    else if (name === 'password') return input.setPassword;
+    else if (name === 'submit') return input;  
+  }
+  function getInputHandler(e) {
+    const {name, dataset} = e.target;
+    
+    switch(dataset.type){
+      case 'login':
+        return getInputMethod(login, name);        
+      case 'signUp':
+        return getInputMethod(signUp, name); 
+      default:
+        console.log('error');
+        break;
     }
+  }
+
+  function handleChange(e) {
+    const inputHandler = getInputHandler(e);
+    inputHandler(e.target.value);
+  }
+
+  async function handleSubmit(e) {
+    const { dataset } = e.target;
+    const inputHandler = getInputHandler(e);
+    const body = {username: inputHandler.username, password: inputHandler.password};
+
+    if (dataset.type === 'login') {
+      await api.login(body);
+    } else {
+      await api.signUp(body);
+    }
+    document.location.replace('/');
+  }
+  
   return (
     <div>
       {/* main container from App.scss */}
@@ -32,14 +74,35 @@ export default function auth({setAuth}) {
             </div>
             <div className="auth-item">
               <p>username</p>
-              <input type="text" id='username' placeholder='Enter Username'/>
+              <input 
+                type="text" 
+                data-type='login'
+                name='username' 
+                placeholder='Enter Username'
+                onChange={handleChange}
+                value={login.username}
+              />
             </div>
             <div className="auth-item">
               <p>password</p>
-              <input type="text" id='password' placeholder='Enter Password'/>
+              <input 
+                type="text" 
+                data-type='login'
+                name='password' 
+                placeholder='Enter Password'
+                onChange={handleChange}
+                value={login.password}
+              />
             </div>
             <div className="auth-item">
-              <button className="submit-btn" onClick={auth}>submit</button>
+              <button 
+                className="submit-btn" 
+                name='submit' 
+                data-type='login' 
+                onClick={handleSubmit}
+              >
+                  submit
+              </button>
             </div>
             <div className="auth-item">
               <Link to="" exact>
@@ -54,14 +117,35 @@ export default function auth({setAuth}) {
             </div>
             <div className="auth-item">
               <p>username</p>
-              <input type="text" id='username' placeholder='Create Username'/>
+              <input 
+                type="text" 
+                data-type='signUp'
+                name='username' 
+                placeholder='Create Username'
+                onChange={handleChange}
+                value={signUp.username}
+              />
             </div>
             <div className="auth-item">
               <p>password</p>
-              <input type="text" id='password' placeholder='Create Password'/>
+              <input 
+                type="text" 
+                data-type='signUp'
+                name='password' 
+                placeholder='Create Password'
+                onChange={handleChange}
+                value={signUp.password}
+              />
             </div>
             <div className="auth-item">
-              <button className="submit-btn" onClick={auth}>submit</button>
+              <button 
+                className="submit-btn" 
+                name="submit"
+                data-type="signUp"
+                onClick={handleSubmit}
+              >
+                  submit
+              </button>
             </div>
             <div className="auth-item">
               <Link to="" exact>
