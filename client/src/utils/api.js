@@ -134,7 +134,12 @@ async function getUserGames(userId) {
 async function getCharPrototypes() {
   try {
     const response = await axios.get("/api/charProto", createRequestHeader());
-    return response.data; 
+    if (response.statusText === "OK") {
+      console.log('response good', response.data)
+      return response.data; 
+    } else {
+      return {};
+    }
   } catch(err) {
     return err.response;
   }
