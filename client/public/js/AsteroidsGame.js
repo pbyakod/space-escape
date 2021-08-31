@@ -27,16 +27,16 @@ function update() {
   ctx.lineWidth = SHIP_SIZE / 20;
   ctx.beginPath();
   ctx.moveTo(  // nose of the ship
-    ship.x + ship.r * Math.cos(ship.a),
-    ship.y - ship.r * Math.sin(ship.a)
+    ship.x + 4 / 3 * ship.r * Math.cos(ship.a),
+    ship.y - 4 / 3 * ship.r * Math.sin(ship.a)
   );
   ctx.lineTo(   // rear left
-    ship.x - ship.r * (Math.cos(ship.a) + Math.sin(ship.a)),   // rear right
-    ship.y + ship.r * (Math.sin(ship.a) - Math.cos(ship.a))
+    ship.x - ship.r * (2 / 3 * Math.cos(ship.a) + Math.sin(ship.a)),   // rear right
+    ship.y + ship.r * (2 / 3 * Math.sin(ship.a) - Math.cos(ship.a))
   );
   ctx.lineTo(   // rear right
-    ship.x - ship.r * (Math.cos(ship.a) - Math.sin(ship.a)),   // rear right
-    ship.y + ship.r * (Math.sin(ship.a) + Math.cos(ship.a))
+    ship.x - ship.r * (2 / 3 * Math.cos(ship.a) - Math.sin(ship.a)),   // rear right
+    ship.y + ship.r * (2 / 3 * Math.sin(ship.a) + Math.cos(ship.a))
   );
   ctx.closePath();
   ctx.stroke();
@@ -44,4 +44,9 @@ function update() {
 
 
   // move the ship
+
+
+  // centre dot
+  ctx.fillStyle = "red";
+  ctx.fillRect(ship.x - 1, ship.y - 1, 2, 2)
 }
