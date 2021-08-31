@@ -14,18 +14,7 @@ const SHOW_BOUNDING = false; // show or hide collision bounding
 const canv = document.getElementById('asteroids-game');
 const ctx = canv.getContext("2d");
 
-const ship = {
-  x: canv.width / 2,
-  y: canv.height / 2,
-  r: SHIP_SIZE / 2,
-  a: 90 / 180 * Math.PI,
-  rot: 0,
-  thrusting: false,
-  thrust: {
-    x: 0,
-    y: 0
-  }
-}
+let ship = newShip();
 
 // set up asteroids
 let roids = [];
@@ -38,6 +27,21 @@ document.addEventListener("keyup", keyUp);
 // set up the game loop
 
 setInterval(update, 1000 / FPS);
+
+function newShip() {
+  return {
+    x: canv.width / 2,
+    y: canv.height / 2,
+    r: SHIP_SIZE / 2,
+    a: 90 / 180 * Math.PI,
+    rot: 0,
+    thrusting: false,
+    thrust: {
+      x: 0,
+      y: 0
+    }
+  }
+}
 
 function createAsteroidBelt() {
   roids = [];
@@ -132,25 +136,27 @@ function update() {
     ship.thrust.y -= SHIP_THRUST * Math.sin(ship.a) / FPS;
 
     // draw the thruster
-    ctx.fillStyle = "red";
-    ctx.strokeStyle = "yellow";
-    ctx.lineWidth = SHIP_SIZE / 10;
-    ctx.beginPath();
-    ctx.moveTo(  // nose of the ship
-      ship.x - ship.r * (2 / 3 * Math.cos(ship.a) + 0.5 * Math.sin(ship.a)),
-      ship.y + ship.r * (2 / 3 * Math.sin(ship.a) - 0.5 * Math.cos(ship.a))
-    );
-    ctx.lineTo(   // rear left
-      ship.x - ship.r * 6 / 3 * Math.cos(ship.a), 
-      ship.y + ship.r * 6 / 3 * Math.sin(ship.a)
-    );
-    ctx.lineTo(   // rear right
-      ship.x - ship.r * (2 / 3 * Math.cos(ship.a) - 0.5 * Math.sin(ship.a)),
-      ship.y + ship.r * (2 / 3 * Math.sin(ship.a) + 0.5 * Math.cos(ship.a))
-    );
-    ctx.closePath();
-    ctx.fill();
-    ctx.stroke();
+    if (!exploding) {
+      ctx.fillStyle = "red";
+      ctx.strokeStyle = "yellow";
+      ctx.lineWidth = SHIP_SIZE / 10;
+      ctx.beginPath();
+      ctx.moveTo(  // nose of the ship
+        ship.x - ship.r * (2 / 3 * Math.cos(ship.a) + 0.5 * Math.sin(ship.a)),
+        ship.y + ship.r * (2 / 3 * Math.sin(ship.a) - 0.5 * Math.cos(ship.a))
+      );
+      ctx.lineTo(   // rear left
+        ship.x - ship.r * 6 / 3 * Math.cos(ship.a), 
+        ship.y + ship.r * 6 / 3 * Math.sin(ship.a)
+      );
+      ctx.lineTo(   // rear right
+        ship.x - ship.r * (2 / 3 * Math.cos(ship.a) - 0.5 * Math.sin(ship.a)),
+        ship.y + ship.r * (2 / 3 * Math.sin(ship.a) + 0.5 * Math.cos(ship.a))
+      );
+      ctx.closePath();
+      ctx.fill();
+      ctx.stroke();
+    }
   } else {
     ship.thrust.x -= FRICTION * ship.thrust.x / FPS;
     ship.thrust.y -= FRICTION * ship.thrust.y / FPS;
@@ -238,18 +244,26 @@ function update() {
   }
 
   // check for asteroid collisions
-  for (let i = 0; i < roids.length; i++) {
-    if (distBetweenPoints(ship.x, ship.y, roids[i].x, roids[i].y) < ship.r + roids[i].r) {
-      explodeShip();
+  if (!exploding) {
+    for (let i = 0; i < roids.length; i++) {
+      if (distBetweenPoints(ship.x, ship.y, roids[i].x, roids[i].y) < ship.r + roids[i].r) {
+        explodeShip();
+      }
+    }
+    // rotate the ship
+    ship.a += ship.rot;
+  
+    // move the ship
+    ship.x += ship.thrust.x;
+    ship.y += ship.thrust.y;
+  } else {
+    ship.explodeTime--;
+
+    if (ship.explodeTime === 0) {
+      ship = newShip();
     }
   }
-  // rotate the ship
-  ship.a += ship.rot;
-
-  // move the ship
-  ship.x += ship.thrust.x;
-  ship.y += ship.thrust.y;
-
+  
   // handle edge of screen
   if (ship.x < 0 - ship.r) {
     ship.x = canv.width + ship.r;
