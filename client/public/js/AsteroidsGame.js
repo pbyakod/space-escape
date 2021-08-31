@@ -1,6 +1,6 @@
 const FPS = 30; // frames per sec
 const SHIP_SIZE = 30; // ship height in pixels
-
+const TURN_SPEED = 360; // turn speed in degrees per sec
 const canv = document.getElementById('asteroids-game');
 const ctx = canv.getContext("2d");
 
@@ -8,12 +8,47 @@ const ship = {
   x: canv.width / 2,
   y: canv.height / 2,
   r: SHIP_SIZE / 2,
-  a: 90 / 180 * Math.PI
+  a: 90 / 180 * Math.PI,
+  rot: 0
 }
+
+// set up the event handlers
+document.addEventListener("keydown", keyDown);
+document.addEventListener("keyup", keyUp);
 
 // set up the game loop
 
 setInterval(update, 1000 / FPS);
+
+function keyDown(e) {
+  switch(e.keyCode) {
+    case 37 : // left arrow (rotate ship left)
+      ship.rot = TURN_SPEED / 180 * Math.PI / FPS;
+      break;
+    case 38 : // up arrow (rotate ship forward)
+      break;
+    case 39 : // right arrow (rotate ship right)
+      ship.rot = -TURN_SPEED / 180 * Math.PI / FPS;
+      break;
+    default :
+
+  }
+}
+
+function keyUp(e) {
+  switch(e.keyCode) {
+    case 37 : // left arrow (stop rotating left)
+      ship.rot = 0;
+      break;
+    case 38 : // up arrow (rotate ship forward)
+      break;
+    case 39 : // right arrow (rotate ship right)
+      ship.rot = 0;
+      break;
+    default :
+
+  }
+}
 
 function update() {
   // draw space
@@ -41,7 +76,7 @@ function update() {
   ctx.closePath();
   ctx.stroke();
   // rotate ship
-
+  ship.a += ship.rot;
 
   // move the ship
 
