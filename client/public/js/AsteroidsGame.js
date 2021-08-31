@@ -1,6 +1,6 @@
 const FPS = 30; // frames per sec
 const FRICTION = 0.7; // friction coefficient of space (0 = no friction, 1 = lots of friction)
-const ROIDS_NUM = 3; // ship height in pixels
+const ROIDS_NUM = 300; // ship height in pixels
 const ROIDS_SIZE = 100; // starting size of asteroids in pixels per sec
 const ROIDS_SPD = 50; // max starting speed of asteroids in pixels per sec
 const ROIDS_VERT = 10; // average number of vertices on each asteroid
@@ -37,11 +37,18 @@ setInterval(update, 1000 / FPS);
 
 function createAsteroidBelt() {
   roids = [];
+  let x, y;
   for (let i = 0; i < ROIDS_NUM; i++) {
-    let x = Math.floor(Math.random() * canv.width);
-    let y = Math.floor(Math.random() * canv.height);
+    do {
+      x = Math.floor(Math.random() * canv.width);
+      y = Math.floor(Math.random() * canv.height);
+    } while (distBetweenPoints(ship.x, ship.y, x, y) < ROIDS_SIZE * 2 + ship.r)
     roids.push(newAsteroid(x, y));
   }
+}
+
+function distBetweenPoints(x1, y1, x2, y2) {
+  return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
 }
 
 function newAsteroid(x, y) {
