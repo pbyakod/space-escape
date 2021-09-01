@@ -47,5 +47,5 @@ anime.timeline({loop: false})
 
 
 function asteroidsTitle() {
-  document.location.replace('./AsteroidsHome.html');
+  document.location.replace('./AsteroidsGame.html');
 }
