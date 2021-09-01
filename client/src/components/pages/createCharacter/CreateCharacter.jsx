@@ -3,11 +3,13 @@ import { Link } from "react-router-dom"
 import api from "../../../utils/api"
 import { useEffect, useState } from "react";
 import "./charProto.scss";
+import { useGameContext } from '../../../utils/Game/GlobalState';
+import { CREATE_GAME } from '../../../utils/Game/actions';
 
 export default function CreateCharacter() {
+  const [state, dispatch] = useGameContext();
   const [characters, setCharacters] = useState([]);
   const [character, setCharacter] = useState({});
-  
   async function getCharacters() {
     setCharacters(await api.getCharPrototypes());
   }
@@ -26,8 +28,14 @@ export default function CreateCharacter() {
         gold: character.gold
       }
 
+      dispatch({
+        type: CREATE_GAME,
+        ...newGameState
+      })
+
       localStorage.setItem('game_state', JSON.stringify(newGameState));
       api.createGame(newGameState);
+
     } 
   }
 
