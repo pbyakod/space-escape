@@ -90,7 +90,12 @@ async function signUp(body) {
   UserBodyError(body);
   try {
     const response = await axios.post("/api/user", body);
-    return response.data;
+    if (response.statusText === 'OK') {
+      console.log('response good', response.data);
+      return response.data;
+    } else {
+      return {};
+    }
   } catch(err) {
     return err.response;
   }
