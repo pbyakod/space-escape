@@ -7,7 +7,7 @@ export default function CreateCharacter() {
   return (
     <div>
       <h1>Create Character Page</h1>
-      <CharProtoStats/>
+      <CharProtoStats handleSubmit/>
       <Link to="story">
       <button>submit</button>
       </Link>

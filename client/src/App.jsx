@@ -5,7 +5,7 @@ import Home from "./components/pages/home/Home";
 import Auth from "./components/pages/auth/Auth";
 import Rules from "./components/pages/rules/Rules";
 import About from "./components/pages/about/About";
-import CreateCharacter from "./components/pages/CreateCharacter";
+import CreateCharacter from "./components/pages/createCharacter/CreateCharacter";
 import Story from "./components/pages/Story";
 import Obstacle from "./components/pages/Obstacle";
 import MiniGame from "./components/pages/MiniGame";
