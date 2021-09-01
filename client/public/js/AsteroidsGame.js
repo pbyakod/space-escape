@@ -7,6 +7,9 @@ const LASER_SPD = 500; // speed of lasers in pixels per sec
 const LASER_EXPLODE_DUR = 0.1; // duration of the laser's explosion in sec
 const ROIDS_JAG = .4; // jaggedness of the asteroids (0 = none, 1 = lots)
 const ROIDS_NUM = 10; // number of roids
+const ROIDS_PTS_LG = 20; // points scored for a large asteroid
+const ROIDS_PTS_MD = 50; // points scored for a large asteroid
+const ROIDS_PTS_SM = 100; // points scored for a large asteroid
 const ROIDS_SIZE = 100; // starting size of asteroids in pixels per sec
 const SHIP_BLINK_DUR = 0.1; // duration of the ship's blink during invisibility in sec
 const SHIP_EXPLODE_DUR = 0.3; // duration of the ship's explosion
@@ -23,8 +26,19 @@ const TEXT_SIZE = 40; // text font height in pixels
 const canv = document.getElementById('asteroids-game');
 const ctx = canv.getContext("2d");
 
+window.addEventListener('resize', resizeCanvas, false);
+
+canv.width = window.innerWidth;
+canv.height = window.innerHeight;
+
+function resizeCanvas() {
+  canv.width = window.innerWidth;
+  canv.height = window.innerHeight;
+}
+
+
 // set up the game parameters
-let level, roids, ship, lives, text, textAlpha;
+let level, roids, ship, lives, score, text, textAlpha;
 newGame();
 
 // set up the event handlers
@@ -36,6 +50,7 @@ document.addEventListener("keyup", keyUp);
 setInterval(update, 1000 / FPS);
 
 function newGame() {
+  score = 0;
   level = 0;
   lives = GAME_LIVES;
   ship = newShip();
@@ -87,6 +102,9 @@ function destroyAsteroid(index) {
   if (r === ROIDS_SIZE / 2 || r === ROIDS_SIZE / 4) {
     roids.push(newAsteroid(x, y, Math.ceil(r / 2)));
     roids.push(newAsteroid(x, y, Math.ceil(r / 2)));
+    score += r === ROIDS_SIZE / 2 ? ROIDS_PTS_LG : ROIDS_PTS_MD;
+  } else {
+    score += ROIDS_PTS_SM;
   }
 
   roids.splice(index, 1);
@@ -494,6 +512,13 @@ function update() {
     lifeColor = exploding && (i === lives - 1) ? "red" : "white";
     drawShip(SHIP_SIZE + i * SHIP_SIZE * 1.2, SHIP_SIZE, 0.5 * Math.PI, lifeColor);
   }
+
+  // draw the score
+  ctx.textAlign = "right";
+  ctx.textBaseLine = "middle";
+  ctx.fillStyle = "white";
+  ctx.font = TEXT_SIZE + "px dejavu sans mono";
+  ctx.fillText(score, canv.width - SHIP_SIZE / 2, SHIP_SIZE);
 
   // detect laser hits on asteroids
   let ax, ay, ar, lx, ly;
