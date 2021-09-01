@@ -63,7 +63,7 @@ function newGame() {
 }
 
 function newLevel() {
-  text = "LEVEL " + (level + 1);
+  text = "Good Luck!";
   textAlpha = 1.0;
   createAsteroidBelt();
 }
@@ -114,8 +114,8 @@ function destroyAsteroid(index) {
 
   roids.splice(index, 1);
   if (roids.length === 0) {
-    level++;
-    newLevel();
+    gameOver();
+    // newLevel();
   }
 }
 
@@ -155,7 +155,7 @@ function explodeShip() {
 
 function gameOver() {
   ship.dead = true;
-  text = "Game Over";
+  text = shipHealth === 0 ? "This ship is wrecked, please repair!" : "Thank you for protect the planet! You earn " + score/10 + " Gold!";
   textAlpha = 1.0;
   setTimeout(function() {
     console.log("next page");
@@ -340,7 +340,10 @@ function update() {
   
   for (let i = 0; i < roids.length; i++) {
     const { x, y, r, a, vert, offset} = roids[i];
-    ctx.strokeStyle = "slategrey";
+    ctx.strokeStyle = 'rgba(206, 104, 104)';
+    ctx.shadowColor = 'rgba(206, 104, 104)';
+    ctx.shadowBlur = 15;
+    ctx.fillStyle = 'rgba(206, 104, 104)';
     ctx.lineWidth = SHIP_SIZE / 20;
     // draw a path
     ctx.beginPath();
@@ -357,6 +360,7 @@ function update() {
       )
     }
     ctx.closePath();
+    ctx.fill();
     ctx.stroke();
 
     if (SHOW_BOUNDING) {
@@ -427,11 +431,9 @@ function update() {
     ship.explodeTime--;
 
     if (ship.explodeTime === 0) {
-      // shipHealth -= ;
-      if (lives === 0) {
+      shipHealth -= 10;
+      if (shipHealth === 0) {
         gameOver();
-      } else {
-        ship = newShip();
       }
     }
   }
@@ -545,15 +547,24 @@ function update() {
     ctx.fillStyle = "rgba(255, 255, 255, " + textAlpha + ")";
     ctx.font = "small-caps " + TEXT_SIZE + "px dejavu sans mono";
     ctx.fillText(text, canv.width / 2, canv.height * 0.75);
-    textAlpha -= 1.0 / TEXT_FADE_TIME / FPS;
+    textAlpha -= 0.5 / TEXT_FADE_TIME / FPS;
   }
 
   // draw the lives
-  let lifeColor;
-  for (let i = 0; i < lives; i++) {
-    lifeColor = exploding && (i === lives - 1) ? "red" : "white";
-    drawShip(SHIP_SIZE + i * SHIP_SIZE * 1.2, SHIP_SIZE, 0.5 * Math.PI, lifeColor);
-  }
+  // let lifeColor;
+  // for (let i = 0; i < lives; i++) {
+  //   lifeColor = exploding && (i === lives - 1) ? "red" : "white";
+  //   drawShip(SHIP_SIZE + i * SHIP_SIZE * 1.2, SHIP_SIZE, 0.5 * Math.PI, lifeColor);
+  // }
+
+  // draw the shipHealth
+  ctx.textAlign = "left";
+  ctx.textBaseLine = "middle";
+  ctx.fillStyle = shipHealth < 30 ? "red" : "white";
+  ctx.font = TEXT_SIZE + "px dejavu sans mono";
+  ctx.fillText("Ship Health: " + shipHealth, SHIP_SIZE * 2, SHIP_SIZE * 2);
+
+
 
   // draw the score
   ctx.textAlign = "right";
