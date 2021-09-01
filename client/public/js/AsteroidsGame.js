@@ -5,11 +5,14 @@ const LASER_DIST = 0.4; // maximum distance laser can travel as fraction of scre
 const LASER_MAX = 10; // maximum number of lasers on screen at once
 const LASER_SPD = 500; // speed of lasers in pixels per sec
 const LASER_EXPLODE_DUR = 0.1; // duration of the laser's explosion in sec
-const ROIDS_JAG = .4; // jaggedness of the asteroids (0 = none, 1 = lots)
+const ROIDS_JAG = .15; // jaggedness of the asteroids (0 = none, 1 = lots)
 const ROIDS_NUM = 10; // number of roids
 const ROIDS_PTS_LG = 20; // points scored for a large asteroid
 const ROIDS_PTS_MD = 50; // points scored for a large asteroid
 const ROIDS_PTS_SM = 100; // points scored for a large asteroid
+const ROIDS_DMG_LG = 20; // damage received when hit by a large asteroid
+const ROIDS_DMG_MD = 50; // damage received when hit by a medium asteroid
+const ROIDS_DMG_SM = 100; // damage received when hit by a small asteroid
 const ROIDS_SIZE = 100; // starting size of asteroids in pixels per sec
 const SHIP_BLINK_DUR = 0.1; // duration of the ship's blink during invisibility in sec
 const SHIP_EXPLODE_DUR = 0.3; // duration of the ship's explosion
@@ -38,7 +41,8 @@ function resizeCanvas() {
 
 
 // set up the game parameters
-let level, roids, ship, lives, score, text, textAlpha;
+let level, roids, ship, lives, score, shipHealth, text, textAlpha;
+
 newGame();
 
 // set up the event handlers
@@ -51,6 +55,7 @@ setInterval(update, 1000 / FPS);
 
 function newGame() {
   score = 0;
+  shipHealth = 100;
   level = 0;
   lives = GAME_LIVES;
   ship = newShip();
@@ -282,7 +287,8 @@ function update() {
 
   // draw the ship
   if (!exploding) {
-    if (blinkOn && !ship.dead) {
+    if (blinkOn) {
+      // if (blinkOn && !ship.dead) {
       drawShip(ship.x, ship.y, ship.a);
     }
 
@@ -359,6 +365,42 @@ function update() {
       ctx.arc(x, y, r, 0, Math.PI * 2, false);
       ctx.stroke();
     }
+    // ctx.beginPath();
+    // ctx.moveTo(83, 116);
+    // ctx.lineTo(83, 102);
+    // ctx.bezierCurveTo(83, 94, 89, 88, 97, 88);
+    // ctx.bezierCurveTo(105, 88, 111, 94, 111, 102);
+    // ctx.lineTo(111, 116);
+    // ctx.lineTo(106.333, 111.333);
+    // ctx.lineTo(101.666, 116);
+    // ctx.lineTo(97, 111.333);
+    // ctx.lineTo(92.333, 116);
+    // ctx.lineTo(87.666, 111.333);
+    // ctx.lineTo(83, 116);
+    // ctx.fill();
+
+    // ctx.fillStyle = 'white';
+    // ctx.beginPath();
+    // ctx.moveTo(91, 96);
+    // ctx.bezierCurveTo(88, 96, 87, 99, 87, 101);
+    // ctx.bezierCurveTo(87, 103, 88, 106, 91, 106);
+    // ctx.bezierCurveTo(94, 106, 95, 103, 95, 101);
+    // ctx.bezierCurveTo(95, 99, 94, 96, 91, 96);
+    // ctx.moveTo(103, 96);
+    // ctx.bezierCurveTo(100, 96, 99, 99, 99, 101);
+    // ctx.bezierCurveTo(99, 103, 100, 106, 103, 106);
+    // ctx.bezierCurveTo(106, 106, 107, 103, 107, 101);
+    // ctx.bezierCurveTo(107, 99, 106, 96, 103, 96);
+    // ctx.fill();
+
+    // ctx.fillStyle = 'green';
+    // ctx.beginPath();
+    // ctx.arc(101, 102, 2, 0, Math.PI * 2, true);
+    // ctx.fill();
+
+    // ctx.beginPath();
+    // ctx.arc(89, 102, 2, 0, Math.PI * 2, true);
+    // ctx.fill();
   }
 
   // check for asteroid collisions
@@ -385,7 +427,7 @@ function update() {
     ship.explodeTime--;
 
     if (ship.explodeTime === 0) {
-      lives--;
+      // shipHealth -= ;
       if (lives === 0) {
         gameOver();
       } else {
@@ -518,7 +560,7 @@ function update() {
   ctx.textBaseLine = "middle";
   ctx.fillStyle = "white";
   ctx.font = TEXT_SIZE + "px dejavu sans mono";
-  ctx.fillText(score, canv.width - SHIP_SIZE / 2, SHIP_SIZE);
+  ctx.fillText("Score: " + score, canv.width - SHIP_SIZE * 2, SHIP_SIZE * 2);
 
   // detect laser hits on asteroids
   let ax, ay, ar, lx, ly;
