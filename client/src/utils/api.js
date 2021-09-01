@@ -66,8 +66,12 @@ async function login(body) {
 
     if (response.statusText === 'OK') {
       console.log('response good', response.data);
-    
-      localStorage.setItem('user', JSON.stringify(response.data));
+      localStorage.setItem('user', JSON.stringify({
+        ...response.data.user, 
+        message: response.data.message,
+        token: response.data.token}
+      ));
+
     } else {
       return {};
     }
@@ -92,6 +96,11 @@ async function signUp(body) {
     const response = await axios.post("/api/user", body);
     if (response.statusText === 'OK') {
       console.log('response good', response.data);
+      localStorage.setItem('user', JSON.stringify({
+        ...response.data.user, 
+        message: response.data.message,
+        token: response.data.token}
+      ));
       return response.data;
     } else {
       return {};
@@ -134,7 +143,12 @@ async function getUserGames(userId) {
 async function getCharPrototypes() {
   try {
     const response = await axios.get("/api/charProto", createRequestHeader());
-    return response.data; 
+    if (response.statusText === "OK") {
+      console.log('response good', response.data)
+      return response.data; 
+    } else {
+      return {};
+    }
   } catch(err) {
     return err.response;
   }
@@ -148,14 +162,19 @@ async function getCharPrototypes() {
 // 		body (object): {char_id, health, ship, gold, location_id}
 // outputs:
 // 		response.data (promise): promise({id, inProgress, user_id, char_id, health, ship, gold})
-async function createGame(user_id, body) {
-  if (!user_id || !body.char_id || !body.health || !body.ship || !body.gold || !body.location_id) {
-    console.log(user_id, body)
+async function createGame(body) {
+  if (!body.user_id || !body.char_id || !body.health || !body.ship || !body.gold || !body.location_id, !body.inProgress) {
+    console.log(body)
     throw new Error("Arguments require user_id, char_id, location_id, health, ship, and gold");
   }
   try {
-    const response = await axios.post('/api/game', {user_id, ...body}, createRequestHeader());
-    return response.data;
+    const response = await axios.post('/api/game', body, createRequestHeader());
+    if (response.statusText === "OK") {
+      console.log(response.data)
+      return response.data;
+    } else {
+      return {};
+    }
   } catch(err) {
     return err.response;
   }

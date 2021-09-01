@@ -3,6 +3,15 @@ import apiCalls from "../../../utils/api";
 import "../home/home.scss";
 
 export default function home() {
+  function handleNewGame() {
+    const user= JSON.parse(localStorage.getItem('user'));
+    const gameState = {
+      location_id: 1,
+      inProgress: true,
+      user_id: user.id
+    }
+    localStorage.setItem('game_state', JSON.stringify(gameState));
+  }
   return (
     <div className="homepage">
       {/* main container from App.scss */}
@@ -26,7 +35,7 @@ export default function home() {
             <Link to="story">Continue Game</Link>
           </div>
           <div className="game-links">
-            <Link to="createCharacter">New Game</Link>
+            <Link to="createCharacter" onClick={handleNewGame}>New Game</Link>
           </div>
           <div className="game-links">
             <Link to="leaderBoard">High Scores</Link>

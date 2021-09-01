@@ -5,7 +5,7 @@ import Home from "./components/pages/home/Home";
 import Auth from "./components/pages/auth/Auth";
 import Rules from "./components/pages/rules/Rules";
 import About from "./components/pages/about/About";
-import CreateCharacter from "./components/pages/CreateCharacter";
+import CreateCharacter from "./components/pages/createCharacter/CreateCharacter";
 import Story from "./components/pages/Story";
 import Obstacle from "./components/pages/Obstacle";
 import MiniGame from "./components/pages/MiniGame";
@@ -47,24 +47,24 @@ export default function App() {
 
         <Route component={Rules} path="/rules"></Route>
 
-        <Route component={CreateCharacter} path="/createCharacter">
+        <Route component={api.loggedIn() ? CreateCharacter : Auth} path="/createCharacter">
         {/* {token !== "" ? <CreateCharacter /> : <Auth setAuth={setAuth} />} */}
         </Route>
 
-        <Route component={Story} path="/story">
+        <Route component={api.loggedIn() ? Story : Auth} path="/story">
         {/* {token !== "" ? <Story /> : <Auth setAuth={setAuth} />} */}
         </Route>
         
-        <Route component={Obstacle} path="/obstacle">
+        <Route component={api.loggedIn() ? Obstacle : Auth} path="/obstacle">
         {/* {token !== "" ? <Obstacle /> : <Auth setAuth={setAuth} />} */}
         </Route>
-        <Route component={Result} path="/result">
+        <Route component={api.loggedIn() ? Result : Auth} path="/result">
         {/* {token !== "" ? <Result /> : <Auth setAuth={setAuth} />} */}
         </Route>
-        <Route component={Score} path="/score">
+        <Route component={api.loggedIn() ? Score : Auth} path="/score">
         {/* {token !== "" ? <Score /> : <Auth setAuth={setAuth} />} */}
         </Route>
-        <Route component={LeaderBoard} path="/leaderBoard">
+        <Route component={api.loggedIn() ? LeaderBoard: Auth} path="/leaderBoard">
         {/* {token !== "" ? <LeaderBoard /> : <Auth setAuth={setAuth} />} */}
         </Route>
         
