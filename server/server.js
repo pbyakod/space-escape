@@ -2,6 +2,7 @@ const express = require('express');
 const sequelize = require('./config/connection');
 const routes = require('./controllers');
 const expSession = require('express-session');
+const path = require('path');
 
 const SequilizeStore = require('connect-session-sequelize')(expSession.Store);
 
@@ -11,6 +12,10 @@ const PORT = process.env.PORT || 5000;
 
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
+
+// if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '../client/build')));
+// }
 
 
 const sess = {
