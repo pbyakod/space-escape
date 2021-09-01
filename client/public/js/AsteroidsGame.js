@@ -158,8 +158,7 @@ function gameOver() {
   text = shipHealth === 0 ? "This ship is wrecked, please repair!" : "Thank you for protect the planet! You earn " + score/10 + " Gold!";
   textAlpha = 1.0;
   setTimeout(function() {
-    console.log("next page");
-    document.location.replace('./AsteroidsHome.html');
+    document.location.replace('./AsteroidsResult.html');
   }, 5 * 1000)
 }
 
