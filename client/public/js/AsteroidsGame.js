@@ -134,6 +134,10 @@ function gameOver() {
   ship.dead = true;
   text = "Game Over";
   textAlpha = 1.0;
+  setTimeout(function() {
+    console.log("next page");
+    document.location.replace('./AsteroidsHome.html');
+  }, 5 * 1000)
 }
 
 function newAsteroid(x, y, r) {
