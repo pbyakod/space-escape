@@ -1,13 +1,12 @@
-
 import NavBar from "../navBar/NavBar"
 import { Link } from "react-router-dom"
 
-export default function Obstacle() {
+export default function Encounter() {
    
   return (
     <div>
       <NavBar/>
-      <h1>Obstacle Page</h1>
+      <h1>Encounter Page</h1>
       <Link to="/minigame">
         <button>option 1</button>
       </Link>

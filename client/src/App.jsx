@@ -7,7 +7,7 @@ import Rules from "./components/pages/rules/Rules";
 import About from "./components/pages/about/About";
 import CreateCharacter from "./components/pages/createCharacter/CreateCharacter";
 import Story from "./components/pages/Story";
-import Obstacle from "./components/pages/Obstacle";
+import Encounter from "./components/pages/encounter/Encounter";
 import MiniGame from "./components/pages/MiniGame";
 import Result from "./components/pages/Result";
 import Score from "./components/pages/Score";
@@ -52,8 +52,8 @@ export default function App() {
           {/* {token !== "" ? <Story /> : <Auth setAuth={setAuth} />} */}
           </Route>
           
-          <Route component={api.loggedIn() ? Obstacle : Auth} path="/obstacle">
-          {/* {token !== "" ? <Obstacle /> : <Auth setAuth={setAuth} />} */}
+          <Route component={api.loggedIn() ? Encounter : Auth} path="/encounter">
+          {/* {token !== "" ? < /> : <Auth setAuth={setAuth} />} */}
           </Route>
           <Route component={api.loggedIn() ? Result : Auth} path="/result">
           {/* {token !== "" ? <Result /> : <Auth setAuth={setAuth} />} */}

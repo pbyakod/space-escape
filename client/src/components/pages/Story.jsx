@@ -6,7 +6,7 @@ export default function story() {
     <div>
       <NavBar/>
       <h1>Story Page</h1>
-      <Link to="/obstacle">
+      <Link to="/encounter">
         <button>continue</button>
         </Link>
     </div>
