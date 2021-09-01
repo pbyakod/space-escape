@@ -57,6 +57,7 @@ function newShip() {
     blinkTime: Math.ceil(SHIP_BLINK_DUR * FPS),
     blinkNum: Math.ceil(SHIP_INV_DUR / SHIP_BLINK_DUR),
     canShoot: true,
+    dead: false,
     lasers: [],
     rot: 0,
     thrusting: false,
@@ -99,8 +100,8 @@ function distBetweenPoints(x1, y1, x2, y2) {
   return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
 }
 
-function drawShip(x, y, a) {
-  ctx.strokeStyle = "white";
+function drawShip(x, y, a, color = "white") {
+  ctx.strokeStyle = color;
   ctx.lineWidth = SHIP_SIZE / 20;
   ctx.beginPath();
   ctx.moveTo(  // nose of the ship
@@ -129,6 +130,11 @@ function explodeShip() {
   // ctx.stroke();
 }
 
+function gameOver() {
+  ship.dead = true;
+  text = "Game Over";
+  textAlpha = 1.0;
+}
 
 function newAsteroid(x, y, r) {
   let lvlMult = 1 + .1 * level;
@@ -153,6 +159,9 @@ function newAsteroid(x, y, r) {
 }
 
 function keyDown(e) {
+  if (ship.dead) {
+    return;
+  }
   switch(e.keyCode) {
     case 32 : // space bar (shoot the laser)
       shootLaser();
@@ -172,6 +181,9 @@ function keyDown(e) {
 }
 
 function keyUp(e) {
+  if (ship.dead) {
+    return;
+  }
   switch(e.keyCode) {
     case 32 : // space bar (allow shooting again)
       ship.canShoot = true;;
@@ -215,7 +227,7 @@ function update() {
   ctx.fillRect(0, 0, canv.width, canv.height);
 
 
-  if (ship.thrusting) {
+  if (ship.thrusting && !ship.dead) {
     ship.thrust.x += SHIP_THRUST * Math.cos(ship.a) / FPS;
     ship.thrust.y -= SHIP_THRUST * Math.sin(ship.a) / FPS;
 
@@ -248,7 +260,7 @@ function update() {
 
   // draw the ship
   if (!exploding) {
-    if (blinkOn) {
+    if (blinkOn && !ship.dead) {
       drawShip(ship.x, ship.y, ship.a);
     }
 
@@ -329,7 +341,9 @@ function update() {
 
   // check for asteroid collisions
   if (!exploding) {
-    if (ship.blinkNum === 0) {
+
+    // only check when not blinking
+    if (ship.blinkNum === 0 && !ship.dead) {
       for (let i = 0; i < roids.length; i++) {
         if (distBetweenPoints(ship.x, ship.y, roids[i].x, roids[i].y) < ship.r + roids[i].r) {
           explodeShip();
@@ -471,8 +485,10 @@ function update() {
   }
 
   // draw the lives
+  let lifeColor;
   for (let i = 0; i < lives; i++) {
-    drawShip(SHIP_SIZE + i * SHIP_SIZE * 1.2, SHIP_SIZE, 0.5 * Math.PI);
+    lifeColor = exploding && (i === lives - 1) ? "red" : "white";
+    drawShip(SHIP_SIZE + i * SHIP_SIZE * 1.2, SHIP_SIZE, 0.5 * Math.PI, lifeColor);
   }
 
   // detect laser hits on asteroids
