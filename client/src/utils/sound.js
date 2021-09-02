@@ -4,7 +4,8 @@ import HoverSound from '../sounds/hover.mp3';
 
 const soundFX = {
     background: new Howl({
-        src: BackgroundSound
+        src: BackgroundSound,
+        loop: true
     }),
     hover: new Howl({
         src: HoverSound
@@ -19,11 +20,20 @@ function PlayBackground() {
 
 function PlayHover() {
     soundFX.hover.play();
-  }
+}
+
+function MuteSound() {
+    if(soundFX.background.playing()) {
+        soundFX.background.stop();
+    } else {
+        soundFX.background.play();
+    }
+}
 
 const soundCalls = {
     PlayBackground,
-    PlayHover
+    PlayHover,
+    MuteSound
 }
 
 export default soundCalls;
