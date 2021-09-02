@@ -2,7 +2,6 @@
 import { Link } from "react-router-dom"
 import api from "../../../utils/api"
 import { useEffect, useState } from "react";
-import "./charProto.scss";
 import "./createCharacter.scss";
 import { useGameContext } from '../../../utils/Game/GlobalState';
 import { CREATE_GAME } from '../../../utils/Game/actions';
@@ -12,7 +11,7 @@ import rich from "./charProto/RichardBransonFace.gif"
 import j from "./charProto/JeffBezos.gif"
 import e from "./charProto/ElonMusk.gif"
 import r from "./charProto/RichardBranson.gif"
-import bar from "./charProto/placeholderbargraph.png"
+import { Bar } from 'react-chartjs-2';
 
 export default function CreateCharacter() {
   const source = [jeff, elon, rich];
@@ -52,11 +51,57 @@ export default function CreateCharacter() {
   useEffect(() => {
     getCharacters();
   }, [])
+
+  const chartstate = {
+    labels: ['Health', "Gold", "Ship"],
+    datasets: [
+      {
+        label: 'Stats',
+        backgroundColor: '#4bc0c0',
+        borderColor: '#000001',
+        borderWidth: 2,
+        data: [character.health, character.gold, character.ship]
+      }
+    ]
+  }
+
+  const chartoptions = {
+    plugins: {
+      legend: {
+        display: false,
+      },
+    },
+    scales: {
+      x: {
+        grid: {
+          display: false,
+        },
+        ticks: {
+          color: 'white',
+          font: {
+            family: 'Joystix, sans-serif'
+          }
+        }
+      },
+      y: {
+        grid: {
+          display: false,
+        },
+        ticks: {
+          color: 'white',
+          font: {
+            family: 'Joystix, sans-serif'
+          }
+        }
+      }
+    },
+    maintainAspectRatio: false
+  }
+
   return (
     <div>
       <div>
-        <section className="main-container fix">
-          <Link to="/"><button className="stop-btn">Back</button></Link>
+        <section className="main-container">
       <h1 className="title">Choose Your Character</h1>
       <div className="grid-item">
                <div className="character-models">
@@ -76,23 +121,27 @@ export default function CreateCharacter() {
                 </div>
               </div>
       
-              <div className="grid-item">
+              <div className="grid-item stats">
                 <span className="avatardiv">
                   <img className="avatarpic" src={s[character.id-1]} alt="" />
                   {/* <h3 className="title">{character.name}</h3> */}
                   </span>
                 <div className="character-stats">
                   {/* <h3 className="title">{character.name}</h3> */}
-                  <img className="bar" src={bar} alt="" />
-                  <h3 className="title">{character.name}</h3>
+                  {/* <h3 className="title">{character.name}</h3>
                   <div className="character-prop">Health: {character.health}</div>
                   <div className="character-prop">Gold: {character.gold}</div>
-                  <div className="character-prop">Ship: {character.ship}</div>
+                  <div className="character-prop">Ship: {character.ship}</div> */}
+                  <Bar 
+                  data={chartstate}
+                  height="fit-content"
+                  options={chartoptions}
+                  />
                 </div>
               </div>
-        <Link to="story">
-        <button className="go-btn" onClick={handleSubmit}>submit</button>
-        </Link>
+        <div className="btn-row">
+          <Link to="story"><button className="go-btn" onClick={handleSubmit}>submit</button></Link>
+          <Link to="/"><button className="stop-btn">Back</button></Link></div>
         </section>
       </div>
     </div>

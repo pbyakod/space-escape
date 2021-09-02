@@ -2,8 +2,7 @@
   max-height: 5rem;
 }
 
-.character-model,
-.character-stats {
+.character-model {
   display:flex;
   flex-direction: column;
   align-items: center;
@@ -27,13 +26,6 @@
   margin-bottom: 1rem;
 }
 
-.fix{
-  display: flex;
-  flex-direction: column;
-
-  gap: 7rem;
-}
-
 .character-models,
 .grid-item {
   display: flex;
@@ -43,17 +35,11 @@
   width: 100%;
 }
 
-.bar,
 .avatarpic {
   display:flex;
   justify-content: space-between;
   width: 100%;
-}
-
-.bar {width: 70%;}
-
-.character-prop {
-  line-height: 200%;
+  height: 30rem;
 }
 
 .avatardiv {
@@ -72,4 +58,20 @@ height: 5rem;
   border-radius: 50%;
 
 }
+}
+
+.stats {
+  margin-top: 2rem;
+}
+
+.character-stats {
+  width: 350px;
+  height: 450px;
+}
+
+.btn-row {
+  margin-top: 5rem;
+  button {
+    margin-bottom: 1rem;
+  }
 }
