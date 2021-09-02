@@ -2,18 +2,10 @@ import { Link } from "react-router-dom"
 import authors from "../../../aboutAuthors/about"
 import Author from "../../author/Author"
 import '../about/about.scss'
-import { Howl } from 'howler';
-import Hover from '../../../sounds/hover.mp3';
+import sound from "../../../utils/sound";
 
 
 export default function About() {
-  const hoverSound = new Howl({
-    src: Hover
-  })
-
-  function PlayHoverSound() {
-    hoverSound.play();
-  }
   return (
     <div>
       {/* importing main-container from App.scss */}
@@ -29,7 +21,7 @@ export default function About() {
         </div>
         <div className="about-item">
           <Link to="" exact>
-            <button class="back-btn" onMouseEnter={PlayHoverSound}>back</button>
+            <button class="back-btn" onMouseEnter={sound.PlayHover}>back</button>
           </Link>
         </div>
       </div>

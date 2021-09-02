@@ -1,17 +1,8 @@
 import { Link } from "react-router-dom"
 import "../rules/rules.scss"
-import { Howl } from 'howler';
-import Hover from '../../../sounds/hover.mp3';
+import sound from "../../../utils/sound";
 
 export default function Rules() {
-
-  const hoverSound = new Howl({
-    src: Hover
-  })
-
-  function PlayHoverSound() {
-    hoverSound.play();
-  }
 
   return (
     <div>
@@ -40,7 +31,7 @@ export default function Rules() {
         <div className="rule-items">
         {/* uses same properties as back-btn from home.scss */}
         <Link to="/" exact>
-          <button class="back-btn" onMouseEnter={PlayHoverSound}>back</button>
+          <button class="back-btn" onMouseEnter={sound.PlayHover}>back</button>
         </Link>
         </div>
       </div>
