@@ -6,7 +6,9 @@
   "scripts": {
     "server": "npm run watch --prefix server",
     "client": "npm start --prefix client",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "install": "cd server && npm i && cd ../client && npm i",
+    "seed": "node server/seeds/index.js"
   },
   "repository": {
     "type": "git",
