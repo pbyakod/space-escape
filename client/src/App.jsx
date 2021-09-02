@@ -15,6 +15,8 @@ import LeaderBoard from "./components/pages/LeaderBoard";
 import Background from "./components/background/Background";
 import api from './utils/api';
 import { GameProvider } from "./utils/Game/GlobalState";
+import { Howl, Howler } from 'howler';
+import Hover from './sounds/hover.mp3';
 
 export default function App() {
   //use token to authorize user
@@ -26,13 +28,22 @@ export default function App() {
     alert(JSON.stringify(token));
 
   };
+
+  const hoverSound = new Howl({
+    src: Hover
+  })
+
+  function PlaySound() {
+    hoverSound.play();
+  }
+
   return (
     <>
     <Background/>
     <BrowserRouter>
       <GameProvider>
         <Switch>
-          <Route component={Home} path="/" exact>
+          <Route component={Home} onClick={PlaySound} path="/" exact>
             {/* {token !== "" ? <Home /> : <Auth setAuth={setAuth} />} */}
           </Route>
 

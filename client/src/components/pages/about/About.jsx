@@ -2,6 +2,7 @@ import { Link } from "react-router-dom"
 import authors from "../../../aboutAuthors/about"
 import Author from "../../author/Author"
 import '../about/about.scss'
+import sound from "../../../utils/sound";
 
 
 export default function About() {
@@ -20,7 +21,7 @@ export default function About() {
         </div>
         <div className="about-item">
           <Link to="" exact>
-            <button class="back-btn">back</button>
+            <button class="back-btn" onMouseEnter={sound.PlayHover}>back</button>
           </Link>
         </div>
       </div>

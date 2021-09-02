@@ -3,6 +3,7 @@ import { useState } from "react"
 import { Link } from "react-router-dom"
 import "../auth/auth.scss"
 import api from "../../../utils/api"
+import sound from "../../../utils/sound";
 
 export default function Auth({setAuth}) {
   //e.target to handle form
@@ -21,6 +22,7 @@ export default function Auth({setAuth}) {
       setPassword
       }
   }
+
   const login = Input();
   const signUp = Input();
 
@@ -100,13 +102,14 @@ export default function Auth({setAuth}) {
                 name='submit' 
                 data-type='login' 
                 onClick={handleSubmit}
+                onMouseEnter={sound.PlayHover}
               >
                   submit
               </button>
             </div>
             <div className="auth-item">
               <Link to="" exact>
-                <button className="back-btn">back</button>
+                <button className="back-btn" onMouseEnter={sound.PlayHover}>back</button>
               </Link>
             </div>
           </article>
@@ -143,13 +146,14 @@ export default function Auth({setAuth}) {
                 name="submit"
                 data-type="signUp"
                 onClick={handleSubmit}
+                onMouseEnter={sound.PlayHover}
               >
                   submit
               </button>
             </div>
             <div className="auth-item">
               <Link to="" exact>
-                <button className="back-btn">back</button>
+                <button className="back-btn" onMouseEnter={sound.PlayHover}>back</button>
               </Link>
             </div>
           </article>
