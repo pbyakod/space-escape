@@ -1,6 +1,10 @@
 import { useReducer } from "react";
 import {
-  CREATE_GAME
+  CREATE_GAME,
+  INITIALIZE_ENCOUNTERS,
+  SET_MINIGAME,
+  SET_RESULTS,
+  SET_PROMPT,
 } from './actions';
 
 export const reducer = (state, action) => {
@@ -15,6 +19,35 @@ export const reducer = (state, action) => {
         gold: action.gold,
         inProgress: action.inProgress
       }
+    case INITIALIZE_ENCOUNTERS:
+      return {
+        ...state,
+        encounters: action.encounters,
+        encounter: action.encounter,
+        renderPrompt: true
+      }
+    case SET_MINIGAME:
+      return {
+        ...state,
+        renderPrompt: false,
+        renderMinigame: true,
+        renderResults: false
+      }
+    case SET_RESULTS:
+      return {
+        ...state,
+        renderPrompt: false,
+        renderMinigame: false,
+        renderResults: true
+      }
+    case SET_PROMPT:
+      return {
+        ...state,
+        renderPrompt: true,
+        renderMinigame: false,
+        renderResults: false
+      }
+    
     default:
       return state;
   }
