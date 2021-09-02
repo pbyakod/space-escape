@@ -2,7 +2,6 @@
 import { Link } from "react-router-dom"
 import api from "../../../utils/api"
 import { useEffect, useState } from "react";
-import "./charProto.scss";
 import "./createCharacter.scss";
 import { useGameContext } from '../../../utils/Game/GlobalState';
 import { CREATE_GAME } from '../../../utils/Game/actions';
@@ -55,7 +54,7 @@ export default function CreateCharacter() {
   return (
     <div>
       <div>
-        <section className="main-container fix">
+        <section className="main-container">
           <Link to="/"><button className="stop-btn">Back</button></Link>
       <h1 className="title">Choose Your Character</h1>
       <div className="grid-item">
