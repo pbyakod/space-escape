@@ -34,7 +34,7 @@ export default function home() {
         {/* content that displays on home page if user is already logged in */}
         <section className={apiCalls.loggedIn() ? "initial-content" : "loggedin-content"}>
           <div className="game-links" onMouseEnter={sound.PlayHover}>
-            <Link to="story">Continue Game</Link>
+            <Link to="dashboard">Continue Game</Link>
           </div>
           <div className="game-links" onMouseEnter={sound.PlayHover}>
             <Link to="createCharacter" onClick={handleNewGame}>New Game</Link>

@@ -6,6 +6,7 @@ import Auth from "./components/pages/auth/Auth";
 import Rules from "./components/pages/rules/Rules";
 import About from "./components/pages/about/About";
 import CreateCharacter from "./components/pages/createCharacter/CreateCharacter";
+import Dashboard from "./components/pages/dashboard/Dashboard";
 import Story from "./components/pages/Story";
 import Location from "./components/pages/location/Location";
 import MiniGame from "./components/pages/MiniGame";
@@ -54,6 +55,8 @@ export default function App() {
           </Route>
 
           <Route component={Rules} path="/rules"></Route>
+
+          <Route component={api.loggedIn() ? Dashboard : Auth} path="/dashboard"></Route>
 
           <Route component={api.loggedIn() ? CreateCharacter : Auth} path="/createCharacter">
           {/* {token !== "" ? <CreateCharacter /> : <Auth setAuth={setAuth} />} */}
