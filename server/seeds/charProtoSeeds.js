@@ -3,21 +3,21 @@ const {CharProto} = require('../models');
 const charProto = [
   {
     id: 1,
-    name: "Jeff Besos",
+    name: "Jeff Bezos",
     health: 1000,
     ship: 500,
     gold: 1000,
   },
   {
     id: 2,
-    name: "Elon Muck",
+    name: "Elon Musk",
     health: 1000,
     ship: 1000,
     gold: 500,
   },
   {
     id: 3,
-    name: "Richard Richardson",
+    name: "Richard Branson",
     health: 1000,
     ship: 750,
     gold: 750,

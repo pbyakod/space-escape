@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import "./charProto.scss";
 
 export default function CharProtoStats() {
+
   const [characters, setCharacters] = useState([]);
   const [character, setCharacter] = useState({});
   
