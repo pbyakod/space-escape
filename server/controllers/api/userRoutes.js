@@ -57,7 +57,11 @@ router.post("/", async (req, res) => {
 
       const {id, username, createdAt} = dbUserData;
 			const token = signToken({id, username})
-      res.status(200).json({id, username, createdAt, token});
+      res.status(200).json({
+        user: {id, username}, 
+        message: "You are now logged in!", 
+        createdAt, 
+        token});
     });
   } catch (err) {
     console.log(err);
