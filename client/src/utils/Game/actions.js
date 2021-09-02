@@ -1,0 +1,5 @@
+export const CREATE_GAME = "CREATE_GAME";
+export const INITIALIZE_ENCOUNTERS = "INITIALIZE_ENCOUNTERS";
+export const SET_MINIGAME = "SET_MINIGAME";
+export const SET_RESULTS = "SET_RESULTS";
+export const SET_PROMPT = "SET_PROMPT";

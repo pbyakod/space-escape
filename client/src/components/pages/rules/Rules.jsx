@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom"
 import "../rules/rules.scss"
+import sound from "../../../utils/sound";
 
 export default function Rules() {
+
   return (
     <div>
       {/* main-container from App.scss */}
@@ -29,7 +31,7 @@ export default function Rules() {
         <div className="rule-items">
         {/* uses same properties as back-btn from home.scss */}
         <Link to="/" exact>
-          <button class="back-btn">back</button>
+          <button class="back-btn" onMouseEnter={sound.PlayHover}>back</button>
         </Link>
         </div>
       </div>

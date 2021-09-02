@@ -198,6 +198,23 @@ async function getEncounter(location_id) {
   }
 }
 
+async function getLocation(location_id) {
+  if (!location_id) {
+    throw new Error("Muss pass location id");
+  }
+  try {
+    const response = await axios.get(`/api/location/${location_id}`, createRequestHeader());
+    if (response.statusText === "OK") {
+      console.log("Response good", response.data);
+      return response.data;
+    } else {
+      return {};
+    }
+  } catch(err) {
+    return err.response;
+  }
+}
+
 const apiCalls = {
   getUserGames,
   login,
@@ -205,6 +222,7 @@ const apiCalls = {
   getCharPrototypes,
   createGame,
   getEncounter,
+  getLocation,
   loggedIn
 }; 
 

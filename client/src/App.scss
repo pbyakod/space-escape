@@ -38,7 +38,7 @@ button {
   opacity: 90%;
   position: absolute;
   width: 50rem;
-  height: 21.875rem;
+  height: fit-content;
   top: 0;
   bottom: 0;
   left: 0;
@@ -46,4 +46,20 @@ button {
   margin: auto;
   padding: 5rem;
   border: 0.438rem solid #b2c7de;
+}
+
+.title {
+  text-align: center;
+}
+
+.go-btn:hover {
+  background-color: green;
+}
+
+.caution-btn:hover {
+  background-color: orange;
+}
+
+.stop-btn:hover {
+  background-color: red;
 }
