@@ -29,6 +29,13 @@ const TEXT_SIZE = 40; // text font height in pixels
 const canv = document.getElementById('asteroids-game');
 const ctx = canv.getContext("2d");
 
+// set up sound effects
+let fxLaser = new Sound("../sounds/laser.wav", 5, 0.2);
+let fxWasHit = new Sound("../sounds/wasHit.ogg", 5, 1);
+let fxHit = new Sound("../sounds/hitAsteroid.mp3", 5, 1);
+let fxLose = new Sound("../sounds/shipDamaged.wav");
+let fxWin = new Sound("../sounds/victory.wav");
+
 window.addEventListener('resize', resizeCanvas, false);
 
 canv.width = window.innerWidth;
@@ -113,6 +120,8 @@ function destroyAsteroid(index) {
   }
 
   roids.splice(index, 1);
+  fxHit.play();
+
   if (roids.length === 0) {
     gameOver();
     // newLevel();
@@ -145,17 +154,18 @@ function drawShip(x, y, a, color = "white") {
 
 function explodeShip() {
   ship.explodeTime = Math.ceil(SHIP_EXPLODE_DUR * FPS);
-  // ctx.fillStyle = "lime";
-  // ctx.strokeStyle = "lime";
-  // ctx.beginPath();
-  // ctx.arc(ship.x, ship.y, ship.r, 0, Math.PI * 2, false);
-  // ctx.fill();
-  // ctx.stroke();
+  fxWasHit.play();
 }
 
 function gameOver() {
   ship.dead = true;
-  text = shipHealth === 0 ? "This ship is wrecked, please repair!" : "Thank you for protect the planet! You earn " + score/10 + " Gold!";
+  if (shipHealth === 0) {
+    text = "This ship is wrecked, please repair!";
+    fxLose.play();
+  } else {
+    text = "Thank you for protect the planet! You earn " + score/10 + " Gold!";
+    fxWin.play();
+  }
   textAlpha = 1.0;
   setTimeout(function() {
     document.location.replace('./AsteroidsResult.html');
@@ -238,10 +248,25 @@ function shootLaser() {
       yv: -LASER_SPD * Math.sin(ship.a) / FPS,
       dist: 0,
       explodeTime: 0
-    })
+    });
+    fxLaser.play();
   }
   // prevent further shooting
   ship.canShoot = false;
+}
+
+function Sound(src, maxStreams = 1, vol = 1.0) {
+  this.streamNum = 0;
+  this.streams = [];
+  for (let i = 0; i < maxStreams; i++) {
+    this.streams.push(new Audio(src));
+    this.streams[i].volume = vol;
+  }
+
+  this.play = function() {
+    this.streamNum = (this.streamNum + 1) % maxStreams;
+    this.streams[this.streamNum].play();
+  }
 }
 
 function update() {
