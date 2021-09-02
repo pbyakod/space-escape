@@ -4,6 +4,9 @@ import { Link } from "react-router-dom"
 import "../auth/auth.scss"
 import api from "../../../utils/api"
 
+import { Howl } from 'howler';
+import Hover from '../../../sounds/hover.mp3';
+
 export default function Auth({setAuth}) {
   //e.target to handle form
       //client side check username and password
@@ -21,6 +24,15 @@ export default function Auth({setAuth}) {
       setPassword
       }
   }
+
+  const hoverSound = new Howl({
+    src: Hover
+  })
+
+  function PlayHoverSound() {
+    hoverSound.play();
+  }
+
   const login = Input();
   const signUp = Input();
 
@@ -100,13 +112,14 @@ export default function Auth({setAuth}) {
                 name='submit' 
                 data-type='login' 
                 onClick={handleSubmit}
+                onMouseEnter={PlayHoverSound}
               >
                   submit
               </button>
             </div>
             <div className="auth-item">
               <Link to="" exact>
-                <button className="back-btn">back</button>
+                <button className="back-btn" onMouseEnter={PlayHoverSound}>back</button>
               </Link>
             </div>
           </article>
@@ -143,13 +156,14 @@ export default function Auth({setAuth}) {
                 name="submit"
                 data-type="signUp"
                 onClick={handleSubmit}
+                onMouseEnter={PlayHoverSound}
               >
                   submit
               </button>
             </div>
             <div className="auth-item">
               <Link to="" exact>
-                <button className="back-btn">back</button>
+                <button className="back-btn" onMouseEnter={PlayHoverSound}>back</button>
               </Link>
             </div>
           </article>
