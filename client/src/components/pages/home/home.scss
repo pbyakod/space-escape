@@ -15,8 +15,10 @@
 
 // spacing out the links and adding hover effect to them
 .initial-content .game-links {
-    margin: 1.25rem;
+    text-align: center;
+    margin: .5rem;
     padding: 1.25rem;
+    width: 20ch;
     background-color: #111125;
     &:hover {
         background-color: #450aa8;
