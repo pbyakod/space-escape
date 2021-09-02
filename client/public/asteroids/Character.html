@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">  <title>Asteroids</title>
   <link rel="stylesheet" href="../css/Character.css">
+  <script src='https://cdn.plot.ly/plotly-2.4.2.min.js'></script>
   <title>Document</title>
 </head>
 <body>
@@ -18,20 +19,22 @@
     <div class="content container">
       <div class="row">
         <div class="col-7 h-100">
-          <div class="container p-5">
-            CharacterImage
+          <div id="character-block" class="container">
           </div>
         </div>
         <div class="col-5 h-100">
-          <div class="container p-5">
-            <div>Date:</div>
+          <div class="container">
+            <div id="status">
+            </div>
+            <!-- <div>Date:</div>
             <div>character health:</div>
             <div>ship health:</div>
-            <div>Gold:</div>
+            <div>Gold:</div> -->
           </div>
         </div>
       </div>
     </div>
   </div>
+  <script src="../js/Character.js"></script>
 </body>
 </html>

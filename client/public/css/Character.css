@@ -10,3 +10,15 @@ div.content
 {
     flex: 1 1 auto;
 }
+
+.row {
+  height: 100%;
+}
+
+#character-block {
+  background-image: url("../images/char.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  height: 90%;
+  width: 80%;
+}
