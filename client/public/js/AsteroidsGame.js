@@ -1,6 +1,5 @@
 const FPS = 30; // frames per sec
 const FRICTION = 0.7; // friction coefficient of space (0 = no friction, 1 = lots of friction)
-const GAME_LIVES = 3; // starting number of lives
 const LASER_DIST = 0.4; // maximum distance laser can travel as fraction of screen width
 const LASER_MAX = 10; // maximum number of lasers on screen at once
 const LASER_SPD = 500; // speed of lasers in pixels per sec
@@ -10,9 +9,6 @@ const ROIDS_NUM = 10; // number of roids
 const ROIDS_PTS_LG = 20; // points scored for a large asteroid
 const ROIDS_PTS_MD = 50; // points scored for a large asteroid
 const ROIDS_PTS_SM = 100; // points scored for a large asteroid
-const ROIDS_DMG_LG = 20; // damage received when hit by a large asteroid
-const ROIDS_DMG_MD = 50; // damage received when hit by a medium asteroid
-const ROIDS_DMG_SM = 100; // damage received when hit by a small asteroid
 const ROIDS_SIZE = 100; // starting size of asteroids in pixels per sec
 const SHIP_BLINK_DUR = 0.1; // duration of the ship's blink during invisibility in sec
 const SHIP_EXPLODE_DUR = 0.3; // duration of the ship's explosion
@@ -27,7 +23,10 @@ const SHOW_BOUNDING = false; // show or hide collision bounding
 const TEXT_FADE_TIME = 2.5; // text fade time in sec
 const TEXT_SIZE = 40; // text font height in pixels
 const canv = document.getElementById('asteroids-game');
+const soundControl = document.getElementById('sound-control');
 const ctx = canv.getContext("2d");
+
+let soundOn = false;
 
 // set up sound effects
 let fxLaser = new Sound("../sounds/laser.wav", 5, 0.2);
@@ -36,7 +35,12 @@ let fxHit = new Sound("../sounds/hitAsteroid.mp3", 5, 1);
 let fxLose = new Sound("../sounds/shipDamaged.wav");
 let fxWin = new Sound("../sounds/victory.wav");
 
+
+soundHandle();
+
 window.addEventListener('resize', resizeCanvas, false);
+
+soundControl.addEventListener('click', soundHandle);
 
 canv.width = window.innerWidth;
 canv.height = window.innerHeight;
@@ -46,9 +50,20 @@ function resizeCanvas() {
   canv.height = window.innerHeight;
 }
 
+function soundHandle() {
+  if (!soundOn) {
+    soundControl.innerHTML = `<i class="fas fa-volume-up"></i>`;
+    soundOn = true;
+    console.log("sound " + soundOn);
+  } else {
+    soundControl.innerHTML = `<i class="fas fa-volume-mute"></i>`;
+    soundOn = false;
+    console.log("sound " + soundOn);
+  }
+}
 
 // set up the game parameters
-let level, roids, ship, lives, score, shipHealth, text, textAlpha;
+let level, roids, ship, score, shipHealth, text, textAlpha;
 
 newGame();
 
@@ -64,7 +79,6 @@ function newGame() {
   score = 0;
   shipHealth = 100;
   level = 0;
-  lives = GAME_LIVES;
   ship = newShip();
   newLevel();
 }
@@ -120,11 +134,12 @@ function destroyAsteroid(index) {
   }
 
   roids.splice(index, 1);
-  fxHit.play();
+  if (soundOn) {
+    fxHit.play();
+  }
 
   if (roids.length === 0) {
     gameOver();
-    // newLevel();
   }
 }
 
@@ -161,10 +176,14 @@ function gameOver() {
   ship.dead = true;
   if (shipHealth === 0) {
     text = "This ship is wrecked, please repair!";
-    fxLose.play();
+    if (soundOn) {
+      fxLose.play();
+    }
   } else {
     text = "Thank you for protect the planet! You earn " + score/10 + " Gold!";
-    fxWin.play();
+    if (soundOn) {
+      fxWin.play();
+    }
   }
   textAlpha = 1.0;
   setTimeout(function() {
@@ -249,7 +268,9 @@ function shootLaser() {
       dist: 0,
       explodeTime: 0
     });
-    fxLaser.play();
+    if (soundOn) {
+      fxLaser.play();
+    }
   }
   // prevent further shooting
   ship.canShoot = false;
@@ -573,13 +594,6 @@ function update() {
     ctx.fillText(text, canv.width / 2, canv.height * 0.75);
     textAlpha -= 0.5 / TEXT_FADE_TIME / FPS;
   }
-
-  // draw the lives
-  // let lifeColor;
-  // for (let i = 0; i < lives; i++) {
-  //   lifeColor = exploding && (i === lives - 1) ? "red" : "white";
-  //   drawShip(SHIP_SIZE + i * SHIP_SIZE * 1.2, SHIP_SIZE, 0.5 * Math.PI, lifeColor);
-  // }
 
   // draw the shipHealth
   ctx.textAlign = "left";
