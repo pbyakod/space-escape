@@ -11,7 +11,6 @@ import rich from "./charProto/RichardBransonFace.gif"
 import j from "./charProto/JeffBezos.gif"
 import e from "./charProto/ElonMusk.gif"
 import r from "./charProto/RichardBranson.gif"
-import bar from "./charProto/placeholderbargraph.png"
 
 export default function CreateCharacter() {
   const source = [jeff, elon, rich];
@@ -55,7 +54,6 @@ export default function CreateCharacter() {
     <div>
       <div>
         <section className="main-container">
-          <Link to="/"><button className="stop-btn">Back</button></Link>
       <h1 className="title">Choose Your Character</h1>
       <div className="grid-item">
                <div className="character-models">
@@ -82,16 +80,15 @@ export default function CreateCharacter() {
                   </span>
                 <div className="character-stats">
                   {/* <h3 className="title">{character.name}</h3> */}
-                  <img className="bar" src={bar} alt="" />
                   <h3 className="title">{character.name}</h3>
                   <div className="character-prop">Health: {character.health}</div>
                   <div className="character-prop">Gold: {character.gold}</div>
                   <div className="character-prop">Ship: {character.ship}</div>
                 </div>
               </div>
-        <Link to="story">
-        <button className="go-btn" onClick={handleSubmit}>submit</button>
-        </Link>
+        <div className="btn-row">
+          <Link to="story"><button className="go-btn" onClick={handleSubmit}>submit</button></Link>
+          <Link to="/"><button className="stop-btn">Back</button></Link></div>
         </section>
       </div>
     </div>

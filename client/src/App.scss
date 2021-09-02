@@ -36,7 +36,8 @@ button {
 // creating the main center container
 .main-container {
   background-color: #445a72;
-  // opacity: 90%;
+  opacity: 90%;
+  position: absolute;
   width: 50rem;
   height: fit-content;
   top: 0;
