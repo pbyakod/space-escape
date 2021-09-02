@@ -5,13 +5,17 @@ import sound from "../../../utils/sound";
 
 export default function home() {
   function handleNewGame() {
-    const user= JSON.parse(localStorage.getItem('user'));
-    const gameState = {
-      location_id: 1,
-      inProgress: true,
-      user_id: user.id
-    }
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (user) {
+      const gameState = {
+        location_id: 1,
+        inProgress: true,
+        user_id: user.id
+      }
     localStorage.setItem('game_state', JSON.stringify(gameState));
+    } else {
+      document.location.replace('/');
+    }
   }
   return (
     <div className="homepage" onMouseEnter={sound.PlayBackground}>
