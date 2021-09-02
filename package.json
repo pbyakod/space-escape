@@ -8,7 +8,7 @@
     "client": "npm start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "install": "cd server && npm i && cd ../client && npm i",
-    "seed": "node server/seeds/index.js"
+    "seed": "cd server && node seeds/index.js"
   },
   "repository": {
     "type": "git",

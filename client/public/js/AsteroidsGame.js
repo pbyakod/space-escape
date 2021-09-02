@@ -1,11 +1,10 @@
 const FPS = 30; // frames per sec
 const FRICTION = 0.7; // friction coefficient of space (0 = no friction, 1 = lots of friction)
-const GAME_LIVES = 3; // starting number of lives
 const LASER_DIST = 0.4; // maximum distance laser can travel as fraction of screen width
 const LASER_MAX = 10; // maximum number of lasers on screen at once
 const LASER_SPD = 500; // speed of lasers in pixels per sec
 const LASER_EXPLODE_DUR = 0.1; // duration of the laser's explosion in sec
-const ROIDS_JAG = .4; // jaggedness of the asteroids (0 = none, 1 = lots)
+const ROIDS_JAG = .15; // jaggedness of the asteroids (0 = none, 1 = lots)
 const ROIDS_NUM = 10; // number of roids
 const ROIDS_PTS_LG = 20; // points scored for a large asteroid
 const ROIDS_PTS_MD = 50; // points scored for a large asteroid
@@ -24,9 +23,24 @@ const SHOW_BOUNDING = false; // show or hide collision bounding
 const TEXT_FADE_TIME = 2.5; // text fade time in sec
 const TEXT_SIZE = 40; // text font height in pixels
 const canv = document.getElementById('asteroids-game');
+const soundControl = document.getElementById('sound-control');
 const ctx = canv.getContext("2d");
 
+let soundOn = false;
+
+// set up sound effects
+let fxLaser = new Sound("../sounds/laser.wav", 5, 0.2);
+let fxWasHit = new Sound("../sounds/wasHit.ogg", 5, 1);
+let fxHit = new Sound("../sounds/hitAsteroid.mp3", 5, 1);
+let fxLose = new Sound("../sounds/shipDamaged.wav");
+let fxWin = new Sound("../sounds/victory.wav");
+
+
+soundHandle();
+
 window.addEventListener('resize', resizeCanvas, false);
+
+soundControl.addEventListener('click', soundHandle);
 
 canv.width = window.innerWidth;
 canv.height = window.innerHeight;
@@ -36,9 +50,21 @@ function resizeCanvas() {
   canv.height = window.innerHeight;
 }
 
+function soundHandle() {
+  if (!soundOn) {
+    soundControl.innerHTML = `<i class="fas fa-volume-up"></i>`;
+    soundOn = true;
+    console.log("sound " + soundOn);
+  } else {
+    soundControl.innerHTML = `<i class="fas fa-volume-mute"></i>`;
+    soundOn = false;
+    console.log("sound " + soundOn);
+  }
+}
 
 // set up the game parameters
-let level, roids, ship, lives, score, text, textAlpha;
+let level, roids, ship, score, shipHealth, text, textAlpha;
+
 newGame();
 
 // set up the event handlers
@@ -51,14 +77,14 @@ setInterval(update, 1000 / FPS);
 
 function newGame() {
   score = 0;
+  shipHealth = 100;
   level = 0;
-  lives = GAME_LIVES;
   ship = newShip();
   newLevel();
 }
 
 function newLevel() {
-  text = "LEVEL " + (level + 1);
+  text = "Good Luck!";
   textAlpha = 1.0;
   createAsteroidBelt();
 }
@@ -108,9 +134,12 @@ function destroyAsteroid(index) {
   }
 
   roids.splice(index, 1);
+  if (soundOn) {
+    fxHit.play();
+  }
+
   if (roids.length === 0) {
-    level++;
-    newLevel();
+    gameOver();
   }
 }
 
@@ -140,21 +169,25 @@ function drawShip(x, y, a, color = "white") {
 
 function explodeShip() {
   ship.explodeTime = Math.ceil(SHIP_EXPLODE_DUR * FPS);
-  // ctx.fillStyle = "lime";
-  // ctx.strokeStyle = "lime";
-  // ctx.beginPath();
-  // ctx.arc(ship.x, ship.y, ship.r, 0, Math.PI * 2, false);
-  // ctx.fill();
-  // ctx.stroke();
+  fxWasHit.play();
 }
 
 function gameOver() {
   ship.dead = true;
-  text = "Game Over";
+  if (shipHealth === 0) {
+    text = "This ship is wrecked, please repair!";
+    if (soundOn) {
+      fxLose.play();
+    }
+  } else {
+    text = "Thank you for protect the planet! You earn " + score/10 + " Gold!";
+    if (soundOn) {
+      fxWin.play();
+    }
+  }
   textAlpha = 1.0;
   setTimeout(function() {
-    console.log("next page");
-    document.location.replace('./AsteroidsHome.html');
+    document.location.replace('./AsteroidsResult.html');
   }, 5 * 1000)
 }
 
@@ -234,10 +267,27 @@ function shootLaser() {
       yv: -LASER_SPD * Math.sin(ship.a) / FPS,
       dist: 0,
       explodeTime: 0
-    })
+    });
+    if (soundOn) {
+      fxLaser.play();
+    }
   }
   // prevent further shooting
   ship.canShoot = false;
+}
+
+function Sound(src, maxStreams = 1, vol = 1.0) {
+  this.streamNum = 0;
+  this.streams = [];
+  for (let i = 0; i < maxStreams; i++) {
+    this.streams.push(new Audio(src));
+    this.streams[i].volume = vol;
+  }
+
+  this.play = function() {
+    this.streamNum = (this.streamNum + 1) % maxStreams;
+    this.streams[this.streamNum].play();
+  }
 }
 
 function update() {
@@ -282,7 +332,8 @@ function update() {
 
   // draw the ship
   if (!exploding) {
-    if (blinkOn && !ship.dead) {
+    if (blinkOn) {
+      // if (blinkOn && !ship.dead) {
       drawShip(ship.x, ship.y, ship.a);
     }
 
@@ -334,7 +385,10 @@ function update() {
   
   for (let i = 0; i < roids.length; i++) {
     const { x, y, r, a, vert, offset} = roids[i];
-    ctx.strokeStyle = "slategrey";
+    ctx.strokeStyle = 'rgba(206, 104, 104)';
+    ctx.shadowColor = 'rgba(206, 104, 104)';
+    ctx.shadowBlur = 15;
+    ctx.fillStyle = 'rgba(206, 104, 104)';
     ctx.lineWidth = SHIP_SIZE / 20;
     // draw a path
     ctx.beginPath();
@@ -351,6 +405,7 @@ function update() {
       )
     }
     ctx.closePath();
+    ctx.fill();
     ctx.stroke();
 
     if (SHOW_BOUNDING) {
@@ -359,6 +414,42 @@ function update() {
       ctx.arc(x, y, r, 0, Math.PI * 2, false);
       ctx.stroke();
     }
+    // ctx.beginPath();
+    // ctx.moveTo(83, 116);
+    // ctx.lineTo(83, 102);
+    // ctx.bezierCurveTo(83, 94, 89, 88, 97, 88);
+    // ctx.bezierCurveTo(105, 88, 111, 94, 111, 102);
+    // ctx.lineTo(111, 116);
+    // ctx.lineTo(106.333, 111.333);
+    // ctx.lineTo(101.666, 116);
+    // ctx.lineTo(97, 111.333);
+    // ctx.lineTo(92.333, 116);
+    // ctx.lineTo(87.666, 111.333);
+    // ctx.lineTo(83, 116);
+    // ctx.fill();
+
+    // ctx.fillStyle = 'white';
+    // ctx.beginPath();
+    // ctx.moveTo(91, 96);
+    // ctx.bezierCurveTo(88, 96, 87, 99, 87, 101);
+    // ctx.bezierCurveTo(87, 103, 88, 106, 91, 106);
+    // ctx.bezierCurveTo(94, 106, 95, 103, 95, 101);
+    // ctx.bezierCurveTo(95, 99, 94, 96, 91, 96);
+    // ctx.moveTo(103, 96);
+    // ctx.bezierCurveTo(100, 96, 99, 99, 99, 101);
+    // ctx.bezierCurveTo(99, 103, 100, 106, 103, 106);
+    // ctx.bezierCurveTo(106, 106, 107, 103, 107, 101);
+    // ctx.bezierCurveTo(107, 99, 106, 96, 103, 96);
+    // ctx.fill();
+
+    // ctx.fillStyle = 'green';
+    // ctx.beginPath();
+    // ctx.arc(101, 102, 2, 0, Math.PI * 2, true);
+    // ctx.fill();
+
+    // ctx.beginPath();
+    // ctx.arc(89, 102, 2, 0, Math.PI * 2, true);
+    // ctx.fill();
   }
 
   // check for asteroid collisions
@@ -385,11 +476,9 @@ function update() {
     ship.explodeTime--;
 
     if (ship.explodeTime === 0) {
-      lives--;
-      if (lives === 0) {
+      shipHealth -= 10;
+      if (shipHealth === 0) {
         gameOver();
-      } else {
-        ship = newShip();
       }
     }
   }
@@ -503,22 +592,24 @@ function update() {
     ctx.fillStyle = "rgba(255, 255, 255, " + textAlpha + ")";
     ctx.font = "small-caps " + TEXT_SIZE + "px dejavu sans mono";
     ctx.fillText(text, canv.width / 2, canv.height * 0.75);
-    textAlpha -= 1.0 / TEXT_FADE_TIME / FPS;
+    textAlpha -= 0.5 / TEXT_FADE_TIME / FPS;
   }
 
-  // draw the lives
-  let lifeColor;
-  for (let i = 0; i < lives; i++) {
-    lifeColor = exploding && (i === lives - 1) ? "red" : "white";
-    drawShip(SHIP_SIZE + i * SHIP_SIZE * 1.2, SHIP_SIZE, 0.5 * Math.PI, lifeColor);
-  }
+  // draw the shipHealth
+  ctx.textAlign = "left";
+  ctx.textBaseLine = "middle";
+  ctx.fillStyle = shipHealth < 30 ? "red" : "white";
+  ctx.font = TEXT_SIZE + "px dejavu sans mono";
+  ctx.fillText("Ship Health: " + shipHealth, SHIP_SIZE * 2, SHIP_SIZE * 2);
+
+
 
   // draw the score
   ctx.textAlign = "right";
   ctx.textBaseLine = "middle";
   ctx.fillStyle = "white";
   ctx.font = TEXT_SIZE + "px dejavu sans mono";
-  ctx.fillText(score, canv.width - SHIP_SIZE / 2, SHIP_SIZE);
+  ctx.fillText("Score: " + score, canv.width - SHIP_SIZE * 2, SHIP_SIZE * 2);
 
   // detect laser hits on asteroids
   let ax, ay, ar, lx, ly;
