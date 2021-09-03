@@ -1,13 +1,13 @@
 import React from 'react'
-import { useGameContext } from '../../utils/Game/GlobalState'
+import { useGameContext } from '../../../../../utils/Game/GlobalState'
 import { 
   RENDER_MINIGAME, 
   RENDER_RESULTS, 
   UPDATE_LOCATION,
   UPDATE_CHARACTER_STATS
-} from "../../utils/Game/actions"
+} from "../../../../../utils/Game/actions"
 
-import NavBar from '../navBar/NavBar';
+import NavBar from '../../../../navBar/NavBar';
 
 export default function Prompt({optionOne, optionTwo}) {
   const [state, dispatch] = useGameContext();

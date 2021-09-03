@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom"
-import authors from "../../../aboutAuthors/about"
-import Author from "../../author/Author"
-import '../about/about.scss'
-import sound from "../../../utils/sound";
+import authors from "../../../../aboutAuthors/about"
+import Author from "../author/Author"
+import './about.scss'
+import sound from "../../../../utils/sound";
 
 
 export default function About() {

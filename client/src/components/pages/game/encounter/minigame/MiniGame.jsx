@@ -1,7 +1,6 @@
 
-import { Link } from "react-router-dom"
-import { RENDER_RESULTS } from "../../utils/Game/actions";
-import { useGameContext } from "../../utils/Game/GlobalState"
+import { RENDER_RESULTS } from "../../../../../utils/Game/actions";
+import { useGameContext } from "../../../../../utils/Game/GlobalState"
 
 export default function MiniGame(prop) {
   const [state, dispatch] = useGameContext();

@@ -1,9 +1,9 @@
-import Encounter from "../../encounter/Encounter";
+import Encounter from "./encounter/Encounter";
 import apiCalls from "../../../utils/api";
 import { useGameContext } from "../../../utils/Game/GlobalState";
 import { useEffect } from "react";
 import { INITIALIZE_GAME } from "../../../utils/Game/actions";
-import Story from "../Story";
+import Story from "./story/Story";
 
 export default function Game() {
   const [state, dispatch] = useGameContext();

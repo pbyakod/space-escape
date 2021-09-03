@@ -1,6 +1,5 @@
-import NavBar from "../navBar/NavBar"
-import { useGameContext } from "../../utils/Game/GlobalState"
-import { RENDER_STORY} from "../../utils/Game/actions";
+import { useGameContext } from "../../../../../utils/Game/GlobalState"
+import { RENDER_STORY} from "../../../../../utils/Game/actions";
 
 export default function Result() {
   const [state, dispatch] = useGameContext();
