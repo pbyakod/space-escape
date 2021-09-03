@@ -43,7 +43,7 @@ const Canvas = () => {
     }
     switch(e.keyCode) {
       case 32 : // space bar (shoot the laser)
-        shootLaser(shipObj, soundOn, fxLaser);
+        shootLaser(shipObj, soundOn);
         break;
       case 37 : // left arrow (rotate ship left)
         shipObj.rot = TURN_SPEED / 180 * Math.PI / FPS;
@@ -96,8 +96,8 @@ const Canvas = () => {
       if (!shipObj.exloding && shipObj.blinkNum === 0 && !shipObj.dead) {
         for (let i = 0; i < roids.current.length; i++) {
           if (distBetweenPoints(shipObj.x, shipObj.y, roids.current[i].x, roids.current[i].y) < shipObj.r + roids.current[i].r) {
-            explodeShip(shipObj, soundOn, fxWasHit);
-            destroyAsteroid(i, roids, {}, soundOn, fxHit, level);
+            explodeShip(shipObj, soundOn);
+            destroyAsteroid(i, roids, {}, soundOn, level);
             break;
           }
         }
@@ -121,7 +121,7 @@ const Canvas = () => {
           if (distBetweenPoints(ax, ay, lx, ly) < ar) {        
 
             // destroy the asteroid and activate the laser explosion
-            destroyAsteroid(i, roids, {}, soundOn, fxHit, level);
+            destroyAsteroid(i, roids, {}, soundOn, level);
             shipObj.lasers[j].explodeTime = Math.ceil(LASER_EXPLODE_DUR * FPS);
 
             break;

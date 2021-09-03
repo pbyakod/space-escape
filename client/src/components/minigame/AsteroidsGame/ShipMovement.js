@@ -1,9 +1,10 @@
 import { SHIP_SIZE, SHIP_BLINK_DUR, SHIP_EXPLODE_DUR, FPS, SHIP_THRUST, FRICTION, LASER_DIST } from './constVaraibles';
+import soundCalls from '../../../utils/sound';
 
-export function explodeShip(shipObj, soundOn, soundFile) {
+export function explodeShip(shipObj, soundOn) {
   shipObj.explodeTime = Math.ceil(SHIP_EXPLODE_DUR * FPS);
   if (soundOn) {
-    soundFile.play();
+    soundCalls.PlayShipWasHit();
   }
 }
 
@@ -171,13 +172,6 @@ class Ship {
     ctx.closePath();
     ctx.fill();
     ctx.stroke();
-  }
-
-  explodeShip(soundOn, soundFile) {
-    this.explodeTime = Math.ceil(SHIP_EXPLODE_DUR * FPS);
-    if (soundOn) {
-      soundFile.play();
-    }
   }
 
   drawExlosion(ctx) {

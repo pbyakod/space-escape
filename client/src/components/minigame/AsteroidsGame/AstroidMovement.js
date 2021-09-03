@@ -1,5 +1,6 @@
 import { ROIDS_NUM, ROIDS_SIZE, ROIDS_PTS_LG, ROIDS_PTS_MD, ROIDS_PTS_SM, ROIDS_JAG, ROIDS_VERT, ROIDS_SPD, FPS, SHIP_SIZE } from "./constVaraibles";
 import { distBetweenPoints, dealWithBorder } from "./helper";
+import soundCalls from "../../../utils/sound";
 
 export function createAsteroids(level, shipObj, canvas, roids) {
   roids.current = [];
@@ -27,7 +28,7 @@ export function moveAsteroids(ctx, roids) {
   }
 }
 
-export function destroyAsteroid(index, roids, player, soundOn, soundFile, level) {
+export function destroyAsteroid(index, roids, player, soundOn, level) {
   let { x, y, r } = roids.current[index];
 
   // split the asteroid in two if necessary
@@ -41,7 +42,7 @@ export function destroyAsteroid(index, roids, player, soundOn, soundFile, level)
 
   roids.current.splice(index, 1);
   if (soundOn) {
-    soundFile.play();
+    soundCalls.PlayLaserHitAsteroid();
   }
 
   if (roids.current.length === 0) {

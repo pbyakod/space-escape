@@ -1,4 +1,5 @@
 import { LASER_SPD, FPS, LASER_MAX } from "./constVaraibles";
+import soundCalls from "../../../utils/sound";
 
 export function dealWithBorder (obj, width, height) {
   if (obj.x < 0 - obj.r) {
@@ -18,7 +19,7 @@ export function distBetweenPoints (x1, y1, x2, y2) {
   return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
 }
 
-export function shootLaser(ship, soundOn, soundFile) {
+export function shootLaser(ship, soundOn) {
   console.log(ship);
   // create the laser object
   if (ship.canShoot && ship.lasers.length < LASER_MAX) {
@@ -31,7 +32,7 @@ export function shootLaser(ship, soundOn, soundFile) {
       explodeTime: 0
     });
     if (soundOn) {
-      soundFile.play();
+      soundCalls.PlayShootLaser();
     }
   }
   // prevent further shooting
