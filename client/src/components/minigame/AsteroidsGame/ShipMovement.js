@@ -1,144 +1,6 @@
 import { SHIP_SIZE, SHIP_BLINK_DUR, SHIP_EXPLODE_DUR, FPS, SHIP_THRUST, FRICTION, LASER_DIST, SHIP_INV_DUR, LASER_SPD, LASER_MAX } from './constVaraibles';
+import { dealWithBorder } from "./helper";
 import soundCalls from '../../../utils/sound';
-
-export function explodeShip(ship, soundOn) {
-  ship.explodeTime = Math.ceil(SHIP_EXPLODE_DUR * FPS);
-  if (soundOn) {
-    soundCalls.PlayShipWasHit();
-  }
-}
-
-export function shootLaser(ship, soundOn) {
-  if (ship.canShoot && ship.lasers.length < LASER_MAX) {
-    ship.lasers.push({ // from the nose of the ship
-      x: ship.x + 4 / 3 * ship.r * Math.cos(ship.a),
-      y: ship.y - 4 / 3 * ship.r * Math.sin(ship.a),
-      xv: LASER_SPD * Math.cos(ship.a) / FPS,
-      yv: -LASER_SPD * Math.sin(ship.a) / FPS,
-      dist: 0,
-      explodeTime: 0
-    });
-    if (soundOn) {
-      soundCalls.PlayShootLaser();
-    }
-  }
-  // prevent further shooting
-  ship.canShoot = false;
-}
-
-export function drawLaser(ctx, ship) {
-  for (let i = 0; i < ship.lasers.length; i++) {
-    if (ship.lasers[i].explodeTime === 0) {
-      ctx.fillStyle = 'salmon';
-      ctx.beginPath();
-      // console.log(ship);
-      ctx.arc(ship.lasers[i].x, ship.lasers[i].y, SHIP_SIZE / 15, 0, Math.PI * 2, false);
-      ctx.fill();
-    } else {
-      // draw the explosion
-      ctx.fillStyle = 'orangered';
-      ctx.beginPath();
-      ctx.arc(ship.lasers[i].x, ship.lasers[i].y, ship.r * 0.75, 0, Math.PI * 2, false);
-      ctx.fill();
-      ctx.fillStyle = 'salmon';
-      ctx.beginPath();
-      ctx.arc(ship.lasers[i].x, ship.lasers[i].y, ship.r * 0.5, 0, Math.PI * 2, false);
-      ctx.fill();
-      ctx.fillStyle = 'pink';
-      ctx.beginPath();
-      ctx.arc(ship.lasers[i].x, ship.lasers[i].y, ship.r * 0.25, 0, Math.PI * 2, false);
-      ctx.fill();
-    }
-  }
-}
-
-export function moveLaser (canvas, ship) {
-  for (let i = ship.lasers.length - 1; i >= 0 ; i--) {
-    // check distance travelled
-    if (ship.lasers[i].dist > LASER_DIST * canvas.width) {
-      ship.lasers.splice(i, 1);
-      continue;
-    }
-
-    // handle the explosion
-    if (ship.lasers[i].explodeTime > 0) {
-      ship.lasers[i].explodeTime--;
-
-      // destroy the laser after the duration is up
-      if (ship.lasers[i].explodeTime === 0) {
-        ship.lasers.splice(i, 1);
-        continue;
-      }
-    } else {
-    // move the laser
-      ship.lasers[i].x += ship.lasers[i].xv;
-      ship.lasers[i].y += ship.lasers[i].yv;
-
-      // calculate the distance travelled
-      ship.lasers[i].dist += Math.sqrt(Math.pow(ship.lasers[i].xv, 2) + Math.pow(ship.lasers[i].yv, 2));
-    }
-
-    // handle the edge of screen
-    if (ship.lasers[i].x < 0) {
-      ship.lasers[i].x = canvas.width;
-    } else if (ship.lasers[i].x > canvas.width) {
-      ship.lasers[i].x = 0;
-    }
-    if (ship.lasers[i].y < 0) {
-      ship.lasers[i].y = canvas.height;
-    } else if (ship.lasers[i].y > canvas.height) {
-      ship.lasers[i].y = 0;
-    }
-  }
-}
-
-export function shipMovement(ctx, ship) {
-  let blinkOn = ship.blinkNum % 2 === 0;
-  let exploding = ship.explodeTime > 0;
-
-  if (!exploding) {
-    if (blinkOn) {
-      ship.drawShip(ctx);
-    }
-
-    if (ship.blinkNum > 0) {
-      ship.blinkTime--;
-
-      if (ship.blinkTime === 0) {
-        ship.blinkTime = Math.ceil(SHIP_BLINK_DUR * FPS);
-        ship.blinkNum--;
-      }
-    }
-
-    ship.a += ship.rot;
-    ship.x += ship.thrust.x;
-    ship.y += ship.thrust.y;
-    
-  } else {
-    ship.drawExlosion(ctx);
-    ship.explodeTime--;
-
-    // if (ship.explodeTime === 0) {
-    //   player.shipHealth -= 10;
-    //   if (player.shipHealth === 0) {
-    //     gameOver();
-    //   }
-    // }
-  }
-
-  if (ship.thrusting && !ship.dead) {
-    ship.thrust.x += SHIP_THRUST * Math.cos(ship.a) / FPS;
-    ship.thrust.y -= SHIP_THRUST * Math.sin(ship.a) / FPS;
-  
-    // draw the thrust
-    if (!exploding && blinkOn) {
-      ship.drawThrust(ctx);
-    } 
-  } else {
-    ship.thrust.x -= FRICTION * ship.thrust.x / FPS;
-    ship.thrust.y -= FRICTION * ship.thrust.y / FPS;
-  }
-}
 
 export class Ship {
   constructor() {
@@ -202,6 +64,31 @@ export class Ship {
     ctx.stroke();
   }
 
+  drawLaser(ctx) {
+    for (let i = 0; i < this.lasers.length; i++) {
+      if (this.lasers[i].explodeTime === 0) {
+        ctx.fillStyle = 'salmon';
+        ctx.beginPath();
+        ctx.arc(this.lasers[i].x, this.lasers[i].y, SHIP_SIZE / 15, 0, Math.PI * 2, false);
+        ctx.fill();
+      } else {
+        // draw the explosion
+        ctx.fillStyle = 'orangered';
+        ctx.beginPath();
+        ctx.arc(this.lasers[i].x, this.lasers[i].y, this.r * 0.75, 0, Math.PI * 2, false);
+        ctx.fill();
+        ctx.fillStyle = 'salmon';
+        ctx.beginPath();
+        ctx.arc(this.lasers[i].x, this.lasers[i].y, this.r * 0.5, 0, Math.PI * 2, false);
+        ctx.fill();
+        ctx.fillStyle = 'pink';
+        ctx.beginPath();
+        ctx.arc(this.lasers[i].x, this.lasers[i].y, this.r * 0.25, 0, Math.PI * 2, false);
+        ctx.fill();
+      }
+    }
+  }
+
   drawExlosion(ctx) {
     ctx.fillStyle = "darkred";
     ctx.beginPath();
@@ -223,5 +110,124 @@ export class Ship {
     ctx.beginPath();
     ctx.arc(this.x, this.y, this.r * 0.5, 0, Math.PI * 2, false);
     ctx.fill();
+  }
+
+  draw(ctx) {
+    let blinkOn = this.blinkNum % 2 === 0;
+    let exploding = this.explodeTime > 0;
+    if (!exploding && blinkOn) {
+      this.drawShip(ctx);
+      if (this.thrusting && !this.dead) {
+        this.drawThrust(ctx);
+      }
+    } else if (exploding) {
+      this.drawExlosion(ctx);
+    }
+    this.drawLaser(ctx);
+  }
+
+  move(canvas) {
+    this.moveShip(canvas);
+    this.moveLaser(canvas);
+  }
+
+  moveShip(canvas) {
+    let exploding = this.explodeTime > 0;
+  
+    if (!exploding) {
+  
+      if (this.blinkNum > 0) {
+        this.blinkTime--;
+  
+        if (this.blinkTime === 0) {
+          this.blinkTime = Math.ceil(SHIP_BLINK_DUR * FPS);
+          this.blinkNum--;
+        }
+      }
+  
+      this.a += this.rot;
+      this.x += this.thrust.x;
+      this.y += this.thrust.y;
+      
+      dealWithBorder(this, canvas.width, canvas.height);
+      
+    } else {
+      
+      this.explodeTime--;
+  
+      // if (ship.explodeTime === 0) {
+      //   player.shipHealth -= 10;
+      //   if (player.shipHealth === 0) {
+      //     gameOver();
+      //   }
+      // }
+    }
+  
+    if (this.thrusting && !this.dead) {
+      this.thrust.x += SHIP_THRUST * Math.cos(this.a) / FPS;
+      this.thrust.y -= SHIP_THRUST * Math.sin(this.a) / FPS;
+    
+    } else {
+      this.thrust.x -= FRICTION * this.thrust.x / FPS;
+      this.thrust.y -= FRICTION * this.thrust.y / FPS;
+    }
+  }
+
+  shootLaser(soundOn) {
+    if (this.canShoot && this.lasers.length < LASER_MAX) {
+      this.lasers.push({ // from the nose of the ship
+        x: this.x + 4 / 3 * this.r * Math.cos(this.a),
+        y: this.y - 4 / 3 * this.r * Math.sin(this.a),
+        xv: LASER_SPD * Math.cos(this.a) / FPS,
+        yv: -LASER_SPD * Math.sin(this.a) / FPS,
+        dist: 0,
+        explodeTime: 0
+      });
+      if (soundOn) {
+        soundCalls.PlayShootLaser();
+      }
+    }
+    // prevent further shooting
+    this.canShoot = false;
+  }
+
+  moveLaser (canvas) {
+    for (let i = this.lasers.length - 1; i >= 0 ; i--) {
+      // check distance travelled
+      if (this.lasers[i].dist > LASER_DIST * canvas.width) {
+        this.lasers.splice(i, 1);
+        continue;
+      }
+  
+      // handle the explosion
+      if (this.lasers[i].explodeTime > 0) {
+        this.lasers[i].explodeTime--;
+  
+        // destroy the laser after the duration is up
+        if (this.lasers[i].explodeTime === 0) {
+          this.lasers.splice(i, 1);
+          continue;
+        }
+      } else {
+      // move the laser
+        this.lasers[i].x += this.lasers[i].xv;
+        this.lasers[i].y += this.lasers[i].yv;
+  
+        // calculate the distance travelled
+        this.lasers[i].dist += Math.sqrt(Math.pow(this.lasers[i].xv, 2) + Math.pow(this.lasers[i].yv, 2));
+      }
+  
+      // handle the edge of screen
+      if (this.lasers[i].x < 0 || this.lasers[i].x > canvas.width || this.lasers[i].y < 0 || this.lasers[i].y > canvas.height) {
+        this.lasers.splice(i, 1);
+      }
+    }
+  }
+
+  explodeShip(soundOn) {
+    this.explodeTime = Math.ceil(SHIP_EXPLODE_DUR * FPS);
+    if (soundOn) {
+      soundCalls.PlayShipWasHit();
+    }
   }
 }

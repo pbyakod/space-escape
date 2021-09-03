@@ -1,16 +1,16 @@
 import React, { useRef, useLayoutEffect, useState } from 'react';
 import "./AsteroidsGame.css";
 import { TURN_SPEED, FPS, LASER_EXPLODE_DUR } from "./constVaraibles";
-import { Ship, shipMovement, explodeShip, drawLaser, moveLaser, shootLaser } from "./ShipMovement";
+import { Ship } from "./ShipMovement";
 import { drawAsteroids, createAsteroids, moveAsteroids, destroyAsteroid } from "./AstroidMovement";
-import { dealWithBorder, distBetweenPoints } from "./helper";
+import { distBetweenPoints } from "./helper";
 
 const Canvas = () => {
   let soundOn = true;
 
   let level = 3
   const canvasRef = useRef(null);
-  const roids = useRef([]);
+  const roids = useRef(null);
   const ship = new Ship();
   const keyDown = (e) => {
     if (ship.dead) {
@@ -18,7 +18,7 @@ const Canvas = () => {
     }
     switch(e.keyCode) {
       case 32 : // space bar (shoot the laser)
-        shootLaser(ship, soundOn);
+        ship.shootLaser(soundOn);
         break;
       case 37 : // left arrow (rotate ship left)
         ship.rot = TURN_SPEED / 180 * Math.PI / FPS;
@@ -63,16 +63,19 @@ const Canvas = () => {
   useLayoutEffect(() => {
 
     var animationId = 0;
-
+    
     const myRender = () => {
       
       const canvas = canvasRef.current;
       const ctx = canvas.getContext('2d');
-
+      if (!roids.current) {
+        createAsteroids(level, ship, canvas, roids);
+      }
+      
       if (!ship.exloding && ship.blinkNum === 0 && !ship.dead) {
         for (let i = 0; i < roids.current.length; i++) {
           if (distBetweenPoints(ship.x, ship.y, roids.current[i].x, roids.current[i].y) < ship.r + roids.current[i].r) {
-            explodeShip(ship, soundOn);
+            ship.explodeShip(soundOn);
             destroyAsteroid(i, roids, {}, soundOn, level);
             break;
           }
@@ -105,17 +108,13 @@ const Canvas = () => {
         }
       }
       
-      if (roids.current.length === 0) {
-        createAsteroids(level, ship, canvas, roids);
-      }
+      
       // use r going forward
       ctx.clearRect(0, 0, canvas.width, canvas.height)
-      drawAsteroids(ctx, roids);
       moveAsteroids(ctx, roids.current);
-      dealWithBorder(ship, canvas.width, canvas.height);
-      shipMovement(ctx, ship);
-      drawLaser(ctx, ship);
-      moveLaser(canvas, ship);
+      drawAsteroids(ctx, roids);
+      ship.move(canvas);
+      ship.draw(ctx);
 
       animationId = requestAnimationFrame(myRender);
     };

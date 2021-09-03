@@ -1,6 +1,3 @@
-import { LASER_SPD, FPS, LASER_MAX } from "./constVaraibles";
-import soundCalls from "../../../utils/sound";
-
 export function dealWithBorder (obj, width, height) {
   if (obj.x < 0 - obj.r) {
     obj.x = width + obj.r;
