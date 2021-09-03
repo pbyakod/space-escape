@@ -1,11 +1,29 @@
-import { SHIP_SIZE, SHIP_BLINK_DUR, SHIP_EXPLODE_DUR, FPS, SHIP_THRUST, FRICTION, LASER_DIST } from './constVaraibles';
+import { SHIP_SIZE, SHIP_BLINK_DUR, SHIP_EXPLODE_DUR, FPS, SHIP_THRUST, FRICTION, LASER_DIST, SHIP_INV_DUR, LASER_SPD, LASER_MAX } from './constVaraibles';
 import soundCalls from '../../../utils/sound';
 
-export function explodeShip(shipObj, soundOn) {
-  shipObj.explodeTime = Math.ceil(SHIP_EXPLODE_DUR * FPS);
+export function explodeShip(ship, soundOn) {
+  ship.explodeTime = Math.ceil(SHIP_EXPLODE_DUR * FPS);
   if (soundOn) {
     soundCalls.PlayShipWasHit();
   }
+}
+
+export function shootLaser(ship, soundOn) {
+  if (ship.canShoot && ship.lasers.length < LASER_MAX) {
+    ship.lasers.push({ // from the nose of the ship
+      x: ship.x + 4 / 3 * ship.r * Math.cos(ship.a),
+      y: ship.y - 4 / 3 * ship.r * Math.sin(ship.a),
+      xv: LASER_SPD * Math.cos(ship.a) / FPS,
+      yv: -LASER_SPD * Math.sin(ship.a) / FPS,
+      dist: 0,
+      explodeTime: 0
+    });
+    if (soundOn) {
+      soundCalls.PlayShootLaser();
+    }
+  }
+  // prevent further shooting
+  ship.canShoot = false;
 }
 
 export function drawLaser(ctx, ship) {
@@ -74,35 +92,33 @@ export function moveLaser (canvas, ship) {
   }
 }
 
-export function shipMovement(ctx, shipObj) {
-  let blinkOn = shipObj.blinkNum % 2 === 0;
-  let exploding = shipObj.explodeTime > 0;
-
-  let ship = new Ship(shipObj.x, shipObj.y, shipObj.r, shipObj.a);
+export function shipMovement(ctx, ship) {
+  let blinkOn = ship.blinkNum % 2 === 0;
+  let exploding = ship.explodeTime > 0;
 
   if (!exploding) {
     if (blinkOn) {
       ship.drawShip(ctx);
     }
 
-    if (shipObj.blinkNum > 0) {
-      shipObj.blinkTime--;
+    if (ship.blinkNum > 0) {
+      ship.blinkTime--;
 
-      if (shipObj.blinkTime === 0) {
-        shipObj.blinkTime = Math.ceil(SHIP_BLINK_DUR * FPS);
-        shipObj.blinkNum--;
+      if (ship.blinkTime === 0) {
+        ship.blinkTime = Math.ceil(SHIP_BLINK_DUR * FPS);
+        ship.blinkNum--;
       }
     }
 
-    shipObj.a += shipObj.rot;
-    shipObj.x += shipObj.thrust.x;
-    shipObj.y += shipObj.thrust.y;
+    ship.a += ship.rot;
+    ship.x += ship.thrust.x;
+    ship.y += ship.thrust.y;
     
   } else {
     ship.drawExlosion(ctx);
-    shipObj.explodeTime--;
+    ship.explodeTime--;
 
-    // if (shipObj.explodeTime === 0) {
+    // if (ship.explodeTime === 0) {
     //   player.shipHealth -= 10;
     //   if (player.shipHealth === 0) {
     //     gameOver();
@@ -110,26 +126,38 @@ export function shipMovement(ctx, shipObj) {
     // }
   }
 
-  if (shipObj.thrusting && !shipObj.dead) {
-    shipObj.thrust.x += SHIP_THRUST * Math.cos(shipObj.a) / FPS;
-    shipObj.thrust.y -= SHIP_THRUST * Math.sin(shipObj.a) / FPS;
+  if (ship.thrusting && !ship.dead) {
+    ship.thrust.x += SHIP_THRUST * Math.cos(ship.a) / FPS;
+    ship.thrust.y -= SHIP_THRUST * Math.sin(ship.a) / FPS;
   
     // draw the thrust
     if (!exploding && blinkOn) {
       ship.drawThrust(ctx);
     } 
   } else {
-    shipObj.thrust.x -= FRICTION * shipObj.thrust.x / FPS;
-    shipObj.thrust.y -= FRICTION * shipObj.thrust.y / FPS;
+    ship.thrust.x -= FRICTION * ship.thrust.x / FPS;
+    ship.thrust.y -= FRICTION * ship.thrust.y / FPS;
   }
 }
 
-class Ship {
-  constructor(x, y, r, a) {
-    this.x = x;
-    this.y = y;
-    this.r = r;
-    this.a = a;
+export class Ship {
+  constructor() {
+    this.x = window.innerWidth / 2;
+    this.y = window.innerHeight / 2;
+    this.r = SHIP_SIZE / 2;
+    this.a = 90 / 180 * Math.PI;
+    this.blinkTime = Math.ceil(SHIP_BLINK_DUR * FPS);
+    this.blinkNum = Math.ceil(SHIP_INV_DUR / SHIP_BLINK_DUR);
+    this.canShoot = true;
+    this.dead = false;
+    this.lasers = [];
+    this.rot = 0;
+    this.explodeTime  = 0;
+    this.thrusting = false;
+    this.thrust = {
+      x: 0,
+      y: 0
+    }
   }
 
   drawShip(ctx, color = "white") {
