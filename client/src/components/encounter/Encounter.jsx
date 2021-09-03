@@ -8,11 +8,9 @@ export default function Encounter({optionOne, optionTwo}) {
   const [state, dispatch] = useGameContext();
 
    
-
-   
   return (
     <div>
-      {state.renderPrompt && <Prompt optionOne optionTwo/>}
+      {state.renderPrompt && <Prompt optionOne={optionOne} optionTwo={optionTwo}/>}
       {state.renderMinigame && <MiniGame/>}
       {state.renderResults && <Result />}
     </div>

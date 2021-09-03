@@ -1,7 +1,7 @@
 import { useReducer } from "react";
 import {
   CREATE_GAME,
-  INITIALIZE_ENCOUNTERS,
+  INITIALIZE_GAME,
   RENDER_MINIGAME,
   RENDER_RESULTS,
   RENDER_PROMPT,
@@ -21,7 +21,7 @@ export const reducer = (state, action) => {
         gold: action.gold,
         inProgress: action.inProgress
       }
-    case INITIALIZE_ENCOUNTERS:
+    case INITIALIZE_GAME:
       return {
         ...state,
         encounter: action.encounter,

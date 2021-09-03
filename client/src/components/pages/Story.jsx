@@ -4,8 +4,7 @@ import story from '../../assets/gameData/story';
 
 export default function Story({location_id}) {
   const [state, dispatch] = useGameContext();
-
-  console.log(story[location_id - 1], location_id)
+  
   function handleClick(e) {
     console.log(e)
    dispatch({type: RENDER_PROMPT}); 

@@ -19,6 +19,7 @@ export default function Prompt({optionOne, optionTwo}) {
   }
 
   function handleClick(e) {
+    console.log(e.target)
     const outcome = parseOption(e.target.name);
     
     switch(outcome.next) {
@@ -44,7 +45,7 @@ export default function Prompt({optionOne, optionTwo}) {
       <h1>Encounter Page</h1>
       {state.encounter.message}
       <button name={optionOne} onClick={handleClick}>{state.encounter.option1}</button>
-      <button name={optionTwo} onClick={handleClick}>{state.encounter.option2}</button>)
+      <button name={optionTwo} onClick={handleClick}>{state.encounter.option2}</button>
     </div>
   )
 }
