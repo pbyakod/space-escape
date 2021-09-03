@@ -3,7 +3,7 @@ const { Encounter } = require('../models');
 const encounter = [
   {
     message: 'Warning! we have detected incoming asteroids, what should we do?',
-    option1: 'Go Through|{"next": "minigame"}',
+    option1: 'Go Through|{"next": "minigame/asteroids", "location_id": 2}',
     option2: 'Go Around|{"health": 0, "ship": -10, "gold": -10, "next": "results"}',
     location_id: 1,
   },

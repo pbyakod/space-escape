@@ -18,7 +18,8 @@ export default function home() {
     }
   }
   return (
-    <div className="homepage" onMouseEnter={sound.PlayBackground}>
+    <div className="homepage">
+    {/* </div><div className="homepage" onMouseEnter={sound.PlayBackground}> */}
       {/* main container from App.scss */}
       <button className='sound-btn' onClick={sound.MuteSound}>Sound</button>
       <section className="main-container">

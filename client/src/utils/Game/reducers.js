@@ -1,10 +1,12 @@
 import { useReducer } from "react";
 import {
   CREATE_GAME,
-  INITIALIZE_ENCOUNTERS,
-  SET_MINIGAME,
-  SET_RESULTS,
-  SET_PROMPT,
+  INITIALIZE_GAME,
+  RENDER_MINIGAME,
+  RENDER_RESULTS,
+  RENDER_PROMPT,
+  RENDER_STORY,
+  UPDATE_LOCATION
 } from './actions';
 
 export const reducer = (state, action) => {
@@ -19,33 +21,48 @@ export const reducer = (state, action) => {
         gold: action.gold,
         inProgress: action.inProgress
       }
-    case INITIALIZE_ENCOUNTERS:
+    case INITIALIZE_GAME:
       return {
         ...state,
-        encounters: action.encounters,
         encounter: action.encounter,
-        renderPrompt: true
+        renderStory: true
       }
-    case SET_MINIGAME:
+    case RENDER_MINIGAME:
       return {
         ...state,
         renderPrompt: false,
         renderMinigame: true,
-        renderResults: false
+        renderResults: false,
+        renderStory: false
       }
-    case SET_RESULTS:
+    case RENDER_RESULTS:
       return {
         ...state,
         renderPrompt: false,
         renderMinigame: false,
-        renderResults: true
+        renderResults: true,
+        renderStory: false
       }
-    case SET_PROMPT:
+    case RENDER_PROMPT:
       return {
         ...state,
         renderPrompt: true,
         renderMinigame: false,
-        renderResults: false
+        renderResults: false,
+        renderStory: false
+      }
+    case RENDER_STORY:
+      return {
+        ...state,
+        renderPrompt: false,
+        renderMinigame: false,
+        renderResults: false,
+        renderStory: true,
+      }
+    case UPDATE_LOCATION:
+      return {
+        ...state,
+        location_id: action.location_id
       }
     
     default:
