@@ -1,9 +1,9 @@
 import React, { useRef, useLayoutEffect, useState } from 'react';
 import "./AsteroidsGame.css";
-import { TURN_SPEED, FPS, LASER_EXPLODE_DUR } from "./constVaraibles";
+import { TURN_SPEED, FPS } from "./constVaraibles";
 import { Ship } from "./ShipMovement";
-import { drawAsteroids, createAsteroids, moveAsteroids, destroyAsteroid } from "./AstroidMovement";
-import { distBetweenPoints } from "./helper";
+import { drawAsteroids, createAsteroids, moveAsteroids } from "./AstroidMovement";
+import { detectExploding, detectHit, drawShipHealth, drawScore, gameOver, drawGameText } from "./helper";
 
 const Canvas = () => {
   let soundOn = true;
@@ -11,7 +11,11 @@ const Canvas = () => {
   let level = 3
   const canvasRef = useRef(null);
   const roids = useRef(null);
+  const score = useRef(0);
+  const text = useRef("");
+  const textAlpha = useRef(0);
   const ship = new Ship();
+  
   const keyDown = (e) => {
     if (ship.dead) {
       return;
@@ -71,50 +75,19 @@ const Canvas = () => {
       if (!roids.current) {
         createAsteroids(level, ship, canvas, roids);
       }
-      
-      if (!ship.exloding && ship.blinkNum === 0 && !ship.dead) {
-        for (let i = 0; i < roids.current.length; i++) {
-          if (distBetweenPoints(ship.x, ship.y, roids.current[i].x, roids.current[i].y) < ship.r + roids.current[i].r) {
-            ship.explodeShip(soundOn);
-            destroyAsteroid(i, roids, {}, soundOn, level);
-            break;
-          }
-        }
-      }
-
-      let ax, ay, ar, lx, ly;
-      for (let i = roids.current.length - 1; i >= 0; i--) {
-
-        // grab the asteroid properties
-        ax = roids.current[i].x;
-        ay = roids.current[i].y;
-        ar = roids.current[i].r;
-
-        // loop over the lasers
-        for (let j = ship.lasers.length - 1; j >= 0; j--) {
-          // grab the laser properties
-          lx = ship.lasers[j].x;
-          ly = ship.lasers[j].y;
-
-          // detect hits
-          if (distBetweenPoints(ax, ay, lx, ly) < ar) {        
-
-            // destroy the asteroid and activate the laser explosion
-            destroyAsteroid(i, roids, {}, soundOn, level);
-            ship.lasers[j].explodeTime = Math.ceil(LASER_EXPLODE_DUR * FPS);
-
-            break;
-          }
-        }
-      }
-      
-      
-      // use r going forward
       ctx.clearRect(0, 0, canvas.width, canvas.height)
+      score.current += detectExploding(ship, roids, soundOn, level);
+      score.current += detectHit(ship, roids, soundOn, level);
       moveAsteroids(ctx, roids.current);
       drawAsteroids(ctx, roids);
       ship.move(canvas);
       ship.draw(ctx);
+      drawShipHealth(ctx, ship);
+      drawScore(ctx, canvas, score.current);
+      drawGameText(text, textAlpha, ctx, canvas);
+      if (ship.health === 0 || roids.current.length === 0) {
+        gameOver(text, textAlpha, score.current, ship, soundOn);
+      }
 
       animationId = requestAnimationFrame(myRender);
     };

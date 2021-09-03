@@ -1,4 +1,4 @@
-import { SHIP_SIZE, SHIP_BLINK_DUR, SHIP_EXPLODE_DUR, FPS, SHIP_THRUST, FRICTION, LASER_DIST, SHIP_INV_DUR, LASER_SPD, LASER_MAX } from './constVaraibles';
+import { SHIP_SIZE, SHIP_BLINK_DUR, SHIP_EXPLODE_DUR, FPS, SHIP_THRUST, FRICTION, LASER_DIST, SHIP_INV_DUR, LASER_SPD, LASER_MAX, HIT_DAMAGE } from './constVaraibles';
 import { dealWithBorder } from "./helper";
 import soundCalls from '../../../utils/sound';
 
@@ -19,7 +19,8 @@ export class Ship {
     this.thrust = {
       x: 0,
       y: 0
-    }
+    };
+    this.health = 100;
   }
 
   drawShip(ctx, color = "white") {
@@ -154,13 +155,6 @@ export class Ship {
     } else {
       
       this.explodeTime--;
-  
-      // if (ship.explodeTime === 0) {
-      //   player.shipHealth -= 10;
-      //   if (player.shipHealth === 0) {
-      //     gameOver();
-      //   }
-      // }
     }
   
     if (this.thrusting && !this.dead) {
@@ -226,6 +220,7 @@ export class Ship {
 
   explodeShip(soundOn) {
     this.explodeTime = Math.ceil(SHIP_EXPLODE_DUR * FPS);
+    this.health -= HIT_DAMAGE;
     if (soundOn) {
       soundCalls.PlayShipWasHit();
     }

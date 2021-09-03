@@ -30,14 +30,15 @@ export function moveAsteroids(ctx, roids) {
 
 export function destroyAsteroid(index, roids, player, soundOn, level) {
   let { x, y, r } = roids.current[index];
+  let score = 0;
 
   // split the asteroid in two if necessary
   if (r === ROIDS_SIZE / 2 || r === ROIDS_SIZE / 4) {
     roids.current.push(new Asteroid(x, y, Math.ceil(r / 2), level));
     roids.current.push(new Asteroid(x, y, Math.ceil(r / 2), level));
-    // player.score += r === ROIDS_SIZE / 2 ? ROIDS_PTS_LG : ROIDS_PTS_MD;
+    score += r === ROIDS_SIZE / 2 ? ROIDS_PTS_LG : ROIDS_PTS_MD;
   } else {
-    // player.score += ROIDS_PTS_SM;
+    score += ROIDS_PTS_SM;
   }
 
   roids.current.splice(index, 1);
@@ -45,9 +46,7 @@ export function destroyAsteroid(index, roids, player, soundOn, level) {
     soundCalls.PlayLaserHitAsteroid();
   }
 
-  if (roids.current.length === 0) {
-    // gameOver();
-  }
+  return score;
 }
 
 class Asteroid {

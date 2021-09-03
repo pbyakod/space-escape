@@ -51,7 +51,9 @@ function PlayAsteroidsHomepage() {
 }
 
 function PlayAsteroidsVictory() {
-  soundFX.asteroidsVictory.play();
+  if (!soundFX.asteroidsVictory.playing()) {
+    soundFX.asteroidsVictory.play();
+  }
 }
 
 function PlayLaserHitAsteroid() {
@@ -62,7 +64,9 @@ function PlayLaserHitAsteroid() {
 }
 
 function PlayShipDamaged() {
-  soundFX.shipDamaged.play();
+  if (!soundFX.shipWasHit.playing()) {
+    soundFX.shipDamaged.play();
+  }
 }
 
 function PlayShipWasHit() {
