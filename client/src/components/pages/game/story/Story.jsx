@@ -11,9 +11,11 @@ export default function Story({location_id}) {
   }
   return (
     <div>
-      <h1>Story Page</h1>
-      <p>{story[location_id - 1]}</p>
-      <button onClick={handleClick}>continue</button>
+      <div className="main-container">
+        <h1 className="title">Story Page</h1>
+        <p className="content">{story[location_id - 1]}</p>
+        <button onClick={handleClick}>continue</button>
+      </div>
     </div>
   )
 }
