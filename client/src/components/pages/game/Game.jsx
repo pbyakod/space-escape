@@ -11,25 +11,27 @@ export default function Game() {
 
   console.log('Game')
   useEffect(() => {
-    getGameData();
+    initializeGame();
   }, [])
 
-  async function getGameData() {
-    const GameData = await apiCalls.getLocation(state.location_id);
+  async function getGameData(location_id) {
+    const GameData = await apiCalls.getLocation(location_id);
     console.log(GameData);
+    return GameData;
+  }
 
+  async function initializeGame() {
+    const GameData = await getGameData(state.location_id); 
     dispatch({
-      type: INITIALIZE_GAME,
+      type: INITIALIZE_GAME, 
       encounter: GameData.encounters[0],
     });
-
-    console.log(state);
   }
 
   return (
     <div>
-      {state.renderStory && <Story location_id={state.location_id}/>}
-      {!state.renderStory && <Encounter optionOne={state.encounter.option1} optionTwo={state.encounter.option2} />}
+      {state.renderStory && <Story />}
+      {!state.renderStory && <Encounter getGameData={getGameData}/>}
     </div>
   )
 }
