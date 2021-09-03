@@ -20,12 +20,12 @@ const objs = {
     }
   },
   asteroidObj: {
-    // x: 0.5,
-    // y: 50,
-    // width: 800 / 10 - 1,
-    // height: 20,
-    // density: 2,
-    // colors: ["blue", "lightblue"]
+    x: 0.5,
+    y: 50,
+    width: 800 / 10 - 1,
+    height: 20,
+    density: 2,
+    colors: ["blue", "lightblue"]
   },
   player: {
     name: "Dhaval",
