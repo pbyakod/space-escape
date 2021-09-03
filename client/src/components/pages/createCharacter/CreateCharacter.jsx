@@ -90,7 +90,7 @@ export default function CreateCharacter() {
                   <div className="character-prop">Ship: {character.ship}</div>
                 </div>
               </div>
-        <Link to="story">
+        <Link to="/game">
         <button className="go-btn" onClick={handleSubmit}>submit</button>
         </Link>
         </section>
