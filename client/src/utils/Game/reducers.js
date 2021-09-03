@@ -6,7 +6,11 @@ import {
   RENDER_RESULTS,
   RENDER_PROMPT,
   RENDER_STORY,
-  UPDATE_LOCATION
+  RENDER_END_GAME,
+  UPDATE_LOCATION,
+  SET_NEXT_LOCATION,
+  SET_OUTCOME,
+  AFFECT_CHAR_STATS
 } from './actions';
 
 export const reducer = (state, action) => {
@@ -59,12 +63,38 @@ export const reducer = (state, action) => {
         renderResults: false,
         renderStory: true,
       }
-    case UPDATE_LOCATION:
+    case RENDER_END_GAME:
       return {
         ...state,
-        location_id: action.location_id
+        renderEndGame: true,
+        renderPrompt: false,
+        renderMinigame: false,
+        renderResults: false,
+        renderStory: false,
+        inProgress: false
       }
-    
+    // case UPDATE_LOCATION:
+    //   return {
+    //     ...state,
+    //     location_id: action.location_id
+    //   }
+    case SET_NEXT_LOCATION:
+      return {
+        ...state,
+        location_id: action.location_id,
+        encounter: action.encounter,
+        outcome: {}
+      }
+    case SET_OUTCOME:
+      return {
+        ...state,
+        outcome: action.outcome
+      }
+    case AFFECT_CHAR_STATS:
+      return {
+        ...state,
+        ...action.statsChange
+      }
     default:
       return state;
   }
