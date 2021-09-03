@@ -1,0 +1,20 @@
+button {
+  width: fit-content;
+  max-width: 40%;
+}
+
+img{
+  height: 20rem;
+  align-self: center;
+}
+
+.main-container_story {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.row{
+  display: flex;
+  justify-content: space-between;
+}
