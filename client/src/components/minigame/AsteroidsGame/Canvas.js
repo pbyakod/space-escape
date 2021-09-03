@@ -67,7 +67,8 @@ const Canvas = () => {
   useLayoutEffect(() => {
 
     var animationId = 0;
-    
+    var didGameOver = false;
+
     const myRender = () => {
       
       const canvas = canvasRef.current;
@@ -86,7 +87,10 @@ const Canvas = () => {
       drawScore(ctx, canvas, score.current);
       drawGameText(text, textAlpha, ctx, canvas);
       if (ship.health === 0 || roids.current.length === 0) {
-        gameOver(text, textAlpha, score.current, ship, soundOn);
+        if (!didGameOver) {
+          didGameOver = true;
+          gameOver(text, textAlpha, score.current, ship, soundOn);
+        }
       }
 
       animationId = requestAnimationFrame(myRender);

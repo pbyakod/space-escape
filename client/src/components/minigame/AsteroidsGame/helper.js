@@ -93,6 +93,7 @@ export function drawGameText(text, textAlpha, ctx, canvas) {
 
 
 export function gameOver(text, textAlpha, score, ship, soundOn) {
+  console.log("=== game over");
   textAlpha.current = 1.0;
   ship.dead = true;
   if (ship.health === 0) {

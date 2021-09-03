@@ -64,7 +64,7 @@ function PlayLaserHitAsteroid() {
 }
 
 function PlayShipDamaged() {
-  if (!soundFX.shipWasHit.playing()) {
+  if (!soundFX.shipDamaged.playing()) {
     soundFX.shipDamaged.play();
   }
 }
