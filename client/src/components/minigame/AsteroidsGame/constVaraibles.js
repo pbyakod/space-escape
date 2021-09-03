@@ -5,7 +5,7 @@ export const LASER_MAX = 10; // maximum number of lasers on screen at once
 export const LASER_SPD = 500; // speed of lasers in pixels per sec
 export const LASER_EXPLODE_DUR = 0.1; // duration of the laser's explosion in sec
 export const ROIDS_JAG = .15; // jaggedness of the asteroids (0 = none, 1 = lots)
-export const ROIDS_NUM = 10; // number of roids
+export const ROIDS_NUM = 1; // number of roids
 export const ROIDS_PTS_LG = 20; // points scored for a large asteroid
 export const ROIDS_PTS_MD = 50; // points scored for a large asteroid
 export const ROIDS_PTS_SM = 100; // points scored for a large asteroid
@@ -22,3 +22,4 @@ export const SHOW_CENTRE_DOT = false; // show or hide ship's centre dot
 export const SHOW_BOUNDING = false; // show or hide collision bounding
 export const TEXT_FADE_TIME = 2.5; // text fade time in sec
 export const TEXT_SIZE = 40; // text font height in pixels
+export const HIT_DAMAGE = 10; // damage when hit by an asteroid
