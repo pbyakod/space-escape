@@ -1,5 +1,5 @@
 import "./author.scss"
-import sound from "../../utils/sound";
+import sound from "../../../../utils/sound";
 
 export default function Author(author) {
 

@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
-import "../rules/rules.scss"
-import sound from "../../../utils/sound";
+import "./rules.scss"
+import sound from "../../../../utils/sound";
 
 export default function Rules() {
 

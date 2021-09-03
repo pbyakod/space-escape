@@ -1,6 +1,6 @@
-import { useGameContext } from "../../utils/Game/GlobalState"
-import { RENDER_PROMPT } from "../../utils/Game/actions";
-import story from '../../assets/gameData/story'; 
+import { useGameContext } from "../../../../utils/Game/GlobalState"
+import { RENDER_PROMPT } from "../../../../utils/Game/actions" 
+import story from './assets/story'; 
 
 export default function Story({location_id}) {
   const [state, dispatch] = useGameContext();
