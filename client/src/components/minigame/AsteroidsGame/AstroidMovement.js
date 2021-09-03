@@ -40,9 +40,9 @@ export function destroyAsteroid(index, roids, player, soundOn, soundFile, level)
   }
 
   roids.current.splice(index, 1);
-  // if (soundOn) {
-  //   soundFile.play();
-  // }
+  if (soundOn) {
+    soundFile.play();
+  }
 
   if (roids.current.length === 0) {
     // gameOver();

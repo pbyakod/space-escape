@@ -7,9 +7,31 @@ import { dealWithBorder, distBetweenPoints, shootLaser } from "./helper";
 import data from "./data";
 
 const Canvas = () => {
-  let bg = document.getElementsByClassName("stars");
-  //console.log(bg.innerHTML);
-   bg.innerHTML = "";
+  let soundOn = true;
+
+// set up sound effects
+  
+
+  function Sound(src, maxStreams = 1, vol = 1.0) {
+    this.streamNum = 0;
+    this.streams = [];
+    for (let i = 0; i < maxStreams; i++) {
+      this.streams.push(new Audio(src));
+      this.streams[i].volume = vol;
+    }
+  
+    this.play = function() {
+      this.streamNum = (this.streamNum + 1) % maxStreams;
+      this.streams[this.streamNum].play();
+    }
+  }
+
+  let fxLaser = new Sound("../../../sounds/laser.wav", 5, 0.2);
+  let fxWasHit = new Sound("../../../sounds/wasHit.ogg", 5, 1);
+  let fxHit = new Sound("../../../sounds/hitAsteroid.mp3", 5, 1);
+  let fxLose = new Sound("../../../sounds/shipDamaged.wav");
+  let fxWin = new Sound("../../../sounds/victory.wav");
+
   let level = 3
   const canvasRef = useRef(null);
   const roids = useRef([]);
@@ -21,7 +43,7 @@ const Canvas = () => {
     }
     switch(e.keyCode) {
       case 32 : // space bar (shoot the laser)
-        shootLaser(shipObj);
+        shootLaser(shipObj, soundOn, fxLaser);
         break;
       case 37 : // left arrow (rotate ship left)
         shipObj.rot = TURN_SPEED / 180 * Math.PI / FPS;
@@ -74,8 +96,8 @@ const Canvas = () => {
       if (!shipObj.exloding && shipObj.blinkNum === 0 && !shipObj.dead) {
         for (let i = 0; i < roids.current.length; i++) {
           if (distBetweenPoints(shipObj.x, shipObj.y, roids.current[i].x, roids.current[i].y) < shipObj.r + roids.current[i].r) {
-            explodeShip(shipObj, true, "file");
-            destroyAsteroid(i, roids, {}, true, "file", level);
+            explodeShip(shipObj, soundOn, fxWasHit);
+            destroyAsteroid(i, roids, {}, soundOn, fxHit, level);
             break;
           }
         }
@@ -99,7 +121,7 @@ const Canvas = () => {
           if (distBetweenPoints(ax, ay, lx, ly) < ar) {        
 
             // destroy the asteroid and activate the laser explosion
-            destroyAsteroid(i, roids, {}, true, "file", level);
+            destroyAsteroid(i, roids, {}, soundOn, fxHit, level);
             shipObj.lasers[j].explodeTime = Math.ceil(LASER_EXPLODE_DUR * FPS);
 
             break;

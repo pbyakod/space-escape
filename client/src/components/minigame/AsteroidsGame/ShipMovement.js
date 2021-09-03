@@ -2,9 +2,9 @@ import { SHIP_SIZE, SHIP_BLINK_DUR, SHIP_EXPLODE_DUR, FPS, SHIP_THRUST, FRICTION
 
 export function explodeShip(shipObj, soundOn, soundFile) {
   shipObj.explodeTime = Math.ceil(SHIP_EXPLODE_DUR * FPS);
-  // if (soundOn) {
-  //   soundFile.play();
-  // }
+  if (soundOn) {
+    soundFile.play();
+  }
 }
 
 export function drawLaser(ctx, ship) {

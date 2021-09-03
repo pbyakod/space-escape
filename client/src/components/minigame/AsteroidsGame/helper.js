@@ -18,7 +18,7 @@ export function distBetweenPoints (x1, y1, x2, y2) {
   return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
 }
 
-export function shootLaser(ship) {
+export function shootLaser(ship, soundOn, soundFile) {
   console.log(ship);
   // create the laser object
   if (ship.canShoot && ship.lasers.length < LASER_MAX) {
@@ -30,9 +30,9 @@ export function shootLaser(ship) {
       dist: 0,
       explodeTime: 0
     });
-    // if (soundOn) {
-    //   fxLaser.play();
-    // }
+    if (soundOn) {
+      soundFile.play();
+    }
   }
   // prevent further shooting
   ship.canShoot = false;
