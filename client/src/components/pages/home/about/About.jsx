@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import authors from "../../../../aboutAuthors/about"
+import authors from "./about"
 import Author from "../author/Author"
 import './about.scss'
 import sound from "../../../../utils/sound";
