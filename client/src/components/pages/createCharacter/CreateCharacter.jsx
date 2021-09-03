@@ -140,7 +140,7 @@ export default function CreateCharacter() {
                 </div>
               </div>
         <div className="btn-row">
-          <Link to="story"><button className="go-btn" onClick={handleSubmit}>submit</button></Link>
+          <Link to="/game"><button className="go-btn" onClick={handleSubmit}>submit</button></Link>
           <Link to="/"><button className="stop-btn">Back</button></Link></div>
         </section>
       </div>

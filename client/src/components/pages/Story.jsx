@@ -1,14 +1,19 @@
-import NavBar from "../navBar/NavBar"
-import { Link } from "react-router-dom"
+import { useGameContext } from "../../utils/Game/GlobalState"
+import { RENDER_PROMPT } from "../../utils/Game/actions";
+import story from '../../assets/gameData/story'; 
 
-export default function story() {
+export default function Story({location_id}) {
+  const [state, dispatch] = useGameContext();
+  
+  function handleClick(e) {
+    console.log(e)
+   dispatch({type: RENDER_PROMPT}); 
+  }
   return (
     <div>
-      <NavBar/>
       <h1>Story Page</h1>
-      <Link to="/location">
-        <button>continue</button>
-        </Link>
+      <p>{story[location_id - 1]}</p>
+      <button onClick={handleClick}>continue</button>
     </div>
   )
 }
