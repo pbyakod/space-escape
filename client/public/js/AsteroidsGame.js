@@ -216,6 +216,7 @@ function newAsteroid(x, y, r) {
 }
 
 function keyDown(e) {
+  console.log("keyDown");
   if (ship.dead) {
     return;
   }
@@ -238,6 +239,7 @@ function keyDown(e) {
 }
 
 function keyUp(e) {
+  console.log("keyUp");
   if (ship.dead) {
     return;
   }

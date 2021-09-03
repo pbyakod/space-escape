@@ -14,8 +14,8 @@ export function createAsteroids(level, shipObj, canvas, roids) {
 }
 
 export function drawAsteroids(ctx, roids) {
-  for (let i = 0; i < roids.length; i++) {
-    roids[i].drawAsteroid(ctx);
+  for (let i = 0; i < roids.current.length; i++) {
+    roids.current[i].drawAsteroid(ctx);
   }
 }
 
@@ -28,23 +28,23 @@ export function moveAsteroids(ctx, roids) {
 }
 
 export function destroyAsteroid(index, roids, player, soundOn, soundFile, level) {
-  let { x, y, r } = roids[index];
+  let { x, y, r } = roids.current[index];
 
   // split the asteroid in two if necessary
   if (r === ROIDS_SIZE / 2 || r === ROIDS_SIZE / 4) {
-    roids.push(new Asteroid(x, y, Math.ceil(r / 2)), level);
-    roids.push(new Asteroid(x, y, Math.ceil(r / 2)), level);
-    player.score += r === ROIDS_SIZE / 2 ? ROIDS_PTS_LG : ROIDS_PTS_MD;
+    roids.current.push(new Asteroid(x, y, Math.ceil(r / 2), level));
+    roids.current.push(new Asteroid(x, y, Math.ceil(r / 2), level));
+    // player.score += r === ROIDS_SIZE / 2 ? ROIDS_PTS_LG : ROIDS_PTS_MD;
   } else {
-    player.score += ROIDS_PTS_SM;
+    // player.score += ROIDS_PTS_SM;
   }
 
-  roids.splice(index, 1);
-  if (soundOn) {
-    soundFile.play();
-  }
+  roids.current.splice(index, 1);
+  // if (soundOn) {
+  //   soundFile.play();
+  // }
 
-  if (roids.length === 0) {
+  if (roids.current.length === 0) {
     // gameOver();
   }
 }
