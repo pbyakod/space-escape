@@ -1,6 +1,6 @@
 const stories = [
   //before encounter 1
-  "One Last Galaxy to get through, lets go!",
+  "Thanks for the ride boss, I'm telling ya, I'm the best wingman. Ill communicate messages from the console.",
 
   //before encounter 2
   //duplicate slide
@@ -12,7 +12,7 @@ const stories = [
   "According to the radar we are entering Automatia, ruled by Alex Bateman. Alex Bateman is a long descendent of Nathan Bateman, born long after Earth was swallowed by the sun and after humans already moved to another galaxy. At some point he managed to find a planet of his own (habitable and rich in metal) where he made robots that would eventually build as many robots as there are now",
 
   //before encounter 5
-  "I've never seen so many robots on one planet!, time to move on. lets go!",
+  "That was awesome, I've never seen so many robots on one planet! We have to keep moving, lets go!.",
 
   //before encounter 6
   "Prepare to land on Niburu! This is a great planet, ruled by the The Elohim.",
@@ -51,7 +51,7 @@ const stories = [
   "I Have to park this puppy, lets stop here in Qiushuangalong",
 
   //before encounter 17
-  "As you enjoy the atmosphere of this planet you are approached by a stranger",
+  "A stranger approaches as you are in awe the magnificence of this planet.",
 
   //before encounter 18
   "Yeah, I dont need no escort, I AM the escort, noones messing with this ship im in the driver's seat, boss! Um... actually... maybe I spoke too soon..",
@@ -59,7 +59,7 @@ const stories = [
   //before encounter 19
   //may be after encounter 17 - escort takes to planet
   //may be after encounter 18 - pirates catch up
-  "Well, that was exciting! to say the least... Anyway, Last Stop before home according to the radar!",
+  "Well, that was exciting to say the least... Anyway, Last Stop before home according to the radar!",
 
     //before encounter 20
   "Lets Head Home!"
