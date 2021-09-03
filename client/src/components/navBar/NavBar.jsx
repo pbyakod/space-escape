@@ -5,12 +5,15 @@ export default function NavBar() {
   const [state] = useGameContext(); 
   return (
     <div className = "navBar">
-      location id: {state.location_id}
+      {/* location id: {state.location_id}
       encounter id: {state.encounter_id}
-      char id: {state.char_id}
-      health: {state.health}
-      ship: {state.ship}
-      gold: {state.gold}
+      char id: {state.char_id} */}
+      <label for="file">Health</label>
+      <progress id="file" value={state.health} max="1000" placeholder={state.health}></progress>
+      <label for="file">Gold</label>
+      <progress id="file" value={state.gold} max="1000"></progress>
+      <label for="file">Ship</label>
+      <progress id="file" value={state.ship} max="1000"></progress>
     </div>
   )
 }

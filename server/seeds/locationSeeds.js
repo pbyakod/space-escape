@@ -81,6 +81,16 @@ const locations = [
     abundance: '',
     fact: ''
   },
+  {
+    name: "p9",
+    people: '',
+    population: 0,
+    currency: '',
+    leader: '',
+    tradable: '',
+    abundance: '',
+    fact: ''
+  },
 ];
 
 const seed = () => Location.bulkCreate(locations);
