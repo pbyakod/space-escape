@@ -6,10 +6,29 @@ import {
   UPDATE_LOCATION,
   UPDATE_CHARACTER_STATS
 } from "../../../../../utils/Game/actions"
+import asteroids from "./img/asteroids.jpeg"
+import denzal from "./img/denzalmerchant.gif"
+import bad from "./img/bad.gif"
+import good from "./img/good.gif"
+import pirate from "./img/pirate.gif"
+import troll from "./img/troll.gif"
+import pranav from "./img/pranavmerchant.gif"
+import serpent from "./img/serpenttamer.gif"
+import "./prompt.scss"
 
 import NavBar from '../../../../navBar/NavBar';
 
 export default function Prompt({optionOne, optionTwo}) {
+  const src = [
+    asteroids,
+    denzal,
+    bad,
+    good,
+    pirate,
+    troll,
+    pranav,
+    serpent
+  ]
   const [state, dispatch] = useGameContext();
  
   function parseOption(option) {
@@ -42,10 +61,14 @@ export default function Prompt({optionOne, optionTwo}) {
   return (
     <div>
       <NavBar/>
-      <h1>Encounter Page</h1>
-      {state.encounter.message}
-      <button name={optionOne} onClick={handleClick}>{state.encounter.option1}</button>
-      <button name={optionTwo} onClick={handleClick}>{state.encounter.option2}</button>
+      <div className="main-container main-container_story">
+      <h3 className="title">{state.encounter.message}</h3>
+      <img className="title" src={src[state.location_id-1]} alt="" />
+      <div className="row">
+      <button className="title caution-btn" name={optionOne} onClick={handleClick}>{state.encounter.option1}</button>
+      <button className="title caution-btn" name={optionTwo} onClick={handleClick}>{state.encounter.option2}</button>
+      </div>
+    </div>
     </div>
   )
 }
