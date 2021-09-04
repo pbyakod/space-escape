@@ -50,19 +50,11 @@ router.post("/", async (req, res) => {
     const dbUserData = await User.create(req.body);
     const { id, username, createdAt } = dbUserData;
     const token = signToken({ id, username });
-
-    req.session.save(() => {
-      req.session.loggedIn = true;
-      req.session.userId = dbUserData.get({ plain: true }).id;
-
-      const {id, username, createdAt} = dbUserData;
-			const token = signToken({id, username})
-      res.status(200).json({
-        user: {id, username}, 
-        message: "You are now logged in!", 
-        createdAt, 
-        token});
-    });
+    res.status(200).json({
+      user: {id, username}, 
+      message: "You are now logged in!", 
+      createdAt, 
+      token});
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
@@ -94,20 +86,13 @@ router.post("/login", async (req, res) => {
     }
     const {id, username} = dbUserData;
 		const token = signToken({id, username});
-
-    req.session.save(() => {
-      req.session.loggedIn = true;
-      req.session.username = dbUserData.get({ plain: true }).username;
-      req.session.userId = dbUserData.get({ plain: true }).id;
-      console.log(req.session);
-      res
-        .status(200)
-        .json({
-          user: { id, username },
-          message: "You are now logged in!",
-          token,
-        });
-    });
+    res
+      .status(200)
+      .json({
+        user: { id, username },
+        message: "You are now logged in!",
+        token,
+      });
   } catch (err) {
     console.log(err), res.status(500).json(err);
   }
