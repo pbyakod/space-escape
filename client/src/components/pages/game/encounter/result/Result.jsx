@@ -2,6 +2,7 @@ import { useGameContext } from "../../../../../utils/Game/GlobalState"
 import { RENDER_STORY, RENDER_END_GAME, SET_NEXT_LOCATION, AFFECT_CHAR_STATS} from "../../../../../utils/Game/actions";
 import parseOption from "../../../../../utils/helpers";
 import {useEffect} from "react";
+import "../../../../../App.scss";
 
 export default function Result({getGameData}) {
   const [state, dispatch] = useGameContext();
@@ -40,12 +41,12 @@ export default function Result({getGameData}) {
   }
 
   return (
-    <div>
-      <h1>Result Page</h1>
-      {state.health}
-      {state.gold}
-      {state.ship}
-      <button onClick={handleClick}>continue</button>
+    <div className="main-container">
+      <h1 className="gap title">Results</h1>
+      <p className="gap title">Player Health: {state.health}</p>
+      <p className="gap title">Ship Health: {state.ship}</p>
+      <p className="gap title">Gold: {state.gold}</p>
+      <button className="gap" onClick={handleClick}>continue</button>
     </div>
   )
 }
