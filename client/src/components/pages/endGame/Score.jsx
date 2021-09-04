@@ -10,13 +10,6 @@ export default function Score() {
       type: RENDER_LEADERBOARD
     })
   }
-
-  function startNewGame() {
-    dispatch({
-      type: INITIALIZE_GLOBAL_STATE
-    })
-    document.location.href('/createCharacter');
-  }
   return (
     <div>
       <h1>Score Page</h1>
