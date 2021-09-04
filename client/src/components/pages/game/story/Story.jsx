@@ -12,9 +12,11 @@ export default function Story() {
   console.log(state)
   return (
     <div>
-      <h1>Story Page</h1>
-      <p>{story[state.location_id - 1]}</p>
-      <button onClick={handleClick}>continue</button>
+      <div className="main-container">
+        <h1 className="title">Story Page</h1>
+        <p className="content">{story[state.location_id - 1]}</p>
+        <button onClick={handleClick}>continue</button>
+      </div>
     </div>
   )
 }

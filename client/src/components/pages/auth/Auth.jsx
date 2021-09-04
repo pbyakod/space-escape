@@ -88,7 +88,7 @@ export default function Auth({setAuth}) {
             <div className="auth-item">
               <p>password</p>
               <input 
-                type="text" 
+                type="password" 
                 data-type='login'
                 name='password' 
                 placeholder='Enter Password'
@@ -132,7 +132,7 @@ export default function Auth({setAuth}) {
             <div className="auth-item">
               <p>password</p>
               <input 
-                type="text" 
+                type="password" 
                 data-type='signUp'
                 name='password' 
                 placeholder='Create Password'
