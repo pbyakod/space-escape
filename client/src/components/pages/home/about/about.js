@@ -1,7 +1,7 @@
 const authors = [
   {
     name: "Peter Consagra",
-    portfolio: "https://pcon27.github.io/MyWebsite/",
+    portfolio: "https://pcon27.github.io/myNewWebsite/",
     github:  "https://github.com/Pcon27"
   },
   {
