@@ -1,6 +1,8 @@
 import { useGameContext } from "../../../../utils/Game/GlobalState"
 import { RENDER_PROMPT } from "../../../../utils/Game/actions" 
 import story from './assets/story'; 
+import "../../../../App.scss";
+import "./story.scss"
 
 export default function Story() {
   const [state, dispatch] = useGameContext();
@@ -11,12 +13,10 @@ export default function Story() {
   }
   console.log(state)
   return (
-    <div>
-      <div className="main-container">
-        <h1 className="title">Story Page</h1>
-        <p className="content">{story[state.location_id - 1]}</p>
-        <button onClick={handleClick}>continue</button>
-      </div>
+    <div className="main-container">
+    <h1 className="title">Story Page</h1>
+      <p className="story-content">{story[state.location_id - 1]}</p>
+      <button onClick={handleClick}>continue</button>
     </div>
   )
 }
