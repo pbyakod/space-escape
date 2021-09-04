@@ -3,12 +3,14 @@ import { FaCaretLeft, FaCaretRight, FaCaretUp, FaSpaceShuttle } from 'react-icon
 
 export default function AsteroidsRules({ setGameProcess }) {
 
-  function startAsteroids() {
+  function renderPrepare() {
     setGameProcess({
       renderHome: false,
       renderRules: false,
       renderPrepare: true,
       renderCanvas: false,
+      renderResult: false,
+      displayCharacter: false
     })
   }
   return (
@@ -45,7 +47,7 @@ export default function AsteroidsRules({ setGameProcess }) {
           Game ends when ship health hit 0 or all asteroids are cleared.
         </div>
         <div className="mt-5 d-flex justify-content-around ">
-          <button className="btn btn-info w-25" onClick={startAsteroids}>Continue</button>
+          <button className="btn btn-info w-25" onClick={ renderPrepare }>Continue</button>
         </div>
       </div>
     </div>

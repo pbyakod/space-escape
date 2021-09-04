@@ -1,54 +1,46 @@
 import React from "react";
-import { FaCaretLeft, FaCaretRight, FaCaretUp, FaSpaceShuttle } from 'react-icons/fa';
 
-export default function AsteroidsRules({ setGameProcess }) {
-  let score = 0;
-  const title = document.getElementById("title");
-  const conclusion = document.getElementById("conclusion");
-  console.log(title);
-  console.log(conclusion);
-  if (score === 0) {
-    title.innerText = "Thank you very much!"
-    conclusion.innerHTML = `
-    <div class="my-3">Good job! You stood out to protect people on the planet!</div>
-    <div class="my-3">You earned xxx gold during the fight! It is enough to repair your spaceship.</div>
-    <div class="my-3">The ship is damaged badly. It will take 15 days to be fully repaired.</div>
-    <div class="my-3">Enjoy your tour and good luck!</div>
-    `;
+export default function AsteroidsResult({ gameResult, setGameProcess }) {
+  let heading = "";
+  let p1 = "";
+  let p2 = "";
+  let p3 = "";
+  let p4 = "";
+  if (gameResult.shipHealth === 0) {
+    heading = "Thank you very much!"
+    p1 = "Good job! You stood out to protect people on the planet!";
+    p2 = `You earned ${gameResult.score/10} gold during the fight! It is enough to repair your spaceship.`;
+    p3 = "The ship is damaged badly. It will take 15 days to be fully repaired.";
+    p4 = "Enjoy your tour and good luck!";
   } else {
-    title.innerText = "Congratulations!";
-    conclusion.innerHTML = `
-    <div class="my-3">Good job! You stood out to protect people on the planet!</div>
-    <div class="my-3">You earned xxx gold during the fight! It is enough to repair your spaceship.</div>
-    <div class="my-3">It will take 15 days to be fully repaired.</div>
-    <div class="my-3">Enjoy your tour and good luck!</div>
-    `;
+    heading = "Congratulations!";
+    p1 = "Good job! You stood out to protect people on the planet!";
+    p2 = `You earned ${gameResult.score/10} gold during the fight!`;
+    p3 = "Enjoy your tour and good luck!";
   }
   
-  function endAsteroids() {
-    document.location.replace('./Character.html');
-  }
-  
-  function startAsteroids() {
+  function displayCharacter() {
     setGameProcess({
       renderHome: false,
       renderRules: false,
-      renderPrepare: true,
+      renderPrepare: false,
       renderCanvas: false,
+      renderResult: false,
+      displayCharacter: true
     })
   }
   return (
-    <div>
-      <h1 id="title" class="mt-5 text-center"></h1>
-  <div class="container w-50">
-    
-    <div id="conclusion"></div>
-
-    <div class="mt-5 d-flex justify-content-around ">
-      <button id="fight-asteroids" class="btn btn-danger w-25" onclick="endAsteroids()">Continue</button>
-    </div>
-
-  </div>
+    <div className="asteroids-container d-block">
+      <h1 id="title" className="my-5 text-center">{ heading }</h1>
+      <div className="container w-50">
+        <div className="my-3">{p1}</div>
+        <div className="my-3">{p2}</div>
+        <div className="my-3">{p3}</div>
+        <div className="my-3">{p4}</div>
+        <div className="my-5 d-flex justify-content-around ">
+          <button className="btn btn-danger w-25" onClick={ displayCharacter }>Continue</button>
+        </div>
+      </div>
     </div>
   );
 }

@@ -92,7 +92,7 @@ export function drawGameText(text, textAlpha, ctx, canvas) {
 }
 
 
-export function gameOver(text, textAlpha, score, ship, soundOn) {
+export function gameOver(text, textAlpha, score, ship, soundOn, setGameProcess) {
   console.log("=== game over");
   textAlpha.current = 1.0;
   ship.dead = true;
@@ -108,6 +108,14 @@ export function gameOver(text, textAlpha, score, ship, soundOn) {
     }
   }
   setTimeout(function() {
-    document.location.replace('./AsteroidsResult.html');
+    setGameProcess({
+      renderHome: false,
+      renderRules: false,
+      renderPrepare: false,
+      renderCanvas: false,
+      renderResult: true,
+      displayCharacter: false
+    })
+    
   }, 5 * 1000)
 }

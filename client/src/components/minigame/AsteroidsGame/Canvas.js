@@ -4,7 +4,7 @@ import { Ship } from "./ShipMovement";
 import { drawAsteroids, createAsteroids, moveAsteroids } from "./AstroidMovement";
 import { detectExploding, detectHit, drawShipHealth, drawScore, gameOver, drawGameText } from "./helper";
 
-const Canvas = () => {
+const Canvas = ({ setGameProcess, setGameResult }) => {
   let soundOn = true;
 
   let level = 3
@@ -88,7 +88,11 @@ const Canvas = () => {
       if (ship.health === 0 || roids.current.length === 0) {
         if (!didGameOver) {
           didGameOver = true;
-          gameOver(text, textAlpha, score.current, ship, soundOn);
+          setGameResult( {
+            shipHealth: ship.health,
+            score: score.current
+          });
+          gameOver(text, textAlpha, score.current, ship, soundOn, setGameProcess);
         }
       }
 

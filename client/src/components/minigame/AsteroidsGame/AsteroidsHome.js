@@ -19,7 +19,7 @@ export default function AsteroidsHome({ setGameProcess }) {
     easing: 'linear',
     duration: 2000,
     delay: anime.stagger(10),
-    complete: asteroidsPrepare,
+    complete: renderRules,
   })
   }, []);
   const stockArry = [];
@@ -27,12 +27,14 @@ export default function AsteroidsHome({ setGameProcess }) {
     stockArry.push(i);
   }
 
-  function asteroidsPrepare() {
+  function renderRules() {
     setGameProcess({
       renderHome: false,
       renderRules: true,
       renderPrepare: false,
       renderCanvas: false,
+      renderResult: false,
+      displayCharacter: false
     })
   }
   return (

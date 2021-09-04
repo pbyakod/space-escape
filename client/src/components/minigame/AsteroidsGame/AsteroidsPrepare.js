@@ -48,16 +48,18 @@ export default function AsteroidsPrepare({ setGameProcess }) {
       opacity: 0,
       duration: animations.durationOut,
       delay: animations.delay,
-      complete: asteroidsStart,
+      complete: renderCanvas,
     })
   }, []);
 
-  function asteroidsStart() {
+  function renderCanvas() {
     setGameProcess({
       renderHome: false,
       renderRules: false,
       renderPrepare: false,
       renderCanvas: true,
+      renderResult: false,
+      displayCharacter: false
     })
   }
   return (
