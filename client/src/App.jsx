@@ -10,7 +10,6 @@ import Dashboard from "./components/pages/dashboard/Dashboard";
 import Game from "./components/pages/game/Game";
 import Score from "./components/pages/endGame/Score";
 import LeaderBoard from "./components/pages/endGame/LeaderBoard";
-import AsteroidsGame from "./components/minigame/AsteroidsGame/AsteroidsGame";
 import Background from "./components/background/Background";
 import api from './utils/api';
 import { GameProvider } from "./utils/Game/GlobalState";
@@ -42,7 +41,6 @@ export default function App() {
           <Route component={api.loggedIn() ? Score : Auth} path="/score"/>
           <Route component={api.loggedIn() ? LeaderBoard: Auth} path="/leaderBoard"/>
           {/* <Route component={api.loggedIn() ? AsteroidsGame: Auth} path="/Asteroids" /> */}
-          <Route component={AsteroidsGame} path="/Asteroids" />
         </Switch>
       </GameProvider>
       </BrowserRouter>
