@@ -1,20 +1,39 @@
 import { useReducer } from "react";
 import {
+  INITIALIZE_GLOBAL_STATE,
   CREATE_GAME,
   INITIALIZE_GAME,
   RENDER_MINIGAME,
   RENDER_RESULTS,
   RENDER_PROMPT,
   RENDER_STORY,
-  RENDER_END_GAME,
+  RENDER_SCORE,
   UPDATE_LOCATION,
   SET_NEXT_LOCATION,
   SET_OUTCOME,
-  AFFECT_CHAR_STATS
+  AFFECT_CHAR_STATS,
+  RENDER_LEADERBOARD
 } from './actions';
 
 export const reducer = (state, action) => {
   switch (action.type) {
+    case INITIALIZE_GLOBAL_STATE:
+      return {
+        location_id: 1,
+        encounter: {},
+        outcome: {},
+        renderPrompt: false,
+        renderMinigame: false,
+        renderResults: false,
+        renderStory: false,
+        renderScore: false,
+        renderLeaderboard: false,
+        char_id: null,
+        health: 0,
+        ship: 0,
+        gold: 0,
+        inProgress: false,
+      }
     case CREATE_GAME:
       console.log(action)
       return {
@@ -63,14 +82,26 @@ export const reducer = (state, action) => {
         renderResults: false,
         renderStory: true,
       }
-    case RENDER_END_GAME:
+    case RENDER_SCORE:
       return {
         ...state,
-        renderEndGame: true,
         renderPrompt: false,
         renderMinigame: false,
         renderResults: false,
         renderStory: false,
+        renderScore: true,
+        renderLeaderboard: false,
+        inProgress: false
+      }
+    case RENDER_LEADERBOARD:
+      return {
+        ...state,
+        renderPrompt: false,
+        renderMinigame: false,
+        renderResults: false,
+        renderStory: false,
+        renderScore: false,
+        renderLeaderboard: true,
         inProgress: false
       }
     // case UPDATE_LOCATION:
