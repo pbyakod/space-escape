@@ -4,6 +4,8 @@ import { useGameContext } from "../../../utils/Game/GlobalState";
 import { useEffect } from "react";
 import { INITIALIZE_GAME } from "../../../utils/Game/actions";
 import Story from "./story/Story";
+import Score from "../endGame/Score";
+import LeaderBoard from "../endGame/LeaderBoard";
 
 export default function Game() {
   const [state, dispatch] = useGameContext();
@@ -32,6 +34,8 @@ export default function Game() {
     <div>
       {state.renderStory && <Story />}
       {!state.renderStory && <Encounter getGameData={getGameData}/>}
+      {state.renderScore && <Score />}
+      {state.renderLeaderboard && <LeaderBoard/>}
     </div>
   )
 }
