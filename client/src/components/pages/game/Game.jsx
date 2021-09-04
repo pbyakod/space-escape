@@ -16,14 +16,9 @@ export default function Game() {
     initializeGame();
   }, [])
 
-  async function getGameData(location_id) {
-    const GameData = await apiCalls.getLocation(location_id);
-    console.log(GameData);
-    return GameData;
-  }
 
   async function initializeGame() {
-    const GameData = await getGameData(state.location_id); 
+    const GameData = await apiCalls.getLocation(state.location_id); 
     dispatch({
       type: INITIALIZE_GAME, 
       encounter: GameData.encounters[0],
@@ -33,7 +28,7 @@ export default function Game() {
   return (
     <div>
       {state.renderStory && <Story />}
-      {!state.renderStory && <Encounter getGameData={getGameData}/>}
+      {!state.renderStory && <Encounter />}
       {state.renderScore && <Score />}
       {state.renderLeaderboard && <LeaderBoard/>}
     </div>

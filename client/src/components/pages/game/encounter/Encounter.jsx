@@ -3,13 +3,13 @@ import Prompt from "./prompt/Prompt";
 import MiniGame from "../encounter/minigame/MiniGame";
 import Result from "./result/Result";
 
-export default function Encounter({getGameData}) {
+export default function Encounter() {
   const [state, dispatch] = useGameContext();
   return (
     <div>
       {state.renderPrompt && <Prompt />}
       {state.renderMinigame && <MiniGame/>}
-      {state.renderResults && <Result getGameData={getGameData}/>}
+      {state.renderResults && <Result />}
     </div>
   )
 }

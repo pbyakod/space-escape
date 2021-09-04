@@ -1,10 +1,11 @@
 import { useGameContext } from "../../../../../utils/Game/GlobalState"
 import { RENDER_STORY, RENDER_SCORE, SET_NEXT_LOCATION, AFFECT_CHAR_STATS} from "../../../../../utils/Game/actions";
 import parseOption from "../../../../../utils/helpers";
+import apiCalls from "../../../../../utils/api";
 import {useEffect} from "react";
 import "../../../../../App.scss";
 
-export default function Result({getGameData}) {
+export default function Result() {
   const [state, dispatch] = useGameContext();
 
   useEffect(() => {
@@ -27,7 +28,7 @@ export default function Result({getGameData}) {
         type: RENDER_SCORE //sets renderScore to true and inProgress to false because game ended
       })
     } else {
-      getGameData(state.outcome.next_location_id)
+      apiCalls.getLocation(state.outcome.next_location_id)
         .then(GameData => {
           console.log(GameData)
           if (GameData) {
@@ -41,7 +42,7 @@ export default function Result({getGameData}) {
             console.log('end game no more location id')
             dispatch({
               type: RENDER_SCORE 
-            })
+            });
           }
         });
     }
