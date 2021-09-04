@@ -58,7 +58,7 @@ const encounter = [
     location_id: 8,
   },
   {
-    story: "If we hurry we can make it to Prastin! I know a good spot to fix up the ship while we're here", 
+    story: "If we hurry we can make it to Prastin! I know a good spot to fix up the ship when we get there!", 
     message: 'You’ve made it to Prastin, the birthpace of Serpent Growing. luckily their currency the Gloon, has an exchange rate of 2/1 with gold. Would you like to pay for repairs?',
     option1: 'Fight back|{"health": 0, "ship": -10, "gold": -10, "next": "minigame/asteroids", "next_location_id": 10}',
     option2: 'Go Around|{"health": 0, "ship": -10, "gold": -10, "next": "results", "next_location_id": 10}',

@@ -14,7 +14,8 @@ export default function Story() {
   console.log(state)
   return (
     <div className="main-container">
-      <p className="story-content">{story[state.location_id - 1]}</p>
+      <h1 className="title"> Story - {state.location_id}</h1>
+      <p className="story-content">{state.encounter.story}</p>
       <button onClick={handleClick}>continue</button>
     </div>
   )
