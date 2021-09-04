@@ -1,4 +1,7 @@
 import React from "react";
+import { useGameContext } from '../../../../../../utils/Game/GlobalState';
+import { UPDATE_OUTCOME } from '../../../../../../utils/Game/actions';
+import {useEffect} from 'react';
 
 export default function AsteroidsResult({ gameResult, setGameProcess }) {
   let heading = "";
@@ -29,6 +32,16 @@ export default function AsteroidsResult({ gameResult, setGameProcess }) {
       displayCharacter: true
     })
   }
+
+  const [globalState, dispatch] = useGameContext();
+
+  useEffect(() => {
+    dispatch({
+      type: UPDATE_OUTCOME,
+      outcome: {health: -5, ship: gameResult.shipHealth - 100, gold: gameResult.score/10 }
+    })
+  },[])
+
   return (
     <div className="asteroids-container d-block">
       <h1 id="title" className="my-5 text-center">{ heading }</h1>

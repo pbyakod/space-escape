@@ -31,7 +31,7 @@ import NavBar from '../../../../navBar/NavBar';
 import "../../../../../App.scss";
 import "./prompt.scss"
 
-export default function Prompt() {
+export default function Prompt({setMinigameName}) {
   const src = [
     asteroids,
     alien,
@@ -67,6 +67,7 @@ export default function Prompt() {
 
     switch(outcome.next.split('/')[0]) {
       case "minigame":
+        setMinigameName(outcome.next.split('/')[1]);
         dispatch({type: RENDER_MINIGAME});
         break;
       case "results":
