@@ -1,5 +1,4 @@
-import React, { useRef, useLayoutEffect, useState } from 'react';
-import "./AsteroidsGame.css";
+import React, { useRef, useLayoutEffect } from 'react';
 import { TURN_SPEED, FPS } from "./constVaraibles";
 import { Ship } from "./ShipMovement";
 import { drawAsteroids, createAsteroids, moveAsteroids } from "./AstroidMovement";
