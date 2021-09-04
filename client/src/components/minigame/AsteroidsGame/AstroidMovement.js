@@ -1,5 +1,6 @@
 import { ROIDS_NUM, ROIDS_SIZE, ROIDS_PTS_LG, ROIDS_PTS_MD, ROIDS_PTS_SM, ROIDS_JAG, ROIDS_VERT, ROIDS_SPD, FPS, SHIP_SIZE } from "./constVaraibles";
 import { distBetweenPoints, dealWithBorder } from "./helper";
+import soundCalls from "../../../utils/sound";
 
 export function createAsteroids(level, shipObj, canvas, roids) {
   roids.current = [];
@@ -27,26 +28,25 @@ export function moveAsteroids(ctx, roids) {
   }
 }
 
-export function destroyAsteroid(index, roids, player, soundOn, soundFile, level) {
+export function destroyAsteroid(index, roids, player, soundOn, level) {
   let { x, y, r } = roids.current[index];
+  let score = 0;
 
   // split the asteroid in two if necessary
   if (r === ROIDS_SIZE / 2 || r === ROIDS_SIZE / 4) {
     roids.current.push(new Asteroid(x, y, Math.ceil(r / 2), level));
     roids.current.push(new Asteroid(x, y, Math.ceil(r / 2), level));
-    // player.score += r === ROIDS_SIZE / 2 ? ROIDS_PTS_LG : ROIDS_PTS_MD;
+    score += r === ROIDS_SIZE / 2 ? ROIDS_PTS_LG : ROIDS_PTS_MD;
   } else {
-    // player.score += ROIDS_PTS_SM;
+    score += ROIDS_PTS_SM;
   }
 
   roids.current.splice(index, 1);
   if (soundOn) {
-    soundFile.play();
+    soundCalls.PlayLaserHitAsteroid();
   }
 
-  if (roids.current.length === 0) {
-    // gameOver();
-  }
+  return score;
 }
 
 class Asteroid {

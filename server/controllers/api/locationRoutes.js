@@ -20,14 +20,9 @@ router.get("/:id", async (req, res) => {
         model: Encounter,
       },
     });
-
-    req.session.save(() => {
-      req.session.locationId = location.id;
-    });
-
-    res.json(location);
+    location ? res.status(200).json(location) : res.status(404).json(location);
   } catch (err) {
-    res.json(err);
+    res.status(500).json(err);
   }
 });
 

@@ -73,7 +73,7 @@ async function login(body) {
       ));
 
     } else {
-      return {};
+      return response.data;
     }
 
     return response.data 
@@ -103,7 +103,7 @@ async function signUp(body) {
       ));
       return response.data;
     } else {
-      return {};
+      return response.data;
     }
   } catch(err) {
     return err.response;
@@ -147,7 +147,7 @@ async function getCharPrototypes() {
       console.log('response good', response.data)
       return response.data; 
     } else {
-      return {};
+      return response.data;
     }
   } catch(err) {
     return err.response;
@@ -173,7 +173,7 @@ async function createGame(body) {
       console.log(response.data)
       return response.data;
     } else {
-      return {};
+      return response.data;
     }
   } catch(err) {
     return err.response;
@@ -208,7 +208,7 @@ async function getLocation(location_id) {
       console.log("Response good", response.data);
       return response.data;
     } else {
-      return {};
+      return response.data;
     }
   } catch(err) {
     return err.response;
