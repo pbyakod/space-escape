@@ -1,6 +1,5 @@
 import { useGameContext } from "../../../../utils/Game/GlobalState"
 import { RENDER_PROMPT } from "../../../../utils/Game/actions" 
-import story from './assets/story'; 
 import "../../../../App.scss";
 import "./story.scss"
 
@@ -14,8 +13,8 @@ export default function Story() {
   console.log(state)
   return (
     <div className="main-container">
-    <h1 className="title">Story Page</h1>
-      <p className="story-content">{story[state.location_id - 1]}</p>
+      <h1 className="title"> Story - {state.location_id}</h1>
+      <p className="story-content">{state.encounter.story}</p>
       <button onClick={handleClick}>continue</button>
     </div>
   )

@@ -12,6 +12,11 @@ Encounter.init(
       primaryKey: true
     },
 
+    story: {
+      type: DataTypes.TEXT,
+      allowNull: false
+    },
+
     message: {
       type: DataTypes.TEXT,
       allowNull: false
