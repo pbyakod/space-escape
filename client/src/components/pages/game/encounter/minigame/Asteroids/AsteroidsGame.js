@@ -6,7 +6,7 @@ import AsteroidsRules from './AsteroidsRules';
 import AsteroidsPrepare from './AsteroidsPrepare';
 import Canvas from './Canvas';
 import AsteroidsResult from './AsteroidsResult';
-
+import Result from '../../result/Result';
 
 function AsteroidsGame() {
   const initialState = {
@@ -26,6 +26,8 @@ function AsteroidsGame() {
   const [gameProcess, setGameProcess] = useState({ ...initialState });
   const [gameResult, setGameResult] = useState({ ...gameState });
 
+  
+
   // status of character can be calc here with global status and game result
   // the status can be used for character page
   
@@ -36,7 +38,7 @@ function AsteroidsGame() {
       {gameProcess.renderPrepare && <AsteroidsPrepare setGameProcess = { setGameProcess }/>}
       {gameProcess.renderCanvas && <Canvas setGameProcess = { setGameProcess } setGameResult = { setGameResult }/>}
       {gameProcess.renderResult && <AsteroidsResult setGameProcess = { setGameProcess } gameResult={ gameResult }/>}
-      {gameProcess.displayCharacter && <div>test</div>}
+      {gameProcess.displayCharacter && <Result/>}
     </div>
   )
 }

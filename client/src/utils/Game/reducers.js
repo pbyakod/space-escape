@@ -8,7 +8,7 @@ import {
   RENDER_PROMPT,
   RENDER_STORY,
   RENDER_SCORE,
-  UPDATE_LOCATION,
+  UPDATE_OUTCOME,
   SET_NEXT_LOCATION,
   SET_OUTCOME,
   AFFECT_CHAR_STATS,
@@ -120,6 +120,16 @@ export const reducer = (state, action) => {
       return {
         ...state,
         outcome: action.outcome
+      }
+    case UPDATE_OUTCOME:
+      return {
+        ...state,
+        outcome: {
+          ...state.outcome,
+          health: action.outcome.health,
+          ship: action.outcome.ship,
+          gold: action.outcome.gold
+        }
       }
     case AFFECT_CHAR_STATS:
       return {
