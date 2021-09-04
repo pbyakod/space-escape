@@ -3,8 +3,6 @@ import { useGameContext } from '../../../../../utils/Game/GlobalState'
 import { 
   RENDER_MINIGAME, 
   RENDER_RESULTS, 
-  UPDATE_LOCATION,
-  UPDATE_CHARACTER_STATS,
   SET_OUTCOME
 } from "../../../../../utils/Game/actions"
 import asteroids from "./img/asteroidbelt.png"
@@ -67,7 +65,7 @@ export default function Prompt() {
     const outcome = parseOption(e.target.name);
     dispatch({type: SET_OUTCOME, outcome: outcome});
 
-    switch(outcome.next) {
+    switch(outcome.next.split('/')[0]) {
       case "minigame":
         dispatch({type: RENDER_MINIGAME});
         break;
