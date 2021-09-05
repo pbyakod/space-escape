@@ -1,7 +1,6 @@
-import { destroyAsteroid } from "./Gold";
-import { LASER_EXPLODE_DUR, FPS, SHIP_SIZE, TEXT_SIZE, TEXT_FADE_TIME } from "./constVaraibles";
+import { TEXT_SIZE, TEXT_FADE_TIME, GOLD_SIZE, PLAYER_SIZE } from "./constVaraibles";
 import soundCalls from "../../../../../../utils/sound";
-
+import { collectGold } from "./Gold";
 export function randomInt(num) {
   // generate a random integer smaller than num
   return Math.floor(Math.random() * num);
@@ -25,56 +24,24 @@ export function distBetweenPoints (x1, y1, x2, y2) {
   return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
 }
 
-export function detectExploding(ship, roids, soundOn, level) {
+export function detectCollection(player, golds, soundOn) {
   let score = 0;
-  if (!ship.exloding && ship.blinkNum === 0 && !ship.dead) {
-    for (let i = 0; i < roids.current.length; i++) {
-      if (distBetweenPoints(ship.x, ship.y, roids.current[i].x, roids.current[i].y) < ship.r + roids.current[i].r) {
-        ship.explodeShip(soundOn);
-        score += destroyAsteroid(i, roids, {}, soundOn, level);
+    for (let i = 0; i < golds.length; i++) {
+      if (distBetweenPoints(player.x, player.y, golds[i].x, golds[i].y) < PLAYER_SIZE / 2 + GOLD_SIZE / 2) {
+        score += collectGold(i, golds, player.x, player.y, soundOn)
         break;
       }
     }
-  }
   return score;
 }
 
-export function detectHit(ship, roids, soundOn, level) {
-  let score = 0;
-  let ax, ay, ar, lx, ly;
-  for (let i = roids.current.length - 1; i >= 0; i--) {
-
-    // grab the asteroid properties
-    ax = roids.current[i].x;
-    ay = roids.current[i].y;
-    ar = roids.current[i].r;
-
-    // loop over the lasers
-    for (let j = ship.lasers.length - 1; j >= 0; j--) {
-      // grab the laser properties
-      lx = ship.lasers[j].x;
-      ly = ship.lasers[j].y;
-
-      // detect hits
-      if (distBetweenPoints(ax, ay, lx, ly) < ar) {        
-
-        // destroy the asteroid and activate the laser explosion
-        score += destroyAsteroid(i, roids, {}, soundOn, level);
-        ship.lasers[j].explodeTime = Math.ceil(LASER_EXPLODE_DUR * FPS);
-
-        break;
-      }
-    }
-  }
-  return score;
-}
-
-export function drawShipHealth(ctx, ship) {
-   ctx.textAlign = "left";
-   ctx.textBaseLine = "middle";
-   ctx.fillStyle = ship.health < 30 ? "red" : "white";
-   ctx.font = TEXT_SIZE + "px dejavu sans mono";
-   ctx.fillText("Ship Health: " + ship.health, SHIP_SIZE * 2, SHIP_SIZE * 2);
+export function drawTimer(ctx, timeLeft) {
+  timeLeft = Math.floor(timeLeft);
+  ctx.textAlign = "left";
+  ctx.textBaseLine = "middle";
+  ctx.fillStyle = timeLeft < 10 ? "red" : "white";
+  ctx.font = TEXT_SIZE + "px dejavu sans mono";
+  ctx.fillText("Time Left: " + timeLeft, PLAYER_SIZE / 2, PLAYER_SIZE / 2);
 }
  
 export function drawScore(ctx, canvas, score) {
@@ -82,19 +49,19 @@ export function drawScore(ctx, canvas, score) {
   ctx.textBaseLine = "middle";
   ctx.fillStyle = "white";
   ctx.font = TEXT_SIZE + "px dejavu sans mono";
-  ctx.fillText("Score: " + score, canvas.width - SHIP_SIZE * 2, SHIP_SIZE * 2);
+  ctx.fillText("Score: " + score, canvas.width - PLAYER_SIZE / 2, PLAYER_SIZE / 2);
 }
 
-export function drawGameText(text, textAlpha, ctx, canvas) {
-  if (textAlpha.current >= 0) {
-    ctx.textAlign = "center";
-    ctx.baseline = "middle";
-    ctx.fillStyle = "rgba(255, 255, 255, " + textAlpha.current + ")";
-    ctx.font = "small-caps " + TEXT_SIZE + "px dejavu sans mono";
-    ctx.fillText(text.current, canvas.width / 2, canvas.height * 0.75);
-    textAlpha.current -= 0.5 / TEXT_FADE_TIME / FPS;
-  }
-}
+// export function drawGameText(text, textAlpha, ctx, canvas) {
+//   if (textAlpha.current >= 0) {
+//     ctx.textAlign = "center";
+//     ctx.baseline = "middle";
+//     ctx.fillStyle = "rgba(255, 255, 255, " + textAlpha.current + ")";
+//     ctx.font = "small-caps " + TEXT_SIZE + "px dejavu sans mono";
+//     ctx.fillText(text.current, canvas.width / 2, canvas.height * 0.75);
+//     textAlpha.current -= 0.5 / TEXT_FADE_TIME / FPS;
+//   }
+// }
 
 
 export function gameOver(text, textAlpha, score, ship, soundOn, setGameProcess) {

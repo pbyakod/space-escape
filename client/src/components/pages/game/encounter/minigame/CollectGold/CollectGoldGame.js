@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './asteroids.css';
+import './collectGold.css';
 import CollectGoldHome from './CollectGoldHome';
 import CollectGoldRules from './CollectGoldRules';
 import CollectGoldPrepare from './CollectGoldPrepare';
@@ -43,4 +43,4 @@ function CollectGoldGame() {
   )
 }
 
-export default AsteroidsGame
+export default CollectGoldGame;

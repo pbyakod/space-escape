@@ -2,11 +2,12 @@ import { GOLDS_NUM, GOLD_PTS, GOLD_SIZE, PLAYER_SIZE } from "./constVaraibles";
 import { distBetweenPoints, randomInt } from "./helper";
 import soundCalls from "../../../../../../utils/sound";
 
-export function createGolds(playerX, playerY, golds) {
-  golds.current = [];
+export function createGolds(playerX, playerY) {
+  const golds = [];
   for (let i = 0; i < GOLDS_NUM; i++) {
-    golds.current.push(new Gold(playerX, playerY));
+    golds.push(new Gold(playerX, playerY));
   }
+  return golds;
 }
 
 export function drawGolds(ctx, golds) {
@@ -15,7 +16,7 @@ export function drawGolds(ctx, golds) {
 
 export function collectGold(index, golds, playerX, playerY, soundOn) {
   const score = golds[index].score;
-  golds.current.splice(index, 1);
+  golds.splice(index, 1);
   golds.push(new Gold(playerX, playerY));
   if (soundOn) {
     soundCalls.PlayLaserHitAsteroid();
@@ -27,8 +28,8 @@ class Gold {
   constructor(playerX, playerY, score = GOLD_PTS[randomInt(3)]) {
     let x, y;
     do {
-      x = randomInt(document.window.width / GOLD_SIZE) * GOLD_SIZE + Math.floor(GOLD_SIZE / 2);
-      y = randomInt(document.window.height / GOLD_SIZE) * GOLD_SIZE + Math.floor(GOLD_SIZE / 2);
+      x = randomInt(window.innerWidth / GOLD_SIZE) * GOLD_SIZE + Math.floor(GOLD_SIZE / 2);
+      y = randomInt(window.innerHeight / GOLD_SIZE) * GOLD_SIZE + Math.floor(GOLD_SIZE / 2);
     } while (distBetweenPoints(playerX, playerY, x, y) < GOLD_SIZE * 2 + PLAYER_SIZE)
     this.x = x;
     this.y = y;

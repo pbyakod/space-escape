@@ -15,8 +15,7 @@ import api from './utils/api';
 import { GameProvider } from "./utils/Game/GlobalState";
 import { Howl, Howler } from 'howler';
 import Hover from './sounds/hover.mp3';
-import CollectGold from "./components/pages/game/encounter/minigame/CollectGold";
-
+import CollectGoldGame from "./components/pages/game/encounter/minigame/CollectGold/CollectGoldGame";
 export default function App() {
   const hoverSound = new Howl({
     src: Hover
@@ -41,7 +40,7 @@ export default function App() {
           <Route component={api.loggedIn() ? Game : Auth} path="/game"/>
           <Route component={api.loggedIn() ? Score : Auth} path="/score"/>
           <Route component={api.loggedIn() ? LeaderBoard: Auth} path="/leaderBoard"/>
-          <Route component={CollectGold} path="/collectGold"/>
+          <Route component={CollectGoldGame} path="/collectGold"/>
           {/* <Route component={api.loggedIn() ? AsteroidsGame: Auth} path="/Asteroids" /> */}
         </Switch>
       </GameProvider>

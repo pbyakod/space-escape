@@ -1,9 +1,5 @@
-import { PLAYER_SIZE, PLAYER_BLINK_DUR, PLAYER_EXPLODE_DUR, FPS, PLAYER_THRUST, FRICTION, LASER_DIST, PLAYER_INV_DUR, LASER_SPD, LASER_MAX, HIT_DAMAGE } from './constVaraibles';
-import { dealWithBorder } from "./helper";
-import soundCalls from '../../../../../../utils/sound';
-
 export class Player {
-  constructor() {
+  constructor(ctx) {
     this.x = window.innerWidth / 2;
     this.y = window.innerHeight / 2;
     this.width = 32;
@@ -15,45 +11,32 @@ export class Player {
   }
 
   draw(ctx) {
-    const playerSprite = new Image();
-    playerSprite.src = "./goldCollectionPlayer.png";
-    ctx.drawImage()
+    ctx.strokeStyle = 'rgba(5, 5, 5)';
+    ctx.shadowColor = 'rgba(5, 5, 5)';
+    ctx.shadowBlur = 15;
+    ctx.fillStyle = 'rgba(5, 5, 5)';
+    ctx.lineWidth = 10;
+
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, 30, 0, Math.PI * 2);
+    ctx.closePath();
+    ctx.fill();
+    ctx.stroke();
   }
 
-
-  
-  move(canvas) {
-    let exploding = this.explodeTime > 0;
-  
-    if (!exploding) {
-  
-      if (this.blinkNum > 0) {
-        this.blinkTime--;
-  
-        if (this.blinkTime === 0) {
-          this.blinkTime = Math.ceil(PLAYER_BLINK_DUR * FPS);
-          this.blinkNum--;
-        }
-      }
-  
-      this.a += this.rot;
-      this.x += this.thrust.x;
-      this.y += this.thrust.y;
-      
-      dealWithBorder(this, canvas.width, canvas.height);
-      
-    } else {
-      
-      this.explodeTime--;
+  move(canvas, direction) {
+    const { left, right, up, down } = direction;
+    if (up) {
+      this.y = this.y > this.speed ? this.y - this.speed : 0;
     }
-  
-    if (this.thrusting && !this.dead) {
-      this.thrust.x += PLAYER_THRUST * Math.cos(this.a) / FPS;
-      this.thrust.y -= PLAYER_THRUST * Math.sin(this.a) / FPS;
-    
-    } else {
-      this.thrust.x -= FRICTION * this.thrust.x / FPS;
-      this.thrust.y -= FRICTION * this.thrust.y / FPS;
+    if (down) {
+      this.y = this.y < canvas.height - this.speed ? this.y + this.speed : canvas.height;
+    }
+    if (left) {
+      this.x = this.x > this.speed ? this.x - this.speed : 0;
+    }
+    if (right) {
+      this.x = this.x < canvas.width - this.speed ? this.x + this.speed : canvas.width;
     }
   }
 }
