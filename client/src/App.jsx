@@ -15,7 +15,6 @@ import api from './utils/api';
 import { GameProvider } from "./utils/Game/GlobalState";
 import { Howl, Howler } from 'howler';
 import Hover from './sounds/hover.mp3';
-
 export default function App() {
   const hoverSound = new Howl({
     src: Hover
