@@ -8,6 +8,7 @@ import ShipDamaged from "../sounds/shipDamaged.wav";
 import ShipWasHit from "../sounds/shipWasHit.ogg";
 import ShootLaser from "../sounds/shootLaser.wav";
 import CollectGold from "../sounds/collectGold.mp3";
+import TimeUp from "../sounds/timeup.wav";
 
 const soundFX = {
   background: new Howl({
@@ -38,6 +39,9 @@ const soundFX = {
   collectGold: new Howl({
     src: CollectGold,
   }),
+  timeUp: new Howl({
+    src: TimeUp,
+  })
 };
 
 function PlayBackground() {
@@ -94,6 +98,12 @@ function PlayShootLaser() {
   soundFX.shootLaser.play();
 }
 
+function PlayTimeUp() {
+  if (!soundFX.timeUp.playing()) {
+    soundFX.timeUp.play();
+  }
+}
+
 function MuteSound() {
   if (soundFX.background.playing()) {
     soundFX.background.stop();
@@ -112,6 +122,7 @@ const soundCalls = {
   PlayShipWasHit,
   PlayShootLaser,
   PlayCollectGold,
+  PlayTimeUp,
   MuteSound,
 };
 

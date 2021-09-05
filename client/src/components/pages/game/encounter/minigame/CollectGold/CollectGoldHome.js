@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import anime from 'animejs/lib/anime.es.js';
 
-export default function AsteroidsHome({ setGameProcess }) {
+export default function CollectGoldHome({ setGameProcess }) {
   const animationRef = useRef(null);
   useEffect(() => {
     animationRef.current = anime({

@@ -3,7 +3,7 @@ import { useGameContext } from '../../../../../../utils/Game/GlobalState';
 import { UPDATE_OUTCOME } from '../../../../../../utils/Game/actions';
 import {useEffect} from 'react';
 
-export default function AsteroidsResult({ gameResult, setGameProcess }) {
+export default function CollectGoldResult({ gameResult, setGameProcess }) {
   let heading = "";
   let p1 = "";
   let p2 = "";

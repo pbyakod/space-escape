@@ -71,7 +71,7 @@ export function gameOver(text, textAlpha, score, ship, soundOn, setGameProcess) 
   textAlpha.current = 1.0;
   text.current = "Time is up! You earn " + score/10 + " Gold!";
   if (soundOn) {
-    soundCalls.PlayAsteroidsVictory();
+    soundCalls.PlayTimeUp();
   }
   setTimeout(function() {
     setGameProcess({

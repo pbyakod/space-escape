@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import anime from 'animejs/lib/anime.es.js';
 
-export default function AsteroidsPrepare({ setGameProcess }) {
+export default function CollectGoldPrepare({ setGameProcess }) {
   const animationRef = useRef(null);
   let animations = {
     opacityIn: [0, 1],
