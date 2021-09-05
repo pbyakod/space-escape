@@ -64,12 +64,20 @@ export function detectHit(ship, roids, soundOn, level) {
   return score;
 }
 
+
 export function drawShipHealth(ctx, ship) {
    ctx.textAlign = "left";
    ctx.textBaseLine = "middle";
    ctx.fillStyle = ship.health < 30 ? "red" : "white";
    ctx.font = TEXT_SIZE + "px dejavu sans mono";
    ctx.fillText("Ship Health: " + ship.health, SHIP_SIZE * 2, SHIP_SIZE * 2);
+}
+export function drawShipLives(ctx, shipLives) {
+  ctx.textAlign = "left";
+  ctx.textBaseLine = "middle";
+  ctx.fillStyle = shipLives < shipLives/2 ? "red" : "white";
+  ctx.font = TEXT_SIZE + "px dejavu sans mono";
+  ctx.fillText("Ship Lives: " + shipLives, SHIP_SIZE * 2, SHIP_SIZE * 2); 
 }
  
 export function drawScore(ctx, canvas, score) {
@@ -89,6 +97,15 @@ export function drawGameText(text, textAlpha, ctx, canvas) {
     ctx.fillText(text.current, canvas.width / 2, canvas.height * 0.75);
     textAlpha.current -= 0.5 / TEXT_FADE_TIME / FPS;
   }
+}
+
+export function drawTimer(ctx, timeLeft, canvas) {
+  ctx.textAlign = "right";
+  ctx.baseline = "middle";
+  ctx.fillStyle = "white";
+  ctx.font = TEXT_SIZE + "px dejavu sans mono";
+  ctx.fillText(`Time Left: ${timeLeft}`, canvas.width - SHIP_SIZE * 2, SHIP_SIZE * 2);
+  return timeLeft--;
 }
 
 

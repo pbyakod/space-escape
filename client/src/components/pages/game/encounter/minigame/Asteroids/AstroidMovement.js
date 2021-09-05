@@ -14,16 +14,23 @@ export function createAsteroids(level, shipObj, canvas, roids) {
   }
 }
 
+export function makeAsteroidsMoveLeft(roids) {
+  for (let i = 0; i < roids.length; i++) {
+    roids[i].setXV(-generateVelocity(3)*3)
+    roids[i].setYV(0)
+  }
+}
+
 export function drawAsteroids(ctx, roids) {
   for (let i = 0; i < roids.current.length; i++) {
     roids.current[i].drawAsteroid(ctx);
   }
 }
 
-export function moveAsteroids(ctx, roids) {
+export function moveAsteroids(ctx, roids, xvScale, yvScale) {
   for (let i = 0; i < roids.length; i++) {
-    roids[i].x += roids[i].xv;
-    roids[i].y += roids[i].yv;
+    roids[i].x += roids[i].xv * xvScale;
+    roids[i].y += roids[i].yv * yvScale;
     dealWithBorder(roids[i], ctx.canvas.width, ctx.canvas.height);
   }
 }
@@ -49,14 +56,18 @@ export function destroyAsteroid(index, roids, player, soundOn, level) {
   return score;
 }
 
+function generateVelocity(lvlMult) {
+  return Math.random() * ROIDS_SPD * lvlMult / FPS;
+}
+
 class Asteroid {
   constructor(x, y, r, level) {
     let lvlMult = 1 + .1 * level;
     this.x = x;
     this.y = y;
     this.r = r;
-    this.xv = Math.random() * ROIDS_SPD * lvlMult / FPS * (Math.random() < 0.5 ? 1 : -1);
-    this.yv = Math.random() * ROIDS_SPD * lvlMult / FPS * (Math.random() < 0.5 ? 1 : -1);
+    this.xv = generateVelocity(lvlMult) * (Math.random() < 0.5 ? 1 : -1);
+    this.yv = generateVelocity(lvlMult) * (Math.random() < 0.5 ? 1 : -1);
     this.a = Math.random() * Math.PI * 2;
     this.explodeTime = 0;
     this.vert = Math.floor(Math.random() * (ROIDS_VERT + 1) + ROIDS_VERT / 2);
@@ -89,5 +100,13 @@ class Asteroid {
     ctx.closePath();
     ctx.fill();
     ctx.stroke();
+  }
+
+  setXV(xv) {
+    this.xv = xv;
+  }
+
+  setYV(yv) {
+    this.yv = yv; 
   }
 }

@@ -15,6 +15,7 @@ import api from './utils/api';
 import { GameProvider } from "./utils/Game/GlobalState";
 import { Howl, Howler } from 'howler';
 import Hover from './sounds/hover.mp3';
+import Canvas from "./components/pages/game/encounter/minigame/AsteroidRun/Canvas";
 export default function App() {
   const hoverSound = new Howl({
     src: Hover
@@ -39,7 +40,7 @@ export default function App() {
           <Route component={api.loggedIn() ? Game : Auth} path="/game"/>
           <Route component={api.loggedIn() ? Score : Auth} path="/score"/>
           <Route component={api.loggedIn() ? LeaderBoard: Auth} path="/leaderBoard"/>
-          {/* <Route component={api.loggedIn() ? AsteroidsGame: Auth} path="/Asteroids" /> */}
+          <Route component={Canvas} path="/pirateshooter" />
         </Switch>
       </GameProvider>
       </BrowserRouter>
