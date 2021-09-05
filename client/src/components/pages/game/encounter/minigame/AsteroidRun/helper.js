@@ -1,4 +1,4 @@
-import { destroyAsteroid } from "./pelterMovement";
+// import { destroyAsteroid } from "./pelterMovement";
 import { LASER_EXPLODE_DUR, FPS, SHIP_SIZE, TEXT_SIZE, TEXT_FADE_TIME } from "./constVariables";
 import soundCalls from "../../../../../../utils/sound";
 
@@ -26,7 +26,7 @@ export function detectExploding(ship, roids, soundOn, level) {
     for (let i = 0; i < roids.current.length; i++) {
       if (distBetweenPoints(ship.x, ship.y, roids.current[i].x, roids.current[i].y) < ship.r + roids.current[i].r) {
         ship.explodeShip(soundOn);
-        score += destroyAsteroid(i, roids, {}, soundOn, level);
+        // score += destroyAsteroid(i, roids, {}, soundOn, level);
         break;
       }
     }
@@ -54,7 +54,7 @@ export function detectHit(ship, roids, soundOn, level) {
       if (distBetweenPoints(ax, ay, lx, ly) < ar) {        
 
         // destroy the asteroid and activate the laser explosion
-        score += destroyAsteroid(i, roids, {}, soundOn, level);
+        // score += destroyAsteroid(i, roids, {}, soundOn, level);
         ship.lasers[j].explodeTime = Math.ceil(LASER_EXPLODE_DUR * FPS);
 
         break;

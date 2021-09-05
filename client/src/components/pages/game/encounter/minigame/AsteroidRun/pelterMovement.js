@@ -35,29 +35,29 @@ export function moveAsteroids(ctx, roids, xvScale, yvScale) {
   }
 }
 
-export function destroyAsteroid(index, roids, player, soundOn, level) {
-  let { x, y, r } = roids.current[index];
-  let score = 0;
+// export function destroyAsteroid(index, roids, player, soundOn, level) {
+//   let { x, y, r } = roids.current[index];
+//   let score = 0;
 
-  // split the asteroid in two if necessary
-  if (r === ROIDS_SIZE / 2 || r === ROIDS_SIZE / 4) {
-    roids.current.push(new Asteroid(x, y, Math.ceil(r / 2), level));
-    roids.current.push(new Asteroid(x, y, Math.ceil(r / 2), level));
-    score += r === ROIDS_SIZE / 2 ? ROIDS_PTS_LG : ROIDS_PTS_MD;
-  } else {
-    score += ROIDS_PTS_SM;
-  }
+//   // split the asteroid in two if necessary
+//   if (r === ROIDS_SIZE / 2 || r === ROIDS_SIZE / 4) {
+//     roids.current.push(new Asteroid(x, y, Math.ceil(r / 2), level));
+//     roids.current.push(new Asteroid(x, y, Math.ceil(r / 2), level));
+//     score += r === ROIDS_SIZE / 2 ? ROIDS_PTS_LG : ROIDS_PTS_MD;
+//   } else {
+//     score += ROIDS_PTS_SM;
+//   }
 
-  roids.current.splice(index, 1);
-  if (soundOn) {
-    soundCalls.PlayLaserHitAsteroid();
-  }
+//   roids.current.splice(index, 1);
+//   if (soundOn) {
+//     soundCalls.PlayLaserHitAsteroid();
+//   }
 
-  return score;
-}
+//   return score;
+// }
 
 function generateVelocity(lvlMult) {
-  return Math.random() * ROIDS_SPD * lvlMult / FPS;
+  return ROIDS_SPD;
 }
 
 class Asteroid {
@@ -70,7 +70,7 @@ class Asteroid {
     this.yv = generateVelocity(lvlMult) * (Math.random() < 0.5 ? 1 : -1);
     this.a = Math.random() * Math.PI * 2;
     this.explodeTime = 0;
-    this.vert = Math.floor(Math.random() * (ROIDS_VERT + 1) + ROIDS_VERT / 2);
+    this.vert = ROIDS_VERT;
     this.offset = [];
     for (let i = 0; i < this.vert; i++) {
       this.offset.push(Math.random() * ROIDS_JAG * 2 + 1 - ROIDS_JAG);
