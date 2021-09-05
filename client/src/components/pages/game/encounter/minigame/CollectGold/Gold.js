@@ -1,4 +1,4 @@
-import { GOLDS_NUM, GOLD_PTS, FPS, GOLD_SIZE, PLAYER_SIZE} from "./constVaraibles";
+import { GOLDS_NUM, GOLD_PTS, GOLD_SIZE, PLAYER_SIZE } from "./constVaraibles";
 import { distBetweenPoints, randomInt } from "./helper";
 import soundCalls from "../../../../../../utils/sound";
 
