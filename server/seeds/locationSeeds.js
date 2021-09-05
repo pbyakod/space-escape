@@ -220,7 +220,18 @@ const locations = [
     tradable: '',
     abundance: '',
     fact: 'Named after the great Explorer Pravav III, Pranav’s Pelters is a tiny galaxy filled with tiny planets'
+  },{
+    // 21
+    name: "Home",
+    people: '',
+    population: 0,
+    currency: '',
+    leader: '',
+    tradable: '',
+    abundance: '',
+    fact: 'Welcome home!'
   },
+
 ];
 
 const seed = () => Location.bulkCreate(locations);

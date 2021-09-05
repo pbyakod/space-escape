@@ -5,7 +5,7 @@ const encounter = [
     story: "Thanks for the ride boss, I'm telling ya, I'm the best wingman. Ill communicate messages from the console.",
     message: "You’ve come across a asteroid belt. You must navigate your way through it",
     option1: 'Start Navigating|{"health": 0, "ship":0, "gold":0, "next": "minigame/asteroids", "next_location_id": 2}',
-    option2: ' |{leave blank, can only play minigame}',
+    option2: 'Go around and deplete resources|{"health": -100, "ship":-100, "gold":0, "next": "results", "next_location_id": 2}',
     location_id: 1,
   },
   {
@@ -18,8 +18,8 @@ const encounter = [
   {
     story: "Troy’s Traverse’, also known as the “Sahara of Space” is a trechorous area in space known for having no planets, or sentient life. Many trevellers have fallen victim to this barren stretch of space",
     message: "You’ve come across an abandoned ship, salvage for left behind gold.",
-    option1: 'Start Salvaging|{"health": 0, "ship": 0, "gold": 0, "next": "results", "next_location_id": "4"}',
-    option2: ' |{leave blank, can only play minigame}',
+    option1: 'Start Salvaging|{"health": 0, "ship": 0, "gold": 0, "next": "minigame/salvage", "next_location_id": 4}',
+    option2: 'Contue on without salvaging |{"health": 0, "ship":0, "gold":0, "next": "results", "next_location_id": 4}',
     location_id: 3,
   },
   {
@@ -46,22 +46,22 @@ const encounter = [
   {
     story:   "Get ready for a rough landing, those winds blew us way off course and the radar isn't detecting this planet. This doesn't look good!",
     message: "You have been approached by a mysterious figure, the Deman is unavoidable. your health is drained",
-    option1: 'leave as soon as possible|{"health": /2, "ship": -100, "gold": 0, "next": "minigame/asteroids", "next_location_id": 8}',
-    option2: 'leave as soon as possible|{"health": /2, "ship": -100, "gold": 0, "next": "minigame/asteroids", "next_location_id": 8}',
+    option1: 'leave as soon as possible|{"health": -600, "ship": -100, "gold": 0, "next": "results", "next_location_id": 8}',
+    option2: 'leave as soon as possible|{"health": -600, "ship": -100, "gold": 0, "next": "results", "next_location_id": 8}',
     location_id: 7,
   },
   {
     story: "Glad we made it to Peter's Pass, I was looking forward to checking this place out. A particularly scenic part of space, Peter’s Pass is littered with beautiful stars, and a black hole a safe distance away. Its beauty brings space travellers from all planets to visit and enjoy the breathtaking scenery.",
     message:"Oh no! It looks like your ship has incurred an infestation of space-mice (yes, mice do exist in space). They eat the componenets of your spaceship’s internal heater, and if left alone, your space ship will become unbearably cold. Kill the mice before your heat dissapears!",
     option1: 'Start capturing them|{"health": 0, "ship":0, "gold":0, "next": "minigame/whackMouse", "next_location_id": 9}',
-    option2: ' |{leave blank, can only play minigame}',
+    option2: 'let them be|{"health": -200, "ship": -300, "gold": 0, "next": "results", "next_location_id": 9}',
     location_id: 8,
   },
   {
     story: "If we hurry we can make it to Prastin! I know a good spot to fix up the ship when we get there!", 
-    message: 'You’ve made it to Prastin, the birthpace of Serpent Growing. luckily their currency the Gloon has an exchange rate of 2/1 with gold. Would you like to pay for repairs?',
-    option1: 'Fight back|{"health": 0, "ship": -10, "gold": -10, "next": "minigame/asteroids", "next_location_id": 10}',
-    option2: 'Go Around|{"health": 0, "ship": -10, "gold": -10, "next": "results", "next_location_id": 10}',
+    message: 'You’ve made it to Prastin, the birthpace of Serpent Growing. they offer you some repairs in exhange for oxygen, do you wish to make this trade?',
+    option1: 'Yes|{""health": -200, "ship": +300, "gold": 0, "next": "minigame/asteroids", "next_location_id": 10}',
+    option2: 'No|{"health": 0, "ship": 0, "gold": 0, "next": "results", "next_location_id": 10}',
     location_id: 9,
   },
   {
@@ -142,7 +142,7 @@ const encounter = [
   {
     story: "Lets Head Home!",
     message: 'You’ve made it to Pramav’s Pelters, a tiny galaxy of 50 tiny planets. Navegate through safely and you’re home free! ',
-    option1: 'Begin Navigation|{"health": 0, "ship": 0, "gold": 0, "next": "minigame/pelters", "next_location_id": 10}',
+    option1: 'Begin Navigation|{"health": 0, "ship": 0, "gold": 0, "next": "minigame/pelters", "next_location_id": 21}',
     option2: ' |{leave blank, can only play minigame}',
     location_id: 20,
   },
