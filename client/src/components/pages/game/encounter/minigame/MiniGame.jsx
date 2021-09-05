@@ -2,6 +2,7 @@
 import { RENDER_RESULTS } from "../../../../../utils/Game/actions";
 import { useGameContext } from "../../../../../utils/Game/GlobalState"
 import AsteroidsGame from "./Asteroids/AsteroidsGame";
+import CollectGoldGame from "./CollectGold/CollectGoldGame";
 
 export default function MiniGame({game}) {
   console.log(game)
@@ -9,6 +10,7 @@ export default function MiniGame({game}) {
   return (
     <div>
      {game === 'asteroids' && <AsteroidsGame/>}
+     {game === 'collectGold' && <CollectGoldGame/>}
      {/* {prop.game === 'wackomole' && <Wackomole/>} */}
     </div>
   )
