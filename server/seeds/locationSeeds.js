@@ -21,7 +21,7 @@ const locations = [
     leader: 'King Valamin',
     tradable: 'Oxygen',
     abundance: 'Ship Building and repair',
-    fact: 'Isolated in space between two enormous natural barriers, the Valuminions are increadibly experienced and skilled navigators, and ship builders. They rely heavily on trade with other planets, and use their navigation skills and ship building expertise in exhange for goods'
+    fact: 'Isolated in space between two enormous natural barriers, the Valuminions are increadibly experienced and skilled navigators and ship builders. With few natural resources, they rely heavily on trade with other planets, and use their navigation skills and ship building expertise to help captain voyages and build ships for wealthir planets. Around 70% of all ships in the known universe have been constructed in some part by Valuminions'
   },
   {
     // 3
