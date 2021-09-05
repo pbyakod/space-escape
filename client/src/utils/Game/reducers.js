@@ -3,6 +3,7 @@ import {
   INITIALIZE_GLOBAL_STATE,
   CREATE_GAME,
   INITIALIZE_GAME,
+  INITIALIZE_SAVED_GAME,
   RENDER_MINIGAME,
   RENDER_RESULTS,
   RENDER_PROMPT,
@@ -12,8 +13,8 @@ import {
   SET_NEXT_LOCATION,
   SET_OUTCOME,
   AFFECT_CHAR_STATS,
-  RENDER_LEADERBOARD
-} from './actions';
+  RENDER_LEADERBOARD,
+} from "./actions";
 
 export const reducer = (state, action) => {
   switch (action.type) {
@@ -33,47 +34,56 @@ export const reducer = (state, action) => {
         ship: 0,
         gold: 0,
         inProgress: false,
-      }
+      };
+    case INITIALIZE_GAME:
+      return {
+        ...state,
+        encounter: action.encounter,
+        renderStory: true,
+      };
     case CREATE_GAME:
-      console.log(action)
       return {
         ...state,
         char_id: action.char_id,
         health: action.health,
         ship: action.ship,
         gold: action.gold,
-        inProgress: action.inProgress
-      }
-    case INITIALIZE_GAME:
+        inProgress: action.inProgress,
+      };
+    case INITIALIZE_SAVED_GAME:
+      console.log("action = ", action)
       return {
         ...state,
-        encounter: action.encounter,
-        renderStory: true
-      }
+        location_id: action.location_id,
+        health: action.health,
+        ship: action.ship,
+        gold: action.gold,
+      };
+
     case RENDER_MINIGAME:
       return {
         ...state,
         renderPrompt: false,
         renderMinigame: true,
         renderResults: false,
-        renderStory: false
-      }
+        renderStory: false,
+      };
     case RENDER_RESULTS:
       return {
         ...state,
         renderPrompt: false,
         renderMinigame: false,
         renderResults: true,
-        renderStory: false
-      }
+        renderStory: false,
+      };
     case RENDER_PROMPT:
       return {
         ...state,
         renderPrompt: true,
         renderMinigame: false,
         renderResults: false,
-        renderStory: false
-      }
+        renderStory: false,
+      };
     case RENDER_STORY:
       return {
         ...state,
@@ -81,7 +91,7 @@ export const reducer = (state, action) => {
         renderMinigame: false,
         renderResults: false,
         renderStory: true,
-      }
+      };
     case RENDER_SCORE:
       return {
         ...state,
@@ -91,8 +101,8 @@ export const reducer = (state, action) => {
         renderStory: false,
         renderScore: true,
         renderLeaderboard: false,
-        inProgress: false
-      }
+        inProgress: false,
+      };
     case RENDER_LEADERBOARD:
       return {
         ...state,
@@ -102,8 +112,8 @@ export const reducer = (state, action) => {
         renderStory: false,
         renderScore: false,
         renderLeaderboard: true,
-        inProgress: false
-      }
+        inProgress: false,
+      };
     // case UPDATE_LOCATION:
     //   return {
     //     ...state,
@@ -114,13 +124,13 @@ export const reducer = (state, action) => {
         ...state,
         location_id: action.location_id,
         encounter: action.encounter,
-        outcome: {}
-      }
+        outcome: {},
+      };
     case SET_OUTCOME:
       return {
         ...state,
-        outcome: action.outcome
-      }
+        outcome: action.outcome,
+      };
     case UPDATE_OUTCOME:
       return {
         ...state,
@@ -128,19 +138,19 @@ export const reducer = (state, action) => {
           ...state.outcome,
           health: action.outcome.health,
           ship: action.outcome.ship,
-          gold: action.outcome.gold
-        }
-      }
+          gold: action.outcome.gold,
+        },
+      };
     case AFFECT_CHAR_STATS:
       return {
         ...state,
-        ...action.statsChange
-      }
+        ...action.statsChange,
+      };
     default:
       return state;
   }
-}
+};
 
 export function useGameReducer(initialState) {
-  return useReducer(reducer, initialState)
+  return useReducer(reducer, initialState);
 }

@@ -25,13 +25,15 @@ export default function Dashboard() {
     getGameList();
   }, []);
 
-  console.log("gameList = ", gameList)
+  // console.log("gameList = ", gameList)
   return (
     <div className="main-container">
       <h1 className="title"> {username()}'s Dashboard </h1>
       <ul>
         {gameList.map((game, i) => {
-          {console.log("entered")}
+          console.log("entered")
+          console.log("db l_id = ", game.location_id)
+
           return <Game game={game} key={i}/>;
          })}
       </ul>

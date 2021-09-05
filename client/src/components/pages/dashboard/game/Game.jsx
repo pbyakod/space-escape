@@ -1,8 +1,12 @@
-import React from 'react'
+import { Link } from 'react-router-dom'
 import "./game.scss"
+import { useGameContext } from "../../../../utils/Game/GlobalState";
+import { INITIALIZE_SAVED_GAME } from "../../../../utils/Game/actions";
+import apiCalls from "../../../../utils/api";
+
+
 
 export default function Game({ game }) {
-
   let charName = "";
   let location = "";
 
@@ -46,17 +50,30 @@ export default function Game({ game }) {
    break;
   }
 
+  const [ state, dispatch ] = useGameContext();
+
+  function continueGame () {
+   dispatch({
+    location_id: game.location_id,
+    health: game.health,
+    ship: game.ship,
+    gold: game.gold,
+    type: INITIALIZE_SAVED_GAME
+   })
+   
+  }
+
   return (
     <li>
           
-          <p>{game.id})</p>
+          <p>{game.id}</p>
           <p>Location: {location}</p>
           <p>Character: {charName}</p>
           <p>Health: {game.health}</p>
           <p>Ship Health: {game.ship}</p>
           <p>Gold: {game.gold}</p>
         <div className="dashboard-action">
-          <button className="continue go-btn">Continue</button>
+         <Link to="/game"><button className="continue go-btn" onClick={continueGame}>Continue</button></Link>
           <button className="delete stop-btn">Delete</button>
         </div>
         </li>
