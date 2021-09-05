@@ -141,7 +141,7 @@ const encounter = [
   },
   {
     story: "Lets Head Home!",
-    message: 'You’ve made it to Pramav’s Pelters, a tiny galaxy of 50 tiny planets. Navegate through safely and you’re home free! ',
+    message: 'You’ve made it to Pranav’s Pelters, a tiny galaxy of 50 tiny planets. Navegate through safely and you’re home free! ',
     option1: 'Begin Navigation|{"health": 0, "ship": 0, "gold": 0, "next": "minigame/pelters", "next_location_id": 21}',
     option2: 'go around|{"health": -200, "ship": -200, "gold": 0, "next": "results", "next_location_id": 21}',
     location_id: 20,
