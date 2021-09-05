@@ -11,12 +11,12 @@ const authors = [
   },
   {
     name: "Troy Johnson",
-    portfolio: "https://tnj415.github.io/improved-portfolio/",
-    github:  "https://github.com/tnj415"
+    portfolio: "tnj415.github.io/improved-portfolio/",
+    github:  "github.com/tnj415"
   },
   {
     name: "Denzal Martin",
-    portfolio: "https://dmartin4820.github.io/portfolio",
+    portfolio: "dmartin4820.github.io/portfolio",
     github:  "https://github.com/dmartin4820"
   },
   {
