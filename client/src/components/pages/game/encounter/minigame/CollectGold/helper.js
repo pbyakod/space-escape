@@ -1,4 +1,4 @@
-import { TEXT_SIZE, TEXT_FADE_TIME, GOLD_SIZE, PLAYER_SIZE } from "./constVaraibles";
+import { FPS, TEXT_SIZE, TEXT_FADE_TIME, GOLD_SIZE, PLAYER_SIZE } from "./constVaraibles";
 import soundCalls from "../../../../../../utils/sound";
 import { collectGold } from "./Gold";
 export function randomInt(num) {
@@ -24,10 +24,13 @@ export function distBetweenPoints (x1, y1, x2, y2) {
   return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
 }
 
-export function detectCollection(player, golds, soundOn) {
+export function detectCollection(player, golds, soundOn, gameOver) {
+  if (gameOver) {
+    return 0;
+  }
   let score = 0;
     for (let i = 0; i < golds.length; i++) {
-      if (distBetweenPoints(player.x, player.y, golds[i].x, golds[i].y) < PLAYER_SIZE / 2 + GOLD_SIZE / 2) {
+      if (distBetweenPoints(player.x, player.y, golds[i].x, golds[i].y) < PLAYER_SIZE / 4 + GOLD_SIZE / 4) {
         score += collectGold(i, golds, player.x, player.y, soundOn)
         break;
       }
@@ -52,32 +55,23 @@ export function drawScore(ctx, canvas, score) {
   ctx.fillText("Score: " + score, canvas.width - PLAYER_SIZE / 2, PLAYER_SIZE / 2);
 }
 
-// export function drawGameText(text, textAlpha, ctx, canvas) {
-//   if (textAlpha.current >= 0) {
-//     ctx.textAlign = "center";
-//     ctx.baseline = "middle";
-//     ctx.fillStyle = "rgba(255, 255, 255, " + textAlpha.current + ")";
-//     ctx.font = "small-caps " + TEXT_SIZE + "px dejavu sans mono";
-//     ctx.fillText(text.current, canvas.width / 2, canvas.height * 0.75);
-//     textAlpha.current -= 0.5 / TEXT_FADE_TIME / FPS;
-//   }
-// }
+export function drawGameText(text, textAlpha, ctx, canvas) {
+  if (textAlpha.current >= 0) {
+    ctx.textAlign = "center";
+    ctx.baseline = "middle";
+    ctx.fillStyle = "rgba(255, 255, 255, " + textAlpha.current + ")";
+    ctx.font = "small-caps " + TEXT_SIZE + "px dejavu sans mono";
+    ctx.fillText(text.current, canvas.width / 2, canvas.height * 0.75);
+    textAlpha.current -= 0.5 / TEXT_FADE_TIME / FPS;
+  }
+}
 
 
 export function gameOver(text, textAlpha, score, ship, soundOn, setGameProcess) {
-  console.log("=== game over");
   textAlpha.current = 1.0;
-  ship.dead = true;
-  if (ship.health === 0) {
-    text.current = "This ship is wrecked, please repair!";
-    if (soundOn) {
-      soundCalls.PlayShipDamaged();
-    }
-  } else {
-    text.current = "Thank you for protect the planet! You earn " + score/10 + " Gold!";
-    if (soundOn) {
-      soundCalls.PlayAsteroidsVictory();
-    }
+  text.current = "Time is up! You earn " + score/10 + " Gold!";
+  if (soundOn) {
+    soundCalls.PlayAsteroidsVictory();
   }
   setTimeout(function() {
     setGameProcess({

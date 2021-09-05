@@ -1,5 +1,5 @@
 import React, { useRef, useLayoutEffect } from 'react';
-import { FPS } from "./constVaraibles";
+import { GOLDS_NUM, TIME_TOTAL } from "./constVaraibles";
 import { Player } from "./Player";
 import { drawGolds, createGolds } from "./Gold";
 import { detectCollection, drawScore, drawTimer, gameOver, drawGameText } from "./helper";
@@ -18,12 +18,18 @@ const Canvas = ({ setGameProcess, setGameResult }) => {
   const text = useRef("");
   const textAlpha = useRef(0);
   const player = new Player();
-  const timeLeft = useRef(10);
+  const timeLeft = useRef(TIME_TOTAL);
   const golds = createGolds(player.x, player.y);
 
   let timeUp = false;
 
-  
+  const myInterval = setInterval(() => {
+    timeLeft.current--;
+  }, 1000);
+
+  setTimeout(() => {
+    clearInterval(myInterval);
+  }, 1000 * TIME_TOTAL + 500);
   
   const keyDown = (e) => {
     if (timeUp) {
@@ -69,52 +75,52 @@ const Canvas = ({ setGameProcess, setGameResult }) => {
   window.removeEventListener("keyup", keyUp);
   window.addEventListener("keyup", keyUp);
 
-  // componentDidMount() {
-  //   const canvas = this.refs.canvas
-  //   const ctx = canvas.getContext("2d")
-  //   const img = this.refs.image
-  //   img.onload = () => {
-  //     ctx.drawImage(img, 0, 0)
-  //     ctx.font = "40px Courier"
-  //     ctx.fillText(this.props.text, 210, 75)
-  //   }
-  // }
-
-
   useLayoutEffect(() => {
 
     var animationId = 0;
-    // var didGameOver = false;
+
+    const playerSprite = new Image();
+    playerSprite.src = "http://untamed.wild-refuge.net/images/rpgxp/mandalorian.png";
+    const goldImages = [];
+    for (let i = 0; i < GOLDS_NUM; i++) {
+      const goldImage = new Image();
+      goldImage.src = "https://cdn5.vectorstock.com/i/1000x1000/54/84/stack-of-gold-coins-on-transparent-background-vector-18945484.jpg";
+      goldImages.push(goldImage);
+    }
+    //const background = new Image();
+      //background.src = "./collectGoldBackground.png";
+      //ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
+    
+    var didGameOver = false;
 
     const myRender = () => {
       
       const canvas = canvasRef.current;
       const ctx = canvas.getContext('2d');
+
+      // const drawBackground = (() => {
+      //   ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
+      // });
     
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      const background = new Image();
-      background.src = "./collectGoldBackground.png";
-      ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
-
-      const playerSprite = new Image();
-      playerSprite.src = "./goldCollectionPlayer.png";
-      playerSprite.onload = ctx.drawImage(playerSprite, 0, 0, player.width, player.height, 0, 0, player.width, player.height);
-      score.current += detectCollection(player, golds, soundOn);
-      drawGolds(ctx, golds);
+      
+      // drawBackground();
+      score.current += detectCollection(player, golds, soundOn, didGameOver);
+      drawGolds(ctx, golds, goldImages);
       player.move(canvas, direction);
-      player.draw(ctx);
+      player.draw(ctx, playerSprite);
       drawTimer(ctx, timeLeft.current);
       drawScore(ctx, canvas, score.current);
-      // drawGameText(text, textAlpha, ctx, canvas);
-      // if (player.health === 0 || roids.current.length === 0) {
-      //   if (!didGameOver) {
-      //     didGameOver = true;
-      //     setGameResult( {
-      //       score: score.current
-      //     });
-      //     gameOver(text, textAlpha, score.current, player, soundOn, setGameProcess);
-      //   }
-      // }
+      drawGameText(text, textAlpha, ctx, canvas);
+      if (timeLeft.current === 0) {
+        if (!didGameOver) {
+          didGameOver = true;
+          setGameResult( {
+            score: score.current
+          });
+          gameOver(text, textAlpha, score.current, player, soundOn, setGameProcess);
+        }
+      }
       animationId = requestAnimationFrame(myRender);
     };
     animationId = requestAnimationFrame(myRender);

@@ -10,8 +10,10 @@ export function createGolds(playerX, playerY) {
   return golds;
 }
 
-export function drawGolds(ctx, golds) {
-  golds.map(gold => gold.draw(ctx));
+export function drawGolds(ctx, golds, imgs) {
+  //console.log(golds.length);
+  //console.log(imgs.length);
+  golds.map((gold, i) => gold.draw(ctx, imgs[i]));
 }
 
 export function collectGold(index, golds, playerX, playerY, soundOn) {
@@ -19,7 +21,7 @@ export function collectGold(index, golds, playerX, playerY, soundOn) {
   golds.splice(index, 1);
   golds.push(new Gold(playerX, playerY));
   if (soundOn) {
-    soundCalls.PlayLaserHitAsteroid();
+    soundCalls.PlayCollectGold();
   }
   return score;
 }
@@ -33,20 +35,12 @@ class Gold {
     } while (distBetweenPoints(playerX, playerY, x, y) < GOLD_SIZE * 2 + PLAYER_SIZE)
     this.x = x;
     this.y = y;
+    this.width = 50;
+    this.hight = 50;
     this.score = score;
   }
 
-  draw(ctx) {
-    ctx.strokeStyle = 'rgba(206, 104, 104)';
-    ctx.shadowColor = 'rgba(206, 104, 104)';
-    ctx.shadowBlur = 15;
-    ctx.fillStyle = 'rgba(206, 104, 104)';
-    ctx.lineWidth = GOLD_SIZE / 20;
-
-    ctx.beginPath();
-    ctx.arc(this.x, this.y, 30, 0, Math.PI * 2);
-    ctx.closePath();
-    ctx.fill();
-    ctx.stroke();
+  draw(ctx, img) {
+    ctx.drawImage(img, this.x, this.y, this.width, this.hight);
   }
 }

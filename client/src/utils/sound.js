@@ -7,6 +7,7 @@ import LaserHitAsteroid from "../sounds/laserHitAsteroid.mp3";
 import ShipDamaged from "../sounds/shipDamaged.wav";
 import ShipWasHit from "../sounds/shipWasHit.ogg";
 import ShootLaser from "../sounds/shootLaser.wav";
+import CollectGold from "../sounds/collectGold.mp3";
 
 const soundFX = {
   background: new Howl({
@@ -33,6 +34,9 @@ const soundFX = {
   }),
   shootLaser: new Howl({
     src: ShootLaser,
+  }),
+  collectGold: new Howl({
+    src: CollectGold,
   }),
 };
 
@@ -61,6 +65,13 @@ function PlayLaserHitAsteroid() {
     soundFX.laserHitAsteroid.stop();
   }
   soundFX.laserHitAsteroid.play();
+}
+
+function PlayCollectGold() {
+  if (soundFX.collectGold.playing()) {
+    soundFX.collectGold.stop();
+  }
+  soundFX.collectGold.play();
 }
 
 function PlayShipDamaged() {
@@ -100,6 +111,7 @@ const soundCalls = {
   PlayShipDamaged,
   PlayShipWasHit,
   PlayShootLaser,
+  PlayCollectGold,
   MuteSound,
 };
 
