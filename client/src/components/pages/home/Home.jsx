@@ -19,40 +19,22 @@ export default function home() {
   }
   return (
     <div className="homepage">
-    {/* </div><div className="homepage" onMouseEnter={sound.PlayBackground}> */}
-      {/* main container from App.scss */}
       <button className='sound-btn' onClick={sound.MuteSound}>Sound</button>
       <section className="main-container">
         <h1 className="main-title">Space Escape</h1>
         {/* the content that displays in the main container when site is loaded */}
         <section className={!apiCalls.loggedIn() ? "initial-content" : "loggedin-content"}>
-          <div className="game-links" onMouseEnter={sound.PlayHover}>
-            <Link to="auth">Sign in / Sign up</Link>
-            </div>
-          <div className="game-links" onMouseEnter={sound.PlayHover}>
-            <Link to="rules">How to Play</Link>
-            </div>
-          <div className="game-links" onMouseEnter={sound.PlayHover}>
-            <Link to="about">About the Authors</Link>
-          </div>
+            <Link className="game-links" onMouseEnter={sound.PlayHover} to="auth">Sign in / Sign up</Link>
+            <Link className="game-links" onMouseEnter={sound.PlayHover} to="rules">How to Play</Link>
+            <Link className="game-links" onMouseEnter={sound.PlayHover} to="about">About the Authors</Link>
         </section>
         {/* content that displays on home page if user is already logged in */}
         <section className={apiCalls.loggedIn() ? "initial-content" : "loggedin-content"}>
-          <div className="game-links" onMouseEnter={sound.PlayHover}>
-            <Link to="dashboard">Continue Game</Link>
-          </div>
-          <div className="game-links" onMouseEnter={sound.PlayHover}>
-            <Link to="createCharacter" onClick={handleNewGame}>New Game</Link>
-          </div>
-          <div className="game-links" onMouseEnter={sound.PlayHover}>
-            <Link to="leaderBoard">High Scores</Link>
-          </div>
-          <div className="game-links" onMouseEnter={sound.PlayHover}>
-            <Link to="rules">How to Play</Link>
-          </div>
-          <div className="game-links" onMouseEnter={sound.PlayHover}>
-            <Link to="about">About the Authors</Link>
-          </div>
+            <Link className="game-links" onMouseEnter={sound.PlayHover} to="dashboard">Continue Game</Link>
+            <Link className="game-links" onMouseEnter={sound.PlayHover} to="createCharacter" onClick={handleNewGame}>New Game</Link>
+            <Link className="game-links" onMouseEnter={sound.PlayHover} to="leaderBoard">High Scores</Link>
+            <Link className="game-links" onMouseEnter={sound.PlayHover} to="rules">How to Play</Link>
+            <Link className="game-links" onMouseEnter={sound.PlayHover} to="about">About the Authors</Link>
         </section>
       </section>
     </div>

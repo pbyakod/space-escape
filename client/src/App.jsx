@@ -26,7 +26,7 @@ export default function App() {
 
   return (
     <>
-    <Background/>
+    {/* <Background/> */}
     <BrowserRouter>
       <GameProvider>
         <Switch>
