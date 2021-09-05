@@ -24,7 +24,9 @@ const Canvas = ({ setGameProcess, setGameResult }) => {
   let timeUp = false;
 
   const myInterval = setInterval(() => {
-    timeLeft.current--;
+    if (timeLeft.current > 0) {
+      timeLeft.current--;
+    }
   }, 1000);
 
   setTimeout(() => {

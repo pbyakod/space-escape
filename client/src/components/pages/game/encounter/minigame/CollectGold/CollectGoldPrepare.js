@@ -63,8 +63,8 @@ export default function AsteroidsPrepare({ setGameProcess }) {
     })
   }
   return (
-    <div className="asteroids-container">
-      <div className="asteroids prepare">
+    <div className="collect-gold-container">
+      <div className="collect-gold prepare">
         <span className="one">Ready?</span>
         <span className="two">Go!</span>
       </div>

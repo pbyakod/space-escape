@@ -10,10 +10,10 @@ import Result from '../../result/Result';
 
 function CollectGoldGame() {
   const initialState = {
-    renderHome: false,
+    renderHome: true,
     renderRules: false,
     renderPrepare: false,
-    renderCanvas: true,
+    renderCanvas: false,
     renderResult: false,
     displayCharacter: false
   }
