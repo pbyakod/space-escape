@@ -16,17 +16,22 @@ import { Bar } from 'react-chartjs-2';
 export default function CreateCharacter() {
   const source = [jeff, elon, rich];
   const s = [j, e, r];
+  const [charSelected, setChart] = useState(false);
   const [state, dispatch] = useGameContext();
   const [characters, setCharacters] = useState([]);
   const [character, setCharacter] = useState({});
+
   async function getCharacters() {
     setCharacters(await api.getCharPrototypes());
   }
   function changeCharacter(e) {
+    setChart(true)
     setCharacter(characters[e.target.id]);
   }
 
   function handleSubmit() {
+    if (!charSelected) return;
+
     if (character) {
       const gameState = JSON.parse(localStorage.getItem('game_state'));
       const newGameState = {
@@ -120,27 +125,19 @@ export default function CreateCharacter() {
                   })}
                 </div>
               </div>
-      
+      {charSelected? 
               <div className="grid-item stats">
                 <span className="avatardiv">
                   <img className="avatarpic" src={s[character.id-1]} alt="" />
-                  {/* <h3 className="title">{character.name}</h3> */}
                   </span>
                 <div className="character-stats">
-                  {/* <h3 className="title">{character.name}</h3> */}
-                  {/* <h3 className="title">{character.name}</h3>
-                  <div className="character-prop">Health: {character.health}</div>
-                  <div className="character-prop">Gold: {character.gold}</div>
-                  <div className="character-prop">Ship: {character.ship}</div> */}
-                  <Bar 
-                  data={chartstate}
-                  height="fit-content"
-                  options={chartoptions}
-                  />
+                  <Bar data={chartstate} height="fit-content" options={chartoptions}/>            
                 </div>
-              </div>
+              </div>: false}
         <div className="btn-row">
+        {charSelected? 
           <Link to="/game"><button className="go-btn" onClick={handleSubmit}>submit</button></Link>
+          : false}
           <Link to="/"><button className="stop-btn">Back</button></Link></div>
         </section>
       </div>
