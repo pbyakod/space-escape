@@ -9,6 +9,19 @@
   text-decoration: none;
 }
 
+body {
+  background-image: url(./test.gif);
+  margin: 0;
+}
+
+#root {
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
 // common styling for every button
 button {
   width: 100%;
@@ -20,6 +33,7 @@ button {
   &:hover {
       cursor: pointer;
   }
+
 }
 
 .gap{
@@ -27,30 +41,25 @@ button {
 }
 
 // displaying the starry background
-.background {
-  position: absolute;
-  height: 100vh;
-  width: 100vw;
-  background-color: #130036;
-  overflow: hidden;
-  z-index: -99;
-  justify-content: center;
-}
+// .background {
+//   position: absolute;
+//   height: 100vh;
+//   width: 100vw;
+//   background-color: #130036;
+//   overflow: hidden;
+//   z-index: -99;
+//   justify-content: center;
+// }
 
 // creating the main center container
 .main-container {
   background-color: #445a72;
   opacity: 90%;
-  position: absolute;
   width: 50rem;
   height: fit-content;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  margin: auto;
+  margin-top: 5rem;
   padding: 5rem;
-  border: 0.438rem solid #b2c7de;
+  border: 0.5rem solid #b2c7de;
 }
 
 .content {

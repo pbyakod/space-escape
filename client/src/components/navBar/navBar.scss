@@ -1,7 +1,15 @@
 .navBar {
-    background-color: #111125;
-    opacity: 90%;
     padding: 2rem;
+    &::before, &::after {
+        content: "";
+        position: absolute;
+        right: 0;
+        left: 0;
+        top: 0;
+        height: 5rem;
+        z-index: -1;
+        background-color: #0e0e27b2;
+    }
 }
 
 progress {
