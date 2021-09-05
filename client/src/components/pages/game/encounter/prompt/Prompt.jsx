@@ -27,7 +27,7 @@ import pranav from "./img/pranavmerchant.gif"
 import cluster from "./img/cluster.jpeg"
 
 import parseOption from '../../../../../utils/helpers'
-import NavBar from '../../../../navBar/NavBar';
+import StatusBar from '../../../../statusBar/StatusBar';
 import "../../../../../App.scss";
 import "./prompt.scss"
 
@@ -82,7 +82,7 @@ export default function Prompt({setMinigameName}) {
 
   return (
     <div>
-      <NavBar/>
+      <StatusBar/>
       <div className="main-container main-container_story">
       <p className="">{state.encounter.message}</p>
       <img className="pimg gap" src={src[state.encounter.location_id-1]} alt="" />
