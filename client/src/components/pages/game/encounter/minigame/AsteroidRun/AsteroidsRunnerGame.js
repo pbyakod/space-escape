@@ -1,14 +1,14 @@
 import React, { useState } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './collectGold.css';
-import CollectGoldHome from './CollectGoldHome';
-import CollectGoldRules from './CollectGoldRules';
-import CollectGoldPrepare from './CollectGoldPrepare';
+import './asteroids.css';
+import AsteroidsHome from '../Asteroids/AsteroidsHome';
+import AsteroidsRules from '../Asteroids/AsteroidsRules';
+import AsteroidsPrepare from '../Asteroids/AsteroidsPrepare';
 import Canvas from './Canvas';
-import CollectGoldResult from './CollectGoldResult';
+import AsteroidsResult from '../Asteroids/AsteroidsResult';
 import Result from '../../result/Result';
 
-function CollectGoldGame() {
+function AsteroidsRunnerGame() {
   const initialState = {
     renderHome: true,
     renderRules: false,
@@ -32,15 +32,15 @@ function CollectGoldGame() {
   // the status can be used for character page
   
   return (
-    <div className="CollectGold">
-      {gameProcess.renderHome && <CollectGoldHome setGameProcess = { setGameProcess }/>}
-      {gameProcess.renderRules && <CollectGoldRules setGameProcess = { setGameProcess }/>}
-      {gameProcess.renderPrepare && <CollectGoldPrepare setGameProcess = { setGameProcess }/>}
+    <div className="asteroids">
+      {gameProcess.renderHome && <AsteroidsHome setGameProcess = { setGameProcess }/>}
+      {gameProcess.renderRules && <AsteroidsRules setGameProcess = { setGameProcess }/>}
+      {gameProcess.renderPrepare && <AsteroidsPrepare setGameProcess = { setGameProcess }/>}
       {gameProcess.renderCanvas && <Canvas setGameProcess = { setGameProcess } setGameResult = { setGameResult }/>}
-      {gameProcess.renderResult && <CollectGoldResult setGameProcess = { setGameProcess } gameResult={ gameResult }/>}
+      {gameProcess.renderResult && <AsteroidsResult setGameProcess = { setGameProcess } gameResult={ gameResult }/>}
       {gameProcess.displayCharacter && <Result/>}
     </div>
   )
 }
 
-export default CollectGoldGame;
+export default AsteroidsRunnerGame

@@ -1,19 +1,16 @@
 import React, { useRef, useLayoutEffect } from 'react';
-import { TURN_SPEED, FPS } from "./constVaraibles";
-import { Ship } from "./ShipMovement";
-import { drawAsteroids, createAsteroids, moveAsteroids } from "./AstroidMovement";
-import { detectExploding, detectHit, drawShipHealth, drawScore, gameOver, drawGameText } from "./helper";
+import { Ship } from "./../Asteroids/ShipMovement";
+import { drawAsteroids, createAsteroids, moveAsteroids, makeAsteroidsMoveLeft } from "./pelterMovement";
+import { detectExploding, detectHit, drawShipLives, drawTimer, gameOver } from "./helper";
 
 const Canvas = ({ setGameProcess, setGameResult }) => {
   let soundOn = true;
 
-  let level = 3
+  let level = 8
   const canvasRef = useRef(null);
   const roids = useRef(null);
-  const score = useRef(0);
-  const text = useRef("");
-  const textAlpha = useRef(0);
   const ship = new Ship();
+  ship.setXPos(window.innerWidth / 12);// set to left side of screen
   
   const keyDown = (e) => {
     if (ship.dead) {
@@ -23,14 +20,13 @@ const Canvas = ({ setGameProcess, setGameResult }) => {
       case 32 : // space bar (shoot the laser)
         ship.shootLaser(soundOn);
         break;
-      case 37 : // left arrow (rotate ship left)
-        ship.rot = TURN_SPEED / 180 * Math.PI / FPS;
-        break;
       case 38 : // up arrow (rotate ship forward)
-        ship.thrusting = true;  
+        ship.thrusting = true; 
+        ship.setNoseDirection((1/2) * Math.PI); 
         break;
-      case 39 : // right arrow (rotate ship right)
-        ship.rot = -TURN_SPEED / 180 * Math.PI / FPS;
+      case 40:
+        ship.thrusting = true;
+        ship.setNoseDirection((3/2) * Math.PI);
         break;
       default :
   
@@ -44,14 +40,11 @@ const Canvas = ({ setGameProcess, setGameResult }) => {
       case 32 : // space bar (allow shooting again)
         ship.canShoot = true;;
         break;
-      case 37 : // left arrow (stop rotating left)
-        ship.rot = 0;
-        break;
       case 38 : // up arrow (rotate ship forward)
         ship.thrusting = false;  
         break;
-      case 39 : // right arrow (rotate ship right)
-        ship.rot = 0;
+      case 40:
+        ship.thrusting = false;
         break;
       default :
   
@@ -63,40 +56,54 @@ const Canvas = ({ setGameProcess, setGameResult }) => {
   window.removeEventListener("keyup", keyUp);
   window.addEventListener("keyup", keyUp);
 
+  let timeLeft = 30;
+  let shipLives = 4;
+  let score = 0;
+  setInterval(() => {
+    timeLeft -= 1;
+  }, 1000);
   useLayoutEffect(() => {
 
+    
     var animationId = 0;
-    var didGameOver = false;
-
     const myRender = () => {
       
       const canvas = canvasRef.current;
       const ctx = canvas.getContext('2d');
       if (!roids.current) {
         createAsteroids(level, ship, canvas, roids);
+        makeAsteroidsMoveLeft(roids.current);
       }
       ctx.clearRect(0, 0, canvas.width, canvas.height)
-      score.current += detectExploding(ship, roids, soundOn, level);
-      score.current += detectHit(ship, roids, soundOn, level);
-      moveAsteroids(ctx, roids.current);
+      score = detectExploding(ship, roids, soundOn, level);
+      detectHit(ship, roids, soundOn, level);
+      moveAsteroids(ctx, roids.current, 1, 1);
       drawAsteroids(ctx, roids);
+      drawTimer(ctx, timeLeft, canvas);
+      drawShipLives(ctx, shipLives)
       ship.move(canvas);
       ship.draw(ctx);
-      drawShipHealth(ctx, ship);
-      drawScore(ctx, canvas, score.current);
-      drawGameText(text, textAlpha, ctx, canvas);
-      if (ship.health === 0 || roids.current.length === 0) {
-        if (!didGameOver) {
-          didGameOver = true;
-          setGameResult( {
-            shipHealth: ship.health,
-            score: score.current
-          });
-          gameOver(text, textAlpha, score.current, ship, soundOn, setGameProcess);
-        }
-      }
-
       animationId = requestAnimationFrame(myRender);
+      if (score > 0) {
+        shipLives--;
+      }
+      if (timeLeft <= 0 || shipLives <= 0 ) {
+        console.log('game over')
+        // setGameProcess({
+        //   renderHome: false,
+        //   renderRules: false,
+        //   renderPrepare: false,
+        //   renderCanvas: false,
+        //   renderResult: true,
+        //   displayCharacter: false
+        // })
+
+        // setGameResult({
+        //   ship: (2 - shipLives) * 50,
+        //   health: (1 - shipLives/2) * 50,
+        //   gold: 0 
+        // })
+      }
     };
     animationId = requestAnimationFrame(myRender);
     return () => cancelAnimationFrame(animationId);

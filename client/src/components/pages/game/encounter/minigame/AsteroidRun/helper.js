@@ -1,5 +1,5 @@
-import { destroyAsteroid } from "./AstroidMovement";
-import { LASER_EXPLODE_DUR, FPS, SHIP_SIZE, TEXT_SIZE, TEXT_FADE_TIME } from "./constVaraibles";
+import { destroyAsteroid } from "./pelterMovement";
+import { LASER_EXPLODE_DUR, FPS, SHIP_SIZE, TEXT_SIZE, TEXT_FADE_TIME } from "./constVariables";
 import soundCalls from "../../../../../../utils/sound";
 
 export function dealWithBorder (obj, width, height) {

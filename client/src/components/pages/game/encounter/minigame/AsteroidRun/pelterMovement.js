@@ -1,4 +1,4 @@
-import { ROIDS_NUM, ROIDS_SIZE, ROIDS_PTS_LG, ROIDS_PTS_MD, ROIDS_PTS_SM, ROIDS_JAG, ROIDS_VERT, ROIDS_SPD, FPS, SHIP_SIZE } from "./constVaraibles";
+import { ROIDS_NUM, ROIDS_SIZE, ROIDS_PTS_LG, ROIDS_PTS_MD, ROIDS_PTS_SM, ROIDS_JAG, ROIDS_VERT, ROIDS_SPD, FPS, SHIP_SIZE } from "./constVariables";
 import { distBetweenPoints, dealWithBorder } from "./helper";
 import soundCalls from "../../../../../../utils/sound";
 
