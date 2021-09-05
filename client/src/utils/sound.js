@@ -112,6 +112,13 @@ function MuteSound() {
   }
 }
 
+function SoundStatus() {
+  if (soundFX.background.playing) 
+  return true
+  return false
+
+}
+
 const soundCalls = {
   PlayBackground,
   PlayHover,
@@ -124,6 +131,7 @@ const soundCalls = {
   PlayCollectGold,
   PlayTimeUp,
   MuteSound,
+  SoundStatus
 };
 
 export default soundCalls;

@@ -10,7 +10,7 @@ import Dashboard from "./components/pages/dashboard/Dashboard";
 import Game from "./components/pages/game/Game";
 import Score from "./components/pages/endGame/Score";
 import LeaderBoard from "./components/pages/endGame/LeaderBoard";
-import Background from "./components/background/Background";
+import NavBar from "./components/navBar/NavBar";
 import api from './utils/api';
 import { GameProvider } from "./utils/Game/GlobalState";
 import { Howl, Howler } from 'howler';
@@ -26,8 +26,8 @@ export default function App() {
 
   return (
     <>
-    {/* <Background/> */}
     <BrowserRouter>
+    <NavBar/>
       <GameProvider>
         <Switch>
           <Route component={Home} onClick={PlaySound} path="/" exact/>

@@ -102,7 +102,7 @@ export default function CreateCharacter() {
     <div>
       <div>
         <section className="main-container">
-      <h1 className="title">Choose Your Character</h1>
+      <h3 className="title">Choose Your Character</h3>
       <div className="grid-item">
                <div className="character-models">
                  {characters.map((character, i) => {
