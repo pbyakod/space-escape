@@ -10,7 +10,7 @@ const Canvas = ({ setGameProcess, setGameResult }) => {
   const canvasRef = useRef(null);
   const roids = useRef(null);
   const ship = new Ship();
-  ship.setXPos(window.innerWidth / 12);
+  ship.setXPos(window.innerWidth / 12);// set to left side of screen
   
   const keyDown = (e) => {
     if (ship.dead) {
