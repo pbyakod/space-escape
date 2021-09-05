@@ -1,6 +1,11 @@
-import { destroyAsteroid } from "./AstroidMovement";
+import { destroyAsteroid } from "./Gold";
 import { LASER_EXPLODE_DUR, FPS, SHIP_SIZE, TEXT_SIZE, TEXT_FADE_TIME } from "./constVaraibles";
 import soundCalls from "../../../../../../utils/sound";
+
+export function randomInt(num) {
+  // generate a random integer smaller than num
+  return Math.floor(Math.random() * num);
+}
 
 export function dealWithBorder (obj, width, height) {
   if (obj.x < 0 - obj.r) {

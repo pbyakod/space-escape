@@ -3,9 +3,9 @@ import { distBetweenPoints, randomInt } from "./helper";
 import soundCalls from "../../../../../../utils/sound";
 
 export function createGolds(playerX, playerY, golds) {
-  golds = [];
+  golds.current = [];
   for (let i = 0; i < GOLDS_NUM; i++) {
-    golds.push(new Gold(playerX, playerY));
+    golds.current.push(new Gold(playerX, playerY));
   }
 }
 

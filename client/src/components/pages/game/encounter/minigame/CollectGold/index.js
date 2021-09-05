@@ -1,5 +1,5 @@
-import AsteroidsGame from "./AsteroidsGame";
+import CollectGoldGame from "./CollectGoldGame";
 
-export default function Asteroids() {
-  return <AsteroidsGame />;
+export default function CollectGold() {
+  return <CollectGoldGame />;
 }

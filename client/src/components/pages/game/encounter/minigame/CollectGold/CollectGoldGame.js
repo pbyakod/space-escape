@@ -1,19 +1,19 @@
 import React, { useState } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './asteroids.css';
-import AsteroidsHome from './AsteroidsHome';
-import AsteroidsRules from './AsteroidsRules';
-import AsteroidsPrepare from './AsteroidsPrepare';
+import CollectGoldHome from './CollectGoldHome';
+import CollectGoldRules from './CollectGoldRules';
+import CollectGoldPrepare from './CollectGoldPrepare';
 import Canvas from './Canvas';
-import AsteroidsResult from './AsteroidsResult';
+import CollectGoldResult from './CollectGoldResult';
 import Result from '../../result/Result';
 
-function AsteroidsGame() {
+function CollectGoldGame() {
   const initialState = {
-    renderHome: true,
+    renderHome: false,
     renderRules: false,
     renderPrepare: false,
-    renderCanvas: false,
+    renderCanvas: true,
     renderResult: false,
     displayCharacter: false
   }
@@ -32,12 +32,12 @@ function AsteroidsGame() {
   // the status can be used for character page
   
   return (
-    <div className="asteroids">
-      {gameProcess.renderHome && <AsteroidsHome setGameProcess = { setGameProcess }/>}
-      {gameProcess.renderRules && <AsteroidsRules setGameProcess = { setGameProcess }/>}
-      {gameProcess.renderPrepare && <AsteroidsPrepare setGameProcess = { setGameProcess }/>}
+    <div className="CollectGold">
+      {gameProcess.renderHome && <CollectGoldHome setGameProcess = { setGameProcess }/>}
+      {gameProcess.renderRules && <CollectGoldRules setGameProcess = { setGameProcess }/>}
+      {gameProcess.renderPrepare && <CollectGoldPrepare setGameProcess = { setGameProcess }/>}
       {gameProcess.renderCanvas && <Canvas setGameProcess = { setGameProcess } setGameResult = { setGameResult }/>}
-      {gameProcess.renderResult && <AsteroidsResult setGameProcess = { setGameProcess } gameResult={ gameResult }/>}
+      {gameProcess.renderResult && <CollectGoldResult setGameProcess = { setGameProcess } gameResult={ gameResult }/>}
       {gameProcess.displayCharacter && <Result/>}
     </div>
   )
