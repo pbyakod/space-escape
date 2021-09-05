@@ -1,6 +1,5 @@
 import React from "react";
-import { FaCaretLeft, FaCaretRight, FaCaretUp, FaCaretDown, FaSpaceShuttle } from 'react-icons/fa';
-
+import { FaCaretLeft, FaCaretRight, FaCaretUp, FaCaretDown, FaCoins } from 'react-icons/fa';
 export default function CollectGoldRules({ setGameProcess }) {
 
   function renderPrepare() {
@@ -13,6 +12,7 @@ export default function CollectGoldRules({ setGameProcess }) {
       displayCharacter: false
     })
   }
+  
   return (
     <div className="collect-gold-container d-block">
       <h1 className="mt-5 text-center"> How to Play </h1>
@@ -35,7 +35,7 @@ export default function CollectGoldRules({ setGameProcess }) {
         </div>
         
         <div className="my-3 w-50 mx-auto">
-          <FaSpaceShuttle />  Gold increases by total points/10
+          <FaCoins /> Gold increases by total points/10
         </div>
         <div className="my-3 w-50 mx-auto">
           Game ends when time is up.
