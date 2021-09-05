@@ -82,7 +82,7 @@ export default function Prompt({setMinigameName}) {
     <div>
       <NavBar/>
       <div className="main-container main-container_story">
-      <h3 className="">{state.encounter.message}</h3>
+      <p className="">{state.encounter.message}</p>
       <img className="pimg gap" src={src[state.encounter.location_id-1]} alt="" />
       <button className="caution-btn gap" name={optionOne} onClick={handleClick}>{optionOne}</button>
       <button className="caution-btn gap" name={optionTwo} onClick={handleClick}>{optionTwo}</button>
