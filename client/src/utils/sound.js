@@ -91,6 +91,13 @@ function MuteSound() {
   }
 }
 
+function SoundStatus() {
+  if (soundFX.background.playing) 
+  return true
+  return false
+
+}
+
 const soundCalls = {
   PlayBackground,
   PlayHover,
@@ -101,6 +108,7 @@ const soundCalls = {
   PlayShipWasHit,
   PlayShootLaser,
   MuteSound,
+  SoundStatus
 };
 
 export default soundCalls;

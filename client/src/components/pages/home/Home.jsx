@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import apiCalls from "../../../utils/api";
-import "../home/home.scss";
+import "./home.scss";
 import sound from "../../../utils/sound";
 
 export default function home() {
@@ -19,7 +19,7 @@ export default function home() {
   }
   return (
     <div className="homepage">
-      <button className='sound-btn' onClick={sound.MuteSound}>Sound</button>
+      {/* <button className='sound-btn' onClick={sound.MuteSound}>Sound</button> */}
       <section className="main-container">
         <h1 className="main-title">Space Escape</h1>
         {/* the content that displays in the main container when site is loaded */}
