@@ -59,7 +59,9 @@ export default function Prompt({setMinigameName}) {
   const [state, dispatch] = useGameContext();
 
   const optionOne = state.encounter.option1;
-  const optionTwo = state.encounter.option2
+  const optionTwo = state.encounter.option2;
+  const optionOneDisplay = state.encounter.option1.split('|')[0];
+  const optionTwoDisplay = state.encounter.option2.split('|')[0];
 
   function handleClick(e) {
     const outcome = parseOption(e.target.name);
@@ -84,8 +86,8 @@ export default function Prompt({setMinigameName}) {
       <div className="main-container main-container_story">
       <p className="">{state.encounter.message}</p>
       <img className="pimg gap" src={src[state.encounter.location_id-1]} alt="" />
-      <button className="caution-btn gap" name={optionOne} onClick={handleClick}>{optionOne}</button>
-      <button className="caution-btn gap" name={optionTwo} onClick={handleClick}>{optionTwo}</button>
+      <button className="caution-btn gap" name={optionOne} onClick={handleClick}>{optionOneDisplay}</button>
+      <button className="caution-btn gap" name={optionTwo} onClick={handleClick}>{optionTwoDisplay}</button>
     </div>
     </div>
   )
