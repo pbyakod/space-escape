@@ -60,7 +60,7 @@ const encounter = [
   {
     story: "If we hurry we can make it to Prastin! I know a good spot to fix up the ship when we get there!", 
     message: 'You’ve made it to Prastin, the birthpace of Serpent Growing. they offer you some repairs in exhange for oxygen, do you wish to make this trade?',
-    option1: 'Yes|{""health": -200, "ship": +300, "gold": 0, "next": "minigame/asteroids", "next_location_id": 10}',
+    option1: 'Yes|{"health": -200, "ship": +300, "gold": 0, "next": "results", "next_location_id": 10}',
     option2: 'No|{"health": 0, "ship": 0, "gold": 0, "next": "results", "next_location_id": 10}',
     location_id: 9,
   },
@@ -89,7 +89,7 @@ const encounter = [
     story: "This place was founded by Space Trolls 7 million years ago. Their poor social skills and love of Trivia left this society extremely isolated. Without trade partners, they use spaceships of those who have failed their trivia games as their only source of transportation ",
     message: 'Press start to Begin Quiz',
     option1: 'Start|{"health": 0, "ship": 0, "gold": 0, "next": "minigame/trivia", "next_location_id": 19}',
-    option2: ' |{leave blank, can only play minigame}',
+    option2: 'Fly away and take the long way around|{"health": 0, "ship": 0, "gold": 0, "next": "results", "next_location_id": 14}',
     location_id: 13,
   },
   {
@@ -126,7 +126,7 @@ const encounter = [
     story: "Yeah, I dont need no escort, I AM the escort, no ones messing with this ship im in the driver's seat, boss! Um... actually... maybe I spoke too soon..",
     message: 'Oh no! you weren’t able to escape the Pirates and they’re coming for your ship! Shoot them before they get you!',
     option1: 'Fight back|{"health": 0, "ship": 0, "gold": 0, "next": "minigame/asteroids", "next_location_id": 19}',
-    option2: ' |{leave blank, can only play minigame}',
+    option2: 'Push our ship to dangerous levels and get out of here|{"health": -100, "ship": -600, "gold": -0, "next": "results", "next_location_id": 19}',
     location_id: 18,
   },
   {
@@ -136,14 +136,14 @@ const encounter = [
     "Well, that was exciting to say the least... Anyway, Last Stop before home according to the radar!",
     message: 'You’ve made it to Terminus. Their currency the Kyber Shard does not exhange for gold. Their leader Don Guerrera has however implemented a highly sophisticated system to trade Oxygen for Ship Armour, and the stretch to Earth has many obsticles along the way. Do you wish to trade?',
     option1: 'yes|{"health": -300, "ship": +300, "gold": 0, "next": "results", "next_location_id": 20}',
-    option2: 'Go Around|{"health": 0, "ship": -10, "gold": -10, "next": "results", "next_location_id": 20}',
+    option2: 'no|{"health": 0, "ship": 0, "gold": 0, "next": "results", "next_location_id": 20}',
     location_id: 19,
   },
   {
     story: "Lets Head Home!",
     message: 'You’ve made it to Pramav’s Pelters, a tiny galaxy of 50 tiny planets. Navegate through safely and you’re home free! ',
     option1: 'Begin Navigation|{"health": 0, "ship": 0, "gold": 0, "next": "minigame/pelters", "next_location_id": 21}',
-    option2: ' |{leave blank, can only play minigame}',
+    option2: 'go around|{"health": -200, "ship": -200, "gold": 0, "next": "results", "next_location_id": 21}',
     location_id: 20,
   },
 ];
