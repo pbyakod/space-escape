@@ -6,7 +6,7 @@ import apiCalls from "../../../../utils/api";
 
 
 
-export default function Game({ game }) {
+export default function Game({ game, user_id}) {
   let charName = "";
   let location = "";
 
@@ -54,6 +54,8 @@ export default function Game({ game }) {
 
   function continueGame () {
    dispatch({
+    game_id: game.id,
+    user_id: user_id, 
     location_id: game.location_id,
     health: game.health,
     ship: game.ship,
