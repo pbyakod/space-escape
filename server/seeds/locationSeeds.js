@@ -168,7 +168,7 @@ const locations = [
   },
   {
     // 16
-    name: "Quishuang’s Planet",
+    name: "Dotris",
     people: '',
     population: 0,
     currency: '',
@@ -179,7 +179,7 @@ const locations = [
   },
   {
     // 17
-    name: "Quishuang’s Planet",
+    name: "Dotris",
     people: '',
     population: 0,
     currency: '',
