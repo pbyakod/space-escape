@@ -45,21 +45,25 @@ const soundFX = {
 };
 
 function PlayBackground() {
-  if (!soundFX.background.playing()) {
+  if (!soundFX.background.playing() && SoundStatus()) {
     soundFX.background.play();
   }
 }
 
 function PlayHover() {
-  soundFX.hover.play();
+  if (SoundStatus()) {
+    soundFX.hover.play();
+  }
 }
 
 function PlayAsteroidsHomepage() {
-  soundFX.asteroidsHomepage.play();
+  if (SoundStatus()) {
+    soundFX.asteroidsHomepage.play();
+  }
 }
 
 function PlayAsteroidsVictory() {
-  if (!soundFX.asteroidsVictory.playing()) {
+  if (!soundFX.asteroidsVictory.playing() && SoundStatus()) {
     soundFX.asteroidsVictory.play();
   }
 }
@@ -68,18 +72,22 @@ function PlayLaserHitAsteroid() {
   if (soundFX.laserHitAsteroid.playing()) {
     soundFX.laserHitAsteroid.stop();
   }
-  soundFX.laserHitAsteroid.play();
+  if (SoundStatus()) {
+    soundFX.laserHitAsteroid.play();
+  }
 }
 
 function PlayCollectGold() {
   if (soundFX.collectGold.playing()) {
     soundFX.collectGold.stop();
   }
-  soundFX.collectGold.play();
+  if (SoundStatus()) {
+    soundFX.collectGold.play();
+  }
 }
 
 function PlayShipDamaged() {
-  if (!soundFX.shipDamaged.playing()) {
+  if (!soundFX.shipDamaged.playing() && SoundStatus()) {
     soundFX.shipDamaged.play();
   }
 }
@@ -88,35 +96,41 @@ function PlayShipWasHit() {
   if (soundFX.shipWasHit.playing()) {
     soundFX.shipWasHit.stop();
   }
-  soundFX.shipWasHit.play();
+  if (SoundStatus()) {
+    soundFX.shipWasHit.play();
+  }
 }
 
 function PlayShootLaser() {
   if (soundFX.shootLaser.playing()) {
     soundFX.shootLaser.stop();
   }
-  soundFX.shootLaser.play();
+  if (SoundStatus()) {
+    soundFX.shootLaser.play();
+  }
 }
 
 function PlayTimeUp() {
-  if (!soundFX.timeUp.playing()) {
+  if (!soundFX.timeUp.playing() && SoundStatus()) {
     soundFX.timeUp.play();
   }
 }
 
-function MuteSound() {
+function SwitchSound() {
   if (soundFX.background.playing()) {
     soundFX.background.stop();
+    return false;
   } else {
     soundFX.background.play();
+    return true;
   }
 }
 
 function SoundStatus() {
-  if (soundFX.background.playing) 
-  return true
-  return false
-
+  if (soundFX.background.playing()) {
+    return true;
+  }
+  return false;
 }
 
 const soundCalls = {
@@ -130,7 +144,7 @@ const soundCalls = {
   PlayShootLaser,
   PlayCollectGold,
   PlayTimeUp,
-  MuteSound,
+  SwitchSound,
   SoundStatus
 };
 

@@ -1,14 +1,14 @@
 import React, { useState } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './pelters.css';
-import AsteroidsHome from './PeltersHome';
-import AsteroidsRules from './PeltersRules';
-import AsteroidsPrepare from './PeltersPrepare';
+import PeltersHome from './PeltersHome';
+import PeltersRules from './PeltersRules';
+import PeltersPrepare from './PeltersPrepare';
 import Canvas from './Canvas';
-import AsteroidsResult from './PeltersResult';
+import PeltersResult from './PeltersResult';
 import Result from '../../result/Result';
 
-function AsteroidsRunnerGame() {
+function PeltersGame() {
   const initialState = {
     renderHome: true,
     renderRules: false,
@@ -19,7 +19,7 @@ function AsteroidsRunnerGame() {
   }
 
   const gameState = {
-    shipHealth: 0,
+    shipLives: 0,
     score: 0
   }
 
@@ -32,15 +32,15 @@ function AsteroidsRunnerGame() {
   // the status can be used for character page
   
   return (
-    <div className="asteroids">
-      {gameProcess.renderHome && <AsteroidsHome setGameProcess = { setGameProcess }/>}
-      {gameProcess.renderRules && <AsteroidsRules setGameProcess = { setGameProcess }/>}
-      {gameProcess.renderPrepare && <AsteroidsPrepare setGameProcess = { setGameProcess }/>}
+    <div className="pelters">
+      {gameProcess.renderHome && <PeltersHome setGameProcess = { setGameProcess }/>}
+      {gameProcess.renderRules && <PeltersRules setGameProcess = { setGameProcess }/>}
+      {gameProcess.renderPrepare && <PeltersPrepare setGameProcess = { setGameProcess }/>}
       {gameProcess.renderCanvas && <Canvas setGameProcess = { setGameProcess } setGameResult = { setGameResult }/>}
-      {gameProcess.renderResult && <AsteroidsResult setGameProcess = { setGameProcess } gameResult={ gameResult }/>}
+      {gameProcess.renderResult && <PeltersResult setGameProcess = { setGameProcess } gameResult={ gameResult }/>}
       {gameProcess.displayCharacter && <Result/>}
     </div>
   )
 }
 
-export default AsteroidsRunnerGame
+export default PeltersGame;

@@ -6,7 +6,7 @@ export default function Author(author) {
   return (
     <div>
       {/* used a table here to align the three columns */}    
-      <table className={author.author.id%2===0 ? "bg": ""}>
+      <table>
         <tr>
           <td><p className="author-name">{`${author.author.name}`}</p></td>
           <th><a className="author-text" onMouseEnter={sound.PlayHover} href={`${author.author.portfolio}`}>Portfolio</a></th>

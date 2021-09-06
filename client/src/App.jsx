@@ -11,9 +11,10 @@ import Game from "./components/pages/game/Game";
 import Score from "./components/pages/endGame/Score";
 import LeaderBoard from "./components/pages/endGame/LeaderBoard";
 import NavBar from "./components/navBar/NavBar";
+import Map from "./components/pages/map/Map";
 import api from './utils/api';
 import { GameProvider } from "./utils/Game/GlobalState";
-import { Howl, Howler } from 'howler';
+import { Howl } from 'howler';
 import Hover from './sounds/hover.mp3';
 import PeltersGame from './components/pages/game/encounter/minigame/Pelters/PeltersGame'
 export default function App() {
@@ -28,13 +29,14 @@ export default function App() {
   return (
     <>
     <BrowserRouter>
-    <NavBar/>
+      <NavBar/>
       <GameProvider>
         <Switch>
           <Route component={Home} onClick={PlaySound} path="/" exact/>
           <Route component={Auth} path="/auth"/>
           <Route component={About} path="/about"/>
           <Route component={Rules} path="/rules"/>
+          <Route component={Map} path="/map"/>
           <Route component={api.loggedIn() ? Dashboard : Auth} path="/dashboard"/>
           <Route component={api.loggedIn() ? CreateCharacter : Auth} path="/createCharacter"/>
           <Route component={api.loggedIn() ? Game : Auth} path="/game"/>

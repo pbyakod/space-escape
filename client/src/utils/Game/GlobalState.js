@@ -17,6 +17,7 @@ const GameProvider = ({ value=[], ...props }) => {
     renderResults: false,
     renderStory: false,
     renderScore: false,
+    // renderMap: false,
     renderLeaderboard: false,
     char_id: null,
     health: 0,

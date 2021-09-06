@@ -1,5 +1,5 @@
 export const FPS = 30; // frames per sec
-export const FRICTION = 0; // friction coefficient of space (0 = no friction, 1 = lots of friction)
+export const FRICTION = 1; // friction coefficient of space (0 = no friction, 1 = lots of friction)
 export const LASER_DIST = 0.4; // maximum distance laser can travel as fraction of screen width
 export const LASER_MAX = 10; // maximum number of lasers on screen at once
 export const LASER_SPD = 500; // speed of lasers in pixels per sec
@@ -22,4 +22,4 @@ export const SHOW_CENTRE_DOT = false; // show or hide ship's centre dot
 export const SHOW_BOUNDING = false; // show or hide collision bounding
 export const TEXT_FADE_TIME = 2.5; // text fade time in sec
 export const TEXT_SIZE = 40; // text font height in pixels
-export const HIT_DAMAGE = 10; // damage when hit by an asteroid
+export const HIT_DAMAGE = 100; // damage when hit by an asteroid

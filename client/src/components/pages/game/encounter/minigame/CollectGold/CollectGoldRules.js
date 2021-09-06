@@ -15,7 +15,7 @@ export default function CollectGoldRules({ setGameProcess }) {
   
   return (
     <div className="collect-gold-container d-block">
-      <h1 className="mt-5 text-center"> How to Play </h1>
+      <h1 className="mt-5 text-center pt-5"> How to Play </h1>
       <div className="container">
 
         <div className="w-50 mx-auto mt-5"><FaCaretUp />: move up</div>

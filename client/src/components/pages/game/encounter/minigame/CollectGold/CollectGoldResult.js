@@ -37,7 +37,7 @@ export default function CollectGoldResult({ gameResult, setGameProcess }) {
   },[])
 
   return (
-    <div className="collect-gold-container d-block">
+    <div className="collect-gold-container d-block pt-5">
       <h1 id="title" className="my-5 text-center">{ heading }</h1>
       <div className="container w-50">
         <div className="my-3">{p1}</div>
