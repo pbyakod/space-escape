@@ -1,7 +1,7 @@
 import React, { useRef, useLayoutEffect } from 'react';
 import { Ship } from "./ShipMovement";
 import { drawAsteroids, createAsteroids, moveAsteroids, makeAsteroidsMoveLeft } from "./PelterMovement";
-import { detectExploding, detectHit, drawShipLives, drawTimer, gameOver } from "./helper";
+import { detectExploding, detectHit, drawShipHealth, drawShipLives, drawTimer, gameOver } from "./helper";
 
 const Canvas = ({ setGameProcess, setGameResult }) => {
   let soundOn = false;
@@ -10,7 +10,7 @@ const Canvas = ({ setGameProcess, setGameResult }) => {
   const canvasRef = useRef(null);
   const roids = useRef(null);
   const ship = new Ship();
-  ship.setXPos(window.innerHeight/ 12);// set to left side of screen
+  ship.setXPos(window.innerWidth / 12);// set to left side of screen
   
   const keyDown = (e) => {
     if (ship.dead) {
@@ -66,6 +66,7 @@ const Canvas = ({ setGameProcess, setGameResult }) => {
 
     
     var animationId = 0;
+    var didGameOver = false;
     const myRender = () => {
       
       const canvas = canvasRef.current;
@@ -83,11 +84,12 @@ const Canvas = ({ setGameProcess, setGameResult }) => {
       drawShipLives(ctx, shipLives)
       ship.move(canvas);
       ship.draw(ctx);
+      drawShipHealth(ctx, ship);
       animationId = requestAnimationFrame(myRender);
       if (score > 0) {
         shipLives--;
       }
-      if (timeLeft <= 0 || shipLives <= 0 ) {
+      if (timeLeft <= 0 || shipLives <= 0 || ship.health === 0) {
         console.log('game over')
         setGameProcess({
           renderHome: false,
@@ -96,6 +98,7 @@ const Canvas = ({ setGameProcess, setGameResult }) => {
           renderCanvas: false,
           renderResult: true,
           displayCharacter: false
+          
         })
 
         setGameResult({

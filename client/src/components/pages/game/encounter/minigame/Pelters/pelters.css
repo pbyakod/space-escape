@@ -34,7 +34,7 @@ html, body {
 }
 
 h2.asteroids-home {
-  color: green;
+  color: hsla(210, 100%, 52%, 1);
   text-align: center;
   font-size: 12vw;
   line-height: 1em;
@@ -54,14 +54,14 @@ h2.asteroids-home span {
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  background: blue;
-  box-shadow: 10px 10px 50px blue;
+  background: hsla(210, 100%, 52%, 1);
+  box-shadow: 10px 10px 50px hsla(210, 100%, 52%, 1)e;
 }
 
 .asteroids.prepare {
   position: relative;
   font-size: 12vw;
-  color:blue;
+  color:hsla(210, 100%, 52%, 1);
   font-weight: 900;
   display: flex;
   justify-content: center;
@@ -72,7 +72,7 @@ h2.asteroids-home span {
 }
 
 .asteroids.prepare span{
-  color:blue;
+  color:hsla(210, 100%, 52%, 1);
   position: absolute;
   text-align: center;
   text-transform: uppercase;
