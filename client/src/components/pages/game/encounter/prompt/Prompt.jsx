@@ -28,7 +28,7 @@ import cluster from "./img/cluster.jpeg"
 
 import parseOption from '../../../../../utils/helpers'
 import StatusBar from '../../../../statusBar/StatusBar';
-import "../../../../../App.scss";
+import "../../../../../app.scss";
 import "./prompt.scss"
 
 export default function Prompt({setMinigameName}) {
