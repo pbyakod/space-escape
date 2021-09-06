@@ -14,7 +14,7 @@ export default function PeltersRules({ setGameProcess }) {
     })
   }
   return (
-    <div className="pelters-container d-block">
+    <div className="pelters-container d-block pt-5">
       <h1 className="mt-5 text-center"> How to Play </h1>
       <div className="container">
 
