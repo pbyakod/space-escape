@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom"
 import apiCalls from "../../../utils/api";
 import { INITIALIZE_GLOBAL_STATE } from "../../../utils/Game/actions";
@@ -24,8 +23,8 @@ export default function LeaderBoard() {
     })
   }
   return (
-    <div>
-      <h1>Leader Board Page</h1>
+    <div className="main-container">
+      <h3 className="main-title">Leader Board</h3>
       <ul>
         {games.map((game, i) => {
           return (

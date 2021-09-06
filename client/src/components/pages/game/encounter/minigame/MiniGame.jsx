@@ -1,4 +1,3 @@
-
 import { RENDER_RESULTS } from "../../../../../utils/Game/actions";
 import { useGameContext } from "../../../../../utils/Game/GlobalState"
 import AsteroidsGame from "./Asteroids/AsteroidsGame";
