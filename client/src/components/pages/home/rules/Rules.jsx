@@ -14,7 +14,7 @@ export default function Rules() {
         </div>
         {/* the p tags will be changed once we define the rules of the game */}
         <div className="rule-items">
-          <p>Step 1: Sign Up or Sign in!</p>
+          <p>Step 1: Sign Up or Sign in! You can save your progress, leave the game, and continue at anytime!</p>
         </div>
         <div className="rule-items">
           <p>Step2: Pick your Character: Each has three values. Ship, Health, and Gold. All of these are needed to win the game, so choose wisely!</p>
