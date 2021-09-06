@@ -4,7 +4,7 @@ import { Ship } from "./ShipMovement";
 import { drawAsteroids, createAsteroids, moveAsteroids } from "./AstroidMovement";
 import { detectExploding, detectHit, drawShipHealth, drawScore, gameOver, drawGameText } from "./helper";
 
-const Canvas = ({ setGameProcess, setGameResult }) => {
+const Canvas = ({ gameProcess, setGameProcess, setGameResult }) => {
   let soundOn = true;
 
   let level = 3
@@ -58,10 +58,10 @@ const Canvas = ({ setGameProcess, setGameResult }) => {
     }
   };
 
-  window.removeEventListener("keydown", keyDown);
-  window.addEventListener("keydown", keyDown);
-  window.removeEventListener("keyup", keyUp);
-  window.addEventListener("keyup", keyUp);
+  if (gameProcess.renderCanvas) {
+    window.addEventListener("keydown", keyDown);
+    window.addEventListener("keyup", keyUp);
+  }
 
   useLayoutEffect(() => {
 
@@ -93,6 +93,8 @@ const Canvas = ({ setGameProcess, setGameResult }) => {
             score: score.current
           });
           gameOver(text, textAlpha, score.current, ship, soundOn, setGameProcess);
+          window.removeEventListener("keydown", keyDown);
+          window.removeEventListener("keyup", keyUp);
         }
       }
 
