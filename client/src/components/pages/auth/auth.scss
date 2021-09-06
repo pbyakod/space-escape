@@ -1,3 +1,14 @@
+.auth-container {
+    background-color: #445a72;
+    opacity: 90%;
+    width: 60rem;
+    height: fit-content;
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+    padding: 5rem;
+    border: 0.5rem solid white;
+}
+
 // making the sign in and sign up texts display in a row
 .auth-wrapper {
     display: flex;

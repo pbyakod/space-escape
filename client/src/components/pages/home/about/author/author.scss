@@ -3,10 +3,9 @@ table {
     table-layout: fixed;
     width: 100%;
     padding: 0.5rem;
-}
-
-.bg {    
-    background-color: rgba(196, 243, 255, 0.226);
+    td {
+        width: 50%;
+    }
 }
 
 // formatting the portfolio and github links
