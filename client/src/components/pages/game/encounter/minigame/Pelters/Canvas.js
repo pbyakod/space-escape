@@ -62,7 +62,7 @@ const Canvas = ({ setGameProcess, setGameResult }) => {
   window.addEventListener("keyup", keyUp);
 
   let timeLeft = 30;
-  let shipLives = 40;
+  let shipLives = state.ship;
   let score = 0;
   setInterval(() => {
     timeLeft -= 1;
