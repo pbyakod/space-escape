@@ -98,7 +98,7 @@ const encounter = [
     //may come after decline option from king (encounter 11)
   //may come after decline option from troll (encounter 12)
     story: "That was long, but I didn't trust that guy. Good call boss.",
-    message: 'This is a less dangerous part of space, but still be on your toes. Many explorers choose to push their ships to the max to try and avoid Moon Pirates. Do you wish to do the same?',
+    message: 'This is a dangerous part of space, be on your toes. Many explorers choose to push their ships to the max to try and avoid Moon Pirates. Do you wish to do the same?',
     option1: 'Yes|{"health": 0, "ship": -250, "gold": 0, "next": "minigame/asteroids", "next_location_id": 16}',
     option2: 'Save the ship some wear and tear, but risk facing the pirates|{"health": 0, "ship": -10, "gold": 0, "next": "results", "next_location_id": 15}',
     location_id: 14,
