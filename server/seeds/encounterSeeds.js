@@ -37,8 +37,8 @@ const encounter = [
     location_id: 5,
   },
   {
-    story: "Prepare to land on Niburu! This is a great planet, ruled by the The Elohim.",
-    message:"You’ve made it to Niburu. They are very welcoming and offer you food and any medical attention you need, would you like to accept their offer?",
+    story: "Prepare to land on Burini! This is a great planet, ruled by the The Eimina.",
+    message:"You’ve made it to Burini. They are very welcoming and offer you food and any medical attention you need, would you like to accept their offer?",
     option1: 'Yes|{"health": 300, "ship": 0, "gold": 0, "next": "results", "next_location_id": 8}',
     option2: 'No|{"health": 0, "ship": 0, "gold": 0, "next": "results", "next_location_id": 8}',
     location_id: 6,

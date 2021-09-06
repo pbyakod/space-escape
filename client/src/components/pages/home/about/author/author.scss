@@ -1,0 +1,25 @@
+// styling properties for the about authors table
+table {
+    table-layout: fixed;
+    width: 100%;
+    padding: 0.5rem;
+}
+
+.bg {    
+    background-color: rgba(196, 243, 255, 0.226);
+}
+
+// formatting the portfolio and github links
+.author-text {
+    padding: 0.3rem;
+    color: white;
+    text-decoration: none;
+    &:hover {
+        color: #ffffff67;
+        cursor: pointer;
+    }
+}
+
+.author-name {
+    margin: 0;
+}
