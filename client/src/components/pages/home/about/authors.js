@@ -26,7 +26,7 @@ const authors = [
   {
     id: 4,
     name: "Qiushuang Tian",
-    portfolio: "https://qtian13.github.io/react-portfolio/#Resume",
+    portfolio: "https://qtian13.github.io/react-portfolio",
     github:  "https://github.com/qtian13"
   }
   // {
