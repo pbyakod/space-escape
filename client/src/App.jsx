@@ -13,7 +13,7 @@ import LeaderBoard from "./components/pages/endGame/LeaderBoard";
 import NavBar from "./components/navBar/NavBar";
 import api from './utils/api';
 import { GameProvider } from "./utils/Game/GlobalState";
-import { Howl, Howler } from 'howler';
+import { Howl } from 'howler';
 import Hover from './sounds/hover.mp3';
 import PeltersGame from './components/pages/game/encounter/minigame/Pelters/PeltersGame'
 export default function App() {

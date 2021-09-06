@@ -12,10 +12,12 @@ export default function LeaderBoard() {
   }
   return (
     <div>
-      <h1>Leader Board Page</h1>
-      <Link to="">
-        <button onClick={handleClick}>Play Again</button>
-      </Link>
+      <div className="main-container">
+        <h1>Leader Board Page</h1>
+        <Link to="">
+          <button onClick={handleClick}>Play Again</button>
+        </Link>
+      </div>
     </div>
   )
 }
