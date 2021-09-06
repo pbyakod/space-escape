@@ -44,94 +44,94 @@ const soundFX = {
   })
 };
 
-function PlayBackground(soundOn) {
-  if (!soundFX.background.playing() && soundOn) {
+function PlayBackground() {
+  if (!soundFX.background.playing() && SoundStatus()) {
     soundFX.background.play();
   }
 }
 
-function PlayHover(soundOn) {
-  if (soundOn) {
+function PlayHover() {
+  if (SoundStatus()) {
     soundFX.hover.play();
   }
 }
 
-function PlayAsteroidsHomepage(soundOn) {
-  if (soundOn) {
+function PlayAsteroidsHomepage() {
+  if (SoundStatus()) {
     soundFX.asteroidsHomepage.play();
   }
 }
 
-function PlayAsteroidsVictory(soundOn) {
-  if (!soundFX.asteroidsVictory.playing() && soundOn) {
+function PlayAsteroidsVictory() {
+  if (!soundFX.asteroidsVictory.playing() && SoundStatus()) {
     soundFX.asteroidsVictory.play();
   }
 }
 
-function PlayLaserHitAsteroid(soundOn) {
+function PlayLaserHitAsteroid() {
   if (soundFX.laserHitAsteroid.playing()) {
     soundFX.laserHitAsteroid.stop();
   }
-  if (soundOn) {
+  if (SoundStatus()) {
     soundFX.laserHitAsteroid.play();
   }
 }
 
-function PlayCollectGold(soundOn) {
+function PlayCollectGold() {
   if (soundFX.collectGold.playing()) {
     soundFX.collectGold.stop();
   }
-  if (soundOn) {
+  if (SoundStatus()) {
     soundFX.collectGold.play();
   }
 }
 
-function PlayShipDamaged(soundOn) {
-  if (!soundFX.shipDamaged.playing() && soundOn) {
+function PlayShipDamaged() {
+  if (!soundFX.shipDamaged.playing() && SoundStatus()) {
     soundFX.shipDamaged.play();
   }
 }
 
-function PlayShipWasHit(soundOn) {
+function PlayShipWasHit() {
   if (soundFX.shipWasHit.playing()) {
     soundFX.shipWasHit.stop();
   }
-  if (soundOn) {
+  if (SoundStatus()) {
     soundFX.shipWasHit.play();
   }
 }
 
-function PlayShootLaser(soundOn) {
+function PlayShootLaser() {
   if (soundFX.shootLaser.playing()) {
     soundFX.shootLaser.stop();
   }
-  if (soundOn) {
+  if (SoundStatus()) {
     soundFX.shootLaser.play();
   }
 }
 
-function PlayTimeUp(soundOn) {
-  if (!soundFX.timeUp.playing() && soundOn) {
+function PlayTimeUp() {
+  if (!soundFX.timeUp.playing() && SoundStatus()) {
     soundFX.timeUp.play();
   }
 }
 
-// function SwitchSound() {
-//   if (soundFX.background.playing()) {
-//     soundFX.background.stop();
-//     return false;
-//   } else {
-//     soundFX.background.play();
-//     return true;
-//   }
-// }
+function SwitchSound() {
+  if (soundFX.background.playing()) {
+    soundFX.background.stop();
+    return false;
+  } else {
+    soundFX.background.play();
+    return true;
+  }
+}
 
-// function SoundStatus() {
-//   if (soundFX.background.playing()) {
-//     return true;
-//   }
-//   return false;
-// }
+function SoundStatus() {
+  if (soundFX.background.playing()) {
+    return true;
+  }
+  return false;
+}
 
 const soundCalls = {
   PlayBackground,
