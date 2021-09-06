@@ -1,4 +1,4 @@
-import { SHIP_SIZE, SHIP_BLINK_DUR, SHIP_EXPLODE_DUR, FPS, SHIP_THRUST, FRICTION, LASER_DIST, SHIP_INV_DUR, LASER_SPD, LASER_MAX, HIT_DAMAGE } from './';
+import { SHIP_SIZE, SHIP_BLINK_DUR, SHIP_EXPLODE_DUR, FPS, SHIP_THRUST, FRICTION, LASER_DIST, SHIP_INV_DUR, LASER_SPD, LASER_MAX, HIT_DAMAGE } from './constVariables';
 import { dealWithBorder } from "./helper";
 import soundCalls from '../../../../../../utils/sound';
 
