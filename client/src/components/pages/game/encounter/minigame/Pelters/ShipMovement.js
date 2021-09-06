@@ -221,7 +221,7 @@ export class Ship {
 
   explodeShip(soundOn) {
     this.explodeTime = Math.ceil(SHIP_EXPLODE_DUR * FPS);
-    this.shiplives -= HIT_DAMAGE;
+    this.health -= HIT_DAMAGE;
     if (soundOn) {
       soundCalls.PlayShipWasHit();
     }

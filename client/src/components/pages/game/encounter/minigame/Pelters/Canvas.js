@@ -1,15 +1,19 @@
 import React, { useRef, useLayoutEffect } from 'react';
 import { Ship } from "./ShipMovement";
 import { drawAsteroids, createAsteroids, moveAsteroids, makeAsteroidsMoveLeft } from "./PelterMovement";
-import { detectExploding, detectHit, drawShipHealth, drawShipLives, drawTimer, gameOver } from "./helper";
+import { detectExploding, detectHit, drawShipLives, drawShipHealth, drawTimer, gameOver, drawGameText } from "./helper";
+import { useGameContext } from '../../../../../../utils/Game/GlobalState';
 
 const Canvas = ({ setGameProcess, setGameResult }) => {
   let soundOn = false;
+  const [state, dispatch] = useGameContext();
 
   let level = 8
   const canvasRef = useRef(null);
   const roids = useRef(null);
   const ship = new Ship();
+  const text = useRef("");
+  const textAlpha = useRef(0);
   ship.setXPos(window.innerWidth / 12);// set to left side of screen
   
   const keyDown = (e) => {
@@ -81,15 +85,16 @@ const Canvas = ({ setGameProcess, setGameResult }) => {
       moveAsteroids(ctx, roids.current, 1, 1);
       drawAsteroids(ctx, roids);
       drawTimer(ctx, timeLeft, canvas);
-      drawShipLives(ctx, shipLives)
+      // drawShipLives(ctx, shipLives)
+      drawShipHealth(ctx, ship);
+      drawGameText(text, textAlpha, ctx, canvas);
       ship.move(canvas);
       ship.draw(ctx);
-      drawShipHealth(ctx, ship);
       animationId = requestAnimationFrame(myRender);
       if (score > 0) {
         shipLives--;
       }
-      if (timeLeft <= 0 || shipLives <= 0 || ship.health === 0) {
+      if (timeLeft <= 0 || shipLives <= 0 ) {
         console.log('game over')
         setGameProcess({
           renderHome: false,
@@ -98,7 +103,6 @@ const Canvas = ({ setGameProcess, setGameResult }) => {
           renderCanvas: false,
           renderResult: true,
           displayCharacter: false
-          
         })
 
         setGameResult({
@@ -106,6 +110,16 @@ const Canvas = ({ setGameProcess, setGameResult }) => {
           health: (1 - shipLives/2) * 50,
           gold: 0 
         })
+      }
+      if (ship.health === 0 || roids.current.length === 0) {
+        if (!didGameOver) {
+          didGameOver = true;
+          setGameResult( {
+            shipHealth: ship.health,
+            score: score.current
+          });
+          gameOver(text, textAlpha, score.current, ship, soundOn, setGameProcess);
+        }
       }
     };
     animationId = requestAnimationFrame(myRender);

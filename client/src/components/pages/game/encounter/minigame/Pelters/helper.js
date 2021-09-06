@@ -115,7 +115,7 @@ export function gameOver(text, textAlpha, score, ship, soundOn, setGameProcess) 
   textAlpha.current = 1.0;
   ship.dead = true;
   if (ship.health === 0) {
-    text.current = "This ship is wrecked, please repair!";
+    text.current = "Your ship is wrecked, you have not made it home!";
     if (soundOn) {
       soundCalls.PlayShipDamaged();
     }

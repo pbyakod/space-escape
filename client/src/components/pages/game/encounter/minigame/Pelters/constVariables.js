@@ -22,4 +22,4 @@ export const SHOW_CENTRE_DOT = false; // show or hide ship's centre dot
 export const SHOW_BOUNDING = false; // show or hide collision bounding
 export const TEXT_FADE_TIME = 2.5; // text fade time in sec
 export const TEXT_SIZE = 40; // text font height in pixels
-export const HIT_DAMAGE = 1; // damage when hit by an asteroid
+export const HIT_DAMAGE = 50; // damage when hit by an asteroid
