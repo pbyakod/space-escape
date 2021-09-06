@@ -83,13 +83,9 @@ const Canvas = ({ setGameProcess, setGameResult }) => {
     const goldImages = [];
     for (let i = 0; i < GOLDS_NUM; i++) {
       const goldImage = new Image();
-      goldImage.src = "https://cdn5.vectorstock.com/i/1000x1000/54/84/stack-of-gold-coins-on-transparent-background-vector-18945484.jpg";
+      goldImage.src = "https://res.cloudinary.com/htshtckkq/image/upload/v1630912745/s438smteacwz1g6o16nt.png";
       goldImages.push(goldImage);
     }
-    //const background = new Image();
-      //background.src = "./collectGoldBackground.png";
-      //ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
-    
     var didGameOver = false;
 
     const myRender = () => {
@@ -97,13 +93,9 @@ const Canvas = ({ setGameProcess, setGameResult }) => {
       const canvas = canvasRef.current;
       const ctx = canvas.getContext('2d');
 
-      // const drawBackground = (() => {
-      //   ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
-      // });
-    
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      
-      // drawBackground();
+      ctx.fillStyle = "black";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
       score.current += detectCollection(player, golds, soundOn, didGameOver);
       drawGolds(ctx, golds, goldImages);
       player.move(canvas, direction);
