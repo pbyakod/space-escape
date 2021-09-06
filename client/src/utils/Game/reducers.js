@@ -8,6 +8,7 @@ import {
   RENDER_RESULTS,
   RENDER_PROMPT,
   RENDER_STORY,
+  // RENDER_MAP,
   RENDER_SCORE,
   UPDATE_OUTCOME,
   SET_NEXT_LOCATION,
@@ -28,6 +29,7 @@ export const reducer = (state, action) => {
         renderResults: false,
         renderStory: false,
         renderScore: false,
+        renderMap: false,
         renderLeaderboard: false,
         char_id: null,
         health: 0,
@@ -116,6 +118,17 @@ export const reducer = (state, action) => {
         renderLeaderboard: true,
         inProgress: false,
       };
+    // case RENDER_MAP:
+    //   return {
+    //     ...state,
+    //     renderPrompt: false,
+    //     renderMinigame: false,
+    //     renderResults: false,
+    //     renderStory: false,
+    //     renderScore: false,
+    //     renderMap: true,
+    //     renderLeaderboard: false
+    //   };
     // case UPDATE_LOCATION:
     //   return {
     //     ...state,

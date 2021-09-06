@@ -3,11 +3,15 @@ import sound from "../../utils/sound";
 import "./navBar.scss";
 import $ from "jquery";
 import apiCalls from "../../utils/api";
+// import { useGameContext } from "../../utils/Game/GlobalState";
+// import { RENDER_MAP } from "../../utils/Game/actions";
 
 export default function NavBar() {
   console.log(sound.SoundStatus);
   const test = sound.SoundStatus;
   console.log(test);
+
+  // const [state, dispatch] = useGameContext(); 
 
   $(function() {
     $('#vol-btn').on('click', function() {
@@ -15,6 +19,12 @@ export default function NavBar() {
       $(this).hasClass('fa-volume-mute')
     })
   })
+
+  // function mapClick() {
+  //   dispatch({
+  //     type: RENDER_MAP
+  //   })
+  // }
 
   return (
     <div className="navBar">
