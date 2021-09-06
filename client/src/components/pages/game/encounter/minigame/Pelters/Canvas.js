@@ -124,9 +124,11 @@ const Canvas = ({ setGameProcess, setGameResult }) => {
       }
     };
     animationId = requestAnimationFrame(myRender);
-    window.removeEventListener("keydown", keyDown);
-    window.removeEventListener("keyup", keyUp);
-    return () => cancelAnimationFrame(animationId);
+    return () => {
+      cancelAnimationFrame(animationId);
+      window.removeEventListener("keydown", keyDown);
+      window.removeEventListener("keyup", keyUp);
+    }
   }, []);
 
   return <canvas ref={canvasRef} width={window.innerWidth} height={window.innerHeight}/>;
