@@ -65,7 +65,7 @@ async function login(body) {
      const response = await axios.post("/api/user/login", body);
 
     if (response.statusText === 'OK') {
-      console.log('response good', response.data);
+      // console.log('response good', response.data);
       localStorage.setItem('user', JSON.stringify({
         ...response.data.user, 
         message: response.data.message,
@@ -95,7 +95,7 @@ async function signUp(body) {
   try {
     const response = await axios.post("/api/user", body);
     if (response.statusText === 'OK') {
-      console.log('response good', response.data);
+      // console.log('response good', response.data);
       localStorage.setItem('user', JSON.stringify({
         ...response.data.user, 
         message: response.data.message,
@@ -134,6 +134,18 @@ async function getUserGames(userId) {
   }
 }
 
+async function updateUserGame(game_id, body) {
+  if (!game_id || !body) {
+    throw new Error("Need to specify game and request body");
+  }
+  try {
+    const response = await axios.put(`/api/game/${game_id}`, body, createRequestHeader());
+    return response.data;
+  } catch(err) {
+    return err.response;
+  }
+}
+
 // GET request for all available characters for a user to pick from
 // 
 // inputs:
@@ -144,7 +156,7 @@ async function getCharPrototypes() {
   try {
     const response = await axios.get("/api/charProto", createRequestHeader());
     if (response.statusText === "OK") {
-      console.log('response good', response.data)
+      // console.log('response good', response.data)
       return response.data; 
     } else {
       return response.data;
@@ -167,6 +179,7 @@ async function createGame(body) {
     console.log(body)
     throw new Error("Arguments require user_id, char_id, location_id, health, ship, and gold");
   }
+  console.log(body)
   try {
     const response = await axios.post('/api/game', body, createRequestHeader());
     if (response.statusText === "OK") {
@@ -205,7 +218,7 @@ async function getLocation(location_id) {
   try {
     const response = await axios.get(`/api/location/${location_id}`, createRequestHeader());
     if (response.statusText === "OK") {
-      console.log("Response good", response.data);
+      // console.log("Response good", response.data);
       return response.data;
     } else {
       return response.data;
@@ -223,7 +236,8 @@ const apiCalls = {
   createGame,
   getEncounter,
   getLocation,
-  loggedIn
+  loggedIn,
+  updateUserGame
 }; 
 
 export default apiCalls; 
