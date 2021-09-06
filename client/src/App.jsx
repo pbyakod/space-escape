@@ -11,6 +11,7 @@ import Game from "./components/pages/game/Game";
 import Score from "./components/pages/endGame/Score";
 import LeaderBoard from "./components/pages/endGame/LeaderBoard";
 import NavBar from "./components/navBar/NavBar";
+import Map from "./components/pages/map/Map";
 import api from './utils/api';
 import { GameProvider } from "./utils/Game/GlobalState";
 import { Howl } from 'howler';
@@ -35,6 +36,7 @@ export default function App() {
           <Route component={Auth} path="/auth"/>
           <Route component={About} path="/about"/>
           <Route component={Rules} path="/rules"/>
+          <Route component={Map} path="/map"/>
           <Route component={api.loggedIn() ? Dashboard : Auth} path="/dashboard"/>
           <Route component={api.loggedIn() ? CreateCharacter : Auth} path="/createCharacter"/>
           <Route component={api.loggedIn() ? Game : Auth} path="/game"/>

@@ -34,6 +34,9 @@ export default function NavBar() {
       <div className="btn">
         <span className="vol-btn nav-btn" onClick={sound.MuteSound}><i id='vol-btn' className="fa fa-volume-mute fa-2x nav-btn"></i></span>
       </div>
+      <NavLink to="/map" className="nav-btn">
+        <i class="fas fa-map-marked-alt fa-2x nav-btn"></i>
+      </NavLink>
     </div>
   );
 }
