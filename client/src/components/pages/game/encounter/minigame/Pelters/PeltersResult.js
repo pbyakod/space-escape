@@ -38,7 +38,7 @@ export default function AsteroidsResult({ gameResult, setGameProcess }) {
   useEffect(() => {
     dispatch({
       type: UPDATE_OUTCOME,
-      outcome: {health: 0, ship: gameResult.shipHealth - 0, gold: gameResult.score -0 }
+      outcome: {health: gameResult.health - 0, ship: gameResult.shipHealth - 0, gold: gameResult.score -0 }
     })
   },[])
 

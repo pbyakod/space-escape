@@ -85,8 +85,8 @@ const Canvas = ({ setGameProcess, setGameResult }) => {
       moveAsteroids(ctx, roids.current, 1, 1);
       drawAsteroids(ctx, roids);
       drawTimer(ctx, timeLeft, canvas);
-      // drawShipLives(ctx, shipLives)
-      drawShipHealth(ctx, ship);
+      drawShipLives(ctx, shipLives)
+      // drawShipHealth(ctx, ship);
       drawGameText(text, textAlpha, ctx, canvas);
       ship.move(canvas);
       ship.draw(ctx);
@@ -111,14 +111,14 @@ const Canvas = ({ setGameProcess, setGameResult }) => {
           gold: 0 
         })
       }
-      if (ship.health === 0 || roids.current.length === 0) {
+      if (shipLives <= 0 || roids.current.length === 0) {
         if (!didGameOver) {
           didGameOver = true;
           setGameResult( {
-            shipHealth: ship.health,
+            shipHealth: shipLives,
             score: score.current
           });
-          gameOver(text, textAlpha, score.current, ship, soundOn, setGameProcess);
+          gameOver(text, textAlpha, score.current, ship, soundOn, setGameProcess, shipLives);
         }
       }
     };
