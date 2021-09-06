@@ -3,7 +3,6 @@ import { FaVolumeUp, FaVolumeMute } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 import sound from "../../utils/sound";
 import "./navBar.scss";
-import $ from "jquery";
 import apiCalls from "../../utils/api";
 
 export default function NavBar() {
