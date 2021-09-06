@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User, Game, Location, CharProto } = require('../../models');
+const { User, Game, Location, CharProto, Encounter } = require('../../models');
 const { withAuth } = require('../../utils/auth');
 
 router.use(withAuth);
@@ -14,7 +14,13 @@ router.get('/:user_id', async (req, res) => {
     const games = await Game.findAll({
       where:{
         user_id: req.params.user_id
-      }
+      },
+      include: {
+        model: Location,
+        include: {
+          model: Encounter
+        }
+      },
     });
 
     if (!games) {
@@ -74,7 +80,7 @@ router.put('/:id', async (req, res) => {
       res.status(400).json({ message: 'No game found with that id!' });
       return;
     } else if (
-      dbGameData.get({ plain: true }).user_id !== req.session.userId
+      dbGameData.get({ plain: true }).user_id !== req.body.user_id
     ) {
       res
         .status(400)
@@ -93,7 +99,8 @@ router.put('/:id', async (req, res) => {
       res.status(200).json({ message: 'Updated successfully!' });
     }
   } catch (err) {
-    res.status(500).json(err);
+    console.log(err)
+    res.status(500).json({err});
   }
 });
 

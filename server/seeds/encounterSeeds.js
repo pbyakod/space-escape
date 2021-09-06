@@ -11,12 +11,12 @@ const encounter = [
   {
     story: "That was not a fun time, looks like we've made it to Valumis though boss. I don't know much about them other that the saying that 'a ship build or repaired by Valuminions is a ship built to last'",
     message: "You've made it to Valumis, home of the Valuminions, you're greeted by a shipbuilder in his own ship showing off his work. He offers to improve and fix your ship in exchange for oxygen and gold. Would you like him to work on your ship?",
-    option1: 'Yes|{"health": -150, "ship": +300, "gold": -150, "next": "results", "next_location_id": 3}',
+    option1: 'Yes|{"health": -150, "ship": 300, "gold": -150, "next": "results", "next_location_id": 3}',
     option2: 'No|{"health": 0, "ship":0, "gold":0, "next": "results", "next_location_id": 3}',
     location_id: 2,
   },
   {
-    story: "Troy’s Traverse’, also known as the “Sahara of Space” is a trechorous area in space known for having no planets, or sentient life. Many trevellers have fallen victim to this barren stretch of space",
+    story: "Treacherous Traverse’, also known as the “Sahara of Space” is a treacherous area in space known for having no planets, or sentient life. Many trevellers have fallen victim to this barren stretch of space",
     message: "You’ve come across an abandoned ship, salvage for left behind gold.",
     option1: 'Start Salvaging|{"health": 0, "ship": 0, "gold": 0, "next": "minigame/salvage", "next_location_id": 4}',
     option2: 'Contue on without salvaging |{"health": 0, "ship":0, "gold":0, "next": "results", "next_location_id": 4}',
@@ -25,7 +25,7 @@ const encounter = [
   {
     story:   "According to the radar we are entering Automatia, ruled by Alex Bateman. Alex Bateman is a long descendent of Nathan Bateman, born long after Earth was swallowed by the sun and after humans already moved to another galaxy. At some point he managed to find a planet of his own (habitable and rich in metal) where he made robots that would eventually build as many robots as there are now",
     message: "You’ve made it to Automatia! Metal for robot creation is worth its weight in gold here. Would you like to trade metal from your spaceship for gold?",
-    option1:'Yes|{"health": 0, "ship": -300, "gold": +300, "next": "results", "next_location_id": 5}', 
+    option1:'Yes|{"health": 0, "ship": -300, "gold": 300, "next": "results", "next_location_id": 5}', 
     option2: 'No|{"health": 0, "ship": -0, "gold":0, "next": "results", "next_location_id": 5}',
     location_id: 4,
   },
@@ -39,7 +39,7 @@ const encounter = [
   {
     story: "Prepare to land on Niburu! This is a great planet, ruled by the The Elohim.",
     message:"You’ve made it to Niburu. They are very welcoming and offer you food and any medical attention you need, would you like to accept their offer?",
-    option1: 'Yes|{"health": +300, "ship": 0, "gold": 0, "next": "results", "next_location_id": 8}',
+    option1: 'Yes|{"health": 300, "ship": 0, "gold": 0, "next": "results", "next_location_id": 8}',
     option2: 'No|{"health": 0, "ship": 0, "gold": 0, "next": "results", "next_location_id": 8}',
     location_id: 6,
   },
@@ -60,7 +60,7 @@ const encounter = [
   {
     story: "If we hurry we can make it to Prastin! I know a good spot to fix up the ship when we get there!", 
     message: 'You’ve made it to Prastin, the birthpace of Serpent Growing. they offer you some repairs in exhange for oxygen, do you wish to make this trade?',
-    option1: 'Yes|{"health": -200, "ship": +300, "gold": 0, "next": "results", "next_location_id": 10}',
+    option1: 'Yes|{"health": -200, "ship": 300, "gold": 0, "next": "results", "next_location_id": 10}',
     option2: 'No|{"health": 0, "ship": 0, "gold": 0, "next": "results", "next_location_id": 10}',
     location_id: 9,
   },
@@ -135,7 +135,7 @@ const encounter = [
     story:
     "Well, that was exciting to say the least... Anyway, Last Stop before home according to the radar!",
     message: 'You’ve made it to Terminus. Their currency the Kyber Shard does not exhange for gold. Their leader Don Guerrera has however implemented a highly sophisticated system to trade Oxygen for Ship Armour, and the stretch to Earth has many obsticles along the way. Do you wish to trade?',
-    option1: 'yes|{"health": -300, "ship": +300, "gold": 0, "next": "results", "next_location_id": 20}',
+    option1: 'yes|{"health": -300, "ship": 300, "gold": 0, "next": "results", "next_location_id": 20}',
     option2: 'no|{"health": 0, "ship": 0, "gold": 0, "next": "results", "next_location_id": 20}',
     location_id: 19,
   },

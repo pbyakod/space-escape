@@ -3,7 +3,7 @@ const { Location } = require("../models");
 const locations = [
   {
     // 1
-    name: "Denzal's Belt",
+    name: "Biggest Belt",
     people: '',
     population: 0,
     currency: '',
@@ -26,19 +26,19 @@ const locations = [
   {
     // 3
     name: "p3",
-    people: 'Troy’s Traverse',
+    people: 'Treacherous Traverse',
     population: 0,
     currency: '',
     leader: '',
     tradable: '',
     abundance: '',
-    fact: 'Troy’s Traverse’, also known as the “Sahara of Space” is a trechorous area in space known for having no planets, or sentient life. Many trevellers have fallen victim to this barren stretch of space.'
+    fact: 'Treacherous Traverse’, also known as the “Sahara of Space” is a treacherous area in space known for having no planets, or sentient life. Many trevellers have fallen victim to this barren stretch of space.'
   },
   {
     // 4
     name: "Automatia",
     people: 'Automatons',
-    population: 5000000000,
+    population: 5000000,
     currency: 'Batemans',
     leader: 'Alex Bateman',
     tradable: 'Metals',
@@ -49,7 +49,7 @@ const locations = [
     // 5
     name: "Automatia",
     people: 'Automatons',
-    population: 5000000000,
+    population: 5000000,
     currency: 'Batemans',
     leader: 'Alex Bateman',
     tradable: 'Metals',

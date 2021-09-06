@@ -19,6 +19,7 @@ export default function Result() {
       type: AFFECT_CHAR_STATS,
       statsChange: characterStatsChange
     })
+    
   }, [])
 
   function handleClick(e) {
@@ -30,14 +31,23 @@ export default function Result() {
     } else {
       apiCalls.getLocation(state.outcome.next_location_id)
         .then(GameData => {
-          console.log(GameData)
           if (GameData) {
-            console.log('here',GameData)
             dispatch({
               type: SET_NEXT_LOCATION, 
               location_id: GameData.id,
               encounter: GameData.encounters[0]
             });
+            const body = {
+              location_id: state.outcome.next_location_id,
+              health: state.health,
+              ship: state.ship,
+              gold: state.gold,
+              user_id: state.user_id
+            }
+            apiCalls
+              .updateUserGame(state.game_id, body)
+              .then(data => console.log(data))
+              .catch(err => console.log(err));
           } else {
             console.log('end game no more location id')
             dispatch({
@@ -45,7 +55,7 @@ export default function Result() {
             });
           }
         });
-    }
+      }
     dispatch({type: RENDER_STORY}) //sets renderStory to true
   }
 

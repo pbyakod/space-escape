@@ -67,7 +67,7 @@ export default function Game({ game }) {
     <li>
           
           <p>{game.id}</p>
-          <p>Location: {location}</p>
+          <p>Location: {game.Location.name}</p>
           <p>Character: {charName}</p>
           <p>Health: {game.health}</p>
           <p>Ship Health: {game.ship}</p>

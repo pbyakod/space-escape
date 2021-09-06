@@ -44,6 +44,8 @@ export const reducer = (state, action) => {
     case CREATE_GAME:
       return {
         ...state,
+        game_id: action.game_id,
+        user_id: action.user_id,
         char_id: action.char_id,
         health: action.health,
         ship: action.ship,
@@ -51,7 +53,6 @@ export const reducer = (state, action) => {
         inProgress: action.inProgress,
       };
     case INITIALIZE_SAVED_GAME:
-      console.log("action = ", action)
       return {
         ...state,
         location_id: action.location_id,
