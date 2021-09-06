@@ -37,7 +37,7 @@ Location.init(
 			allowNull: true
 		}, 
 
-		tradable: {
+		tradeable: {
 			type: DataTypes.STRING,
 			allowNull: true
 		}, 
