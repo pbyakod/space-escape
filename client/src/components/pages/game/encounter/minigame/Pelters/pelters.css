@@ -34,7 +34,7 @@ html, body {
 }
 
 h2.asteroids-home {
-  color: hsla(210, 100%, 52%, 1);
+  color: rgb(187, 72, 15);
   text-align: center;
   font-size: 12vw;
   line-height: 1em;

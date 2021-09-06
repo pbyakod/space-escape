@@ -79,7 +79,7 @@ class Asteroid {
 
   drawAsteroid(ctx) {
     ctx.strokeStyle = 'hsla(210, 100%, 52%, 1)';
-    ctx.shadowColor = 'hsla(210, 100%, 52%, 1)';
+    ctx.shadowColor = 'rgb(187, 72, 15)';
     ctx.shadowBlur = 15;
     ctx.fillStyle = 'hsla(210, 100%, 52%, 1)';
     ctx.lineWidth = SHIP_SIZE / 20;
