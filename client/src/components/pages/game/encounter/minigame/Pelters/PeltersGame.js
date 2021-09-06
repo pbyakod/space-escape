@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './asteroids.css';
-import AsteroidsHome from '../Asteroids/AsteroidsHome';
-import AsteroidsRules from '../Asteroids/AsteroidsRules';
-import AsteroidsPrepare from '../Asteroids/AsteroidsPrepare';
+import './pelters.css';
+import AsteroidsHome from './PeltersHome';
+import AsteroidsRules from './PeltersRules';
+import AsteroidsPrepare from './PeltersPrepare';
 import Canvas from './Canvas';
-import AsteroidsResult from '../Asteroids/AsteroidsResult';
+import AsteroidsResult from './PeltersResult';
 import Result from '../../result/Result';
 
 function AsteroidsRunnerGame() {

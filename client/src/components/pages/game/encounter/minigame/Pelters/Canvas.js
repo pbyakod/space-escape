@@ -1,6 +1,6 @@
 import React, { useRef, useLayoutEffect } from 'react';
-import { Ship } from "./../Asteroids/ShipMovement";
-import { drawAsteroids, createAsteroids, moveAsteroids, makeAsteroidsMoveLeft } from "./pelterMovement";
+import { Ship } from "./ShipMovement";
+import { drawAsteroids, createAsteroids, moveAsteroids, makeAsteroidsMoveLeft } from "./PelterMovement";
 import { detectExploding, detectHit, drawShipLives, drawTimer, gameOver } from "./helper";
 
 const Canvas = ({ setGameProcess, setGameResult }) => {
