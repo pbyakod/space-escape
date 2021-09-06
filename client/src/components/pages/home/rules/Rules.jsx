@@ -17,7 +17,7 @@ export default function Rules() {
           <p>Step 1: Sign Up or Sign in! You can save your progress, leave the game, and continue at anytime!</p>
         </div>
         <div className="rule-items">
-          <p>Step2: Pick your Character: Each has three values. Ship, Health, and Gold. All of these are needed to win the game, so choose wisely!</p>
+          <p>Step2: Pick your Character: Each has three values: Ship, Health, and Gold. All of these are needed to win the game, so choose wisely!</p>
         </div>
         <div className="rule-items">
           <p>Step 3: Play!</p>
@@ -29,7 +29,7 @@ export default function Rules() {
           <p>When presented with an option to play a mini-game, you can either play the game, or skip it. Be warned that skipping a minigame will always depelete your health, ship, gold, or all three!</p>
         </div>
         <div className="rule-items">
-          <p>Make it home before your ship breaks down, or your health runs out! Enjoy!</p>
+          <p>Make it home before your ship breaks down or your health runs out! Enjoy!</p>
         </div>
         <div className="rule-items">
         {/* uses same properties as back-btn from home.scss */}
