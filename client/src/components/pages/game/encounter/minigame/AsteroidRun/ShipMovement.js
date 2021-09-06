@@ -159,12 +159,12 @@ export class Ship {
     }
   
     if (this.thrusting && !this.dead) {
-      this.thrust.x += SHIP_THRUST;
-      this.thrust.y -= SHIP_THRUST;
+      this.thrust.x += SHIP_THRUST * Math.cos(this.a) / FPS;
+      this.thrust.y -= SHIP_THRUST * Math.sin(this.a) / FPS;
     
     } else {
-      this.thrust.x -= this.thrust.x / FPS;
-      this.thrust.y -= this.thrust.y / FPS;
+      this.thrust.x -= FRICTION * this.thrust.x / FPS;
+      this.thrust.y -= FRICTION * this.thrust.y / FPS;
     }
   }
 

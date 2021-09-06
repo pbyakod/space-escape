@@ -1,5 +1,5 @@
 export const FPS = 30; // frames per sec
-export const FRICTION = .9; // friction coefficient of space (0 = no friction, 1 = lots of friction)
+export const FRICTION = 0; // friction coefficient of space (0 = no friction, 1 = lots of friction)
 export const LASER_DIST = 0.4; // maximum distance laser can travel as fraction of screen width
 export const LASER_MAX = 10; // maximum number of lasers on screen at once
 export const LASER_SPD = 500; // speed of lasers in pixels per sec
