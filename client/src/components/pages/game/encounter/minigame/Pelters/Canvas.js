@@ -1,15 +1,20 @@
 import React, { useRef, useLayoutEffect } from 'react';
 import { Ship } from "./ShipMovement";
 import { drawAsteroids, createAsteroids, moveAsteroids, makeAsteroidsMoveLeft } from "./PelterMovement";
-import { detectExploding, detectHit, drawShipLives, drawTimer, gameOver } from "./helper";
+import { detectExploding, detectHit, drawShipLives, drawShipHealth, drawTimer, gameOver, drawGameText } from "./helper";
+import { useGameContext } from '../../../../../../utils/Game/GlobalState';
+import { HIT_DAMAGE } from './constVariables';
 
 const Canvas = ({ setGameProcess, setGameResult }) => {
   let soundOn = false;
+  const [state, dispatch] = useGameContext();
 
   let level = 8
   const canvasRef = useRef(null);
   const roids = useRef(null);
   const ship = new Ship();
+  const text = useRef("");
+  const textAlpha = useRef(0);
   ship.setXPos(window.innerWidth / 12);// set to left side of screen
   
   const keyDown = (e) => {
@@ -52,7 +57,7 @@ const Canvas = ({ setGameProcess, setGameResult }) => {
   };
 
   let timeLeft = 30;
-  let shipLives = 4;
+  let shipLives = state.ship;
   let score = 0;
   setInterval(() => {
     timeLeft -= 1;
@@ -61,6 +66,7 @@ const Canvas = ({ setGameProcess, setGameResult }) => {
 
     
     var animationId = 0;
+    var didGameOver = false;
     const myRender = () => {
       
       const canvas = canvasRef.current;
@@ -80,28 +86,40 @@ const Canvas = ({ setGameProcess, setGameResult }) => {
       drawAsteroids(ctx, roids);
       drawTimer(ctx, timeLeft, canvas);
       drawShipLives(ctx, shipLives)
+      // drawShipHealth(ctx, ship);
+      drawGameText(text, textAlpha, ctx, canvas);
       ship.move(canvas);
       ship.draw(ctx);
       animationId = requestAnimationFrame(myRender);
       if (score > 0) {
-        shipLives--;
+        shipLives -= HIT_DAMAGE;
       }
       if (timeLeft <= 0 || shipLives <= 0 ) {
         console.log('game over')
-        // setGameProcess({
-        //   renderHome: false,
-        //   renderRules: false,
-        //   renderPrepare: false,
-        //   renderCanvas: false,
-        //   renderResult: true,
-        //   displayCharacter: false
-        // })
+        setGameProcess({
+          renderHome: false,
+          renderRules: false,
+          renderPrepare: false,
+          renderCanvas: false,
+          renderResult: true,
+          displayCharacter: false
+        })
 
-        // setGameResult({
-        //   ship: (2 - shipLives) * 50,
-        //   health: (1 - shipLives/2) * 50,
-        //   gold: 0 
-        // })
+        setGameResult({
+          ship: (2 - shipLives) * 50,
+          health: (1 - shipLives/2) * 50,
+          gold: 0 
+        })
+      }
+      if (shipLives <= 0 || timeLeft <= 0) {
+        if (!didGameOver) {
+          didGameOver = true;
+          setGameResult( {
+            shipHealth: shipLives,
+            score: score.current
+          });
+          gameOver(text, textAlpha, score.current, ship, soundOn, setGameProcess, shipLives);
+        }
       }
     };
     animationId = requestAnimationFrame(myRender);
