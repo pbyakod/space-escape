@@ -66,7 +66,7 @@ export default function Auth({setAuth}) {
   return (
     <div>
       {/* main container from App.scss */}
-      <section className="main-container">
+      <section className="auth-container">
         {/* container that binds both the sign in and sign up divs together */}
         <section className="auth-wrapper">
           {/* container for just the sign in text */}
