@@ -39,6 +39,7 @@ export const reducer = (state, action) => {
       return {
         ...state,
         encounter: action.encounter,
+        location: action.location,
         renderStory: true,
       };
     case CREATE_GAME:

@@ -35,7 +35,7 @@ export default function Result() {
             dispatch({
               type: SET_NEXT_LOCATION, 
               location_id: GameData.id,
-              encounter: GameData.encounters[0]
+              encounter: GameData.encounter
             });
             const body = {
               location_id: state.outcome.next_location_id,

@@ -72,15 +72,12 @@ const Canvas = ({ setGameProcess, setGameResult }) => {
     }
   };
 
-  window.removeEventListener("keydown", keyDown);
-  window.addEventListener("keydown", keyDown);
-  window.removeEventListener("keyup", keyUp);
-  window.addEventListener("keyup", keyUp);
-
   useLayoutEffect(() => {
 
     var animationId = 0;
 
+    window.addEventListener("keydown", keyDown);
+    window.addEventListener("keyup", keyUp);
     const playerSprite = new Image();
     playerSprite.src = "http://untamed.wild-refuge.net/images/rpgxp/mandalorian.png";
     const goldImages = [];
@@ -126,7 +123,11 @@ const Canvas = ({ setGameProcess, setGameResult }) => {
       animationId = requestAnimationFrame(myRender);
     };
     animationId = requestAnimationFrame(myRender);
-    return () => cancelAnimationFrame(animationId);
+    return () => {
+      window.removeEventListener("keydown", keyDown);
+      window.removeEventListener("keyup", keyUp);
+      cancelAnimationFrame(animationId);
+    }
   }, []);
 
   return <canvas ref={canvasRef} width={window.innerWidth} height={window.innerHeight}/>;
