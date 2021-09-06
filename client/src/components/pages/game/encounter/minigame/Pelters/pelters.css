@@ -50,13 +50,13 @@ h2.pelters-home span {
   text-transform: uppercase;
 }
 
-.pelters.stock {
+.pelters.pelter {
   position: absolute;
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   background: beige;
-  box-shadow: black;
+  box-shadow: beige;
 }
 
 .pelters.prepare {
