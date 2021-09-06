@@ -1,4 +1,4 @@
-// import { destroyAsteroid } from "./pelterMovement";
+import { destroyAsteroid } from "./PelterMovement";
 import { LASER_EXPLODE_DUR, FPS, SHIP_SIZE, TEXT_SIZE, TEXT_FADE_TIME } from "./constVariables";
 import soundCalls from "../../../../../../utils/sound";
 
@@ -27,7 +27,7 @@ export function detectExploding(ship, roids, soundOn, level) {
     for (let i = 0; i < roids.current.length; i++) {
       if (distBetweenPoints(ship.x, ship.y, roids.current[i].x, roids.current[i].y) < ship.r + roids.current[i].r) {
         ship.explodeShip(soundOn);
-        // score += destroyAsteroid(i, roids, {}, soundOn, level);
+        score += destroyAsteroid(i, roids, {}, soundOn, level);
         break;
       }
     }
@@ -55,7 +55,7 @@ export function detectHit(ship, roids, soundOn, level) {
       if (distBetweenPoints(ax, ay, lx, ly) < ar) {        
 
         // destroy the asteroid and activate the laser explosion
-        // score += destroyAsteroid(i, roids, {}, soundOn, level);
+        score += destroyAsteroid(i, roids, {}, soundOn, level);
         ship.lasers[j].explodeTime = Math.ceil(LASER_EXPLODE_DUR * FPS);
 
         break;
@@ -78,7 +78,7 @@ export function drawShipLives(ctx, shipLives) {
   ctx.textBaseLine = "middle";
   ctx.fillStyle = shipLives < shipLives/2 ? "red" : "white";
   ctx.font = TEXT_SIZE + "px dejavu sans mono";
-  ctx.fillText("Ship Lives: " + shipLives, SHIP_SIZE * 2, SHIP_SIZE * 2); 
+  ctx.fillText("Ship Health: " + shipLives, SHIP_SIZE * 2, SHIP_SIZE * 2); 
 }
  
 export function drawScore(ctx, canvas, score) {
@@ -105,22 +105,22 @@ export function drawTimer(ctx, timeLeft, canvas) {
   ctx.baseline = "middle";
   ctx.fillStyle = "white";
   ctx.font = TEXT_SIZE + "px dejavu sans mono";
-  ctx.fillText(`Time Left: ${timeLeft}`, canvas.width - SHIP_SIZE * 2, SHIP_SIZE * 2);
+  ctx.fillText(`Light Years Home: ${timeLeft}`, canvas.width - SHIP_SIZE * 2, SHIP_SIZE * 2);
   return timeLeft--;
 }
 
 
-export function gameOver(text, textAlpha, score, ship, soundOn, setGameProcess) {
+export function gameOver(text, textAlpha, score, ship, soundOn, setGameProcess, shipLives) {
   console.log("=== game over");
   textAlpha.current = 1.0;
   ship.dead = true;
-  if (ship.health === 0) {
-    text.current = "This ship is wrecked, please repair!";
+  if (shipLives === 0 || shipLives < 0) {
+    text.current = "Your ship is wrecked, you have not made it home!";
     if (soundOn) {
       soundCalls.PlayShipDamaged();
     }
   } else {
-    text.current = "Thank you for protect the planet! You earn " + score/10 + " Gold!";
+    text.current = "Congragulations! You've Made it Home!";
     if (soundOn) {
       soundCalls.PlayAsteroidsVictory();
     }

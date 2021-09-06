@@ -163,8 +163,8 @@ export class Ship {
       this.thrust.y -= SHIP_THRUST * Math.sin(this.a) / FPS;
     
     } else {
-      this.thrust.x -= FRICTION * this.thrust.x / FPS;
-      this.thrust.y -= FRICTION * this.thrust.y / FPS;
+      this.thrust.x = 0;
+      this.thrust.y = 0
     }
   }
 
@@ -221,7 +221,7 @@ export class Ship {
 
   explodeShip(soundOn) {
     this.explodeTime = Math.ceil(SHIP_EXPLODE_DUR * FPS);
-    this.health -= HIT_DAMAGE;
+    this.shiplives -= HIT_DAMAGE;
     if (soundOn) {
       soundCalls.PlayShipWasHit();
     }

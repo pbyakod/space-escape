@@ -40,7 +40,7 @@ export default function AsteroidsHome({ setGameProcess }) {
   return (
     <div>
       <div className="asteroids-container">
-        <h2 className="asteroids-home"><span>Shatter</span><br/>Asteroids</h2>
+        <h2 className="asteroids-home"><span>Avoid</span><br/>Pelters</h2>
         {stockArry.map(el => <div className="asteroids stock"></div>)}
       </div>
     </div>

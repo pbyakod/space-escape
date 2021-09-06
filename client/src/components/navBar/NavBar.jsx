@@ -1,20 +1,22 @@
+import React, { useState } from "react";
+import { FaVolumeUp, FaVolumeMute } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 import sound from "../../utils/sound";
 import "./navBar.scss";
 import $ from "jquery";
 import apiCalls from "../../utils/api";
+// import { useGameContext } from "../../utils/Game/GlobalState";
+// import { RENDER_MAP } from "../../utils/Game/actions";
 
 export default function NavBar() {
-  console.log(sound.SoundStatus);
-  const test = sound.SoundStatus;
-  console.log(test);
 
-  $(function() {
-    $('#vol-btn').on('click', function() {
-      $(this).toggleClass('fa-volume-up fa-volume-mute')
-      $(this).hasClass('fa-volume-mute')
-    })
-  })
+  const [soundOn, setSoundOn] = useState(sound.SoundStatus());
+
+  // function mapClick() {
+  //   dispatch({
+  //     type: RENDER_MAP
+  //   })
+  // }
 
   return (
     <div className="navBar">
@@ -32,8 +34,13 @@ export default function NavBar() {
         </NavLink>
       </section>
       <div className="btn">
-        <span className="vol-btn nav-btn" onClick={sound.MuteSound}><i id='vol-btn' className="fa fa-volume-mute fa-2x nav-btn"></i></span>
+        <span className="vol-btn nav-btn" onClick={() => { 
+          setSoundOn(sound.SwitchSound())
+          }}>{soundOn ? <FaVolumeUp /> : <FaVolumeMute /> }</span>
       </div>
+      <NavLink to="/map" className="nav-btn">
+        <i class="fas fa-map-marked-alt fa-2x nav-btn"></i>
+      </NavLink>
     </div>
   );
 }
