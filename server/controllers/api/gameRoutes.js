@@ -4,6 +4,31 @@ const { withAuth } = require('../../utils/auth');
 
 router.use(withAuth);
 
+//GET all games
+router.get('/', async (req, res) => {
+  try {
+    const games = await Game.findAll({
+      include: [
+        {
+          model: User,
+          attributes: {
+            exclude: ['password']
+          }
+        }
+      ]
+    });
+
+    if (!games) {
+      res.status(404).end();
+    }
+
+    res.status(200).json(games);
+  } catch(err) {
+    console.log(err)
+    res.status(500).json(err)
+  }
+})
+
 // GET all games associated to user with user_id
 router.get('/:user_id', async (req, res) => {
   if (!req.params.user_id) {
