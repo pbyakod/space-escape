@@ -19,7 +19,7 @@ function AsteroidsRunnerGame() {
   }
 
   const gameState = {
-    shipHealth: 0,
+    shipLives: 0,
     score: 0
   }
 

@@ -35,26 +35,26 @@ export function moveAsteroids(ctx, roids, xvScale, yvScale) {
   }
 }
 
-// export function destroyAsteroid(index, roids, player, soundOn, level) {
-//   let { x, y, r } = roids.current[index];
-//   let score = 0;
+export function destroyAsteroid(index, roids, player, soundOn, level) {
+  let { x, y, r } = roids.current[index];
+  let score = 0;
 
-//   // split the asteroid in two if necessary
-//   if (r === ROIDS_SIZE / 2 || r === ROIDS_SIZE / 4) {
-//     roids.current.push(new Asteroid(x, y, Math.ceil(r / 2), level));
-//     roids.current.push(new Asteroid(x, y, Math.ceil(r / 2), level));
-//     score += r === ROIDS_SIZE / 2 ? ROIDS_PTS_LG : ROIDS_PTS_MD;
-//   } else {
-//     score += ROIDS_PTS_SM;
-//   }
+  // split the asteroid in two if necessary
+  if (r === ROIDS_SIZE / 2 || r === ROIDS_SIZE / 4) {
+    // roids.current.push(new Asteroid(x, y, Math.ceil(r / 2), level));
+    // roids.current.push(new Asteroid(x, y, Math.ceil(r / 2), level));
+    score += r === ROIDS_SIZE / 2 ? ROIDS_PTS_LG : ROIDS_PTS_MD;
+  } else {
+    score += ROIDS_PTS_SM;
+  }
 
-//   roids.current.splice(index, 1);
-//   if (soundOn) {
-//     soundCalls.PlayLaserHitAsteroid();
-//   }
+  roids.current.splice(index, 1);
+  if (soundOn) {
+    soundCalls.PlayLaserHitAsteroid();
+  }
 
-//   return score;
-// }
+  return score;
+}
 
 function generateVelocity(lvlMult) {
   return ROIDS_SPD;
@@ -78,10 +78,14 @@ class Asteroid {
   }
 
   drawAsteroid(ctx) {
-    ctx.strokeStyle = 'rgba(206, 104, 104)';
-    ctx.shadowColor = 'rgba(206, 104, 104)';
+    var grd = ctx.createLinearGradient(0, 0, 170, 0);
+  grd.addColorStop(0, "black");
+  grd.addColorStop(0.5, "black");
+  grd.addColorStop(1, "beige");
+    ctx.strokeStyle = 'beige)';
+    ctx.shadowColor = 'black';
     ctx.shadowBlur = 15;
-    ctx.fillStyle = 'rgba(206, 104, 104)';
+    ctx.fillStyle = grd;
     ctx.lineWidth = SHIP_SIZE / 20;
     // draw a path
     ctx.beginPath();
