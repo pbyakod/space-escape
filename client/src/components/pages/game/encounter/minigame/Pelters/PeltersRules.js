@@ -30,7 +30,7 @@ export default function AsteroidsRules({ setGameProcess }) {
           <FaSpaceShuttle />  Ship health decreases by 10 when hit by a planet
         </div>
         <div className="my-3 w-50 mx-auto">
-          Game ends when ship health hit 0 or when you have made it 20 lightyears to home.
+        <FaSpaceShuttle />Game ends when ship health hits 0, or when you have made it 20 lightyears to home.
         </div>
         <div className="mt-5 d-flex justify-content-around ">
           <button className="btn btn-info w-25" onClick={ renderPrepare }>Continue</button>

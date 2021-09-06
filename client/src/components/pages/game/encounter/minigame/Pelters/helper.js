@@ -105,7 +105,7 @@ export function drawTimer(ctx, timeLeft, canvas) {
   ctx.baseline = "middle";
   ctx.fillStyle = "white";
   ctx.font = TEXT_SIZE + "px dejavu sans mono";
-  ctx.fillText(`Time Left: ${timeLeft}`, canvas.width - SHIP_SIZE * 2, SHIP_SIZE * 2);
+  ctx.fillText(`Light Years Home: ${timeLeft}`, canvas.width - SHIP_SIZE * 2, SHIP_SIZE * 2);
   return timeLeft--;
 }
 
@@ -120,7 +120,7 @@ export function gameOver(text, textAlpha, score, ship, soundOn, setGameProcess) 
       soundCalls.PlayShipDamaged();
     }
   } else {
-    text.current = "Thank you for protect the planet! You earn " + score/10 + " Gold!";
+    text.current = "Congragulations! You've Made it Home!";
     if (soundOn) {
       soundCalls.PlayAsteroidsVictory();
     }

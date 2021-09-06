@@ -10,16 +10,16 @@ export default function AsteroidsResult({ gameResult, setGameProcess }) {
   let p3 = "";
   let p4 = "";
   if (gameResult.shipHealth === 0) {
-    heading = "Thank you very much!"
-    p1 = "Good job! You stood out to protect people on the planet!";
-    p2 = `You earned ${gameResult.score/10} gold during the fight! It is enough to repair your spaceship.`;
-    p3 = "The ship is damaged badly. It will take 15 days to be fully repaired.";
-    p4 = "Enjoy your tour and good luck!";
+    heading = "You're ship has broken, you have not made it home"
+    // p1 = "Unfortunitely, you have fallen victim to the pelters. If you're lucky, a beacon can be ";
+    // p2 = `You earned ${gameResult.score/10} gold during the fight! It is enough to repair your spaceship.`;
+    // p3 = "The ship is damaged badly. It will take 15 days to be fully repaired.";
+    // p4 = "Enjoy your tour and good luck!";
   } else {
-    heading = "Congratulations!";
-    p1 = "Good job! You stood out to protect people on the planet!";
-    p2 = `You earned ${gameResult.score/10} gold during the fight!`;
-    p3 = "Enjoy your tour and good luck!";
+    heading = "Congratulations! You've made it home!";
+    // p1 = "!";
+    // p2 = `You earned ${gameResult.score/10} gold during the fight!`;
+    // p3 = "Enjoy your tour and good luck!";
   }
   
   function displayCharacter() {
@@ -38,7 +38,7 @@ export default function AsteroidsResult({ gameResult, setGameProcess }) {
   useEffect(() => {
     dispatch({
       type: UPDATE_OUTCOME,
-      outcome: {health: -5, ship: gameResult.shipHealth - 100, gold: gameResult.score/10 }
+      outcome: {health: 0, ship: gameResult.shipHealth - 0, gold: gameResult.score -0 }
     })
   },[])
 
