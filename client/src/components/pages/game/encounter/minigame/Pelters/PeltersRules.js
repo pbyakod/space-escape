@@ -1,7 +1,7 @@
 import React from "react";
 import {  FaCaretUp, FaCaretDown, FaSpaceShuttle } from 'react-icons/fa';
 
-export default function AsteroidsRules({ setGameProcess }) {
+export default function PeltersRules({ setGameProcess }) {
 
   function renderPrepare() {
     setGameProcess({
@@ -14,7 +14,7 @@ export default function AsteroidsRules({ setGameProcess }) {
     })
   }
   return (
-    <div className="asteroids-container d-block">
+    <div className="pelters-container d-block">
       <h1 className="mt-5 text-center"> How to Play </h1>
       <div className="container">
 

@@ -3,7 +3,7 @@ import { useGameContext } from '../../../../../../utils/Game/GlobalState';
 import { UPDATE_OUTCOME } from '../../../../../../utils/Game/actions';
 import {useEffect} from 'react';
 
-export default function AsteroidsResult({ gameResult, setGameProcess }) {
+export default function PeltersResult({ gameResult, setGameProcess }) {
   let heading = "";
   let p1 = "";
   let p2 = "";
@@ -43,7 +43,7 @@ export default function AsteroidsResult({ gameResult, setGameProcess }) {
   },[])
 
   return (
-    <div className="asteroids-container d-block">
+    <div className="pelters-container d-block">
       <h1 id="title" className="my-5 text-center">{ heading }</h1>
       <div className="container w-50">
         <div className="my-3">{p1}</div>

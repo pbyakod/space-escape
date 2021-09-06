@@ -69,7 +69,7 @@ export function drawShipHealth(ctx, ship) {
    ctx.textBaseLine = "middle";
    ctx.fillStyle = ship.health < 30 ? "red" : "white";
    ctx.font = TEXT_SIZE + "px dejavu sans mono";
-   ctx.fillText("Ship Health: " + ship.health, SHIP_SIZE * 2, SHIP_SIZE * 2);
+   ctx.fillText("Ship Health: " + ship.health, SHIP_SIZE * 2, SHIP_SIZE * 3);
 }
  
 export function drawScore(ctx, canvas, score) {
@@ -77,7 +77,7 @@ export function drawScore(ctx, canvas, score) {
   ctx.textBaseLine = "middle";
   ctx.fillStyle = "white";
   ctx.font = TEXT_SIZE + "px dejavu sans mono";
-  ctx.fillText("Score: " + score, canvas.width - SHIP_SIZE * 2, SHIP_SIZE * 2);
+  ctx.fillText("Score: " + score, canvas.width - SHIP_SIZE * 2, SHIP_SIZE * 3);
 }
 
 export function drawGameText(text, textAlpha, ctx, canvas) {

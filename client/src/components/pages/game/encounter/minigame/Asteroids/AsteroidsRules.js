@@ -14,7 +14,7 @@ export default function AsteroidsRules({ setGameProcess }) {
     })
   }
   return (
-    <div className="asteroids-container d-block">
+    <div className="asteroids-container d-block pt-5">
       <h1 className="mt-5 text-center"> How to Play </h1>
       <div className="container">
 
