@@ -78,7 +78,7 @@ export function drawShipLives(ctx, shipLives) {
   ctx.textBaseLine = "middle";
   ctx.fillStyle = shipLives < shipLives/2 ? "red" : "white";
   ctx.font = TEXT_SIZE + "px dejavu sans mono";
-  ctx.fillText("Ship Lives: " + shipLives, SHIP_SIZE * 2, SHIP_SIZE * 2); 
+  ctx.fillText("Ship Health: " + shipLives, SHIP_SIZE * 2, SHIP_SIZE * 2); 
 }
  
 export function drawScore(ctx, canvas, score) {

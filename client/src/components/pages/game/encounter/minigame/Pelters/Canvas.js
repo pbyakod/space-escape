@@ -3,6 +3,7 @@ import { Ship } from "./ShipMovement";
 import { drawAsteroids, createAsteroids, moveAsteroids, makeAsteroidsMoveLeft } from "./PelterMovement";
 import { detectExploding, detectHit, drawShipLives, drawShipHealth, drawTimer, gameOver, drawGameText } from "./helper";
 import { useGameContext } from '../../../../../../utils/Game/GlobalState';
+import { HIT_DAMAGE } from './constVariables';
 
 const Canvas = ({ setGameProcess, setGameResult }) => {
   let soundOn = false;
@@ -92,7 +93,7 @@ const Canvas = ({ setGameProcess, setGameResult }) => {
       ship.draw(ctx);
       animationId = requestAnimationFrame(myRender);
       if (score > 0) {
-        shipLives--;
+        shipLives -= HIT_DAMAGE;
       }
       if (timeLeft <= 0 || shipLives <= 0 ) {
         console.log('game over')
@@ -111,7 +112,7 @@ const Canvas = ({ setGameProcess, setGameResult }) => {
           gold: 0 
         })
       }
-      if (shipLives <= 0 || roids.current.length === 0) {
+      if (shipLives <= 0 ) {
         if (!didGameOver) {
           didGameOver = true;
           setGameResult( {
