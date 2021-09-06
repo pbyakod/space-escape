@@ -31,10 +31,9 @@ export default function Dashboard() {
       <h1 className="title"> {username()}'s Dashboard </h1>
       <ul>
         {gameList.map((game, i) => {
-          console.log("entered")
-          console.log("db l_id = ", game.location_id)
-
-          return <Game game={game} key={i}/>;
+          // console.log("entered")
+          // console.log("db l_id = ", game.location_id)
+          return game.inProgress ? <Game user_id={userId()} game={game} key={i}/>: false;
          })}
       </ul>
       <Link to="/">
