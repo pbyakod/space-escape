@@ -21,7 +21,6 @@ export class Ship {
       y: 0
     };
     this.health = 100;
-
   }
 
   drawShip(ctx, color = "white") {
@@ -225,13 +224,5 @@ export class Ship {
     if (soundOn) {
       soundCalls.PlayShipWasHit();
     }
-  }
-
-  setXPos(x) {
-    this.x = x;
-  }
-
-  setNoseDirection(angle) {
-    this.a = angle;
   }
 }
