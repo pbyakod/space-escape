@@ -1,17 +1,10 @@
 .statusBar {
     padding: 2rem;
-    background-color: #0e0e27b2;
-
-    // &::before, &::after {
-    //     content: "";
-    //     position: absolute;
-    //     right: 0;
-    //     left: 0;
-    //     top: 0;
-    //     height: 5rem;
-    //     z-index: -1;
-    //     background-color: #0e0e27b2;
-    // }
+    padding-bottom: 4rem;
+    background-color: #445a72e6;
+    border-radius: 0 0 50% 50%;
+    border: 2px solid white;
+    // box-shadow: 0 0 55px 15px #0e0e27e6;
 }
 
 progress {

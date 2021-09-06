@@ -3,16 +3,19 @@
   flex-direction: row;
   width: 100%;
   justify-content: space-around;
-  background-color: rgba(9, 13, 31, 0.87);
+  background-color: #445a72e6;
+  outline: 2px solid white;
+  //background-color: #3c425a9f;
+  //background-color: #090d1fde;
 }
-
 .nav-btn {
   align-self: center;
-  background-color: #111125;
-  color: #ffffff;
+  color: #FFFFFF;
   text-decoration: none;
+  transition: .1s ease-in-out;
   &:hover{
-    color: rgb(196, 178, 255);
+    color: #C5C5C5;
+    //color: #FFEDBB;
   }
 }
 
