@@ -1,4 +1,4 @@
-import { SHIP_SIZE, SHIP_BLINK_DUR, SHIP_EXPLODE_DUR, FPS, SHIP_THRUST, FRICTION, LASER_DIST, SHIP_INV_DUR, LASER_SPD, LASER_MAX, HIT_DAMAGE } from './constVariables';
+import { SHIP_SIZE, SHIP_BLINK_DUR, SHIP_EXPLODE_DUR, FPS, SHIP_THRUST, FRICTION, LASER_DIST, SHIP_INV_DUR, LASER_SPD, LASER_MAX, HIT_DAMAGE } from './';
 import { dealWithBorder } from "./helper";
 import soundCalls from '../../../../../../utils/sound';
 
@@ -29,8 +29,8 @@ export class Ship {
     ctx.lineWidth = SHIP_SIZE / 20;
     ctx.beginPath();
     ctx.moveTo(  // nose of the ship
-      this.x + 4 / 3 * this.r * Math.cos(this.a),
-      this.y - 4 / 3 * this.r * Math.sin(this.a)
+      this.x + 1 * this.r * Math.cos(this.a),
+      this.y - 1 * this.r * Math.sin(this.a)
     );
     ctx.lineTo(   // rear left
       this.x - this.r * (2 / 3 * Math.cos(this.a) + Math.sin(this.a)),   
@@ -159,12 +159,12 @@ export class Ship {
     }
   
     if (this.thrusting && !this.dead) {
-      this.thrust.x += SHIP_THRUST * Math.cos(this.a) / FPS;
-      this.thrust.y -= SHIP_THRUST * Math.sin(this.a) / FPS;
+      this.thrust.x += SHIP_THRUST;
+      this.thrust.y -= SHIP_THRUST;
     
     } else {
-      this.thrust.x -= FRICTION * this.thrust.x / FPS;
-      this.thrust.y -= FRICTION * this.thrust.y / FPS;
+      this.thrust.x -= this.thrust.x / FPS;
+      this.thrust.y -= this.thrust.y / FPS;
     }
   }
 

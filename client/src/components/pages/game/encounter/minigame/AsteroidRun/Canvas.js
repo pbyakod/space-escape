@@ -4,7 +4,7 @@ import { drawAsteroids, createAsteroids, moveAsteroids, makeAsteroidsMoveLeft } 
 import { detectExploding, detectHit, drawShipLives, drawTimer, gameOver } from "./helper";
 
 const Canvas = ({ setGameProcess, setGameResult }) => {
-  let soundOn = true;
+  let soundOn = false;
 
   let level = 8
   const canvasRef = useRef(null);
