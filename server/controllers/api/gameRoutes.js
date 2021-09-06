@@ -20,7 +20,7 @@ router.get('/:user_id', async (req, res) => {
         include: {
           model: Encounter
         }
-      }
+      },
     });
 
     if (!games) {
