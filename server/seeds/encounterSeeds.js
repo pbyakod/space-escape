@@ -18,7 +18,7 @@ const encounter = [
   {
     story: "Treacherous Traverse’ is a total wasteland, many travellers avoid this stretch. Rumor has it - those who have voyaged the journey have fallen victim to this barren stretch of space",
     message: "You’ve come across an abandoned ship, salvage for left behind gold?",
-    option1: 'Start Salvaging|{"health": 0, "ship": 0, "gold": 0, "next": "minigame/salvage", "next_location_id": 4}',
+    option1: 'Start Salvaging|{"health": 0, "ship": 200, "gold": 50, "next": "results", "next_location_id": 4}',
     option2: 'Continue on without salvaging |{"health": 0, "ship":0, "gold":0, "next": "results", "next_location_id": 4}',
     location_id: 3,
   },
@@ -32,7 +32,7 @@ const encounter = [
   {
     story: "That was awesome, I've never seen so many robots on one planet!",
     message:"Heavy Solar flares are forecasted above, but high temperatures are expected on Automania due to it’s annual melting of old robot parts. Would you like to wait out the flares or venture on and escape the heat?",
-    option1: 'Wait out the solar flares in the sweltering heat|{"health": -200, "ship": -10, "gold": -0, "next": "minigame/asteroids", "next_location_id": 6}',
+    option1: 'Wait out the solar flares in the sweltering heat|{"health": -200, "ship": -10, "gold": -0, "next": "results", "next_location_id": 6}',
     option2: 'Avoid the heat and face the flares|{"health": 0, "ship":0, "gold":0, "next": "results", "next_location_id": 7}',
     location_id: 5,
   },
@@ -99,13 +99,13 @@ const encounter = [
   //may come after decline option from troll (encounter 12)
     story: "That was long, but I didn't trust that guy. Good call boss.",
     message: 'This is a dangerous part of space, be on your toes. Many explorers choose to push their ships to the max to try and avoid Moon Pirates. Do you wish to do the same?',
-    option1: 'Yes|{"health": 0, "ship": -250, "gold": 0, "next": "minigame/asteroids", "next_location_id": 16}',
+    option1: 'Yes|{"health": 0, "ship": -250, "gold": 0, "next": "results", "next_location_id": 16}',
     option2: 'Save the ship some wear and tear, but risk facing the pirates|{"health": 0, "ship": -10, "gold": 0, "next": "results", "next_location_id": 15}',
     location_id: 14,
   },
   {   story: "uhh... Boss? We have a problem here...",
   message: 'Warning! a fleet of space pirates are attacking, what should we do?',
-  option1: 'Fight back|{"health": 0, "ship": 0, "gold": 0, "next": "minigame/pirates", "next_location_id": 16}',
+  option1: 'Fight back|{"health": 0, "ship": 0, "gold": 0, "next": "results", "next_location_id": 16}',
   option2: 'Push the ship to dangerous levels and get out of here|{"health": -100, "ship": -600, "gold": -0, "next": "results", "next_location_id": 16}',
   location_id: 15,
 },
@@ -128,7 +128,7 @@ const encounter = [
   {
     story: "Yeah, I dont need no protection, I AM the protection! No ones messing with this ship when im on board! Uh... actually... maybe I spoke too soon..",
     message: 'Oh no! ThePirates caught up and they’re coming for the ship! Shoot them before they get you!',
-    option1: 'Fight back|{"health": 0, "ship": 0, "gold": 0, "next": "minigame/asteroids", "next_location_id": 19}',
+    option1: 'Fight back|{"health": 0, "ship": 0, "gold": 0, "next": "results", "next_location_id": 19}',
     option2: 'Push our ship to dangerous levels and get out of here|{"health": -100, "ship": -600, "gold": -0, "next": "results", "next_location_id": 19}',
     location_id: 18,
   },
