@@ -51,11 +51,6 @@ const Canvas = ({ setGameProcess, setGameResult }) => {
     }
   };
 
-  window.removeEventListener("keydown", keyDown);
-  window.addEventListener("keydown", keyDown);
-  window.removeEventListener("keyup", keyUp);
-  window.addEventListener("keyup", keyUp);
-
   let timeLeft = 30;
   let shipLives = 4;
   let score = 0;
@@ -70,6 +65,10 @@ const Canvas = ({ setGameProcess, setGameResult }) => {
       
       const canvas = canvasRef.current;
       const ctx = canvas.getContext('2d');
+
+      window.addEventListener("keydown", keyDown);
+      window.addEventListener("keyup", keyUp);
+
       if (!roids.current) {
         createAsteroids(level, ship, canvas, roids);
         makeAsteroidsMoveLeft(roids.current);
@@ -106,7 +105,11 @@ const Canvas = ({ setGameProcess, setGameResult }) => {
       }
     };
     animationId = requestAnimationFrame(myRender);
-    return () => cancelAnimationFrame(animationId);
+    return () => {
+      cancelAnimationFrame(animationId);
+      window.removeEventListener("keydown", keyDown);
+      window.removeEventListener("keyup", keyUp);
+    }
   }, []);
 
   return <canvas ref={canvasRef} width={window.innerWidth} height={window.innerHeight}/>;

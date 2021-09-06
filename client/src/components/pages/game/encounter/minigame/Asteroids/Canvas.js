@@ -58,15 +58,12 @@ const Canvas = ({ gameProcess, setGameProcess, setGameResult }) => {
     }
   };
 
-  if (gameProcess.renderCanvas) {
-    window.addEventListener("keydown", keyDown);
-    window.addEventListener("keyup", keyUp);
-  }
-
   useLayoutEffect(() => {
 
     var animationId = 0;
     var didGameOver = false;
+    window.addEventListener("keydown", keyDown);
+    window.addEventListener("keyup", keyUp);
 
     const myRender = () => {
       
@@ -93,15 +90,17 @@ const Canvas = ({ gameProcess, setGameProcess, setGameResult }) => {
             score: score.current
           });
           gameOver(text, textAlpha, score.current, ship, soundOn, setGameProcess);
-          window.removeEventListener("keydown", keyDown);
-          window.removeEventListener("keyup", keyUp);
         }
       }
 
       animationId = requestAnimationFrame(myRender);
     };
     animationId = requestAnimationFrame(myRender);
-    return () => cancelAnimationFrame(animationId);
+    return () => {
+      window.removeEventListener("keydown", keyDown);
+      window.removeEventListener("keyup", keyUp);
+      cancelAnimationFrame(animationId)
+    };
   }, []);
 
   return <canvas ref={canvasRef} width={window.innerWidth} height={window.innerHeight}/>;

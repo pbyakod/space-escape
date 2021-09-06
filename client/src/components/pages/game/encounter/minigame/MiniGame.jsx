@@ -5,7 +5,7 @@ import AsteroidsGame from "./Asteroids/AsteroidsGame";
 import CollectGoldGame from "./CollectGold/CollectGoldGame";
 
 export default function MiniGame({game}) {
-  // game = "asteroids";
+  // game = "collectGold";
   console.log(game)
   const [state, dispatch] = useGameContext();
   return (
