@@ -24,6 +24,7 @@ export default function CreateCharacter() {
   async function getCharacters() {
     setCharacters(await api.getCharPrototypes());
   }
+  
   function changeCharacter(e) {
     setChart(true)
     setCharacter(characters[e.target.id]);
@@ -39,17 +40,21 @@ export default function CreateCharacter() {
         char_id: character.id,
         health: character.health,
         ship: character.ship,
-        gold: character.gold
+        gold: character.gold,
+        game_id: 1,
       }
-
-      dispatch({
-        type: CREATE_GAME,
-        ...newGameState
-      })
-
-      localStorage.setItem('game_state', JSON.stringify(newGameState));
-      api.createGame(newGameState);
-
+     
+      api
+        .createGame(newGameState)
+        .then(data => {
+          const game_id = data.id;
+          newGameState.game_id = game_id;
+          dispatch({
+            type: CREATE_GAME,
+            ...newGameState
+          })
+          localStorage.setItem('game_state', JSON.stringify(newGameState));
+        });
     } 
   }
 
