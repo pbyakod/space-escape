@@ -69,14 +69,14 @@ const locations = [
   },
   {
     // 7
-    name: "Niburu",
-    people: 'Elohim',
+    name: "Burini",
+    people: 'Eimina',
     population: 5500000,
     currency: 'mana',
     leader: 'El',
     tradable: 'Vitimin C supplements',
     abundance: 'Rocket Fuel',
-    fact: 'Elohim have been to every planet'
+    fact: 'Eimina have been to every planet'
   },
   {
     // 8
