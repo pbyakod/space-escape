@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import anime from 'animejs/lib/anime.es.js';
 
-export default function AsteroidsHome({ setGameProcess }) {
+export default function PeltersHome({ setGameProcess }) {
   const animationRef = useRef(null);
   useEffect(() => {
     animationRef.current = anime({
@@ -39,9 +39,9 @@ export default function AsteroidsHome({ setGameProcess }) {
   }
   return (
     <div>
-      <div className="asteroids-container">
-        <h2 className="asteroids-home"><span>Avoid</span><br/>Pelters</h2>
-        {stockArry.map(el => <div className="asteroids stock"></div>)}
+      <div className="pelters-container">
+        <h2 className="pelters-home"><span>Avoid</span><br/>Pelters</h2>
+        {stockArry.map(el => <div className="pelters stock"></div>)}
       </div>
     </div>
   );
