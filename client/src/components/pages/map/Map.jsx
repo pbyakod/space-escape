@@ -8,9 +8,8 @@ export default function Map () {
             <div className="map-container">
                 <p>Location ID: {state.location_id}</p>
                 <p>Location Name: {state.location.name}</p>
-                <p className="return">Return to Game {/* to be added */}</p>
                 <img src="map2.png" alt="" />
             </div>
         </div>
-    );
+    )
 }

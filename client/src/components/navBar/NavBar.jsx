@@ -4,18 +4,45 @@ import { NavLink } from "react-router-dom";
 import sound from "../../utils/sound";
 import "./navBar.scss";
 import apiCalls from "../../utils/api";
-// import { useGameContext } from "../../utils/Game/GlobalState";
-// import { RENDER_MAP } from "../../utils/Game/actions";
+import { useGameContext } from "../../utils/Game/GlobalState";
+import { RENDER_MAP, RENDER_PROMPT, RENDER_RESULTS, RENDER_SCORE, RENDER_STORY } from "../../utils/Game/actions";
 
 export default function NavBar() {
-
+  const [state, dispatch] = useGameContext();
   const [soundOn, setSoundOn] = useState(sound.SoundStatus());
 
-  // function mapClick() {
-  //   dispatch({
-  //     type: RENDER_MAP
-  //   })
-  // }
+  function handleMap() {
+    if (!state.renderMap) {
+      dispatch({
+        type: RENDER_MAP
+      })
+    } else {
+      switch(state.renderPrevious) {
+        case 'renderStory':
+          dispatch({
+            type: RENDER_STORY
+          })
+          break;
+        case 'renderPrompt':
+          dispatch({
+            type: RENDER_PROMPT
+          })
+          break;
+        case 'renderResults':
+          dispatch({
+            type: RENDER_RESULTS
+          })
+          break;
+        case 'renderScore':
+          dispatch({
+            type: RENDER_SCORE
+          })
+          break;
+        default: 
+          break;
+      }
+    }
+  }
 
   return (
     <div className="navBar">
@@ -37,9 +64,11 @@ export default function NavBar() {
           setSoundOn(sound.SwitchSound())
           }}>{soundOn ? <FaVolumeUp /> : <FaVolumeMute /> }</span>
       </div>
-      <NavLink to="/map" className="nav-btn">
-        <i class="fas fa-map-marked-alt fa-2x nav-btn"></i>
-      </NavLink>
+      <div className="btn">
+        <span onClick={handleMap} className="nav-btn">
+          <i class="fas fa-map-marked-alt fa-2x nav-btn"></i>
+        </span>
+      </div>
     </div>
   );
 }

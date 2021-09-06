@@ -29,8 +29,8 @@ export default function App() {
   return (
     <>
     <BrowserRouter>
-      <NavBar/>
       <GameProvider>
+        <NavBar/>
         <Switch>
           <Route component={Home} onClick={PlaySound} path="/" exact/>
           <Route component={Auth} path="/auth"/>
