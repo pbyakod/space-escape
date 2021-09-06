@@ -1,23 +1,44 @@
-
 import { Link } from "react-router-dom"
+import apiCalls from "../../../utils/api";
 import { INITIALIZE_GLOBAL_STATE } from "../../../utils/Game/actions";
 import { useGameContext } from "../../../utils/Game/GlobalState"
+import { useEffect, useState } from "react";
 
 export default function LeaderBoard() {
   const [state, dispatch] = useGameContext();
+  const [games, setGames] = useState([]);
+
+  useEffect(() => {
+    apiCalls
+      .getAllGames()
+      .then(data => {
+        console.log(data)
+        setGames(data)
+      })
+  }, [])
+
   function handleClick() {
     dispatch({
       type: INITIALIZE_GLOBAL_STATE
     })
   }
   return (
-    <div>
-      <div className="main-container">
-        <h1>Leader Board Page</h1>
-        <Link to="">
-          <button onClick={handleClick}>Play Again</button>
-        </Link>
-      </div>
+    <div className="main-container">
+      <h3 className="main-title">Leader Board</h3>
+      <ul>
+        {games.map((game, i) => {
+          return (
+            !game.inProgress 
+              ? <li>
+                  <p>Username: {game.user.username} Score: {game.score}</p>
+                </li>
+              : false
+          )
+        }).sort((a,b) => b-a)}
+      </ul>
+      <Link to="">
+        <button onClick={handleClick}>Play Again</button>
+      </Link>
     </div>
   )
 }

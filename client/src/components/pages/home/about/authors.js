@@ -14,19 +14,19 @@ const authors = [
   {
     id: 2,
     name: "Troy Johnson",
-    portfolio: "tnj415.github.io/improved-portfolio/",
-    github:  "github.com/tnj415"
+    portfolio: "https://tnj415.github.io/improved-portfolio/",
+    github:  "https://github.com/tnj415"
   },
   {
     id: 3,
     name: "Denzal Martin",
-    portfolio: "dmartin4820.github.io/portfolio",
+    portfolio: "https://dmartin4820.github.io/",
     github:  "https://github.com/dmartin4820"
   },
   {
     id: 4,
     name: "Qiushuang Tian",
-    portfolio: "https://qtian13.github.io/react-portfolio/#Resume",
+    portfolio: "https://qtian13.github.io/react-portfolio",
     github:  "https://github.com/qtian13"
   }
   // {

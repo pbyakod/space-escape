@@ -135,11 +135,21 @@ async function getUserGames(userId) {
 }
 
 async function updateUserGame(game_id, body) {
+  console.log(game_id, body)
   if (!game_id || !body) {
     throw new Error("Need to specify game and request body");
   }
   try {
     const response = await axios.put(`/api/game/${game_id}`, body, createRequestHeader());
+    return response.data;
+  } catch(err) {
+    return err.response;
+  }
+}
+
+async function getAllGames() {
+  try {
+    const response = await axios.get(`/api/game`, createRequestHeader());
     return response.data;
   } catch(err) {
     return err.response;
@@ -237,7 +247,8 @@ const apiCalls = {
   getEncounter,
   getLocation,
   loggedIn,
-  updateUserGame
+  updateUserGame,
+  getAllGames
 }; 
 
 export default apiCalls; 

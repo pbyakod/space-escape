@@ -53,6 +53,11 @@ Game.init(
       type: DataTypes.INTEGER,
       allowNull: false
     },
+    
+    score: {
+      type: DataTypes.INTEGER,
+      allowNull: true
+    },
 
     inProgress: {
       type: DataTypes.BOOLEAN,

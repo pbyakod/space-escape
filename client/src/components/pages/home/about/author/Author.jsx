@@ -9,8 +9,8 @@ export default function Author(author) {
       <table>
         <tr>
           <td><p className="author-name">{`${author.author.name}`}</p></td>
-          <th><a className="author-text" onMouseEnter={sound.PlayHover} href={`http://www.${author.author.portfolio}`}>Portfolio</a></th>
-          <th><a className="author-text" onMouseEnter={sound.PlayHover} href={`http://www.${author.author.github}`}>Github</a></th>
+          <th><a className="author-text" onMouseEnter={sound.PlayHover} href={`${author.author.portfolio}`}>Portfolio</a></th>
+          <th><a className="author-text" onMouseEnter={sound.PlayHover} href={`${author.author.github}`}>Github</a></th>
         </tr>
       </table>
     </div>

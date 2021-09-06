@@ -12,7 +12,7 @@ export default function About() {
       <div className="main-container">
         {/* separate divs for each item for scss styling */}
         <div>
-          <h1 className="about-title">Authors</h1>
+          <h1 className="main-title">Authors</h1>
         </div>
         <div className="about-item">
           <section className="author">

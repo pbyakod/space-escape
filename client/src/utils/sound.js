@@ -104,18 +104,21 @@ function PlayTimeUp() {
   }
 }
 
-function MuteSound() {
+function SwitchSound() {
   if (soundFX.background.playing()) {
     soundFX.background.stop();
+    return false;
   } else {
     soundFX.background.play();
+    return true;
   }
 }
 
 function SoundStatus() {
-  if (soundFX.background.playing) 
-  return true
-  return false
+  if (soundFX.background.playing()) {
+    return true;
+  }
+  return false;
 
 }
 
@@ -130,7 +133,7 @@ const soundCalls = {
   PlayShootLaser,
   PlayCollectGold,
   PlayTimeUp,
-  MuteSound,
+  SwitchSound,
   SoundStatus
 };
 
