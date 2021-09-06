@@ -10,7 +10,7 @@ const Canvas = ({ setGameProcess, setGameResult }) => {
   const canvasRef = useRef(null);
   const roids = useRef(null);
   const ship = new Ship();
-  ship.setXPos(window.innerWidth / 12);// set to left side of screen
+  ship.setXPos(window.innerHeight/ 12);// set to left side of screen
   
   const keyDown = (e) => {
     if (ship.dead) {
@@ -57,7 +57,7 @@ const Canvas = ({ setGameProcess, setGameResult }) => {
   window.addEventListener("keyup", keyUp);
 
   let timeLeft = 30;
-  let shipLives = 4;
+  let shipLives = 10;
   let score = 0;
   setInterval(() => {
     timeLeft -= 1;
@@ -89,20 +89,20 @@ const Canvas = ({ setGameProcess, setGameResult }) => {
       }
       if (timeLeft <= 0 || shipLives <= 0 ) {
         console.log('game over')
-        // setGameProcess({
-        //   renderHome: false,
-        //   renderRules: false,
-        //   renderPrepare: false,
-        //   renderCanvas: false,
-        //   renderResult: true,
-        //   displayCharacter: false
-        // })
+        setGameProcess({
+          renderHome: false,
+          renderRules: false,
+          renderPrepare: false,
+          renderCanvas: false,
+          renderResult: true,
+          displayCharacter: false
+        })
 
-        // setGameResult({
-        //   ship: (2 - shipLives) * 50,
-        //   health: (1 - shipLives/2) * 50,
-        //   gold: 0 
-        // })
+        setGameResult({
+          ship: (2 - shipLives) * 50,
+          health: (1 - shipLives/2) * 50,
+          gold: 0 
+        })
       }
     };
     animationId = requestAnimationFrame(myRender);
