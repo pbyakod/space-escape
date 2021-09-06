@@ -81,7 +81,7 @@ export default function Prompt({setMinigameName}) {
   }
 
   return (
-    <div>
+    <div className="prompt-container">
       <StatusBar/>
       <div className="main-container main-container_story">
       <p className="">{state.encounter.message}</p>

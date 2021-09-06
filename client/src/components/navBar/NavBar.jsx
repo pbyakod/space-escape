@@ -32,7 +32,7 @@ export default function NavBar() {
         </NavLink>
       </section>
       <div className="btn">
-        <button class="vol-btn" onClick={sound.MuteSound}><i id='vol-btn' class="fa fa-volume-mute fa-2x"></i></button>
+        <span className="vol-btn nav-btn" onClick={sound.MuteSound}><i id='vol-btn' className="fa fa-volume-mute fa-2x nav-btn"></i></span>
       </div>
     </div>
   );
