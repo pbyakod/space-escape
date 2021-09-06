@@ -34,7 +34,7 @@ export default function LeaderBoard() {
                 </li>
               : false
           )
-        }).sort((a,b) => b-a)}
+        }).sort((a,b) => b.score-a.score)}
       </ul>
       <Link to="">
         <button onClick={handleClick}>Play Again</button>
