@@ -18,7 +18,7 @@ const encounter = [
   {
     story: "Treacherous Traverse’ is a total wasteland, many travellers avoid this stretch. Rumor has it - those who have voyaged the journey have fallen victim to this barren stretch of space",
     message: "You’ve come across an abandoned ship, salvage for left behind gold?",
-    option1: 'Start Salvaging|{"health": 0, "ship": 200, "gold": 50, "next": "results", "next_location_id": 4}',
+    option1: 'Start Salvaging|{"health": 0, "ship": 0, "gold": 0, "next": "minigame/collectGold", "next_location_id": 4}',
     option2: 'Continue on without salvaging |{"health": 0, "ship":0, "gold":0, "next": "results", "next_location_id": 4}',
     location_id: 3,
   },
