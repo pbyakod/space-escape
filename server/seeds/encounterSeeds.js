@@ -16,10 +16,10 @@ const encounter = [
     location_id: 2,
   },
   {
-    story: "Treacherous Traverse’, also known as the “Sahara of Space” is a treacherous area in space known for having no planets, or sentient life. Many trevellers have fallen victim to this barren stretch of space",
+    story: "Treacherous Traverse’, also known as the “Sahara of Space” is a treacherous area in space known for having no planets, or sentient life. Many travellers have fallen victim to this barren stretch of space",
     message: "You’ve come across an abandoned ship, salvage for left behind gold.",
     option1: 'Start Salvaging|{"health": 0, "ship": 0, "gold": 0, "next": "minigame/salvage", "next_location_id": 4}',
-    option2: 'Contue on without salvaging |{"health": 0, "ship":0, "gold":0, "next": "results", "next_location_id": 4}',
+    option2: 'Continue on without salvaging |{"health": 0, "ship":0, "gold":0, "next": "results", "next_location_id": 4}',
     location_id: 3,
   },
   {
@@ -45,21 +45,21 @@ const encounter = [
   },
   {
     story:   "Get ready for a rough landing, those winds blew us way off course and the radar isn't detecting this planet. This doesn't look good!",
-    message: "You have been approached by a mysterious figure, the Deman is unavoidable. your health is drained",
+    message: "You have been approached by a mysterious figure, the Demon is unavoidable. your health is drained",
     option1: 'leave as soon as possible|{"health": -600, "ship": -100, "gold": 0, "next": "results", "next_location_id": 8}',
     option2: 'leave as soon as possible|{"health": -600, "ship": -100, "gold": 0, "next": "results", "next_location_id": 8}',
     location_id: 7,
   },
   {
     story: "Glad we made it to Peter's Pass, I was looking forward to checking this place out. A particularly scenic part of space, Peter’s Pass is littered with beautiful stars, and a black hole a safe distance away. Its beauty brings space travellers from all planets to visit and enjoy the breathtaking scenery.",
-    message:"Oh no! It looks like your ship has incurred an infestation of space-mice (yes, mice do exist in space). They eat the componenets of your spaceship’s internal heater, and if left alone, your space ship will become unbearably cold. Kill the mice before your heat dissapears!",
+    message:"Oh no! It looks like your ship has incurred an infestation of space-mice (yes, mice do exist in space). They eat the components of your spaceship’s internal heater, and if left alone, your space ship will become unbearably cold. Kill the mice before your heat disappears!",
     option1: 'Start capturing them|{"health": 0, "ship":0, "gold":0, "next": "minigame/whackMouse", "next_location_id": 9}',
     option2: 'let them be|{"health": -200, "ship": -300, "gold": 0, "next": "results", "next_location_id": 9}',
     location_id: 8,
   },
   {
     story: "If we hurry we can make it to Prastin! I know a good spot to fix up the ship when we get there!", 
-    message: 'You’ve made it to Prastin, the birthpace of Serpent Growing. they offer you some repairs in exhange for oxygen, do you wish to make this trade?',
+    message: 'You’ve made it to Prastin, the birthplace of Serpent Growing. they offer you some repairs in exchange for oxygen, do you wish to make this trade?',
     option1: 'Yes|{"health": -200, "ship": 300, "gold": 0, "next": "results", "next_location_id": 10}',
     option2: 'No|{"health": 0, "ship": 0, "gold": 0, "next": "results", "next_location_id": 10}',
     location_id: 9,
@@ -96,7 +96,7 @@ const encounter = [
     //may come after decline option from king (encounter 11)
   //may come after decline option from troll (encounter 12)
     story: "That was long, but I didn't trust that guy. Good call boss.",
-    message: 'This is a dangerous part of space, no way around it anymore. Many expolorers choose to push their ships to the max to try and avoid Moon Pirates. Do you wish to do the same?',
+    message: 'This is a dangerous part of space, no way around it anymore. Many explorers choose to push their ships to the max to try and avoid Moon Pirates. Do you wish to do the same?',
     option1: 'Yes|{"health": 0, "ship": -250, "gold": 0, "next": "minigame/asteroids", "next_location_id": 16}',
     option2: 'Save my ship some wear and tear, and face the pirates|{"health": 0, "ship": -10, "gold": -10, "next": "results", "next_location_id": 15}',
     location_id: 14,
@@ -109,15 +109,15 @@ const encounter = [
 },
   {
     //comes after receiving negative values from encounter 14 or 15
-    story: "I Have to park this puppy, lets stop here in Qiushuangalong",
-    message: 'You’ve made it to Quishuang’s Planet. Luckily their currency has an exchange rate of 1/3 with gold. Would you like to pay for repairs?',
+    story: "I Have to park this puppy, lets stop here in Dotris",
+    message: 'You’ve made it to Dotris! Luckily their currency has an exchange rate of 1/3 with gold. Would you like to pay for repairs?',
     option1: 'yes|{"health": 0, "ship": 0, "gold": 0, "next": "shop", "next_location_id": 17}',
     option2: 'no thanks|{"health": 0, "ship": 0, "gold": 0, "next": "results", "next_location_id": 17}',
     location_id: 16,
   },
   {
     story: "A stranger approaches as you are in awe the magnificence of this planet.",
-    message: 'Aware of their surroundings, the Space Force on Quishuang’s Planet is extremely well developed, and offer travellers the oportunity for an escorted trip to Terminus (the last stop before Earth) for 400 Gold, do you wish to take this trip?',
+    message: 'Aware of their surroundings, the Space Force on Dotris is extremely well developed, and offer travellers the opportunity for an escorted trip to Terminus (the last stop before Earth) for 400 Gold, do you wish to take this trip?',
     option1: 'Take the escort|{"health": 0, "ship": 0, "gold": 0, "next": "results", "next_location_id": 19}',
     option2: 'Forge on Alone|{"health": 0, "ship": 0, "gold": 0, "next": "results", "next_location_id": 18}',
     location_id: 17,
@@ -134,14 +134,14 @@ const encounter = [
     //may be after encounter 18 - pirates catch up
     story:
     "Well, that was exciting to say the least... Anyway, Last Stop before home according to the radar!",
-    message: 'You’ve made it to Terminus. Their currency the Kyber Shard does not exhange for gold. Their leader Don Guerrera has however implemented a highly sophisticated system to trade Oxygen for Ship Armour, and the stretch to Earth has many obsticles along the way. Do you wish to trade?',
+    message: 'You’ve made it to Terminus. Their currency the Kyber Shard does not exchange for gold. Their leader Don Guerrera has however implemented a highly sophisticated system to trade Oxygen for Ship Armour, and the stretch to Earth has many obstacles along the way. Do you wish to trade?',
     option1: 'yes|{"health": -300, "ship": 300, "gold": 0, "next": "results", "next_location_id": 20}',
     option2: 'no|{"health": 0, "ship": 0, "gold": 0, "next": "results", "next_location_id": 20}',
     location_id: 19,
   },
   {
     story: "Lets Head Home!",
-    message: 'You’ve made it to Pranav’s Pelters, a tiny galaxy of 50 tiny planets. Navegate through safely and you’re home free! ',
+    message: 'You’ve made it to Pranav’s Pelters, a tiny galaxy of 50 tiny planets. Navigate through safely and you’re home free! ',
     option1: 'Begin Navigation|{"health": 0, "ship": 0, "gold": 0, "next": "minigame/pelters", "next_location_id": 21}',
     option2: 'go around|{"health": -200, "ship": -200, "gold": 0, "next": "results", "next_location_id": 21}',
     location_id: 20,
