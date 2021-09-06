@@ -35,7 +35,7 @@ export default function Result() {
             dispatch({
               type: SET_NEXT_LOCATION, 
               location_id: GameData.id,
-              encounter: GameData.encounters[0]
+              encounter: GameData.encounter
             });
             const body = {
               location_id: state.outcome.next_location_id,
@@ -46,7 +46,7 @@ export default function Result() {
             }
             apiCalls
               .updateUserGame(state.game_id, body)
-              .then(data => console.log(data))
+              .then(dispatch({type: RENDER_STORY}))//sets renderStory to true
               .catch(err => console.log(err));
           } else {
             console.log('end game no more location id')
@@ -56,7 +56,6 @@ export default function Result() {
           }
         });
       }
-    dispatch({type: RENDER_STORY}) //sets renderStory to true
   }
 
   return (

@@ -39,7 +39,13 @@ export const reducer = (state, action) => {
       return {
         ...state,
         encounter: action.encounter,
+        location: action.location,
         renderStory: true,
+        renderPrompt: false,
+        renderMinigame: false,
+        renderResults: false,
+        renderScore: false,
+        renderLeaderboard: false,
       };
     case CREATE_GAME:
       return {
@@ -55,10 +61,13 @@ export const reducer = (state, action) => {
     case INITIALIZE_SAVED_GAME:
       return {
         ...state,
+        game_id: action.game_id,
+        user_id: action.user_id,
         location_id: action.location_id,
         health: action.health,
         ship: action.ship,
         gold: action.gold,
+        inProgress: true
       };
 
     case RENDER_MINIGAME:

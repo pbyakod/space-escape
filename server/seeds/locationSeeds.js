@@ -8,7 +8,7 @@ const locations = [
     population: 0,
     currency: '',
     leader: '',
-    tradable: '',
+    tradeable: '',
     abundance: '',
     fact: 'Biggest Meteor Belt in the known  Universe'
   },
@@ -19,18 +19,18 @@ const locations = [
     population: 5000000,
     currency: 'Valuma',
     leader: 'King Valamin',
-    tradable: 'Oxygen',
+    tradeable: 'Oxygen',
     abundance: 'Ship Building and repair',
     fact: 'Isolated in space between two enormous natural barriers, the Valuminions are increadibly experienced and skilled navigators and ship builders. With few natural resources, they rely heavily on trade with other planets, and use their navigation skills and ship building expertise to help captain voyages and build ships for wealthir planets. Around 70% of all ships in the known universe have been constructed in some part by Valuminions'
   },
   {
     // 3
-    name: "p3",
-    people: 'Treacherous Traverse',
+    name: "Treacherous Traverse",
+    people: '',
     population: 0,
     currency: '',
     leader: '',
-    tradable: '',
+    tradeable: '',
     abundance: '',
     fact: 'Treacherous Traverse’, also known as the “Sahara of Space” is a treacherous area in space known for having no planets, or sentient life. Many trevellers have fallen victim to this barren stretch of space.'
   },
@@ -41,7 +41,7 @@ const locations = [
     population: 5000000,
     currency: 'Batemans',
     leader: 'Alex Bateman',
-    tradable: 'Metals',
+    tradeable: 'Metals',
     abundance: 'Gold',
     fact: 'Alex Bateman is a long descendent Nathan Bateman, born long after Earth was swallowed by the sun and after humans already moved to another galaxy. At some point he managed to find a planet of his own (habitable and rich in metal) where he made robots that would eventually build as many robots as there are now.'
   },
@@ -52,7 +52,7 @@ const locations = [
     population: 5000000,
     currency: 'Batemans',
     leader: 'Alex Bateman',
-    tradable: 'Metals',
+    tradeable: 'Metals',
     abundance: 'Gold',
     fact: 'Alex Bateman is a long descendent Nathan Bateman, born long after Earth was swallowed by the sun and after humans already moved to another galaxy. At some point he managed to find a planet of his own (habitable and rich in metal) where he made robots that would eventually build as many robots as there are now.'
   },
@@ -63,7 +63,7 @@ const locations = [
     population: 0,
     currency: 'Human Life Force',
     leader: '',
-    tradable: '',
+    tradeable: '',
     abundance: '',
     fact: ''
   },
@@ -74,7 +74,7 @@ const locations = [
     population: 5500000,
     currency: 'mana',
     leader: 'El',
-    tradable: 'Vitimin C supplements',
+    tradeable: 'Vitimin C supplements',
     abundance: 'Rocket Fuel',
     fact: 'Eimina have been to every planet'
   },
@@ -85,7 +85,7 @@ const locations = [
     population: 0,
     currency: '',
     leader: '',
-    tradable: '',
+    tradeable: '',
     abundance: '',
     fact: 'A particularly scenic part of space, Peter’s Pass is littered with beautuful stars, and a black hole a safe distance away. It’s beauty brings space travellers from all planets to visit and enjoy the breathtaking scenery'
   },
@@ -96,7 +96,7 @@ const locations = [
     population: 7000000,
     currency: 'Gloons',
     leader: 'Sir Isaac Henry Kentsworth IV',
-    tradable: 'Oxygen',
+    tradeable: 'Oxygen',
     abundance: 'Human Food',
     fact: 'Prastians only have one love: Serpent Growing. Every year at the national Serpent Growing festival, each of the seven provinces send compititors in hopes of winning the national title. This nation, abundant in nutrients, has no need for any activity other than snake growing'
   },  
@@ -107,7 +107,7 @@ const locations = [
     population: 7000000,
     currency: 'Gloons',
     leader: 'Sir Isaac Henry Kentsworth IV',
-    tradable: 'Oxygen',
+    tradeable: 'Oxygen',
     abundance: 'Human Food',
     fact: 'Prastians only have one love: Serpent Growing. Every year at the national Serpent Growing festival, each of the seven provinces send compititors in hopes of winning the national title. This nation, abundant in nutrients, has no need for any activity other than snake growing'
   },
@@ -118,7 +118,7 @@ const locations = [
     population: 7000000,
     currency: 'Gloons',
     leader: 'Sir Isaac Henry Kentsworth IV',
-    tradable: 'Oxygen',
+    tradeable: 'Oxygen',
     abundance: 'Human Food',
     fact: 'Prastians only have one love: Serpent Growing. Every year at the national Serpent Growing festival, each of the seven provinces send compititors in hopes of winning the national title. This nation, abundant in nutrients, has no need for any activity other than snake growing'
   },
@@ -129,7 +129,7 @@ const locations = [
     population: 10000,
     currency: 'None’',
     leader: 'Terry The Terrible',
-    tradable: 'Space Ships',
+    tradeable: 'Space Ships',
     abundance: 'Safe Passage',
     fact: 'Founded by Space Trolls 7 million years ago, their poor social skills, and love of Trivia have led the society to be extremely isolated. Without trade partners, they use spaceships of those who have failed their trivia games as their only source of transportation'
   },
@@ -140,7 +140,7 @@ const locations = [
     population: 10000,
     currency: 'None’',
     leader: 'Terry The Terrible',
-    tradable: 'Space Ships',
+    tradeable: 'Space Ships',
     abundance: 'Safe Passage',
     fact: 'Founded by Space Trolls 7 million years ago, their poor social skills, and love of Trivia have led the society to be extremely isolated. Without trade partners, they use spaceships of those who have failed their trivia games as their only source of transportation'
   },
@@ -151,7 +151,7 @@ const locations = [
     population: 0,
     currency: '',
     leader: '',
-    tradable: '',
+    tradeable: '',
     abundance: '',
     fact: 'With thousands of moons in a small vicinity, this area in space is home to many Moon Pirates. Space Invaders who take ships for ransome.'
   },
@@ -162,7 +162,7 @@ const locations = [
     population: 0,
     currency: '',
     leader: '',
-    tradable: '',
+    tradeable: '',
     abundance: '',
     fact: 'With thousands of moons in a small vicinity, this area in space is home to many Moon Pirates. Space Invaders who take ships for ransome.'
   },
@@ -173,7 +173,7 @@ const locations = [
     population: 0,
     currency: '',
     leader: '',
-    tradable: '',
+    tradeable: '',
     abundance: '',
     fact: ''
   },
@@ -184,7 +184,7 @@ const locations = [
     population: 0,
     currency: '',
     leader: '',
-    tradable: '',
+    tradeable: '',
     abundance: '',
     fact: ''
   },
@@ -195,7 +195,7 @@ const locations = [
     population: 0,
     currency: '',
     leader: '',
-    tradable: '',
+    tradeable: '',
     abundance: '',
     fact: 'With thousands of moons in a small vicinity, this area in space is home to many Moon Pirates. Space Invaders who take ships for ransome.'
   }, 
@@ -206,7 +206,7 @@ const locations = [
     population: 400000,
     currency: 'Kyber Shards',
     leader: 'Don Guerrera',
-    tradable: 'Oxygen Tanks',
+    tradeable: 'Oxygen Tanks',
     abundance: 'Ship Armour',
     fact: "Terminus orbits the galaxy's sun in a curved square orbit and the Laws of Physics don't apply here"
   }, 
@@ -217,7 +217,7 @@ const locations = [
     population: 0,
     currency: '',
     leader: '',
-    tradable: '',
+    tradeable: '',
     abundance: '',
     fact: 'Named after the great Explorer Pravav III, Pranav’s Pelters is a tiny galaxy filled with tiny planets'
   },{
@@ -227,7 +227,7 @@ const locations = [
     population: 0,
     currency: '',
     leader: '',
-    tradable: '',
+    tradeable: '',
     abundance: '',
     fact: 'Welcome home!'
   },

@@ -9,6 +9,7 @@ const GameProvider = ({ value=[], ...props }) => {
     game_id: 1,
     user_id: null,
     location_id: 1,
+    location: {},
     encounter: {},
     outcome: {},
     renderPrompt: false,

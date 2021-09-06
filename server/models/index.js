@@ -31,7 +31,7 @@ Game.belongsTo(Location, {
 	onDelete: 'SET NULL'
 });
 
-Location.hasMany(Encounter, {
+Location.hasOne(Encounter, {
   foreignKey: 'location_id'
 });
 

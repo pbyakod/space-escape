@@ -41,6 +41,7 @@ class Gold {
   }
 
   draw(ctx, img) {
+    console.log(img)
     ctx.drawImage(img, this.x, this.y, this.width, this.hight);
   }
 }

@@ -9,7 +9,6 @@ import LeaderBoard from "../endGame/LeaderBoard";
 
 export default function Game() {
   const [state, dispatch] = useGameContext();
-  // const [minigame, setMinigame] = useState('');
 
   console.log('Game')
   useEffect(() => {
@@ -20,7 +19,16 @@ export default function Game() {
     const GameData = await apiCalls.getLocation(state.location_id); 
     dispatch({
       type: INITIALIZE_GAME, 
-      encounter: GameData.encounters[0],
+      encounter: GameData.encounter,
+      location: {
+        name: GameData.name,
+        people: GameData.population,
+        currency: GameData.currency,
+        leader: GameData.leader,
+        tradeable: GameData.tradeable,
+        abundance: GameData.abundance,
+        fact: GameData.fact
+      }
     });
   }
 
