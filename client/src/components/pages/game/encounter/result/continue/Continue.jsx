@@ -25,9 +25,9 @@ export default function Continue(prop) {
             : "gap title break"
         }
       >
-        Ship Health: {prop.ship}
+        Ship Health: {prop.health}
       </p>
-      <p className="gap title">Player Health: {prop.health}</p>
+      <p className="gap title">Player Health: {prop.ship}</p>
       <p className="gap title">Gold: {prop.gold}</p>
       
     </div>
