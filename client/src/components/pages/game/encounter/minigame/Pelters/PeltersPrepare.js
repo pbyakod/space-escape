@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import anime from 'animejs/lib/anime.es.js';
 
-export default function CollectGoldPrepare({ setGameProcess }) {
+export default function AsteroidsPrepare({ setGameProcess }) {
   const animationRef = useRef(null);
   let animations = {
     opacityIn: [0, 1],
@@ -63,8 +63,8 @@ export default function CollectGoldPrepare({ setGameProcess }) {
     })
   }
   return (
-    <div className="collect-gold-container">
-      <div className="collect-gold prepare">
+    <div className="asteroids-container">
+      <div className="asteroids prepare">
         <span className="one">Ready?</span>
         <span className="two">Go!</span>
       </div>
