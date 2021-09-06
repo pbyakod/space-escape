@@ -78,10 +78,14 @@ class Asteroid {
   }
 
   drawAsteroid(ctx) {
-    ctx.strokeStyle = 'hsla(210, 100%, 52%, 1)';
-    ctx.shadowColor = 'rgb(187, 72, 15)';
+    var grd = ctx.createLinearGradient(0, 0, 170, 0);
+  grd.addColorStop(0, "black");
+  grd.addColorStop(0.5, "black");
+  grd.addColorStop(1, "beige");
+    ctx.strokeStyle = 'beige)';
+    ctx.shadowColor = 'black';
     ctx.shadowBlur = 15;
-    ctx.fillStyle = 'hsla(210, 100%, 52%, 1)';
+    ctx.fillStyle = grd;
     ctx.lineWidth = SHIP_SIZE / 20;
     // draw a path
     ctx.beginPath();

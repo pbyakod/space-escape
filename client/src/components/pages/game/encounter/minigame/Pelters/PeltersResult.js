@@ -9,7 +9,7 @@ export default function AsteroidsResult({ gameResult, setGameProcess }) {
   let p2 = "";
   let p3 = "";
   let p4 = "";
-  if (gameResult.shipHealth === 0) {
+  if (gameResult.shipHealth <= 0) {
     heading = "You're ship has broken, you have not made it home"
     // p1 = "Unfortunitely, you have fallen victim to the pelters. If you're lucky, a beacon can be ";
     // p2 = `You earned ${gameResult.score/10} gold during the fight! It is enough to repair your spaceship.`;

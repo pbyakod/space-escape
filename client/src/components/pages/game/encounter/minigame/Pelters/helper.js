@@ -114,7 +114,7 @@ export function gameOver(text, textAlpha, score, ship, soundOn, setGameProcess, 
   console.log("=== game over");
   textAlpha.current = 1.0;
   ship.dead = true;
-  if (shipLives === 0) {
+  if (shipLives === 0 || shipLives < 0) {
     text.current = "Your ship is wrecked, you have not made it home!";
     if (soundOn) {
       soundCalls.PlayShipDamaged();

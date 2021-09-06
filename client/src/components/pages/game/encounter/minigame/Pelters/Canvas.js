@@ -62,7 +62,7 @@ const Canvas = ({ setGameProcess, setGameResult }) => {
   window.addEventListener("keyup", keyUp);
 
   let timeLeft = 30;
-  let shipLives = state.ship;
+  let shipLives = 40;
   let score = 0;
   setInterval(() => {
     timeLeft -= 1;
@@ -112,7 +112,7 @@ const Canvas = ({ setGameProcess, setGameResult }) => {
           gold: 0 
         })
       }
-      if (shipLives <= 0 ) {
+      if (shipLives <= 0 || timeLeft <= 0) {
         if (!didGameOver) {
           didGameOver = true;
           setGameResult( {
