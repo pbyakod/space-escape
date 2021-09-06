@@ -41,7 +41,7 @@ export default function App() {
           <Route component={api.loggedIn() ? Score : Auth} path="/score"/>
           <Route component={api.loggedIn() ? LeaderBoard: Auth} path="/leaderBoard"/>
           {/* <Route component={api.loggedIn() ? AsteroidsGame: Auth} path="/Asteroids" /> */}
-          <Route component={AsteroidsRunerGame} path="/abc" /> */
+          <Route component={AsteroidsRunerGame} path="/abc" />
         </Switch>
       </GameProvider>
       </BrowserRouter>

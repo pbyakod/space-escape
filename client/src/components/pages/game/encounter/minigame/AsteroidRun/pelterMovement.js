@@ -5,7 +5,7 @@ import soundCalls from "../../../../../../utils/sound";
 export function createAsteroids(level, shipObj, canvas, roids) {
   roids.current = [];
   let x, y;
-  for (let i = 0; i < ROIDS_NUM + level * 2; i++) {
+  for (let i = 0; i < ROIDS_NUM * 10; i++) {
     do {
       x = Math.floor(Math.random() * (canvas.width - ROIDS_SIZE));
       y = Math.floor(Math.random() * (canvas.height - ROIDS_SIZE));
