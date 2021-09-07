@@ -1,20 +1,27 @@
-import React, { useRef, useLayoutEffect } from 'react';
+import React, { useState, useRef, useLayoutEffect } from 'react';
+import { FaVolumeUp, FaVolumeMute } from "react-icons/fa";
 import { TURN_SPEED, FPS } from "./constVaraibles";
 import { Ship } from "./ShipMovement";
 import { drawAsteroids, createAsteroids, moveAsteroids } from "./AstroidMovement";
 import { detectExploding, detectHit, drawShipHealth, drawScore, gameOver, drawGameText } from "./helper";
 
-const Canvas = ({ gameProcess, setGameProcess, setGameResult }) => {
-  let soundOn = true;
-
+const Canvas = ({ setGameProcess, setGameResult }) => {
   let level = 3
   const canvasRef = useRef(null);
+  const soundOn = useRef(true);
+
   const roids = useRef(null);
   const score = useRef(0);
   const text = useRef("");
   const textAlpha = useRef(0);
   const ship = new Ship();
-  
+  const [soundStatus, setSoundStatus] = useState(true);
+
+  function switchSoundStatus() {
+    soundOn.current = !soundStatus;
+    setSoundStatus(!soundStatus);
+  }
+
   const keyDown = (e) => {
     if (ship.dead) {
       return;
@@ -36,6 +43,7 @@ const Canvas = ({ gameProcess, setGameProcess, setGameResult }) => {
   
     }
   };
+
   const keyUp = (e) => {
     if (ship.dead) {
       return;
@@ -54,10 +62,10 @@ const Canvas = ({ gameProcess, setGameProcess, setGameResult }) => {
         ship.rot = 0;
         break;
       default :
-  
     }
   };
 
+  
   useLayoutEffect(() => {
 
     var animationId = 0;
@@ -103,7 +111,12 @@ const Canvas = ({ gameProcess, setGameProcess, setGameResult }) => {
     };
   }, []);
 
-  return <canvas ref={canvasRef} width={window.innerWidth} height={window.innerHeight}/>;
+  return (
+    <div className="canvas">
+      <canvas ref={canvasRef} width={window.innerWidth} height={window.innerHeight}/>
+      <span className="minigame-vol-btn" onClick={switchSoundStatus}>{ soundStatus ? <FaVolumeUp size="2rem"/> : <FaVolumeMute size="2rem"/> }</span>
+    </div>
+  );
 }
 
 export default Canvas;

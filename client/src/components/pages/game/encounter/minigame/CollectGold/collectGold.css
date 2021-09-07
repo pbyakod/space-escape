@@ -79,3 +79,9 @@ h2.collect-gold-home span {
   text-transform: uppercase;
   letter-spacing: 0.4em;
 }
+
+.minigame-vol-btn {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+}

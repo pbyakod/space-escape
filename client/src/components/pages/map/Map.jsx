@@ -8,7 +8,7 @@ export default function Map () {
             <div className="map-container">
                 <p>Location ID: {state.location_id}</p>
                 <p>Location Name: {state.location.name}</p>
-                <img src="map2.png" alt="" />
+                <img src="/images/map.png" alt="game map" />
             </div>
         </div>
     )

@@ -1,11 +1,11 @@
-import React, { useRef, useLayoutEffect } from 'react';
+import React, { useState, useRef, useLayoutEffect } from 'react';
+import { FaVolumeUp, FaVolumeMute } from "react-icons/fa";
 import { GOLDS_NUM, TIME_TOTAL } from "./constVaraibles";
 import { Player } from "./Player";
 import { drawGolds, createGolds } from "./Gold";
 import { detectCollection, drawScore, drawTimer, gameOver, drawGameText } from "./helper";
 
 const Canvas = ({ setGameProcess, setGameResult }) => {
-  let soundOn = true;
 
   const canvasRef = useRef(null);
   const direction = {
@@ -14,12 +14,19 @@ const Canvas = ({ setGameProcess, setGameResult }) => {
     up: false,
     down: false,
   }
+  const soundOn = useRef(true);
   const score = useRef(0);
   const text = useRef("");
   const textAlpha = useRef(0);
   const player = new Player();
   const timeLeft = useRef(TIME_TOTAL);
   const golds = createGolds(player.x, player.y);
+  const [soundStatus, setSoundStatus] = useState(true);
+
+  function switchSoundStatus() {
+    soundOn.current = !soundStatus;
+    setSoundStatus(!soundStatus);
+  }
 
   let timeUp = false;
 
@@ -122,7 +129,12 @@ const Canvas = ({ setGameProcess, setGameResult }) => {
     }
   }, []);
 
-  return <canvas ref={canvasRef} width={window.innerWidth} height={window.innerHeight}/>;
+  return (
+    <div className="canvas">
+      <canvas ref={canvasRef} width={window.innerWidth} height={window.innerHeight}/>
+      <span className="minigame-vol-btn" onClick={switchSoundStatus}>{ soundStatus ? <FaVolumeUp size="2rem"/> : <FaVolumeMute size="2rem"/> }</span>
+    </div>
+  )
 }
 
 export default Canvas;
