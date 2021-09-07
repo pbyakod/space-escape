@@ -44,7 +44,7 @@ export default function CollectGoldHome({ setGameProcess }) {
     <div>
       <div className="collect-gold-container">
         <h2 className="collect-gold-home">Collect Gold</h2>
-        {goldArray.map(el => <div className="collect-gold gold" style={el}></div>)}
+        {goldArray.map((el, i) => <div key={i} className="collect-gold gold" style={el}></div>)}
       </div>
     </div>
   );
