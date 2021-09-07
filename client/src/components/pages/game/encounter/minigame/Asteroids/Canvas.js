@@ -1,5 +1,5 @@
 import React, { useState, useRef, useLayoutEffect } from 'react';
-import { FaVolumeUp, FaVolumeMute } from "react-icons/fa"
+import { FaVolumeUp, FaVolumeMute } from "react-icons/fa";
 import { TURN_SPEED, FPS } from "./constVaraibles";
 import { Ship } from "./ShipMovement";
 import { drawAsteroids, createAsteroids, moveAsteroids } from "./AstroidMovement";
@@ -116,7 +116,6 @@ const Canvas = ({ setGameProcess, setGameResult }) => {
       <canvas ref={canvasRef} width={window.innerWidth} height={window.innerHeight}/>
       <span className="minigame-vol-btn" onClick={switchSoundStatus}>{ soundStatus ? <FaVolumeUp size="2rem"/> : <FaVolumeMute size="2rem"/> }</span>
     </div>
-
   );
 }
 

@@ -20,7 +20,7 @@ export function collectGold(index, golds, playerX, playerY, soundOn) {
   const score = golds[index].score;
   golds.splice(index, 1);
   golds.push(new Gold(playerX, playerY));
-  if (soundOn) {
+  if (soundOn.current) {
     soundCalls.PlayCollectGold();
   }
   return score;
