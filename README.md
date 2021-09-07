@@ -57,9 +57,15 @@ This application is using the MIT license.
 
 ## Authentication
 
+<img src="./client/public/auth.gif" alt="auth gif" />
+
 ## Game-Loop
 
+<img src="./client/public/gameloop.png" alt="gameloop">
+
 ## Minigame
+
+<img src="./client/public/peltersminigame.gif" alt="pelter's minigame" />
 
 --- 
 
