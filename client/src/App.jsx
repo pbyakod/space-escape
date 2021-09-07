@@ -16,7 +16,7 @@ import api from './utils/api';
 import { GameProvider } from "./utils/Game/GlobalState";
 import { Howl } from 'howler';
 import Hover from './sounds/hover.mp3';
-import PeltersGame from './components/pages/game/encounter/minigame/Pelters/PeltersGame'
+
 export default function App() {
   const hoverSound = new Howl({
     src: Hover
@@ -25,12 +25,11 @@ export default function App() {
   function PlaySound() {
     hoverSound.play();
   }
-
   return (
     <>
     <BrowserRouter>
-      <NavBar/>
       <GameProvider>
+        <NavBar/>
         <Switch>
           <Route component={Home} onClick={PlaySound} path="/" exact/>
           <Route component={Auth} path="/auth"/>
@@ -42,8 +41,6 @@ export default function App() {
           <Route component={api.loggedIn() ? Game : Auth} path="/game"/>
           <Route component={api.loggedIn() ? Score : Auth} path="/score"/>
           <Route component={api.loggedIn() ? LeaderBoard: Auth} path="/leaderBoard"/>
-          {/* <Route component={api.loggedIn() ? AsteroidsGame: Auth} path="/Asteroids" /> */}
-          <Route component={PeltersGame} path="/peltersGame" />
         </Switch>
       </GameProvider>
       </BrowserRouter>

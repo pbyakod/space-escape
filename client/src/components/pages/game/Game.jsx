@@ -6,7 +6,7 @@ import { INITIALIZE_GAME } from "../../../utils/Game/actions";
 import Story from "./story/Story";
 import Score from "../endGame/Score";
 import LeaderBoard from "../endGame/LeaderBoard";
-// import Map from "../map/Map";
+import Map from "../map/Map";
 
 export default function Game() {
   const [state, dispatch] = useGameContext();
@@ -39,7 +39,7 @@ export default function Game() {
       {!state.renderStory && <Encounter />}
       {state.renderScore && <Score />}
       {state.renderLeaderboard && <LeaderBoard/>}
-      {/* {state.renderMap && <Map />} */}
+      {state.renderMap && <Map />}
     </div>
   )
 }

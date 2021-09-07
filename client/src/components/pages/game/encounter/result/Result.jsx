@@ -41,6 +41,7 @@ export default function Result() {
           dispatch({
             type: SET_NEXT_LOCATION,
             location_id: GameData.id,
+            location: GameData,
             encounter: GameData.encounter,
           });
           const body = {

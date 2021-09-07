@@ -8,7 +8,7 @@ import {
   RENDER_RESULTS,
   RENDER_PROMPT,
   RENDER_STORY,
-  // RENDER_MAP,
+  RENDER_MAP,
   RENDER_SCORE,
   UPDATE_OUTCOME,
   SET_NEXT_LOCATION,
@@ -79,6 +79,9 @@ export const reducer = (state, action) => {
         renderMinigame: true,
         renderResults: false,
         renderStory: false,
+        renderScore: false,
+        renderMap: false,
+        renderLeaderboard: false 
       };
     case RENDER_RESULTS:
       return {
@@ -87,6 +90,9 @@ export const reducer = (state, action) => {
         renderMinigame: false,
         renderResults: true,
         renderStory: false,
+        renderScore: false,
+        renderMap: false,
+        renderLeaderboard: false 
       };
     case RENDER_PROMPT:
       return {
@@ -95,6 +101,9 @@ export const reducer = (state, action) => {
         renderMinigame: false,
         renderResults: false,
         renderStory: false,
+        renderScore: false,
+        renderMap: false,
+        renderLeaderboard: false 
       };
     case RENDER_STORY:
       return {
@@ -103,7 +112,10 @@ export const reducer = (state, action) => {
         renderMinigame: false,
         renderResults: false,
         renderStory: true,
-      };
+        renderScore: false,
+        renderMap: false,
+        renderLeaderboard: false
+     };
     case RENDER_SCORE:
       return {
         ...state,
@@ -126,26 +138,38 @@ export const reducer = (state, action) => {
         renderLeaderboard: true,
         inProgress: false,
       };
-    // case RENDER_MAP:
-    //   return {
-    //     ...state,
-    //     renderPrompt: false,
-    //     renderMinigame: false,
-    //     renderResults: false,
-    //     renderStory: false,
-    //     renderScore: false,
-    //     renderMap: true,
-    //     renderLeaderboard: false
-    //   };
-    // case UPDATE_LOCATION:
-    //   return {
-    //     ...state,
-    //     location_id: action.location_id
-    //   }
+    case RENDER_MAP:
+      const renders = [
+        'renderMinigame',
+        'renderPrompt',
+        'renderResults',
+        'renderStory',
+        'renderScore',
+        'renderMap',
+        'renderLeaderboard'
+      ]
+      let renderPrevious = '';
+      for (let key in state) {
+        if (state[key] && renders.includes(key)){
+          renderPrevious = key;
+        }
+      }
+      return {
+        ...state,
+        renderPrompt: false,
+        renderMinigame: false,
+        renderResults: false,
+        renderStory: false,
+        renderScore: false,
+        renderMap: true,
+        renderLeaderboard: false,
+        renderPrevious: renderPrevious
+      };
     case SET_NEXT_LOCATION:
       return {
         ...state,
         location_id: action.location_id,
+        location: action.location,
         encounter: action.encounter,
         outcome: {},
       };
