@@ -64,7 +64,8 @@ export default function Game({ game, user_id}) {
    })
   }
 
-  function deleteGame() {
+  async function deleteGame() {
+    // return game = await apiCalls.deleteGame(state.game.id);
     return;
   }
 
