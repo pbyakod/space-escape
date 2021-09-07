@@ -9,10 +9,10 @@ router.get("/", async (req, res) => {
     const dbUserData = await User.findByPk(req.session.userId, {
       attributes: { exclude: ["password"] },
     });
-    res.status(200).json(dbUserData);
+    return res.status(200).json(dbUserData);
   } catch (err) {
     console.log(err);
-    res.status(500).json(err);
+    return res.status(500).json(err);
   }
 });
 
@@ -37,10 +37,10 @@ router.get("/details", async (req, res) => {
       ],
       // order: [[Game, 'date_created', 'DESC']],
     });
-    res.status(200).json(dbUserData);
+    return res.status(200).json(dbUserData);
   } catch (err) {
     console.log(err);
-    res.status(500).json(err);
+    return res.status(500).json(err);
   }
 });
 
@@ -50,21 +50,21 @@ router.post("/", async (req, res) => {
     const dbUserData = await User.create(req.body);
     const { id, username, createdAt } = dbUserData;
     const token = signToken({ id, username });
-    res.status(200).json({
+    return res.status(200).json({
       user: {id, username}, 
       message: "You are now logged in!", 
       createdAt, 
       token});
   } catch (err) {
     console.log(err);
-    res.status(500).json(err);
+    return res.status(500).json(err);
   }
 });
 
 // login to an existing account
 router.post("/login", async (req, res) => {
   if (!req.body) {
-    res.status(400).end();
+    return res.status(400).end();
   }
 
   try {
@@ -75,14 +75,14 @@ router.post("/login", async (req, res) => {
     });
 
     if (!dbUserData) {
-      res.status(404).json({ message: "Cannot find user" });
+      return res.status(404).json({ message: "Cannot find user" });
     }
 
     // const isValidPass = await bcrypt.compare(req.body.password, user.password);
     const validPassword = await dbUserData.checkPassword(req.body.password);
 
     if (!validPassword) {
-      res.status(400).json({ message: "Invalid username or password" });
+      return res.status(400).json({ message: "Invalid username or password" });
     }
     const {id, username} = dbUserData;
 		const token = signToken({id, username});
@@ -93,8 +93,9 @@ router.post("/login", async (req, res) => {
         message: "You are now logged in!",
         token,
       });
+    return;
   } catch (err) {
-    console.log(err), res.status(500).json(err);
+    return res.status(500).json(err);
   }
 });
 
@@ -104,8 +105,9 @@ router.post("/logout", (req, res) => {
     req.session.destroy(() => {
       res.status(204).end();
     });
+    return;
   } else {
-    res.status(404).end();
+    return res.status(404).end();
   }
 });
 
