@@ -48,6 +48,7 @@ export const reducer = (state, action) => {
         renderResults: false,
         renderScore: false,
         renderLeaderboard: false,
+        renderMap: false
       };
     case CREATE_GAME:
       return {

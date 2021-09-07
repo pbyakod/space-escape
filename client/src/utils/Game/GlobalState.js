@@ -8,7 +8,7 @@ const GameProvider = ({ value=[], ...props }) => {
   const [state, dispatch] = useGameReducer({
     game_id: 1,
     user_id: null,
-    location_id: 1,
+    location_id: 20,
     location: {},
     encounter: {},
     outcome: {},
