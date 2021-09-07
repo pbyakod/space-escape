@@ -98,14 +98,10 @@ export function gameOver(text, textAlpha, score, ship, soundOn, setGameProcess) 
   ship.dead = true;
   if (ship.health === 0) {
     text.current = "This ship is wrecked, please repair!";
-    if (soundOn) {
-      soundCalls.PlayShipDamaged();
-    }
+    soundCalls.PlayShipDamaged(soundOn.current);
   } else {
     text.current = "Thank you for protect the planet! You earn " + score/10 + " Gold!";
-    if (soundOn) {
-      soundCalls.PlayAsteroidsVictory();
-    }
+    soundCalls.PlayAsteroidsVictory(soundOn.current);
   }
   setTimeout(function() {
     setGameProcess({

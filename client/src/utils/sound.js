@@ -101,17 +101,17 @@ function PlayShootLaser(soundOn) {
   }
 }
 
-function PlayCollectGold() {
+function PlayCollectGold(soundOn) {
   if (soundFX.collectGold.playing()) {
     soundFX.collectGold.stop();
   }
-  if (SoundStatus()) {
+  if (soundOn) {
     soundFX.collectGold.play();
   }
 }
 
-function PlayTimeUp() {
-  if (!soundFX.timeUp.playing() && SoundStatus()) {
+function PlayTimeUp(soundOn) {
+  if (!soundFX.timeUp.playing() && soundOn) {
     soundFX.timeUp.play();
   }
 }
