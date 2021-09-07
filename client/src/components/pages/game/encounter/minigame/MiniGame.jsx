@@ -5,7 +5,6 @@ import CollectGoldGame from "./CollectGold/CollectGoldGame";
 import PeltersGame from "./Pelters/PeltersGame";
 
 export default function MiniGame({game}) {
-  // game=" pelters";
   const [state, dispatch] = useGameContext();
   return (
     <div>
