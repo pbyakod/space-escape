@@ -8,7 +8,8 @@ const games = [
     ship:200,
     gold: 300,
     location_id:1,
-    inProgress:true
+    inProgress:true,
+    score: 7000
   },
 	{
     user_id: 1,
@@ -17,7 +18,8 @@ const games = [
     ship:200,
     gold: 300,
     location_id:4,
-    inProgress:true
+    inProgress:false,
+    score: 10000
   },
   {
     user_id: 2,
@@ -63,6 +65,106 @@ const games = [
     gold: 300,
     location_id:6,
     inProgress:true
+  },
+  {
+    user_id: 1,
+    char_id: 1,
+    health:100,
+    ship:200,
+    gold: 300,
+    location_id:1,
+    inProgress:false,
+    score: 7000
+  },
+  {
+    user_id: 5,
+    char_id: 1,
+    health:100,
+    ship:200,
+    gold: 300,
+    location_id:1,
+    inProgress:false,
+    score: 7000
+  },
+  {
+    user_id: 5,
+    char_id: 1,
+    health:100,
+    ship:200,
+    gold: 300,
+    location_id:1,
+    inProgress:false,
+    score: 7000
+  },
+  {
+    user_id: 4,
+    char_id: 1,
+    health:100,
+    ship:200,
+    gold: 300,
+    location_id:1,
+    inProgress:false,
+    score: 7000
+  },
+  {
+    user_id: 2,
+    char_id: 1,
+    health:100,
+    ship:200,
+    gold: 300,
+    location_id:1,
+    inProgress:false,
+    score: 7000
+  },
+  {
+    user_id: 2,
+    char_id: 1,
+    health:100,
+    ship:200,
+    gold: 300,
+    location_id:1,
+    inProgress:false,
+    score: 7000
+  },
+  {
+    user_id: 2,
+    char_id: 1,
+    health:100,
+    ship:200,
+    gold: 300,
+    location_id:1,
+    inProgress:false,
+    score: 7000
+  },
+  {
+    user_id: 2,
+    char_id: 1,
+    health:100,
+    ship:200,
+    gold: 300,
+    location_id:1,
+    inProgress:false,
+    score: 7000
+  },
+  {
+    user_id: 2,
+    char_id: 1,
+    health:100,
+    ship:200,
+    gold: 300,
+    location_id:1,
+    inProgress:false,
+    score: 7000
+  },
+  {
+    user_id: 2,
+    char_id: 1,
+    health:100,
+    ship:200,
+    gold: 300,
+    location_id:1,
+    inProgress:false,
+    score: 7000
   },
 ];
 

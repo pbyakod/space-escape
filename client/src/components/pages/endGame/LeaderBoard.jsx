@@ -27,13 +27,16 @@ export default function LeaderBoard() {
       <h3 className="main-title">Leader Board</h3>
       <ul>
         {games.sort((a,b) => b.score-a.score).map((game, i) => {
+          if (i <= 10){
           return (
             !game.inProgress 
               ? <li>
                   <p>Username: {game.user.username} Score: {game.score}</p>
                 </li>
               : false
-          )
+          )} else {
+            return false;
+          }
         })}
       </ul>
       <Link to="">
