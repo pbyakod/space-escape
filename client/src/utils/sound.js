@@ -57,13 +57,11 @@ function PlayHover() {
 }
 
 function PlayAsteroidsHomepage() {
-  if (SoundStatus()) {
-    soundFX.asteroidsHomepage.play();
-  }
+  soundFX.asteroidsHomepage.play();
 }
 
 function PlayAsteroidsVictory() {
-  if (!soundFX.asteroidsVictory.playing() && SoundStatus()) {
+  if (!soundFX.asteroidsVictory.playing()) {
     soundFX.asteroidsVictory.play();
   }
 }
@@ -72,22 +70,18 @@ function PlayLaserHitAsteroid() {
   if (soundFX.laserHitAsteroid.playing()) {
     soundFX.laserHitAsteroid.stop();
   }
-  if (SoundStatus()) {
-    soundFX.laserHitAsteroid.play();
-  }
+  soundFX.laserHitAsteroid.play();
 }
 
 function PlayCollectGold() {
   if (soundFX.collectGold.playing()) {
     soundFX.collectGold.stop();
   }
-  if (SoundStatus()) {
-    soundFX.collectGold.play();
-  }
+  soundFX.collectGold.play();
 }
 
 function PlayShipDamaged() {
-  if (!soundFX.shipDamaged.playing() && SoundStatus()) {
+  if (!soundFX.shipDamaged.playing()) {
     soundFX.shipDamaged.play();
   }
 }
@@ -96,22 +90,18 @@ function PlayShipWasHit() {
   if (soundFX.shipWasHit.playing()) {
     soundFX.shipWasHit.stop();
   }
-  if (SoundStatus()) {
-    soundFX.shipWasHit.play();
-  }
+  soundFX.shipWasHit.play();
 }
 
 function PlayShootLaser() {
   if (soundFX.shootLaser.playing()) {
     soundFX.shootLaser.stop();
   }
-  if (SoundStatus()) {
-    soundFX.shootLaser.play();
-  }
+  soundFX.shootLaser.play();
 }
 
 function PlayTimeUp() {
-  if (!soundFX.timeUp.playing() && SoundStatus()) {
+  if (!soundFX.timeUp.playing()) {
     soundFX.timeUp.play();
   }
 }
