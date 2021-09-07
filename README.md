@@ -6,7 +6,7 @@
 
 ---
 
-# Table of Contents 
+## Table of Contents 
 1. [Background](#background)
 2. [Technologies](#technologies)
 3. [Installation](#installation)
@@ -17,37 +17,37 @@
 7. [Credits](#credits)
 
 ---
-# Background
+## Background
 
-## Inspiration
+* Inspiration
 Excited to create game of some sort, our five person team (members of the UC Berkeley Extensions Full-Stack Bootcamp) felt motivated and confident to build a complex project that stretched our knowledge of reactJS. The game we created takes inspiration from simplistic computer games of the past such as Oregon Trail and Mario Party, while also giving it a modern and comedic flare referencing popular culture surrounded by the theme of the modern day space race. 
 
-## Instructions 
+* Instructions 
 Create an account, choose a character, and start playing! Each location contains an encounter in which you will make a user decision, or play a minigame.
 
-## License
+* License
 This application is using the MIT license. 
 
 ---
 
-# Technologies
-## Front-End
-- [HTML](https://www.w3schools.com/html/)
-- SCSS & [CSS](https://www.w3schools.com/css/)
-- [Javascript](https://www.javascript.com/) (JSX)
-- [Excalidraw](https://excalidraw.com/)
-- [Local Storage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage)
-- [howler.js](https://howlerjs.com/)
-- [Chart.js](https://www.chartjs.org/)
-- [anime.js](https://animejs.com/)
+## Technologies
+* Front-End
+  - [HTML](https://www.w3schools.com/html/)
+  - SCSS & [CSS](https://www.w3schools.com/css/)
+  - [Javascript](https://www.javascript.com/) (JSX)
+  - [Excalidraw](https://excalidraw.com/)
+  - [Local Storage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage)
+  - [howler.js](https://howlerjs.com/)
+  - [Chart.js](https://www.chartjs.org/)
+  - [anime.js](https://animejs.com/)
 
-## Back-End
-- [Node.js](https://nodejs.org/en/)
-- [npm](https://www.npmjs.com/)
-- [Express](https://expressjs.com/)
-- [MySQL](https://www.mysql.com/)
-- [Sequelize ORM](https://sequelize.org/)
-- [JWT](https://jwt.io/)
+* Back-End
+  - [Node.js](https://nodejs.org/en/)
+  - [npm](https://www.npmjs.com/)
+  - [Express](https://expressjs.com/)
+  - [MySQL](https://www.mysql.com/)
+  - [Sequelize ORM](https://sequelize.org/)
+  - [JWT](https://jwt.io/)
 
 ---
 
