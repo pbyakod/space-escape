@@ -1,15 +1,22 @@
-import React, { useState } from "react";
-import { FaVolumeUp, FaVolumeMute } from "react-icons/fa";
+import React, { useState, useEffect } from "react";
+import { FaVolumeUp, FaVolumeMute, FaMapMarkedAlt } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 import sound from "../../utils/sound";
 import "./navBar.scss";
 import apiCalls from "../../utils/api";
 import { useGameContext } from "../../utils/Game/GlobalState";
 import { RENDER_MAP, RENDER_PROMPT, RENDER_RESULTS, RENDER_SCORE, RENDER_STORY } from "../../utils/Game/actions";
+import { useLocation } from "react-router";
 
 export default function NavBar() {
   const [state, dispatch] = useGameContext();
   const [soundOn, setSoundOn] = useState(sound.SoundStatus());
+
+  const location = useLocation();
+
+  useEffect(() => {
+    console.log(location);
+  }, [location])
 
   function handleMap() {
     if (!state.renderMap) {
@@ -62,13 +69,14 @@ export default function NavBar() {
       <div className="btn">
         <span className="vol-btn nav-btn" onClick={() => { 
           setSoundOn(sound.SwitchSound())
-          }}>{soundOn ? <FaVolumeUp /> : <FaVolumeMute /> }</span>
+          }}>{soundOn ? <FaVolumeUp size="2rem"/> : <FaVolumeMute size="2rem"/> }</span>
       </div>
-      <div className="btn">
+      {location.pathname === '/game' && (<div className="btn">
         <span onClick={handleMap} className="nav-btn">
-          <i class="fas fa-map-marked-alt fa-2x nav-btn"></i>
+          <FaMapMarkedAlt size="2rem"/>
         </span>
-      </div>
+      </div>)
+      }
     </div>
   );
 }
