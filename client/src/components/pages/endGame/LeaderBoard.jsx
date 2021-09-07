@@ -26,7 +26,7 @@ export default function LeaderBoard() {
     <div className="main-container">
       <h3 className="main-title">Leader Board</h3>
       <ul>
-        {games.map((game, i) => {
+        {games.sort((a,b) => b.score-a.score).map((game, i) => {
           return (
             !game.inProgress 
               ? <li>
@@ -34,7 +34,7 @@ export default function LeaderBoard() {
                 </li>
               : false
           )
-        }).sort((a,b) => b.score-a.score)}
+        })}
       </ul>
       <Link to="">
         <button onClick={handleClick}>Play Again</button>
