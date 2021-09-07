@@ -177,9 +177,7 @@ export class Ship {
         dist: 0,
         explodeTime: 0
       });
-      if (soundOn) {
-        soundCalls.PlayShootLaser();
-      }
+      soundCalls.PlayShootLaser(soundOn.current);
     }
     // prevent further shooting
     this.canShoot = false;
@@ -221,8 +219,6 @@ export class Ship {
   explodeShip(soundOn) {
     this.explodeTime = Math.ceil(SHIP_EXPLODE_DUR * FPS);
     this.health -= HIT_DAMAGE;
-    if (soundOn) {
-      soundCalls.PlayShipWasHit();
-    }
+    soundCalls.PlayShipWasHit(soundOn.current);
   }
 }

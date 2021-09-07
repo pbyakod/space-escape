@@ -6,15 +6,22 @@ import { drawAsteroids, createAsteroids, moveAsteroids } from "./AstroidMovement
 import { detectExploding, detectHit, drawShipHealth, drawScore, gameOver, drawGameText } from "./helper";
 
 const Canvas = ({ setGameProcess, setGameResult }) => {
-  let soundOn = true;
   let level = 3
   const canvasRef = useRef(null);
+  const soundOn = useRef(true);
+
   const roids = useRef(null);
   const score = useRef(0);
   const text = useRef("");
   const textAlpha = useRef(0);
   const ship = new Ship();
-  
+  const [soundStatus, setSoundStatus] = useState(true);
+
+  function switchSoundStatus() {
+    soundOn.current = !soundStatus;
+    setSoundStatus(!soundStatus);
+  }
+
   const keyDown = (e) => {
     if (ship.dead) {
       return;
@@ -36,6 +43,7 @@ const Canvas = ({ setGameProcess, setGameResult }) => {
   
     }
   };
+
   const keyUp = (e) => {
     if (ship.dead) {
       return;
@@ -57,13 +65,7 @@ const Canvas = ({ setGameProcess, setGameResult }) => {
     }
   };
 
-  const [soundStatus, setSoundStatus] = useState(true);
-
-  function switchSoundStatus() {
-    soundOn = !soundStatus;
-    setSoundStatus(!soundStatus);
-  }
-
+  
   useLayoutEffect(() => {
 
     var animationId = 0;

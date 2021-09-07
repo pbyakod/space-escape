@@ -42,9 +42,7 @@ export function destroyAsteroid(index, roids, player, soundOn, level) {
   }
 
   roids.current.splice(index, 1);
-  if (soundOn) {
-    soundCalls.PlayLaserHitAsteroid();
-  }
+  soundCalls.PlayLaserHitAsteroid(soundOn.current);
 
   return score;
 }
