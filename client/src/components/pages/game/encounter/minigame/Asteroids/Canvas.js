@@ -1,12 +1,12 @@
-import React, { useRef, useLayoutEffect } from 'react';
+import React, { useState, useRef, useLayoutEffect } from 'react';
+import { FaVolumeUp, FaVolumeMute } from "react-icons/fa"
 import { TURN_SPEED, FPS } from "./constVaraibles";
 import { Ship } from "./ShipMovement";
 import { drawAsteroids, createAsteroids, moveAsteroids } from "./AstroidMovement";
 import { detectExploding, detectHit, drawShipHealth, drawScore, gameOver, drawGameText } from "./helper";
 
-const Canvas = ({ gameProcess, setGameProcess, setGameResult }) => {
+const Canvas = ({ setGameProcess, setGameResult }) => {
   let soundOn = true;
-
   let level = 3
   const canvasRef = useRef(null);
   const roids = useRef(null);
@@ -54,9 +54,15 @@ const Canvas = ({ gameProcess, setGameProcess, setGameResult }) => {
         ship.rot = 0;
         break;
       default :
-  
     }
   };
+
+  const [soundStatus, setSoundStatus] = useState(true);
+
+  function switchSoundStatus() {
+    soundOn = !soundStatus;
+    setSoundStatus(!soundStatus);
+  }
 
   useLayoutEffect(() => {
 
@@ -103,7 +109,14 @@ const Canvas = ({ gameProcess, setGameProcess, setGameResult }) => {
     };
   }, []);
 
-  return <canvas ref={canvasRef} width={window.innerWidth} height={window.innerHeight}/>;
+  return (
+    <div>
+      <canvas ref={canvasRef} width={window.innerWidth} height={window.innerHeight}/>
+      <div className="btn">
+          <span className="vol-btn nav-btn" onClick={switchSoundStatus}>{ soundStatus ? <FaVolumeUp size="2rem"/> : <FaVolumeMute size="2rem"/> }</span>
+      </div>
+    </div>
+  );
 }
 
 export default Canvas;
