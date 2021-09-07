@@ -37,7 +37,7 @@ export default function Result() {
       });
     } else {
       apiCalls.getLocation(state.outcome.next_location_id).then((GameData) => {
-        if (GameData) {
+        if (GameData.encounter) {
           dispatch({
             type: SET_NEXT_LOCATION,
             location_id: GameData.id,
