@@ -1,5 +1,5 @@
 # Space Escape [![License](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-> ## **[Play Space Escape!](Link)** 
+> ## **[Play Space Escape!](https://space-escape.herokuapp.com)** 
 > ## **[GitHub Repo!](https://github.com/pbyakod/space-escape)** 
 
 ### You're a lone space traveler deep in space trying to navigate your way back home. Along the way, you'll encounter many new places and challenges. Can you make it?
@@ -54,6 +54,8 @@ This application is using the MIT license.
 - MySQL
 - Sequelize ORM
 - JS Web Tokens
+
+---
 
 # Code
 
