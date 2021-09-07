@@ -79,7 +79,7 @@ This application is using the MIT license.
 
     * Collect Gold
 
-      <img src="./client/public/images/collectGold.gif" alt="CollectGold Demo" width="500"/>
+      <img src="./client/public/images/collectgold.gif" alt="CollectGold Demo" width="500"/>
 
     * Pelters
 
