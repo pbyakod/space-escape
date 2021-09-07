@@ -2,7 +2,7 @@ import { useGameContext } from "../../../../utils/Game/GlobalState"
 import { RENDER_PROMPT } from "../../../../utils/Game/actions" 
 import "../../../../app.scss";
 import "./story.scss"
-import copilot from "./img/copilot.jpeg"
+import copilot from "./img/copilot.gif"
 
 export default function Story() {
   const [state, dispatch] = useGameContext();

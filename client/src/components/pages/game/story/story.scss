@@ -4,6 +4,9 @@ text-align: center;
 }
 
 .copilot {
+  display: flex;
+  align-self: center;
   max-width: 100%;
-  margin-bottom: 1rem;
+  height: 20rem;
+  margin: 1rem auto;
 }
