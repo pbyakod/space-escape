@@ -70,17 +70,16 @@ export default function Game({ game, user_id}) {
 
   return (
     <li>
-          
-          <p>{game.id}</p>
-          <p>Location: {game.Location.name}</p>
-          <p>Character: {charName}</p>
-          <p>Health: {game.health}</p>
-          <p>Ship Health: {game.ship}</p>
-          <p>Gold: {game.gold}</p>
-        <div className="dashboard-action">
-         <Link to="/game"><button className="continue go-btn" onClick={continueGame}>Continue</button></Link>
-          <button className="delete stop-btn" onClick={deleteGame}>Delete</button>
-        </div>
-        </li>
+      <p>{game.id}</p>
+      <p>Location: {game.Location.name}</p>
+      <p>Character: {charName}</p>
+      <p>Health: {game.health}</p>
+      <p>Ship Health: {game.ship}</p>
+      <p>Gold: {game.gold}</p>
+      <div className="dashboard-action">
+        <Link to="/game"><button className="continue go-btn" onClick={continueGame}>Continue</button></Link>
+        <button className="delete stop-btn" onClick={deleteGame}>Delete</button>
+      </div>
+    </li>
   )
 }
