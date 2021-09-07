@@ -110,12 +110,11 @@ const Canvas = ({ setGameProcess, setGameResult }) => {
   }, []);
 
   return (
-    <div>
+    <div className="canvas">
       <canvas ref={canvasRef} width={window.innerWidth} height={window.innerHeight}/>
-      <div className="btn">
-          <span className="vol-btn nav-btn" onClick={switchSoundStatus}>{ soundStatus ? <FaVolumeUp size="2rem"/> : <FaVolumeMute size="2rem"/> }</span>
-      </div>
+      <span className="minigame-vol-btn" onClick={switchSoundStatus}>{ soundStatus ? <FaVolumeUp size="2rem"/> : <FaVolumeMute size="2rem"/> }</span>
     </div>
+
   );
 }
 
