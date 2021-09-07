@@ -80,7 +80,3 @@ This application is using the MIT license.
 # Credits
 
 Thank you to the UC Berkeley Bootcamp teaching staff for providing the resources and help to us in completing this project.
-
-## Clones
-
-## References
