@@ -185,7 +185,7 @@ async function getCharPrototypes() {
 // outputs:
 // 		response.data (promise): promise({id, inProgress, user_id, char_id, health, ship, gold})
 async function createGame(body) {
-  if (!body.user_id || !body.char_id || !body.health || !body.ship || !body.gold || !body.location_id, !body.inProgress) {
+  if (!body.user_id || !body.char_id || !body.health || !body.ship || !body.gold || !body.location_id || !body.inProgress) {
     console.log(body)
     throw new Error("Arguments require user_id, char_id, location_id, health, ship, and gold");
   }
