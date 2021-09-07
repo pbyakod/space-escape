@@ -6,7 +6,7 @@
 
 ---
 
-# Table of Contents 
+## Table of Contents 
 1. [Background](#background)
 2. [Technologies](#technologies)
 3. [Installation](#installation)
@@ -16,56 +16,74 @@
 7. [Authors](#authors)
 7. [Credits](#credits)
 
-
-
 ---
-# Background
+## Background
 
-## Inspiration
+* Inspiration
 Excited to create game of some sort, our five person team (members of the UC Berkeley Extensions Full-Stack Bootcamp) felt motivated and confident to build a complex project that stretched our knowledge of reactJS. The game we created takes inspiration from simplistic computer games of the past such as Oregon Trail and Mario Party, while also giving it a modern and comedic flare referencing popular culture surrounded by the theme of the modern day space race. 
 
-## Instructions 
+* Instructions 
 Create an account, choose a character, and start playing! Each location contains an encounter in which you will make a user decision, or play a minigame.
 
-## License
+* License
 This application is using the MIT license. 
 
 ---
 
-# Technologies
-## Front-End
-- HTML
-- SCSS
-- Javascript (JSX)
-- Excalidraw
-- Local Storage
-- Howler.js
-- Chart.js
-- anime.js
+## Technologies
+* Front-End
+  - [HTML](https://www.w3schools.com/html/)
+  - SCSS & [CSS](https://www.w3schools.com/css/)
+  - [Javascript](https://www.javascript.com/) (JSX)
+  - [Excalidraw](https://excalidraw.com/)
+  - [Local Storage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage)
+  - [howler.js](https://howlerjs.com/)
+  - [Chart.js](https://www.chartjs.org/)
+  - [anime.js](https://animejs.com/)
 
-## Back-End
-- Node
-- NPM
-- Express
-- MySQL
-- Sequelize ORM
-- JS Web Tokens
+* Back-End
+  - [Node.js](https://nodejs.org/en/)
+  - [npm](https://www.npmjs.com/)
+  - [Express](https://expressjs.com/)
+  - [MySQL](https://www.mysql.com/)
+  - [Sequelize ORM](https://sequelize.org/)
+  - [JWT](https://jwt.io/)
 
 ---
 
-# Code
+## Features
 
-## Authentication
+* User can sign up a new account or sign in an existing account. The `JWT` and `local storage` is implemented to check the authentication
 
-<img src="./client/public/auth.gif" alt="auth gif" />
+  <img src="./client/public/images/auth.gif" alt="auth gif" />
 
-## Game-Loop
+* Player is able to start a new game or continue an incompleted game. They can also delete a certain game record
 
-<img src="./client/public/gameloop.png" alt="gameloop">
+* Player can select character at the beginning of the game which is with different `health`, `ship health`, `gold` value
 
-## Minigame
+  <img src="./client/public/images/selectCharacter.gif" alt="auth gif" />
 
-<img src="./client/public/peltersminigame.gif" alt="pelter's minigame" />
+* When the player reached a certain location, there would be a corresponding encounter which includes two options directed to different results
+
+  <img src="./client/public/images/gameloop.png" alt="gameloop">
+
+* Minigame
+
+  *  We reference to [freeCodeCamp.org](https://www.youtube.com/watch?v=H9CSWMxJx84) for minigame
+
+  * Each game includes home page, rules page, prepare page, game page and result page
+
+    * Asteroids
+
+      <img src="./client/public/images/asteroids.gif" alt="Asteroids Demo" width="500"/>
+
+    * Collect Gold
+
+      <img src="./client/public/images/collectGold.gif" alt="CollectGold Demo" width="500"/>
+
+    * Pelters
+
+      <img src="./client/public/images/pelters.gif" alt="pelter Demo" width="500"/>
 
 --- 
 
