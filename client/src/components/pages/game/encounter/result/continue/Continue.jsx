@@ -29,7 +29,6 @@ export default function Continue(prop) {
       </p>
       <p className="gap title">Ship Health: {prop.ship}</p>
       <p className="gap title">Gold: {prop.gold}</p>
-      
     </div>
   );
 }
