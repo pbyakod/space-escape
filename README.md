@@ -16,8 +16,6 @@
 7. [Authors](#authors)
 7. [Credits](#credits)
 
-
-
 ---
 # Background
 
@@ -34,38 +32,58 @@ This application is using the MIT license.
 
 # Technologies
 ## Front-End
-- HTML
-- SCSS
-- Javascript (JSX)
-- Excalidraw
-- Local Storage
-- Howler.js
-- Chart.js
-- anime.js
+- [HTML](https://www.w3schools.com/html/)
+- SCSS & [CSS](https://www.w3schools.com/css/)
+- [Javascript](https://www.javascript.com/) (JSX)
+- [Excalidraw](https://excalidraw.com/)
+- [Local Storage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage)
+- [howler.js](https://howlerjs.com/)
+- [Chart.js](https://www.chartjs.org/)
+- [anime.js](https://animejs.com/)
 
 ## Back-End
-- Node
-- NPM
-- Express
-- MySQL
-- Sequelize ORM
-- JS Web Tokens
+- [Node.js](https://nodejs.org/en/)
+- [npm](https://www.npmjs.com/)
+- [Express](https://expressjs.com/)
+- [MySQL](https://www.mysql.com/)
+- [Sequelize ORM](https://sequelize.org/)
+- [JWT](https://jwt.io/)
 
 ---
 
-# Code
+## Features
 
-## Authentication
+* User can sign up a new account or sign in an existing account. The `JWT` and `local storage` is implemented to check the authentication
 
-<img src="./client/public/auth.gif" alt="auth gif" />
+  <img src="./client/public/images/auth.gif" alt="auth gif" />
 
-## Game-Loop
+* Player is able to start a new game or continue an incompleted game. They can also delete a certain game record
 
-<img src="./client/public/gameloop.png" alt="gameloop">
+* Player can select character at the beginning of the game which is with different `health`, `ship health`, `gold` value
 
-## Minigame
+  <img src="./client/public/images/selectCharacter.gif" alt="auth gif" />
 
-<img src="./client/public/peltersminigame.gif" alt="pelter's minigame" />
+* When the player reached a certain location, there would be a corresponding encounter which includes two options directed to different results
+
+  <img src="./client/public/images/gameloop.png" alt="gameloop">
+
+* Minigame
+
+  *  We reference to [freeCodeCamp.org](https://www.youtube.com/watch?v=H9CSWMxJx84) for minigame
+
+  * Each game includes home page, rules page, prepare page, game page and result page
+
+    * Asteroids
+
+      <img src="./client/public/images/asteroids.gif" alt="Asteroids Demo" width="500"/>
+
+    * Collect Gold
+
+      <img src="./client/public/images/collectGold.gif" alt="CollectGold Demo" width="500"/>
+
+    * Pelters
+
+      <img src="./client/public/images/pelters.gif" alt="pelter Demo" width="500"/>
 
 --- 
 
