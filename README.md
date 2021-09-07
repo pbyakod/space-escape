@@ -4,10 +4,6 @@
 
 ### You're a lone space traveler deep in space trying to navigate your way back home. Along the way, you'll encounter many new places and challenges. Can you make it?
 
-
-
-
-
 ---
 
 # Table of Contents 
