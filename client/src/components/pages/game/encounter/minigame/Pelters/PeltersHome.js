@@ -47,7 +47,7 @@ export default function PeltersHome({ setGameProcess }) {
     <div>
       <div className="pelters-container">
         <h2 className="pelters-home"><span>Avoid</span><br/>Pelters</h2>
-        {pelterArray.map(el => <div className="pelters pelter" style={el}></div>)}
+        {pelterArray.map((el, i) => <div key={i} className="pelters pelter" style={el}></div>)}
       </div>
     </div>
   );
