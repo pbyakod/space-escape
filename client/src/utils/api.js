@@ -203,6 +203,24 @@ async function createGame(body) {
   }
 }
 
+async function deleteGame(game_id) {
+  if (game_id) {
+    throw new Error("Arguments require game_id");
+  }
+  try {
+    const response = await axios.post('/api/game/' + game_id, createRequestHeader());
+    if (response.statusText === "OK") {
+      console.log(response.data)
+      return response.data;
+    } else {
+      return response.data;
+    }
+  } catch(err) {
+    return err.response;
+  }
+}
+
+
 // GET request to get all encounters associated with a single location
 //
 // inputs:
@@ -244,6 +262,7 @@ const apiCalls = {
   signUp,
   getCharPrototypes,
   createGame,
+  deleteGame,
   getEncounter,
   getLocation,
   loggedIn,
