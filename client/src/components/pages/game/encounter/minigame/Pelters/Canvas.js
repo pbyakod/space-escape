@@ -6,7 +6,7 @@ import { useGameContext } from '../../../../../../utils/Game/GlobalState';
 import { HIT_DAMAGE } from './constVariables';
 
 const Canvas = ({ setGameProcess, setGameResult }) => {
-  let soundOn = false;
+  let soundOn = true;
   const [state, dispatch] = useGameContext();
 
   let level = 8

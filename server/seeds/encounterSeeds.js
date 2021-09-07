@@ -113,7 +113,7 @@ const encounter = [
     //comes after receiving negative values from encounter 14 or 15
     story: "I Have to park this puppy, lets stop here in Dotris",
     message: 'You’ve made it to Dotris! Luckily their currency has an exchange rate of 1/3 with gold. Would you like to pay for repairs?',
-    option1: 'yes|{"health": 0, "ship": +150, "gold": -50, "next": "results", "next_location_id": 17}',
+    option1: 'yes|{"health": 0, "ship": 150, "gold": -50, "next": "results", "next_location_id": 17}',
     //option1: 'yes|{"health": 0, "ship": 0, "gold": 0, "next": "shop", "next_location_id": 17}',
     option2: 'no thanks|{"health": 0, "ship": 0, "gold": 0, "next": "results", "next_location_id": 17}',
     location_id: 16,
