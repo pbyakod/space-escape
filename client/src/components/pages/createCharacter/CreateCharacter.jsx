@@ -42,6 +42,7 @@ export default function CreateCharacter() {
         ship: character.ship,
         gold: character.gold,
         game_id: 1,
+        location_id: 1
       };
 
       api.createGame(newGameState).then((data) => {

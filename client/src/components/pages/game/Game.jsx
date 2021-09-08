@@ -17,7 +17,8 @@ export default function Game() {
   }, [])
 
   async function initializeGame() {
-    const GameData = await apiCalls.getLocation(state.location_id); 
+    const locationId = JSON.parse(localStorage.getItem('game_state')).location_id
+    const GameData = await apiCalls.getLocation(locationId); 
     dispatch({
       type: INITIALIZE_GAME, 
       encounter: GameData.encounter,

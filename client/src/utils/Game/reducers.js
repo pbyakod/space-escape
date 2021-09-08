@@ -60,6 +60,9 @@ export const reducer = (state, action) => {
         ship: action.ship,
         gold: action.gold,
         inProgress: action.inProgress,
+        location_id: 1,
+        encounter: {},
+        outcome: {},
       };
     case INITIALIZE_SAVED_GAME:
       return {
