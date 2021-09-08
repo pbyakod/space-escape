@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const { User, Game, Location, CharProto, Encounter } = require('../../models');
-const { withAuth } = require('../../utils/auth');
+const { withAuth, decodeToken } = require('../../utils/auth');
 
 router.use(withAuth);
 
@@ -131,13 +131,14 @@ router.put('/:id', async (req, res) => {
 
 // DELETE an existing game with id === req.params.id
 router.delete('/:id', async (req, res) => {
+  const decodedToken = decodeToken(req.headers.authorization.split(' ')[1]);
   try {
     let dbGameData = await Game.findByPk(req.params.id);
     if (!dbGameData) {
       res.status(400).json({ message: 'No game found with that id!' });
       return;
     } else if (
-      dbGameData.get({ plain: true }).user_id !== req.session.userId
+      dbGameData.get({ plain: true }).user_id !== decodedToken.data.id
     ) {
       res
         .status(400)
@@ -151,6 +152,7 @@ router.delete('/:id', async (req, res) => {
       res.status(200).json({ message: 'Delete the game successfully!' });
     }
   } catch (err) {
+    console.log(err)
     res.status(500).json(err);
   }
 });
