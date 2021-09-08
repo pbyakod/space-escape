@@ -33,7 +33,7 @@ export default function Dashboard() {
         {gameList.map((game, i) => {
           // console.log("entered")
           // console.log("db l_id = ", game.location_id)
-          return game.inProgress ? <Game user_id={userId()} game={game} key={i}/>: false;
+          return game.inProgress ? <Game user_id={userId()} game={game} key={i} setGameList={setGameList} gameList={gameList}/>: false;
          })}
       </ul>
       <Link to="/">

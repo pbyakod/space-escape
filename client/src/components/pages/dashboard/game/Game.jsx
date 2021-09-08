@@ -6,7 +6,7 @@ import apiCalls from "../../../../utils/api";
 
 
 
-export default function Game({ game, user_id}) {
+export default function Game({ game, user_id, setGameList, gameList}) {
   let charName = "";
   let location = "";
 
@@ -65,7 +65,8 @@ export default function Game({ game, user_id}) {
   }
 
   async function deleteGame() {
-    // return game = await apiCalls.deleteGame(state.game.id);
+    setGameList(gameList.filter((gameItem) => gameItem.id !== game.id)) 
+    apiCalls.deleteGame(game.id);
     return;
   }
 

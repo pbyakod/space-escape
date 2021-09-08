@@ -34,8 +34,13 @@ function signToken({id, username}) {
   return token;
 }
 
+function decodeToken(token) {
+  const decodedToken = jwt.decode(token)
+  return decodedToken;
+}
 module.exports = {
   withAuth,
   signToken,
+  decodeToken,
   test
 };
