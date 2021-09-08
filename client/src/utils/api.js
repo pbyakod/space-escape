@@ -204,11 +204,11 @@ async function createGame(body) {
 }
 
 async function deleteGame(game_id) {
-  if (game_id) {
+  if (!game_id) {
     throw new Error("Arguments require game_id");
   }
   try {
-    const response = await axios.post('/api/game/' + game_id, createRequestHeader());
+    const response = await axios.delete('/api/game/' + game_id, createRequestHeader());
     if (response.statusText === "OK") {
       console.log(response.data)
       return response.data;
