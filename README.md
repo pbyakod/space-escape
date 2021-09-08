@@ -103,14 +103,14 @@ When presented with new encounters, the user can make a choice: one of those cho
 Using the same coding pattern as above, we render minigames by creating a component for a individual minigame; in this case we have three minigames:
 
 <p align="center">
-  <img src="./client/public/images/game_loop/minigame_comp.PNG" alt="Asteroids Demo" width="400"/>
+  <img src="./client/public/images/game_loop/minigame_comp.png" alt="Asteroids Demo" width="400"/>
 </p>
 
 
 Components within each minigame contain an opening screen, rules, prepare screen, the minigame (canvas), and the results page. To tie the sub components together, we have a file containing each component conditionally rendered:
 
 <p align="center">
-  <img src="./client/public/images/game_loop/asteroids_minigame.PNG" alt="Asteroids Demo" width="600"/>
+  <img src="./client/public/images/game_loop/asteroids_minigame.png" alt="Asteroids Demo" width="600"/>
 </p
 
 
@@ -126,7 +126,7 @@ On user login through the browser, the user's username and password are sent to 
 <details>
   <summary>Code snippet: show user route image</summary>
   <p align="center">
-	  <img src="./client/public/images/authentication/login_route.PNG" width="400">
+	  <img src="./client/public/images/authentication/login_route.png" width="400">
   </p>
 </details>
 
@@ -135,7 +135,7 @@ The sign up route is similar, with the only difference being that the user is cr
 Once the user has the token save in local storage, any requests to the backend will be checked for an `authorization` header and the logic is taken care of in this `withAuth` function
  
  <p align="center">
-	<img src="./client/public/images/authentication/with_auth.PNG" width='400'>
+	<img src="./client/public/images/authentication/with_auth.png" width='400'>
 </p>
 
 To protect an entire set of routes, we can specify at the top of the file containing that set of routes.
@@ -145,12 +145,12 @@ Once the user is logged in, any of the fetch requests requiring authentication n
 
 <details><summary>Code snippet: view generation and sending of token</summary>
   <p align="center">
-    <img src="./client/public/images/authentication/generate_token.PNG">
+    <img src="./client/public/images/authentication/generate_token.png">
   </p>
 
 
   <p align="center">
-    <img src="./client/public/images/authentication/get_user_games_FE.PNG">
+    <img src="./client/public/images/authentication/get_user_games_FE.png">
   </p>
 </details>
 
